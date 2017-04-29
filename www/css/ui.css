@@ -1,0 +1,39 @@
+div#content{
+	margin:		1em auto 1em auto;
+	max-width:	65em;
+}
+
+div#content div.content_table{
+	display:	table;
+	width:		100%;
+}
+
+div#content div.content_table div.content_row{
+	display:	table-row;
+	width:		100%;
+}
+
+div#content div.content_table div.content_row div.content_cell{
+	display:		table-cell;
+	vertical-align:	top;
+}
+
+div.section{
+	border: 0.1em solid black;
+	margin:	1em;
+}
+
+div.section h2.section_title{
+	background-color:	#34b352;
+	font-weight:		bold;
+	color:				#ccffcc;
+	width:				100%;
+	text_align:			left;
+	padding:			0.2em 0em 0.1em 0em;
+	margin:				0;
+	text-indent:		0.5em;
+}
+
+div.section div.section_content{
+	margin:	0.5em;
+}

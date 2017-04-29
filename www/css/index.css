@@ -1,0 +1,33 @@
+div#content_cell_0{
+	width:	30%;
+	align:	center;
+}
+
+div#content_cell_0 div.section_content{
+	text-align:	center;
+}
+
+div#content_cell_0 div.section_content img{
+	max-width:	2.5em;
+	max-height:	2.5em;
+}
+
+div#content_cell_1 div#section_navigation div.section_content{
+	text-align:	center;
+}
+
+div#content_cell_1 div#section_navigation div.section_content div.nav_item{
+	width:			7em;
+	height:			7em;
+	display:		inline-block;
+	vertical-align:	top;
+	border:			0.2em solid #00ff00;
+	border-radius:	0.5em;
+	text-align:		center;
+}
+
+div#content_cell_1 div#section_navigation div.section_content div.nav_item h2{
+	font-weight:	bold;
+	font-size:		100%;
+}
+
