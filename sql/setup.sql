@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS iv;
 CREATE DATABASE iv CHARACTER SET utf8 COLLATE utf8_bin;
 
 SET NAMES utf8;
@@ -6,15 +7,15 @@ CONNECT iv;
 
 CREATE TABLE lang (
     code        VARCHAR(2)      PRIMARY KEY,
-    name        VARCAHR(16)     NOT NULL,
-    enabled     BOOLEAN         DEFAULT 0
+    name        VARCHAR(16)     NOT NULL,
+    active      BOOLEAN         DEFAULT 0
 );
 
 CREATE TABLE text (
     id      VARCHAR(32),
     lang    VARCHAR(2)      REFERENCES lang.code,
     section VARCHAR(32),
-    text    VARCHAR(5000)   NOT NULL
+    text    VARCHAR(5000)   NOT NULL,
     PRIMARY KEY(id, lang)
 );
 CREATE INDEX i_text ON text(id, lang);
@@ -35,15 +36,15 @@ CREATE TABLE user (
 );
 
 CREATE TABLE login_attempts (
-    user    INT         NOT NULL    REFERENCES user.id,
-    dtime   VARCHAR(30) NOT NULL,
-    success BOOLEAN     NOT NULL    DEFAULT 0,
+    user     INT          NOT NULL    REFERENCES user.id,
+    dtime    VARCHAR(30)  NOT NULL,
+    success  BOOLEAN      NOT NULL    DEFAULT 0
 );
 
 CREATE TABLE permissions(
-    user        INT         PRIMARY KEY     REFERENCES user.id,
-    permission  VARCHAR(32) NOT NULL
-    RIMARY KEY(user, permission)
+    user        INT          REFERENCES user.id,
+    permission  VARCHAR(32)  NOT NULL,
+    PRIMARY KEY(user, permission)
 );
 
 CREATE TABLE post (
@@ -59,12 +60,12 @@ CREATE TABLE post (
 
 CREATE TABLE post_tag (
     post    INT            NOT NULL     REFERENCES post.id,
-    tag     VARCHAR(32)    NOT NULL     REFERENCES text.id,,
+    tag     VARCHAR(32)    NOT NULL     REFERENCES text.id,
     PRIMARY KEY (post, tag)
 );
 
 CREATE TABLE post_image (
-    id      INT             NOT NULL    PRIMARY KEY,
+    id      INT             NOT NULL,
     post    INT             NOT NULL    REFERENCES post.id,
     image   VARCHAR(200)    NOT NULL,
     PRIMARY KEY(id, post)
@@ -79,7 +80,7 @@ CREATE TABLE post_comment (
     username  VARCHAR(200),
     lang      VARCHAR(10),
     approved  BOOLEAN         NOT NULL                    DEFAULT 1,
-    visit     INT             REFERENCES stat_visit.id,
+    visit     INT             REFERENCES stat_visit.id
 );
 
 CREATE TABLE project (
@@ -93,22 +94,22 @@ CREATE TABLE project (
 );
 
 CREATE TABLE project_url (
-    project     INT,
-    type        VARCAHR(32),
-    url         VARCHAR(1024),
+    project     INT              NOT NULL  REFERENCES project.id,
+    type        VARCHAR(32)      NOT NULL,
+    url         VARCHAR(1024)    NOT NULL,
     PRIMARY KEY (project, type)
 );
 
-CREATE TABLE project_image (){
+CREATE TABLE project_image (
     id          INT             NOT NULL,
     project     INT             NOT NULL    REFERENCES project.id,
     image       VARCHAR(200)    NOT NULL,
     PRIMARY KEY(id, project)
-}
+);
 
 CREATE TABLE project_tag (
     project     INT            NOT NULL     REFERENCES project.id,
-    tag         VARCHAR(32)    NOT NULL     REFERENCES text.id,,
+    tag         VARCHAR(32)    NOT NULL     REFERENCES text.id,
     PRIMARY KEY (project, tag)
 );
 
@@ -121,7 +122,7 @@ CREATE TABLE project_comment (
     username  VARCHAR(200),
     lang      VARCHAR(10),
     approved  BOOLEAN         NOT NULL                    DEFAULT 1,
-    visit     INT             REFERENCES stat_visit.id,
+    visit     INT             REFERENCES stat_visit.id
 );
 
 CREATE TABLE settings (
