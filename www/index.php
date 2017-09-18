@@ -1,17 +1,14 @@
 <?php
     session_start();
-    $http_host = $_SERVER['HTTP_HOST'];
-    $doc_root = $_SERVER['DOCUMENT_ROOT']; 
-    include $doc_root . 'functions.php';
+    $http_host = $_SERVER["HTTP_HOST"];
+    $doc_root = $_SERVER["DOCUMENT_ROOT"]; 
+    include $doc_root . "functions.php";
     $proto = get_protocol();
     $con = start_db();
     $server = $proto . $http_host;
-
-    //Language
     $lang = select_language();
-
-    $cur_section = '';
-    $cur_entry = '';
+    $cur_section = "";
+    $cur_entry = "";
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,21 +21,21 @@
         <!-- CSS files -->
         <style>
 <?php
-            include $doc_root . 'css/ui.css';
-            include $doc_root . 'css/home.css';
+            include $doc_root . "css/ui.css";
+            include $doc_root . "css/home.css";
 ?>
         </style>
         <!-- CSS for mobile version -->
         <style media='(max-width : 990px)'>
 <?php
-            include $doc_root . 'css/m/ui.css';
-            include $doc_root . 'css/m/home.css';
+            include $doc_root . "css/m/ui.css";
+            include $doc_root . "css/m/home.css";
 ?>
         </style>
         <!-- Script files -->
         <script type='text/javascript'>
 <?php
-            include $doc_root . 'script/ui.js';
+            include $doc_root . "script/ui.js";
 ?>
         </script>
         <!-- Meta tags -->
@@ -65,16 +62,14 @@
             <img id='logo' src='<?=$server?>/img/logo/inigovalentin.png' alt='I&ntilde;igo Valentin'/>
         </div>
 <?php
-        include $doc_root . 'header.php';
+        include $doc_root . "header.php";
 ?>
         <div id='content'>
 
         </div> <!-- #content -->
 <?php
-
-        //Footer
-        include $doc_root . 'footer.php';
-        stats($cur_section, $cur_entry);
+        include $doc_root . "footer.php";
+        stats($con, $cur_section, $cur_entry);
 ?>
     </body>
 </html>

@@ -210,6 +210,21 @@
         $str = str_replace(" ", "-", $str);
         return $str;
     }
+    
+    /*****************************************************
+     * Retrieves a text fragment from the database.      *
+     *                                                   *
+     * @params:                                          *
+     *    con (Mysql connection): Connection handler.    *
+     *    id: (string): Text identifier.                 *
+     *    lang: (string): Language identifier.           *
+     * @return: (string): Text.                          *
+     *****************************************************/
+    function text($con, $id, $lang){
+        error_log("SELECT text FROM text WHERE id = '$id' AND lang = '$lang';");
+        $q = mysqli_query($con, "SELECT text FROM text WHERE id = '$id' AND lang = '$lang';");
+        return mysqli_fetch_array($q)["text"];
+    }
 
 
     /*****************************************************
@@ -299,6 +314,7 @@
      * count (if any was shown).                         *
      *                                                   *
      * @params:                                          *
+     *    con (Mysql connection): Connection handler.    *
      *    section: (string): Site section being visited. *
      *    id: (int): ID of the entri being visited       *
      *****************************************************/
