@@ -302,7 +302,7 @@
      *    section: (string): Site section being visited. *
      *    id: (int): ID of the entri being visited       *
      *****************************************************/
-    function stats($section, $id){
+    function stats($con, $section, $id){
 
         // Get client data
         $ip = get_ip();
@@ -368,7 +368,6 @@
         }
 
         //Look for a visit with the same IP in the last 30 mins.
-        $con = startdb("rw");
         $q = mysqli_query($con, "SELECT stat_visit.id AS visitid FROM stat_view, stat_visit WHERE visit = stat_visit.id AND dtime > DATE_SUB(now(), INTERVAL 30 MINUTE) AND ip = '$ip' AND uagent = '$uagent';");
         if (mysqli_num_rows($q) == 0){
             mysqli_query($con, "INSERT INTO stat_visit (ip, uagent, os, browser) VALUES ('$ip', '$uagent', '$os', '$browser');");

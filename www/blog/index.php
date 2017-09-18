@@ -66,7 +66,7 @@
 
         //Footer
         include $doc_root . "footer.php";
-        stats($cur_section, $cur_entry);
+        stats($con, $cur_section, $cur_entry);
 ?>
     </body>
 </html>
