@@ -1,0 +1,33 @@
+#Kate files
+.kateproject.d/
+.kateproject
+
+#OS files
+.directory
+.DS_Store
+.DS_Store?
+._*
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+#Utility folders
+3rdparty/
+pending/
+utils-local/
+copy
+remotecopy
+remoteadmin
+www-admin/redirect_s.php
+
+#SQL data
+sql/dbusers.sql
+sql/*row*.sql
+
+#Passwords file
+sql/dbpasswords.sql
+www/.htpasswd
+www-admin/.htpasswd
+www/.htaccess_local
+www-admin/.htaccess_local
+
