@@ -1,0 +1,8 @@
+/* Page logo in the top of the toolbar */
+div#logo{
+    width: 100%;
+    text-align: center;
+}
+div#logo img{
+    max-height: 7em;
+}

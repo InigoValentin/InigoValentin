@@ -58,9 +58,6 @@
         <meta name='robots' content='index follow'/>
     </head>
     <body>
-        <div id='logo'>
-            <img id='logo' src='<?=$server?>/img/logo/inigovalentin.png' alt='I&ntilde;igo Valentin'/>
-        </div>
 <?php
         include $doc_root . "header.php";
 ?>
