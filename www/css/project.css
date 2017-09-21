@@ -1,0 +1,52 @@
+div#content{
+    display: table;
+}
+
+div#content-row{
+    display: table-row;
+}
+
+div.content_cell{
+    display: table-cell;
+    padding: 1em;
+}
+
+div#content_cell_main{
+    width: 85%;
+}
+
+div#content_cell_right{
+    width: 15%;
+}
+
+div#main_column{
+    padding: 1em;
+}
+
+div#main_column div.iframe_container{
+    width: 100%;
+    text-align: center;
+}
+
+div#main_column iframe.project_embed{
+    background-color: #ffffff;
+    border-radius: 0.8em;
+    border: 0.1em solid #110022;
+    max-width: 90%;
+    max-height: 70em;
+}
+
+div#right_column{
+    padding: 1em;
+}
+
+div#right_column div.url{
+    vertical-align: middle;
+}
+
+div#right_column div.url img{
+    width: 2em;
+    height: 2em;
+    vertical-align: middle;
+}
+

@@ -2,7 +2,7 @@
  * Fonts used across the page     *
  **********************************/
 
-/* Font used for inputs */
+/* Font */
 @font-face {
     font-family: 'Nunito'; 
     src:  url('/fonts/Nunito-Regular.ttf'); 
@@ -27,7 +27,7 @@ a{
 }
 
 /* Elements fith bold font */
-span.bold{
+.bold{
     font-weight: bold;
 }
 
@@ -207,17 +207,31 @@ div#content{
     margin-bottom: 1.875em;
 }
 
-/* .lighted is a style-only class to make contrast against the dark background */
-.lighted{
+div.section{
+    margin: 1em;
     background-color: #898989;
     border: 0.063em solid #77777;
     border-radius: 0.15em;
-  padding: 0.5em;
+    padding: 0.5em;
     box-shadow: 0 0 0.75em #888888;
 }
 
+div.section h3.section_title{
+    font-weight: bold;
+    color: #ccddff;
+    width: 100%;
+    text_align: left;
+    padding: 0.2em 0em 0.1em 0em;
+    margin: 0;
+    text-indent: 0.5em;
+    margin: 0.625em 0 0.438em 0.625em;
+    text-shadow: 0 0 0.4em #000022;
+    font-size: 200%;
+}
+
+
 /* Style only class. Is the title of a .lighted element */
-.section_title{
+div.section h3.section_title_DELETEME{
     font-size: 150%;
     margin: 0.625em 0 0.438em 0.625em;
     text-shadow: 0 0 0.75em #dddddd;
@@ -232,7 +246,7 @@ span.result_counter{
 }
 
 /* .entry is a style only class to show content. Must be allways children os a .lighted element */
-.entry{
+div.section div.entry{
     transition: all .3s ease-in-out;
     margin: 1% 0.438em 0 0.438em;
     background-color: #cccccc;
@@ -242,7 +256,7 @@ span.result_counter{
     box-shadow: 0 0 0.5em #333333;
 }
 
-.entry:hover{
+div.section div.entry:hover{
     background-color: #eeeeee;
 }
 
