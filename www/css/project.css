@@ -1,3 +1,16 @@
+/* Common elements */
+span.version_type{
+    padding: 0.05em;
+    border 0.1em solid #444444;
+    border-radius: 0.2em;
+}
+
+
+/* Projects main page */
+
+
+/* Project view page */
+
 div#content{
     display: table;
 }
@@ -9,14 +22,15 @@ div#content-row{
 div.content_cell{
     display: table-cell;
     padding: 1em;
+    vertical-align: top;
 }
 
 div#content_cell_main{
-    width: 85%;
+    width: 80%;
 }
 
 div#content_cell_right{
-    width: 15%;
+    width: 20%;
 }
 
 div#main_column{

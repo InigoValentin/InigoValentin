@@ -28,3 +28,9 @@ INSERT INTO text VALUES ('FOOTER_HELP',   'en', 'FOOTER', 'Help');
 INSERT INTO text VALUES ('FOOTER_FOLLOW', 'eu', 'FOOTER', 'Jarraitu');
 INSERT INTO text VALUES ('FOOTER_COPY',   'eu', 'FOOTER', 'Copyright I&ntilde;igo Valentin 2014 - 2017');
 INSERT INTO text VALUES ('FOOTER_HELP',   'eu', 'FOOTER', 'Laguntza');
+
+
+-- PROJECT
+INSERT INTO text VALUES ('PROJECT_VERSION', 'es', 'PROJECT', 'Versi&oacute;n');
+INSERT INTO text VALUES ('PROJECT_VERSION', 'en', 'PROJECT', 'Version');
+INSERT INTO text VALUES ('PROJECT_VERSION', 'eu', 'PROJECT', 'Versi&oacute;n');

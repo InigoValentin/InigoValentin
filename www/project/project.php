@@ -137,15 +137,15 @@
                             while ($r_url = mysqli_fetch_array($q_url)){
 ?>
                                 <div class='url'>
-                                    <a target='_blank' title='<?=text($con, $r_url["summary"], $lang);?>' href='<?=text($con, $r_url["url"], $lang);?>'>
+                                    <a target='_blank' title='<?=text($con, $r_url["title"], $lang);?>' href='<?=text($con, $r_url["url"], $lang);?>'>
 <?php
                                         if (strlen($r_url["logo"]) > 0){
 ?>
-                                            <img title='<?=text($con, $r_url["summary"], $lang);?>' src='<?=$server?>/img/url/<?=$r_url["logo"]?>'/>
+                                            <img title='<?=text($con, $r_url["title"], $lang);?>' src='<?=$server?>/img/url/<?=$r_url["logo"]?>'/>
 <?php
                                         }
 ?>
-                                        <?=text($con, $r_url["title"], $lang);?>
+                                        <?=text($con, $r_url["summary"], $lang);?>
                                     </a>
                                 </div> <!-- .url -->
 <?php
@@ -154,7 +154,7 @@
                         </div> <!-- .entry -->
                         <div class='entry'>
 <?php
-                            $q_license = mysqli_query($con, "SELECT * FROM license WHERE id = $r_project[license];");
+                            $q_license = mysqli_query($con, "SELECT * FROM license WHERE id = '$r_project[license]';");
                             $r_license = mysqli_fetch_array($q_license);
 ?>
                             <span class='hidden' id='license_id'><?=$r_license["id"]?></span>
@@ -168,7 +168,7 @@
                             $q_version = mysqli_query($con, "SELECT version_name, project_version.summary AS summary, dtime, title, project_version_type.summary AS vsummary, color FROM project_version, project_version_type WHERE type = id AND visible = 1 AND project = $id ORDER BY dtime DESC LIMIT 1;");
                             $r_version = mysqli_fetch_array($q_version);
 ?>
-                            TR#Version: <?=$r_version["version_name"]?>
+                            <?=text($con, 'PROJECT_VERSION', $lang)?> <?=$r_version["version_name"]?>
                             <span class='version_type' style='background-color: <?=$r_version["color"]?>'>
                                 <?=text($con, $r_version["title"], $lang)?>
                             </span>
