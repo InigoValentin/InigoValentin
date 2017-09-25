@@ -221,7 +221,6 @@
      * @return: (string): Text.                          *
      *****************************************************/
     function text($con, $id, $lang){
-        error_log("SELECT text FROM text WHERE id = '$id' AND lang = '$lang';");
         $q = mysqli_query($con, "SELECT text FROM text WHERE id = '$id' AND lang = '$lang';");
         return mysqli_fetch_array($q)["text"];
     }

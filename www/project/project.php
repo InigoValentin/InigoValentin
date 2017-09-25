@@ -1,14 +1,12 @@
 <?php
     session_start();
     $http_host = $_SERVER["HTTP_HOST"];
-    $doc_root = $_SERVER["DOCUMENT_ROOT"]; 
+    $doc_root = $_SERVER["DOCUMENT_ROOT"];
     include $doc_root . "functions.php";
     $proto = get_protocol();
     $con = start_db();
     $server = $proto . $http_host;
     $lang = select_language();
-    $cur_section = "";
-    $cur_entry = "";
 
     // Get project data
     $permalink = mysqli_real_escape_string($con, $_GET["permalink"]);
@@ -19,8 +17,12 @@
     }
     $r_project = mysqli_fetch_array($q_project);
     $id = $r_project["id"];
+
     $title = text($con, $r_project["title"], $lang);
     $summary = text($con, $r_project["header"], $lang);
+
+    $cur_section = "project";
+    $cur_entry = $id;
 ?>
 <!DOCTYPE html>
 <html>
@@ -115,7 +117,6 @@
                         <div class='entry'>
                             <h4><?=$summary?></h4>
 <?php
-                            error_log("SELECT * FROM project_url WHERE type = 'E' AND project = $id;");
                             $q_embed = mysqli_query($con, "SELECT * FROM project_url WHERE type = 'E' AND project = $id;");
                             while ($r_embed = mysqli_fetch_array($q_embed)){
 ?>
@@ -127,10 +128,10 @@
                             }
 ?>
                         </div> <!-- .entry -->
-                    </div> <!-- #middle_column -->
+                    </div> <!-- #main_column -->
                 </div> <!-- #content_cell_main -->
                 <div class='content_cell'  id='content_cell_right'>
-                    <div class='section' id='right_column'>
+                    <div class='section section_no_title' id='right_column'>
                         <div class='entry'>
 <?php
                             $q_url = mysqli_query($con, "SELECT url, title, summary, logo FROM project_url, project_url_type WHERE project_url_type.id = project_url.type AND project = $id AND type <> 'E';");
