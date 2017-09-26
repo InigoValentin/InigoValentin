@@ -170,6 +170,27 @@ CREATE TABLE project_comment (
     visit     INT            REFERENCES stat_visit.id
 );
 
+CREATE TABLE cv_category (
+    id        INT          AUTO_INCREMENT      PRIMARY KEY,
+    title     VARCHAR(32)  REFERENCES text.id,
+    summary   VARCHAR(32)  REFERENCES text.id,
+    visible   BOOLEAN      NOT NULL            DEFAULT 1,
+    priority  INT          NOT NULL            UNIQUE
+);
+
+CREATE TABLE cv_entry (
+    id               INT          AUTO_INCREMENT  PRIMARY KEY,
+    category         INT          NOT NULL        REFERENCES cv_category.id,
+    role             VARCHAR(32)  NOT NULL        REFERENCES text.id,
+    company          VARCHAR(64)  NOT NULL,
+    city             VARCHAR(32)  NOT NULL        REFERENCES text.id,
+    start            DATETIME     NOT NULL,
+    end              DATETIME,
+    date_precission  VARCHAR(1)   NOT NULL        DEFAULT 'M',
+    summary          VARCHAR(32)  NOT NULL        REFERENCES text.id,
+    visible          BOOLEAN      NOT NULL        DEFAULT 1
+);
+
 CREATE TABLE settings (
     name     VARCHAR(64)  PRIMARY KEY,
     value    VARCHAR(64)  NOT NULL,
