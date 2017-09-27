@@ -1,0 +1,16 @@
+div.cv_entry{
+    
+}
+
+div.role{
+    border-radius: 0.3em;
+    border-left: 0.1em solid #000000;
+    padding: 0.5em;
+}
+
+div.role h4{
+}
+
+div.role h5{
+    font-style: italic;
+}
