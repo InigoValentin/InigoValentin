@@ -1,8 +1,8 @@
 #RewriteMap lc int:tolower
 
-ErrorDocument 403     /error/403.php
-ErrorDocument 404     /error/404.php
-ErrorDocument 500     /error/500.php
+#ErrorDocument 403     /error/403.php
+#ErrorDocument 404     /error/404.php
+#ErrorDocument 500     /error/500.php
 
 #AddHandler application/x-httpd-php .xml
 #AddType application/x-httpd-php .xml
@@ -16,20 +16,87 @@ Options +FollowSymlinks
 RewriteEngine on
 CheckSpelling on
 
-
-RewriteRule ^sitemap.xml$ /sitemap.php [NC]
-RewriteRule ^imgmap.xml$ /sitemap-image.php [NC]
-RewriteRule ^rss.xml$ /rss.php [NC]
-
-RewriteRule ^blog/([A-Z\-a-z0-9]{3,}+)[\/]?$ /blog/post.php?permalink=$1 [NC]
-
-RewriteRule ^project/([A-Z\-a-z0-9]{3,}+)[\/]?$ /project/project.php?permalink=$1 [NC]
-
-RewriteRule ^help[\/]?$ /help/index.php [NC]
-
-#Force https
+# Force https
 RewriteCond %{HTTPS} !=on
 RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
+
+
+#RewriteCond %{HTTP:Accept-Language} ^(en|de|fr)[-,;]? [NC,OR]
+#RewriteCond %{REQUEST_URI} !^(en|es|eu)/[.]+
+#RewriteRule ^$ /en/$1 [NC]
+#RewriteRule ^([a-zA-Z]{2})/(.*)$  $2?lang=$1 [L]
+
+#RewriteCond %{REQUEST_URI} !^(en|es|eu)/[.]+
+#RewriteCond %{HTTP:Accept-Language} ^en [NC]
+#RewriteRule ^$ /en/%{REQUEST_URI} [L,R=301]
+
+#RewriteCond %{HTTP:Accept-Language} ^es [NC]
+#RewriteRule ^$ /de/%{REQUEST_URI} [L,R=301]
+
+#RewriteCond %{HTTP:Accept-Language} ^eu [NC]
+#RewriteRule ^$ /eu/%{REQUEST_URI} [L,R=301]
+
+#RewriteRule ^([a-zA-Z]{2})/(.*)$  $2?lang=$1 [L]
+
+
+#RewriteRule ^([a-zA-Z]{2})/(.*)$  $2?lang=$1 [NC]
+
+#RewriteCond %{REQUEST_URI} ![\/]?(en|es|eu)/[.]* [NC]
+#RewriteCond %{QUERY_STRING} ![.]*lang=[.]*
+#RewriteRule ^ /en%{REQUEST_URI} [R,L]
+#RewriteCond %{HTTP:Accept-Language} ^en [NC]
+#RewriteRule ^ /en%{REQUEST_URI} [R,L]
+#RewriteRule ^ https://inigovalentin.com/en%{REQUEST_URI} [R,L]
+
+RewriteCond %{REQUEST_URI} ![\/]?(en|es|eu)/[.]* [NC]
+RewriteCond %{QUERY_STRING} ![.]*lang=[.]*
+RewriteCond %{HTTP:Accept-Language} ^en [NC]
+RewriteRule ^ /en%{REQUEST_URI} [R,L]
+#RewriteRule ^ https://inigovalentin.com/en%{REQUEST_URI} [R,L]
+
+
+#RewriteCond %{REQUEST_URI} [\/]?(en|es|eu)/[.]* [NC]
+#RewriteCond %{REQUEST_URI} /(en|es|eu)/[.]* [NC]
+#RewriteRule ^[\/]?([a-zA-Z]{2})[\/]?(.*)$ $2?lang=$1 [NC,L]
+RewriteCond %{REQUEST_URI} /(en|es|eu)/[.]* [NC]
+RewriteRule ^[\/]?([a-zA-Z]{2})[\/]?(.*)$  $2?lang=$1 [NC,L]
+
+#RewriteCond %{REQUEST_URI} !/(en|es|eu)/ [NC]
+#RewriteCond %{HTTP:Accept-Language} ^es [NC]
+#RewriteRule ^ https://inigovalentin.com/es%{REQUEST_URI} [R,NC]
+#[R,L]
+
+#RewriteCond %{REQUEST_URI} !/(en|es|eu)/ [NC]
+#RewriteCond %{HTTP:Accept-Language} ^eu [NC]
+#RewriteRule ^ https://inigovalentin.com/eu%{REQUEST_URI} [NC]
+#[R,L]
+
+
+#RewriteRule ^([a-zA-Z]{2})/(.*)$  $2?lang=$1 [NC] 
+#[L]
+
+#RewriteCond %{REQUEST_URI} !/(it|en|admin)/ [NC]
+#RewriteRule ^ http://domain.net/en%{REQUEST_URI} [R,L]
+
+# Permalink rewrites
+
+#RewriteRule ^sitemap.xml$ /sitemap.php [NC]
+#RewriteRule ^imgmap.xml$ /sitemap-image.php [NC]
+#RewriteRule ^rss.xml$ /rss.php [NC]
+
+#RewriteRule ^blog/([A-Z\-a-z0-9]{3,}+)[\/]?$ /blog/post.php?permalink=$1 [NC]
+
+#RewriteRule ^project/([A-Z\-a-z0-9]{3,}+)[\/]?$ /project/project.php?permalink=$1 [NC]
+
+#RewriteRule ^help[\/]?$ /help/index.php [NC]
+
+#RewriteRule ^(yo|me|ni)[\/]?$ /me/index.php [NC]
+
+#RewriteRule !^(en|de|fr)/ /en%{REQUEST_URI} [R=301,L]
+#RewriteCond %{HTTP:Accept-Language} ^(en|de|fr)[-,;]? [NC,OR]
+#RewriteCond en ^(en)$
+#RewriteRule ^$ /%1/ [R=301,L]
+#RewriteRule !^(en|de|fr)/ /en%{REQUEST_URI} [R=301,L]
 
 # BEGIN Cache-Control Headers
 <IfModule mod_expires.c>
