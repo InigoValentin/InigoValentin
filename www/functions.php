@@ -66,7 +66,13 @@
      *****************************************************/
     // TODO: Redo using database
     function select_language(){
-        //Try to read cookie.
+        // Is passed on the URL?
+        $lang = $_GET["lang"];
+        if ($lang == "es" || $lang == "en" || $lang == "eu"){
+            return $lang;
+        }
+
+        // Try to read cookie.
         header("Cache-control: private");
         if (isSet($_COOKIE["lang"])){
             $lang = $_COOKIE["lang"];
