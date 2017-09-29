@@ -37,6 +37,17 @@ Options -MultiViews
 	RewriteCond %{THE_REQUEST} ^GET\ (.*)\.(php|html)([#?][^\ ]*)?\ HTTP
 	RewriteRule ^(.*)\.(php|html)$ $1 [R=301]
 
+	# Redirect permalinks.
+        RewriteRule ^project/([A-Z\-a-z0-9]{3,}+)[\/]?$ /project/project.php?permalink=$1 [NC]
+        RewriteRule ^blog/([A-Z\-a-z0-9]{3,}+)[\/]?$ /blog/post.php?permalink=$1 [NC]
+        RewriteRule ^help[\/]?$ /help/index.php [NC]
+        RewriteRule ^(perfil|xprofile|profila)[\/]?$ /profile/index.php [NC]
+
+        # PHP to xml.
+        RewriteRule ^sitemap.xml$ /sitemap.php [NC]
+        RewriteRule ^imgmap.xml$ /sitemap-image.php [NC]
+        RewriteRule ^rss.xml$ /rss.php
+
 	# Language as GET param.
 	RewriteCond %{REQUEST_FILENAME} !-d
 	RewriteCond %{REQUEST_FILENAME} !-f
@@ -49,16 +60,6 @@ Options -MultiViews
 	RewriteCond %{REQUEST_FILENAME}.php -f
 	RewriteRule ^(.*)$ $1\.php [L]
 
-	# Redirect permalinks.
-	RewriteRule ^project/([A-Z\-a-z0-9]{3,}+)[\/]?$ /project/project.php?permalink=$1 [NC]
-	RewriteRule ^blog/([A-Z\-a-z0-9]{3,}+)[\/]?$ /blog/post.php?permalink=$1 [NC]
-	RewriteRule ^help[\/]?$ /help/index.php [NC]
-	RewriteRule ^(perfil|profile|profila)[\/]?$ /profile/index.php [NC]
-
-	# PHP to xml.
-	RewriteRule ^sitemap.xml$ /sitemap.php [NC]
-	RewriteRule ^imgmap.xml$ /sitemap-image.php [NC]
-	RewriteRule ^rss.xml$ /rss.php
 </ifModule>
 
 

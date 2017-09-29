@@ -7,12 +7,13 @@
     $con = start_db();
     $server = $proto . $http_host;
     $lang = select_language();
+    $lserver = $server . "/" . $lang;
 
     // Get project data
     $permalink = mysqli_real_escape_string($con, $_GET["permalink"]);
     $q_project = mysqli_query($con, "SELECT * FROM project WHERE permalink = '$permalink' AND visible = 1;");
     if (mysqli_num_rows($q_project) == 0){
-        header("Location: $server/project/");
+        header("Location: $lserver/project/");
         exit(-1);
     }
     $r_project = mysqli_fetch_array($q_project);
@@ -34,12 +35,12 @@
 <?php
         if (strlen($r_project["logo"]) > 0){
 ?>
-            <link rel="shortcut icon" href="<?=$server?>/img/logo/favicon.ico"/>
+            <link rel="shortcut icon" href="<?=$lserver?>/img/logo/favicon.ico"/>
 <?php
         }
         else{
 ?>
-            <link rel="shortcut icon" href="<?=$server?>/img/project/icon/<?=$r_project["logo"]?>"/>
+            <link rel="shortcut icon" href="<?=$lserver?>/img/project/icon/<?=$r_project["logo"]?>"/>
 <?php
         }
 ?>
@@ -65,22 +66,22 @@
 ?>
         </script>
         <!-- Meta tags -->
-        <link rel="canonical" href="<?=$server?>/project/<?=$r_project["permalink"]?>"/>
-        <link rel="author" href="<?=$server?>"/>
-        <link rel="publisher" href="<?=$server?>"/>
+        <link rel="canonical" href="<?=$lserver?>/project/<?=$r_project["permalink"]?>"/>
+        <link rel="author" href="<?=$lserver?>"/>
+        <link rel="publisher" href="<?=$lserver?>"/>
         <meta name="description" content="<?=$summary?>"/>
         <meta property="og:title" content="<?=$title?> - I&ntilde;igo Valentin"/>
-        <meta property="og:url" content="<?=$server?>/project/<?=$r_project["permalink"]?>"/>
+        <meta property="og:url" content="<?=$lserver?>/project/<?=$r_project["permalink"]?>"/>
         <meta property="og:description" content="<?=$summary?>"/>
 <?php
         if (strlen($r_project["logo"]) > 0){
 ?>
-            <meta property="og:image" content="<?=$server?>/img/logo/favicon.ico"/>
+            <meta property="og:image" content="<?=$lserver?>/img/logo/favicon.ico"/>
 <?php
         }
         else{
 ?>
-            <meta property="og:image" content="<?=$server?>/img/project/icon/<?=$r_project["logo"]?>"/>
+            <meta property="og:image" content="<?=$lserver?>/img/project/icon/<?=$r_project["logo"]?>"/>
 <?php
         }
 ?>
@@ -93,16 +94,16 @@
 <?php
         if (strlen($r_project["logo"]) > 0){
 ?>
-            <meta name="twitter:image" content="<?=$server?>/img/logo/favicon.ico"/>
+            <meta name="twitter:image" content="<?=$lserver?>/img/logo/favicon.ico"/>
 <?php
         }
         else{
 ?>
-            <meta name="twitter:image" content="<?=$server?>/img/project/icon/<?=$r_project["logo"]?>"/>
+            <meta name="twitter:image" content="<?=$lserver?>/img/project/icon/<?=$r_project["logo"]?>"/>
 <?php
         }
 ?>
-        <meta name="twitter:url" content="<?=$server?>/project/<?=$r_project["permalink"]?>"/>
+        <meta name="twitter:url" content="<?=$lserver?>/project/<?=$r_project["permalink"]?>"/>
         <meta name="robots" content="index follow"/>
     </head>
     <body>
@@ -122,7 +123,7 @@
 ?>
                                 <br/><br/>
                                 <div class='iframe_container'>
-                                    <iframe class='project_embed' onload='resizeIframe(this);' src='<?=$server?><?=$r_embed["url"]?>'></iframe>
+                                    <iframe class='project_embed' onload='resizeIframe(this);' src='<?=$lserver?><?=$r_embed["url"]?>'></iframe>
                                 </div>
 <?php
                             }
@@ -142,7 +143,7 @@
 <?php
                                         if (strlen($r_url["logo"]) > 0){
 ?>
-                                            <img title='<?=text($con, $r_url["title"], $lang);?>' src='<?=$server?>/img/url/<?=$r_url["logo"]?>'/>
+                                            <img title='<?=text($con, $r_url["title"], $lang);?>' src='<?=$lserver?>/img/url/<?=$r_url["logo"]?>'/>
 <?php
                                         }
 ?>
@@ -161,7 +162,7 @@
                             <span class='hidden' id='license_id'><?=$r_license["id"]?></span>
                             <span class='hidden' id='license_text'><?=$r_license["summary"]?></span>
                             <span class='fakelink pointer' onClick='showLicense();'>
-                                <img title='<?=$r_license["id"]?>' src='<?=$server?>/img/license/icon/<?=$r_license["logo"]?>' />
+                                <img title='<?=$r_license["id"]?>' src='<?=$lserver?>/img/license/icon/<?=$r_license["logo"]?>' />
                             <span>
                             <br/>
                             <br/>

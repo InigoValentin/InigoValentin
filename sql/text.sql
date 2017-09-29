@@ -64,15 +64,15 @@ INSERT INTO text VALUES ('DAY_7', 'eu', 'DATE', 'igandea');
 
 -- HEADER
 INSERT INTO text VALUES ('HEADER_HOME',     'es', 'HEADER', 'Inicio');
-INSERT INTO text VALUES ('HEADER_ME',       'es', 'HEADER', 'Yo');
+INSERT INTO text VALUES ('HEADER_PROFILE',  'es', 'HEADER', 'Yo');
 INSERT INTO text VALUES ('HEADER_PROJECTS', 'es', 'HEADER', 'Proyectos');
 INSERT INTO text VALUES ('HEADER_BLOG',     'es', 'HEADER', 'Blog');
 INSERT INTO text VALUES ('HEADER_HOME',     'en', 'HEADER', 'Home');
-INSERT INTO text VALUES ('HEADER_ME',       'en', 'HEADER', 'Me');
+INSERT INTO text VALUES ('HEADER_PROFILE',  'en', 'HEADER', 'Me');
 INSERT INTO text VALUES ('HEADER_PROJECTS', 'en', 'HEADER', 'Projects');
 INSERT INTO text VALUES ('HEADER_BLOG',     'en', 'HEADER', 'Blog');
 INSERT INTO text VALUES ('HEADER_HOME',     'eu', 'HEADER', 'Hasiera');
-INSERT INTO text VALUES ('HEADER_ME',       'eu', 'HEADER', 'Ni');
+INSERT INTO text VALUES ('HEADER_PROFILE',  'eu', 'HEADER', 'Ni');
 INSERT INTO text VALUES ('HEADER_PROJECTS', 'eu', 'HEADER', 'Proiektuak');
 INSERT INTO text VALUES ('HEADER_BLOG',     'eu', 'HEADER', 'Blog');
 

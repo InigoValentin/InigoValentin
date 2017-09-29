@@ -7,6 +7,7 @@
     $con = start_db();
     $server = $proto . $http_host;
     $lang = select_language();
+    $lserver = $server . "/" . $lang;
     $cur_section = "";
     $cur_entry = "";
 ?>
@@ -17,7 +18,7 @@
         <meta charset='utf-8'/>
         <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1'/>
         <title>I&ntilde;igo Valentin</title>
-        <link rel='shortcut icon' href='<?=$server?>/img/logo/favicon.ico'/>
+        <link rel='shortcut icon' href='<?=$lserver?>/img/logo/favicon.ico'/>
         <!-- CSS files -->
         <style>
 <?php
@@ -39,12 +40,12 @@
 ?>
         </script>
         <!-- Meta tags -->
-        <link rel='canonical' href='<?=$server?>'/>
-        <link rel='author' href='<?=$server?>'/>
-        <link rel='publisher' href='<?=$server?>'/>
+        <link rel='canonical' href='<?=$lserver?>'/>
+        <link rel='author' href='<?=$lserver?>'/>
+        <link rel='publisher' href='<?=$lserver?>'/>
         <meta name='description' content=''/>
         <meta property='og:title' content='I&ntilde;igo Valentin'/>
-        <meta property='og:url' content='<?=$server?>'/>
+        <meta property='og:url' content='<?=$lserver?>'/>
         <meta property='og:description' content=''/>
         <meta property='og:image' content=''/>
         <meta property='og:site_name' content='I&ntilde;igo Valentin'/>
@@ -54,12 +55,12 @@
         <meta name='twitter:title' content='I&ntilde;igo Valentin'/>
         <meta name='twitter:description' content=''/>
         <meta name='twitter:image' content=''/>
-        <meta name='twitter:url' content='<?=$server?>'/>
+        <meta name='twitter:url' content='<?=$lserver?>'/>
         <meta name='robots' content='index follow'/>
     </head>
     <body>
         <div id='logo'>
-            <img id='logo' src='<?=$server?>/img/logo/inigovalentin.png' alt='I&ntilde;igo Valentin'/>
+            <img id='logo' src='<?=$lserver?>/img/logo/inigovalentin.png' alt='I&ntilde;igo Valentin'/>
         </div>
 <?php
         include $doc_root . "header.php";

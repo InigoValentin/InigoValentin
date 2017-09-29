@@ -7,6 +7,7 @@
     $con = start_db();
     $server = $proto . $http_host;
     $lang = select_language();
+    $lserver = $server . "/" . $lang;
     $cur_section = "blog";
     $cur_entry = "";
 
@@ -18,7 +19,7 @@
         <meta charset='utf-8'/>
         <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1'/>
         <title><?=text($con, "BLOG_TITLE", $lang)?> - I&ntilde;igo Valentin</title>
-        <link rel='shortcut icon' href='<?=$server?>/img/logo/favicon.ico'/>
+        <link rel='shortcut icon' href='<?=$lserver?>/img/logo/favicon.ico'/>
         <!-- CSS files -->
         <style>
 <?php
@@ -41,22 +42,22 @@
 ?>
         </script>
         <!-- Meta tags -->
-        <link rel='canonical' href='<?=$server?>/blog/'/>
-        <link rel='author' href='<?=$server?>'/>
-        <link rel='publisher' href='<?=$server?>'/>
+        <link rel='canonical' href='<?=$lserver?>/blog/'/>
+        <link rel='author' href='<?=$lserver?>'/>
+        <link rel='publisher' href='<?=$lserver?>'/>
         <meta name='description' content='<?=text($con, "BLOG_DESCRIPTION", $lang)?>'/>
         <meta property='og:title' content='<?=text($con, "BLOG_TITLE", $lang)?> - I&ntilde;igo Valentin'/>
-        <meta property='og:url' content='<?=$server?>/blog/'/>
+        <meta property='og:url' content='<?=$lserver?>/blog/'/>
         <meta property='og:description' content='<?=text($con, "BLOG_DESCRIPTION", $lang)?>'/>
-        <meta property='og:image' content='<?=$server?>/img/logo/favicon.ico'/>
+        <meta property='og:image' content='<?=$lserver?>/img/logo/favicon.ico'/>
         <meta property='og:site_name' content='I&ntilde;igo Valentin'/>
         <meta property='og:type' content='website'/>
         <meta property='og:locale' content='<?=$lang?>'/>
         <meta name='twitter:card' content='summary'/>
         <meta name='twitter:title' content='<?=text($con, "BLOG_TITLE", $lang)?> - I&ntilde;igo Valentin'/>
         <meta name='twitter:description' content='<?=text($con, "BLOG_DESCRIPTION", $lang)?>'/>
-        <meta name='twitter:image' content='<?=$server?>/img/logo/favicon.ico'/>
-        <meta name='twitter:url' content='<?=$server?>/project/'/>
+        <meta name='twitter:image' content='<?=$lserver?>/img/logo/favicon.ico'/>
+        <meta name='twitter:url' content='<?=$lserver?>/project/'/>
         <meta name='robots' content='index follow'/>
     </head>
     <body>
@@ -77,9 +78,9 @@
                                     <meta itemprop='datePublished dateModified' content='<?=$r_blog["isodate"]?>'/>
                                     <meta itemprop='headline name' content='<?=text($con, $r_blog["title"], $lang)?>'/>
                                     <meta itemprop='articleBody text' content='<?=text($con, $r_blog["text"], $lang)?>'/>
-                                    <meta itemprop='mainEntityOfPage' content='<?=$server?>'/>
+                                    <meta itemprop='mainEntityOfPage' content='<?=$lserver?>'/>
                                     <h3 class='entry_title'>
-                                        <a itemprop='url' href='<?=$server?>/blog/<?=$r_blog["permalink"]?>'><?=$r_blog["title"]?></a>
+                                        <a itemprop='url' href='<?=$lserver?>/blog/<?=$r_blog["permalink"]?>'><?=$r_blog["title"]?></a>
                                     </h3>
 <?php
                                     $q_image = mysqli_query($con, "SELECT image FROM post_image WHERE post = $r_blog[id] ORDER BY idx LIMIT 1;");
@@ -87,15 +88,15 @@
                                         $r_image = mysqli_fetch_array($q_image);
 ?>
                                         <div class='post_list_image_container'>
-                                            <a href='<?=$server?>/blog/<?=$r_blog["permalink"]?>'>
-                                                <meta itemprop='image' content='<?=$server?>/img/blog/view/<?=$r_image["image"]?>'/>
-                                                <img class='post_list_image alt='<?=$r_blog["title"]?>' src='<?=$server?>/img/blog/miniature/<?=$r_image["image"]?>'/>
+                                            <a href='<?=$lserver?>/blog/<?=$r_blog["permalink"]?>'>
+                                                <meta itemprop='image' content='<?=$lserver?>/img/blog/view/<?=$r_image["image"]?>'/>
+                                                <img class='post_list_image alt='<?=$r_blog["title"]?>' src='<?=$lserver?>/img/blog/miniature/<?=$r_image["image"]?>'/>
                                             </a>
                                         </div>
 <?php
                                     }
 ?>
-                                    <p><?=cutText($r_blog["text"], 800, text($con, "BLOG_MORE", $lang), "$server/blog/$r_blog[permalink]/")?></p>
+                                    <p><?=cutText($r_blog["text"], 800, text($con, "BLOG_MORE", $lang), "$lserver/blog/$r_blog[permalink]/")?></p>
                                     <hr/>
                                     <table class='post_footer'>
                                         <tr>
@@ -186,7 +187,7 @@
                             while($r_tag = mysqli_fetch_array($q_tag)){
                                 $size = round(60 + 100 * $r_tag['count'] / $max);
 ?>
-                                <a href='<?=$server?>/blog/search/tag/<?=$r_tag["tag"]?>'>
+                                <a href='<?=$lserver?>/blog/search/tag/<?=$r_tag["tag"]?>'>
                                     <span style='font-size: <?=$size?>%'><?=text($con, $r_tag["tag"], $lang)?></span>
                                 </a>
 <?php

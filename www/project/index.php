@@ -7,6 +7,7 @@
     $con = start_db();
     $server = $proto . $http_host;
     $lang = select_language();
+    $lserver = $server . "/" . $lang;
     $cur_section = "project";
     $cur_entry = "";
 
@@ -18,7 +19,7 @@
         <meta charset='utf-8'/>
         <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1'/>
         <title><?=text($con, "PROJECT_TITLE", $lang)?> - I&ntilde;igo Valentin</title>
-        <link rel='shortcut icon' href='<?=$server?>/img/logo/favicon.ico'/>
+        <link rel='shortcut icon' href='<?=$lserver?>/img/logo/favicon.ico'/>
         <!-- CSS files -->
         <style>
 <?php
@@ -41,22 +42,22 @@
 ?>
         </script>
         <!-- Meta tags -->
-        <link rel='canonical' href='<?=$server?>/project/'/>
-        <link rel='author' href='<?=$server?>'/>
-        <link rel='publisher' href='<?=$server?>'/>
+        <link rel='canonical' href='<?=$lserver?>/project/'/>
+        <link rel='author' href='<?=$lserver?>'/>
+        <link rel='publisher' href='<?=$lserver?>'/>
         <meta name='description' content='<?=text($con, "PROJECT_DESCRIPTION", $lang)?>'/>
         <meta property='og:title' content='<?=text($con, "PROJECT_TITLE", $lang)?> - I&ntilde;igo Valentin'/>
-        <meta property='og:url' content='<?=$server?>/project/'/>
+        <meta property='og:url' content='<?=$lserver?>/project/'/>
         <meta property='og:description' content='<?=text($con, "PROJECT_DESCRIPTION", $lang)?>'/>
-        <meta property='og:image' content='<?=$server?>/img/logo/favicon.ico'/>
+        <meta property='og:image' content='<?=$lserver?>/img/logo/favicon.ico'/>
         <meta property='og:site_name' content='I&ntilde;igo Valentin'/>
         <meta property='og:type' content='website'/>
         <meta property='og:locale' content='<?=$lang?>'/>
         <meta name='twitter:card' content='summary'/>
         <meta name='twitter:title' content='<?=text($con, "PROJECT_TITLE", $lang)?> - I&ntilde;igo Valentin'/>
         <meta name='twitter:description' content='<?=text($con, "PROJECT_DESCRIPTION", $lang)?>'/>
-        <meta name='twitter:image' content='<?=$server?>/img/logo/favicon.ico'/>
-        <meta name='twitter:url' content='<?=$server?>/project/'/>
+        <meta name='twitter:image' content='<?=$lserver?>/img/logo/favicon.ico'/>
+        <meta name='twitter:url' content='<?=$lserver?>/project/'/>
         <meta name='robots' content='index follow'/>
     </head>
     <body>
@@ -77,7 +78,7 @@
 <?php
                                 if (strlen($r_project["logo"]) > 0){
 ?>
-                                    <img title='<?=text($con, $r_project["title"], $lang)?>' src='<?=$server?>/img/project/logo/<?=$r_project["logo"]?>'/>
+                                    <img title='<?=text($con, $r_project["title"], $lang)?>' src='<?=$lserver?>/img/project/logo/<?=$r_project["logo"]?>'/>
 <?php
                                 }
 ?>
@@ -94,7 +95,7 @@
                             <input type='text' placeholder='<?=text($con, "PROJECT_SEARCH", $lang)?>' name='text'/>
                             <input type='hidden' id='advanced_search_indicator' value='0'/>
                             <div class='pointer' onClick='showAdvancedSearch();'>
-                                <img class='slider' id='advanced_search_slider' src='<?=$server?>/img/misc/slid-right.png'/>
+                                <img class='slider' id='advanced_search_slider' src='<?=$lserver?>/img/misc/slid-right.png'/>
                                 <?=text($con, "PROJECT_SEARCH_ADVANCED", $lang)?>
                             </div>
                             <div id='advanced_search'>

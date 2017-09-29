@@ -7,6 +7,7 @@
     $con = start_db();
     $server = $proto . $http_host;
     $lang = select_language();
+    $lserver = $server . "/" . $lang;
     $cur_section = "error";
     $cur_entry = "403";
 ?>
@@ -16,7 +17,7 @@
         <meta content='text/html; charset=windows-1252' http-equiv='content-type'/>
         <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1'>
         <title>Error - I&ntilde;igo Valentin</title>
-        <link rel='shortcut icon' href='<?=$server?>/img/logo/favicon.ico'>
+        <link rel='shortcut icon' href='<?=$lserver?>/img/logo/favicon.ico'>
         <!-- CSS files -->
         <link rel='stylesheet' type='text/css' href='/css/ui.css'/>
         <style>
@@ -87,7 +88,7 @@
                         <a href='javascript: history.go(-1);'>Go to the previous page.</a>
                     </li>
                     <li>
-                        <a href='<?=$server?>/'>Go to the main page</a>
+                        <a href='<?=$lserver?>/'>Go to the main page</a>
                     </li>
                 </ul>
             </div> <!-- #error_message -->
