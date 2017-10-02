@@ -227,7 +227,8 @@
         $str = str_replace(" ", "-", $str);
         return $str;
     }
-    
+
+
     /*****************************************************
      * Retrieves a text fragment from the database.      *
      *                                                   *
@@ -238,8 +239,14 @@
      * @return: (string): Text.                          *
      *****************************************************/
     function text($con, $id, $lang){
-        $q = mysqli_query($con, "SELECT text FROM text WHERE id = '$id' AND lang = '$lang';");
-        return mysqli_fetch_array($q)["text"];
+        $q = mysqli_query($con, "SELECT text, file FROM text WHERE id = '$id' AND lang = '$lang';");
+        $r = mysqli_fetch_array($q);
+        if (strlen($r["file"]) > 0){
+            return file_get_contents($_SERVER["DOCUMENT_ROOT"] . "string/" . $r["file"]);
+        }
+        else{
+            return $r["text"];
+        }
     }
 
 
