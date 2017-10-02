@@ -182,14 +182,14 @@
             <div id='license' class='section'>
                 <h3 class='section_title'>
                     <?=$r_license["id"]?>
-                    <img alt='TR#Cerrar' title='TR#Cerrar' class='fakelink pointer' onClick='showLicense(false);' src='<?=$lserver?>/img/x1/misc/slid-close.png'>
+                    <img alt='<?=text($con, "PROJECT_CLOSE", $lang)?>' title='<?=text($con, "PROJECT_CLOSE", $lang)?>' class='fakelink pointer' onClick='showLicense(false);' src='<?=$lserver?>/img/misc/x1/slid-close.png'>
                 </h3>
                 <div class='entry'>
-                    <h4>TR#En resumen:</h4>
+                    <h4><?=text($con, "PROJECT_LICENSE_SUMMARY", $lang)?></h4>
                     <div class='license_text'><?=close_tags(text($con, $r_license["summary"], $lang))?></div>
                 </div>
                 <div class='entry'>
-                    <h4>TR#Texto completo:</h4>
+                    <h4><?=text($con, "PROJECT_LICENSE_LEGAL", $lang)?></h4>
                     <div id='license_legal' class='license_text'><?=text($con, $r_license["legal"], $lang)?></div>
                 </div>
             

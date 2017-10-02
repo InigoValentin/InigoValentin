@@ -136,6 +136,15 @@ INSERT INTO text VALUES ('PROJECT_SEARCH_LICENSE',  'eu', 'PROJECT', 'Lizenzia',
 INSERT INTO text VALUES ('PROJECT_VERSION',         'es', 'PROJECT', 'Versi&oacute;n', null);
 INSERT INTO text VALUES ('PROJECT_VERSION',         'en', 'PROJECT', 'Version', null);
 INSERT INTO text VALUES ('PROJECT_VERSION',         'eu', 'PROJECT', 'Versi&oacute;n', null);
+INSERT INTO text VALUES ('PROJECT_CLOSE',           'es', 'PROJECT', 'Cerrar', null);
+INSERT INTO text VALUES ('PROJECT_CLOSE',           'en', 'PROJECT', 'Close', null);
+INSERT INTO text VALUES ('PROJECT_CLOSE',           'eu', 'PROJECT', 'Itxali', null);
+INSERT INTO text VALUES ('PROJECT_LICENSE_SUMMARY', 'es', 'PROJECT', 'En resumen:', null);
+INSERT INTO text VALUES ('PROJECT_LICENSE_SUMMARY', 'en', 'PROJECT', 'In a few words:', null);
+INSERT INTO text VALUES ('PROJECT_LICENSE_SUMMARY', 'eu', 'PROJECT', 'En resumen:', null);
+INSERT INTO text VALUES ('PROJECT_LICENSE_LEGAL',   'es', 'PROJECT', 'Texto completo:', null);
+INSERT INTO text VALUES ('PROJECT_LICENSE_LEGAL',   'en', 'PROJECT', 'Full legal text:', null);
+INSERT INTO text VALUES ('PROJECT_LICENSE_LEGAL',   'eu', 'PROJECT', 'Textu osoa:', null);
 
 
 -- PAGE blog
