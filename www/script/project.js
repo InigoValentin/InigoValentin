@@ -27,3 +27,17 @@ function showAdvancedSearch() {
         cont.style.height = 'auto';
     }
 }
+
+function showLicense(visible){
+    showCover(visible);
+    var license = document.getElementById('license');
+    if (visible){
+        license.style.display = 'block';
+        license.style.opacity = 1;
+    }
+    else{
+        license.style.display = 'none';
+        license.style.opacity = 0;
+    }
+    
+}

@@ -7,6 +7,11 @@ span.version_type{
 
 
 /* Projects main page */
+div#right_column div#advanced_search{
+    transition: all .3s ease-in-out;
+    overflow: hidden;
+    height: 0;
+}
 
 
 /* Project view page */
@@ -65,8 +70,32 @@ div#right_column div.url img{
     vertical-align: middle;
 }
 
-div#right_column div#advanced_search{
-    transition: all .3s ease-in-out;
-    overflow: hidden;
-    height: 0;
+div#right_column img#img_license{
+    max-height: 1.3em;
 }
+
+div#license{
+    display: none;
+    opacity: 0;
+    position: fixed;
+    transition: opacity .4s ease-in-out;
+    top: 3em;
+    left: 5em;
+    right: 5em;
+    bottom: 2em;
+}
+
+div#license div.entry{
+    height: 30%;
+}
+
+div#license div.entry h4{
+    margin: 0;
+}
+
+div#license div.entry p.license_text{
+    margin: 0;
+    overflow-y: scroll;
+}
+
+

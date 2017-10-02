@@ -159,11 +159,9 @@
                             $q_license = mysqli_query($con, "SELECT * FROM license WHERE id = '$r_project[license]';");
                             $r_license = mysqli_fetch_array($q_license);
 ?>
-                            <span class='hidden' id='license_id'><?=$r_license["id"]?></span>
-                            <span class='hidden' id='license_text'><?=$r_license["summary"]?></span>
-                            <span class='fakelink pointer' onClick='showLicense();'>
-                                <img title='<?=$r_license["id"]?>' src='<?=$lserver?>/img/license/icon/<?=$r_license["logo"]?>' />
-                            <span>
+                            <span class='fakelink pointer' onClick='showLicense(true);'>
+                                <img id='img_license' title='<?=$r_license["id"]?>' src='<?=$lserver?>/img/license/icon/<?=$r_license["logo"]?>' />
+                            </span>
                             <br/>
                             <br/>
 <?php
@@ -178,6 +176,20 @@
                     </div> <!-- #right_column -->
                 </div> <!-- #content_cell_right -->
             </div> <!-- #content_row -->
+            <div id='cover'>
+            </div> <!-- #cover -->
+            <div id='license' class='section'>
+                <h3 class='section_title'><?=$r_license["id"]?></h3>
+                <div class='entry'>
+                    <h4>TR#En resumen:</h4>
+                    <p class='license_text'><?=text($con, $r_license["summary"], $lang)?></p>
+                </div>
+                <div class='entry'>
+                    <h4>TR#Texto completo:</h4>
+                    <p id='license_legal' class='license_text'><?=text($con, $r_license["legal"], $lang)?></p>
+                </div>
+            
+            </div> <!-- #license -->
         </div> <!-- #content -->
 <?php
 
