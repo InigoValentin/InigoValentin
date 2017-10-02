@@ -15,7 +15,8 @@ CREATE TABLE text (
     id       VARCHAR(32),
     lang     VARCHAR(2)     REFERENCES lang.code,
     section  VARCHAR(32),
-    text     VARCHAR(5000)  NOT NULL,
+    text     VARCHAR(5000),
+    file     VARCHAR(32),
     PRIMARY KEY(id, lang)
 );
 CREATE INDEX i_text ON text(id, lang);
