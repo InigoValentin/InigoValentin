@@ -85,17 +85,25 @@ div#license{
     bottom: 2em;
 }
 
+div#license h3 img.pointer{ /* Close icon*/
+    float: right;
+    height: 0.5em;
+    width: 0.5em;
+}
+
 div#license div.entry{
     height: 30%;
+    margin: 0 0.5em 0.5em 0.5em;
+    overflow-y: scroll;
 }
 
 div#license div.entry h4{
     margin: 0;
 }
 
-div#license div.entry p.license_text{
+div#license div.entry div.license_text{
     margin: 0;
-    overflow-y: scroll;
+    
 }
 
 

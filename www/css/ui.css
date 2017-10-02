@@ -82,7 +82,7 @@ nav#header{
     font-size: 110%;
 }
 
-/* Dummy <span> to use as vertical separator between links */
+/* Dummy span to use as vertical separator between links */
 nav#header span.link_separator{
     border-left: 0.077em solid rgba(200, 200, 200, .5);
 }
@@ -560,7 +560,7 @@ table#pager td.pager_current{
     border: 0.077em solid #444444;
 }
 
-/* Dummy <td> that contains "..." */
+/* Dummy td that contains "..." */
 table#pager td.pager_ellipse{
     background-color: initial;
     border: initial;
@@ -589,7 +589,7 @@ span#span_download{
     display: none;
 }
 
-/* Hidden <div> to confirm downloading */
+/* Hidden div to confirm downloading */
 div.license{
     box-shadow: 0 0 1.2em rgba(120, 120, 120, 1);
     display: none;
@@ -605,7 +605,7 @@ div.license{
     border-radius: 1.250em;
 }
 
-/* <div> to dimm the screen */
+/* div to dimm the screen */
 #screen_cover{
     position: fixed;
     top: 0;

@@ -14,9 +14,9 @@
             </span>
         </a>
         <span class='link_separator desktop'></span>
-        <a href='<?=$lserver?>/projects/'>
+        <a href='<?=$lserver?>/project/'>
             <span class='header_container'>
-                <span class='header_icon_container'><img class='header_icon' alt='<?=text($con, "HEADER_PROJECTS", $lang);?>' src='<?=$lserver?>/img/icon/projects.gif'/></span>
+                <span class='header_icon_container'><img class='header_icon' alt='<?=text($con, "HEADER_PROJECTS", $lang);?>' src='<?=$lserver?>/img/icon/project.gif'/></span>
                 <?=text($con, "HEADER_PROJECTS", $lang);?>
             </span>
         </a>

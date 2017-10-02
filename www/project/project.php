@@ -26,21 +26,20 @@
     $cur_entry = $id;
 ?>
 <!DOCTYPE html>
-<html>
+<html lang='<?=$lang?>'>
     <head>
         <meta content="text/html; charset=utf-8" http-equiv="content-type"/>
-        <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1"/>
         <title><?=$title?> - I&ntilde;igo Valentin</title>
 <?php
         if (strlen($r_project["logo"]) > 0){
 ?>
-            <link rel="shortcut icon" href="<?=$lserver?>/img/logo/favicon.ico"/>
+            <link rel="shortcut icon" href="<?=$lserver?>/img/logo/x2/favicon.ico"/>
 <?php
         }
         else{
 ?>
-            <link rel="shortcut icon" href="<?=$lserver?>/img/project/icon/<?=$r_project["logo"]?>"/>
+            <link rel="shortcut icon" href="<?=$lserver?>/img/project/x2/<?=$r_project["logo"]?>"/>
 <?php
         }
 ?>
@@ -76,12 +75,12 @@
 <?php
         if (strlen($r_project["logo"]) > 0){
 ?>
-            <meta property="og:image" content="<?=$lserver?>/img/logo/favicon.ico"/>
+            <meta property="og:image" content="<?=$lserver?>/img/logo/x3/favicon.ico"/>
 <?php
         }
         else{
 ?>
-            <meta property="og:image" content="<?=$lserver?>/img/project/icon/<?=$r_project["logo"]?>"/>
+            <meta property="og:image" content="<?=$lserver?>/img/project/x3/<?=$r_project["logo"]?>"/>
 <?php
         }
 ?>
@@ -94,12 +93,12 @@
 <?php
         if (strlen($r_project["logo"]) > 0){
 ?>
-            <meta name="twitter:image" content="<?=$lserver?>/img/logo/favicon.ico"/>
+            <meta name="twitter:image" content="<?=$lserver?>/img/logo/x3/favicon.ico"/>
 <?php
         }
         else{
 ?>
-            <meta name="twitter:image" content="<?=$lserver?>/img/project/icon/<?=$r_project["logo"]?>"/>
+            <meta name="twitter:image" content="<?=$lserver?>/img/project/x3/<?=$r_project["logo"]?>"/>
 <?php
         }
 ?>
@@ -117,13 +116,15 @@
                         <h3 class='section_title'><?=$title?></h3>
                         <div class='entry'>
                             <h4><?=$summary?></h4>
+                            <?=text($con, $r_project["text"], $lang)?>
+                            <!-- TODO: Images -->
 <?php
                             $q_embed = mysqli_query($con, "SELECT * FROM project_url WHERE type = 'E' AND project = $id;");
                             while ($r_embed = mysqli_fetch_array($q_embed)){
 ?>
                                 <br/><br/>
                                 <div class='iframe_container'>
-                                    <iframe class='project_embed' onload='resizeIframe(this);' src='<?=$lserver?><?=$r_embed["url"]?>'></iframe>
+                                    <iframe class='project_embed' onload='resizeIframe(this);' src='<?=$lserver?>/project/embed/<?=$r_embed["url"]?>'></iframe>
                                 </div>
 <?php
                             }
@@ -143,7 +144,7 @@
 <?php
                                         if (strlen($r_url["logo"]) > 0){
 ?>
-                                            <img title='<?=text($con, $r_url["title"], $lang);?>' src='<?=$lserver?>/img/url/<?=$r_url["logo"]?>'/>
+                                            <img title='<?=text($con, $r_url["title"], $lang);?>' alt='<?=text($con, $r_url["title"], $lang);?>' src='<?=$lserver?>/img/url/x2/<?=$r_url["logo"]?>'/>
 <?php
                                         }
 ?>
@@ -160,7 +161,7 @@
                             $r_license = mysqli_fetch_array($q_license);
 ?>
                             <span class='fakelink pointer' onClick='showLicense(true);'>
-                                <img id='img_license' title='<?=$r_license["id"]?>' src='<?=$lserver?>/img/license/icon/<?=$r_license["logo"]?>' />
+                                <img id='img_license' title='<?=$r_license["id"]?>' alt='<?=$r_license["id"]?>' src='<?=$lserver?>/img/license/x2/<?=$r_license["logo"]?>' />
                             </span>
                             <br/>
                             <br/>
@@ -179,14 +180,17 @@
             <div id='cover'>
             </div> <!-- #cover -->
             <div id='license' class='section'>
-                <h3 class='section_title'><?=$r_license["id"]?></h3>
+                <h3 class='section_title'>
+                    <?=$r_license["id"]?>
+                    <img alt='TR#Cerrar' title='TR#Cerrar' class='fakelink pointer' onClick='showLicense(false);' src='<?=$lserver?>/img/x1/misc/slid-close.png'>
+                </h3>
                 <div class='entry'>
                     <h4>TR#En resumen:</h4>
-                    <p class='license_text'><?=text($con, $r_license["summary"], $lang)?></p>
+                    <div class='license_text'><?=close_tags(text($con, $r_license["summary"], $lang))?></div>
                 </div>
                 <div class='entry'>
                     <h4>TR#Texto completo:</h4>
-                    <p id='license_legal' class='license_text'><?=text($con, $r_license["legal"], $lang)?></p>
+                    <div id='license_legal' class='license_text'><?=text($con, $r_license["legal"], $lang)?></div>
                 </div>
             
             </div> <!-- #license -->

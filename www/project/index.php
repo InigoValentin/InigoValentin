@@ -13,13 +13,12 @@
 
 ?>
 <!DOCTYPE html>
-<html>
+<html lang='<?=$lang?>'>
     <head>
         <meta content='text/html; charset=utf-8' http-equiv='content-type'/>
-        <meta charset='utf-8'/>
         <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1'/>
         <title><?=text($con, "PROJECT_TITLE", $lang)?> - I&ntilde;igo Valentin</title>
-        <link rel='shortcut icon' href='<?=$lserver?>/img/logo/favicon.ico'/>
+        <link rel='shortcut icon' href='<?=$lserver?>/img/logo/x2/favicon.ico'/>
         <!-- CSS files -->
         <style>
 <?php
@@ -49,14 +48,14 @@
         <meta property='og:title' content='<?=text($con, "PROJECT_TITLE", $lang)?> - I&ntilde;igo Valentin'/>
         <meta property='og:url' content='<?=$lserver?>/project/'/>
         <meta property='og:description' content='<?=text($con, "PROJECT_DESCRIPTION", $lang)?>'/>
-        <meta property='og:image' content='<?=$lserver?>/img/logo/favicon.ico'/>
+        <meta property='og:image' content='<?=$lserver?>/img/logo/x3/favicon.ico'/>
         <meta property='og:site_name' content='I&ntilde;igo Valentin'/>
         <meta property='og:type' content='website'/>
         <meta property='og:locale' content='<?=$lang?>'/>
         <meta name='twitter:card' content='summary'/>
         <meta name='twitter:title' content='<?=text($con, "PROJECT_TITLE", $lang)?> - I&ntilde;igo Valentin'/>
         <meta name='twitter:description' content='<?=text($con, "PROJECT_DESCRIPTION", $lang)?>'/>
-        <meta name='twitter:image' content='<?=$lserver?>/img/logo/favicon.ico'/>
+        <meta name='twitter:image' content='<?=$lserver?>/img/logo/x3/favicon.ico'/>
         <meta name='twitter:url' content='<?=$lserver?>/project/'/>
         <meta name='robots' content='index follow'/>
     </head>
@@ -73,17 +72,27 @@
                         $q_project = mysqli_query($con, "SELECT id, permalink, type, title, logo, header, license, (SELECT dtime FROM project_version WHERE project = p.id AND visible = 1 ORDER BY dtime desc LIMIT 1) AS modified FROM project p WHERE visible = 1 ORDER BY modified DESC;");
                         while ($r_project = mysqli_fetch_array($q_project)){
 ?>
-                            <div class='entry project_row'>
-                                <h4><?=text($con, $r_project["title"], $lang)?></h4>
+                            <a href='<?=$lserver?>/project/<?=$r_project["permalink"]?>'>
+                                <div class='entry project_row'>
+                                    <table>
+                                        <tr>
 <?php
-                                if (strlen($r_project["logo"]) > 0){
+                                            if (strlen($r_project["logo"]) > 0){
 ?>
-                                    <img title='<?=text($con, $r_project["title"], $lang)?>' src='<?=$lserver?>/img/project/logo/<?=$r_project["logo"]?>'/>
+                                                <td>
+                                                    <img alt='<?=text($con, $r_project["title"], $lang)?>' title='<?=text($con, $r_project["title"], $lang)?>' src='<?=$lserver?>/img/project/x2/<?=$r_project["logo"]?>'/>
+                                                </td>
 <?php
-                                }
+                                            }
 ?>
-                                <?=text($con, $r_project["header"], $lang)?>
-                            </div> <!-- .entry -->
+                                            <td>
+                                                <h4><?=text($con, $r_project["title"], $lang)?></h4>
+                                                <?=text($con, $r_project["header"], $lang)?>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div> <!-- .entry -->
+                            </a>
 <?php
                         }
 ?>
@@ -95,7 +104,7 @@
                             <input type='text' placeholder='<?=text($con, "PROJECT_SEARCH", $lang)?>' name='text'/>
                             <input type='hidden' id='advanced_search_indicator' value='0'/>
                             <div class='pointer' onClick='showAdvancedSearch();'>
-                                <img class='slider' id='advanced_search_slider' src='<?=$lserver?>/img/misc/slid-right.png'/>
+                                <img class='slider' id='advanced_search_slider' src='<?=$lserver?>/img/misc/x1/slid-right.png'/>
                                 <?=text($con, "PROJECT_SEARCH_ADVANCED", $lang)?>
                             </div>
                             <div id='advanced_search'>
