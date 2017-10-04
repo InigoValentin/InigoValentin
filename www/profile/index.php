@@ -18,7 +18,7 @@
         <meta charset='utf-8'/>
         <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1'/>
         <title><?=text($con, "PROFILE_TITLE", $lang)?> - I&ntilde;igo Valentin</title>
-        <link rel='shortcut icon' href='<?=$lserver?>/img/logo/favicon.ico'/>
+        <link rel='shortcut icon' href='<?=$lserver?>/img/logo/x2/favicon.ico'/>
         <!-- CSS files -->
         <style>
 <?php
@@ -48,14 +48,14 @@
         <meta property='og:title' content='<?=text($con, "PROFILE_TITLE", $lang)?> - I&ntilde;igo Valentin'/>
         <meta property='og:url' content='<?=$lserver?>/me'/>
         <meta property='og:description' content='<?=text($con, "PROFILE_DESCRIPTION", $lang)?>'/>
-        <meta property='og:image' content='<?=$lserver?>/img/logo/favicon.ico''/>
+        <meta property='og:image' content='<?=$lserver?>/img/logo/x3/favicon.ico'/>
         <meta property='og:site_name' content='I&ntilde;igo Valentin'/>
         <meta property='og:type' content='website'/>
         <meta property='og:locale' content='<?=$lang?>'/>
         <meta name='twitter:card' content='summary'/>
         <meta name='twitter:title' content='<?=text($con, "PROFILE_TITLE", $lang)?> - I&ntilde;igo Valentin'/>
         <meta name='twitter:description' content='<?=text($con, "PROFILE_DESCRIPTION", $lang)?>'/>
-        <meta name='twitter:image' content='<?=$lserver?>/img/logo/favicon.ico''/>
+        <meta name='twitter:image' content='<?=$lserver?>/img/logo/x3/favicon.ico'/>
         <meta name='twitter:url' content='<?=$lserver?>'/>
         <meta name='robots' content='index follow'/>
     </head>
@@ -68,7 +68,7 @@
                 <div class='entry' id='profile'>
                     <div class='table_row'>
                         <div class='table_cell'>
-                            <img id='profile' src='<?=$lserver?>/img/profile/preview/0.png' alt='I&ntilde;igo Valentin' title='I&ntilde;igo Valentin' />
+                            <img id='profile' src='<?=$lserver?>/img/profile/x16/preview/0.png' alt='I&ntilde;igo Valentin' title='I&ntilde;igo Valentin' />
                         </div> <!-- .table_cell -->
                         <div class='table_cell'>
                             <h3 id='name'>I&ntilde;igo Valentin</h3>
