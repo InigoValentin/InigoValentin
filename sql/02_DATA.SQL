@@ -1,0 +1,314 @@
+-- AVAILABLE LANGUAGES
+INSERT INTO lang VALUES ('es', 'Castellano', '1');
+INSERT INTO lang VALUES ('en', 'English', '1');
+INSERT INTO lang VALUES ('eu', 'Euskara', '1');
+
+-- DATE ELEMENTS
+INSERT INTO text VALUES ('MONTH_01', 'es', 'DATE', 'enero', null);
+INSERT INTO text VALUES ('MONTH_01', 'en', 'DATE', 'January', null);
+INSERT INTO text VALUES ('MONTH_01', 'eu', 'DATE', 'urtarrila', null);
+INSERT INTO text VALUES ('MONTH_02', 'es', 'DATE', 'febrero', null);
+INSERT INTO text VALUES ('MONTH_02', 'en', 'DATE', 'February', null);
+INSERT INTO text VALUES ('MONTH_02', 'eu', 'DATE', 'otsaila', null);
+INSERT INTO text VALUES ('MONTH_03', 'es', 'DATE', 'marzo', null);
+INSERT INTO text VALUES ('MONTH_03', 'en', 'DATE', 'March', null);
+INSERT INTO text VALUES ('MONTH_03', 'eu', 'DATE', 'martxoa', null);
+INSERT INTO text VALUES ('MONTH_04', 'es', 'DATE', 'abril', null);
+INSERT INTO text VALUES ('MONTH_04', 'ee', 'DATE', 'April', null);
+INSERT INTO text VALUES ('MONTH_04', 'eu', 'DATE', 'apirila', null);
+INSERT INTO text VALUES ('MONTH_05', 'es', 'DATE', 'mayo', null);
+INSERT INTO text VALUES ('MONTH_05', 'ee', 'DATE', 'May', null);
+INSERT INTO text VALUES ('MONTH_05', 'eu', 'DATE', 'maiatza', null);
+INSERT INTO text VALUES ('MONTH_06', 'es', 'DATE', 'junio', null);
+INSERT INTO text VALUES ('MONTH_06', 'en', 'DATE', 'June', null);
+INSERT INTO text VALUES ('MONTH_06', 'eu', 'DATE', 'ekaina', null);
+INSERT INTO text VALUES ('MONTH_07', 'es', 'DATE', 'julio', null);
+INSERT INTO text VALUES ('MONTH_07', 'en', 'DATE', 'July', null);
+INSERT INTO text VALUES ('MONTH_07', 'eu', 'DATE', 'uztaila', null);
+INSERT INTO text VALUES ('MONTH_08', 'es', 'DATE', 'agosto', null);
+INSERT INTO text VALUES ('MONTH_08', 'en', 'DATE', 'August', null);
+INSERT INTO text VALUES ('MONTH_08', 'eu', 'DATE', 'abuztua', null);
+INSERT INTO text VALUES ('MONTH_09', 'es', 'DATE', 'septiembre', null);
+INSERT INTO text VALUES ('MONTH_09', 'en', 'DATE', 'September', null);
+INSERT INTO text VALUES ('MONTH_09', 'eu', 'DATE', 'iraila', null);
+INSERT INTO text VALUES ('MONTH_10', 'es', 'DATE', 'octubre', null);
+INSERT INTO text VALUES ('MONTH_10', 'en', 'DATE', 'October', null);
+INSERT INTO text VALUES ('MONTH_10', 'eu', 'DATE', 'urria', null);
+INSERT INTO text VALUES ('MONTH_11', 'es', 'DATE', 'noviembre', null);
+INSERT INTO text VALUES ('MONTH_11', 'en', 'DATE', 'november', null);
+INSERT INTO text VALUES ('MONTH_11', 'eu', 'DATE', 'azaroa', null);
+INSERT INTO text VALUES ('MONTH_12', 'es', 'DATE', 'diciembre', null);
+INSERT INTO text VALUES ('MONTH_12', 'en', 'DATE', 'December', null);
+INSERT INTO text VALUES ('MONTH_12', 'eu', 'DATE', 'abendua', null);
+INSERT INTO text VALUES ('DAY_1', 'es', 'DATE', 'lunes', null);
+INSERT INTO text VALUES ('DAY_1', 'en', 'DATE', 'Monday', null);
+INSERT INTO text VALUES ('DAY_1', 'eu', 'DATE', 'astelehena', null);
+INSERT INTO text VALUES ('DAY_2', 'es', 'DATE', 'martes', null);
+INSERT INTO text VALUES ('DAY_2', 'en', 'DATE', 'Tuesday', null);
+INSERT INTO text VALUES ('DAY_2', 'eu', 'DATE', 'asteartea', null);
+INSERT INTO text VALUES ('DAY_3', 'es', 'DATE', 'mi&eacute;rcoles', null);
+INSERT INTO text VALUES ('DAY_3', 'en', 'DATE', 'Wednesday', null);
+INSERT INTO text VALUES ('DAY_3', 'eu', 'DATE', 'astezkena', null);
+INSERT INTO text VALUES ('DAY_4', 'es', 'DATE', 'jueves', null);
+INSERT INTO text VALUES ('DAY_4', 'en', 'DATE', 'Thursday', null);
+INSERT INTO text VALUES ('DAY_4', 'eu', 'DATE', 'osteguna', null);
+INSERT INTO text VALUES ('DAY_5', 'es', 'DATE', 'viernes', null);
+INSERT INTO text VALUES ('DAY_5', 'en', 'DATE', 'Friday', null);
+INSERT INTO text VALUES ('DAY_5', 'eu', 'DATE', 'ostirala', null);
+INSERT INTO text VALUES ('DAY_6', 'es', 'DATE', 's&aacute;bado', null);
+INSERT INTO text VALUES ('DAY_6', 'en', 'DATE', 'Saturday', null);
+INSERT INTO text VALUES ('DAY_6', 'eu', 'DATE', 'larunbata', null);
+INSERT INTO text VALUES ('DAY_7', 'es', 'DATE', 'domingo', null);
+INSERT INTO text VALUES ('DAY_7', 'en', 'DATE', 'Sunday', null);
+INSERT INTO text VALUES ('DAY_7', 'eu', 'DATE', 'igandea', null);
+
+
+-- TAGS
+INSERT INTO text VALUES ('TAG_JS',      'es', 'TAG', 'Javascript', null);
+INSERT INTO text VALUES ('TAG_JS',      'en', 'TAG', 'Javascript', null);
+INSERT INTO text VALUES ('TAG_JS',      'eu', 'TAG', 'Javascript', null);
+INSERT INTO text VALUES ('TAG_HTML5',   'es', 'TAG', 'HTML5', null);
+INSERT INTO text VALUES ('TAG_HTML5',   'en', 'TAG', 'HTML5', null);
+INSERT INTO text VALUES ('TAG_HTML5',   'eu', 'TAG', 'HTML5', null);
+INSERT INTO text VALUES ('TAG_ANDROID', 'es', 'TAG', 'Android', null);
+INSERT INTO text VALUES ('TAG_ANDROID', 'en', 'TAG', 'Android', null);
+INSERT INTO text VALUES ('TAG_ANDROID', 'eu', 'TAG', 'Android', null);
+INSERT INTO text VALUES ('TAG_IOS',     'es', 'TAG', 'iOS', null);
+INSERT INTO text VALUES ('TAG_IOS',     'en', 'TAG', 'iOS', null);
+INSERT INTO text VALUES ('TAG_IOS',     'eu', 'TAG', 'iOS', null);
+INSERT INTO text VALUES ('TAG_JAVA',    'es', 'TAG', 'Java', null);
+INSERT INTO text VALUES ('TAG_JAVA',    'en', 'TAG', 'Java', null);
+INSERT INTO text VALUES ('TAG_JAVA',    'eu', 'TAG', 'Java', null);
+INSERT INTO text VALUES ('TAG_SWIFT',   'es', 'TAG', 'Swift', null);
+INSERT INTO text VALUES ('TAG_SWIFT',   'en', 'TAG', 'Swift', null);
+INSERT INTO text VALUES ('TAG_SWIFT',   'eu', 'TAG', 'Swift', null);
+INSERT INTO text VALUES ('TAG_WEB',     'es', 'TAG', 'Web', null);
+INSERT INTO text VALUES ('TAG_WEB',     'en', 'TAG', 'Web', null);
+INSERT INTO text VALUES ('TAG_WEB',     'eu', 'TAG', 'Web', null);
+
+
+-- PAGE Header
+INSERT INTO text VALUES ('HEADER_HOME',     'es', 'HEADER', 'Inicio', null);
+INSERT INTO text VALUES ('HEADER_PROFILE',  'es', 'HEADER', 'Yo', null);
+INSERT INTO text VALUES ('HEADER_PROJECTS', 'es', 'HEADER', 'Proyectos', null);
+INSERT INTO text VALUES ('HEADER_BLOG',     'es', 'HEADER', 'Blog', null);
+INSERT INTO text VALUES ('HEADER_HOME',     'en', 'HEADER', 'Home', null);
+INSERT INTO text VALUES ('HEADER_PROFILE',  'en', 'HEADER', 'Me', null);
+INSERT INTO text VALUES ('HEADER_PROJECTS', 'en', 'HEADER', 'Projects', null);
+INSERT INTO text VALUES ('HEADER_BLOG',     'en', 'HEADER', 'Blog', null);
+INSERT INTO text VALUES ('HEADER_HOME',     'eu', 'HEADER', 'Hasiera', null);
+INSERT INTO text VALUES ('HEADER_PROFILE',  'eu', 'HEADER', 'Ni', null);
+INSERT INTO text VALUES ('HEADER_PROJECTS', 'eu', 'HEADER', 'Proiektuak', null);
+INSERT INTO text VALUES ('HEADER_BLOG',     'eu', 'HEADER', 'Blog', null);
+
+
+-- PAGE footer
+INSERT INTO text VALUES ('FOOTER_FOLLOW', 'es', 'FOOTER', 'S&iacute;gueme', null);
+INSERT INTO text VALUES ('FOOTER_COPY',   'es', 'FOOTER', 'Copyright I&ntilde;igo Valentin 2014 - 2017', null);
+INSERT INTO text VALUES ('FOOTER_HELP',   'es', 'FOOTER', 'Ayuda', null);
+INSERT INTO text VALUES ('FOOTER_FOLLOW', 'en', 'FOOTER', 'Follow me', null);
+INSERT INTO text VALUES ('FOOTER_COPY',   'en', 'FOOTER', 'Copyright I&ntilde;igo Valentin 2014 - 2017', null);
+INSERT INTO text VALUES ('FOOTER_HELP',   'en', 'FOOTER', 'Help', null);
+INSERT INTO text VALUES ('FOOTER_FOLLOW', 'eu', 'FOOTER', 'Jarraitu', null);
+INSERT INTO text VALUES ('FOOTER_COPY',   'eu', 'FOOTER', 'Copyright I&ntilde;igo Valentin 2014 - 2017', null);
+INSERT INTO text VALUES ('FOOTER_HELP',   'eu', 'FOOTER', 'Laguntza', null);
+
+
+-- PAGE project
+INSERT INTO text VALUES ('PROJECT_TITLE',           'es', 'PROJECT', 'Proyectos', null);
+INSERT INTO text VALUES ('PROJECT_TITLE',           'en', 'PROJECT', 'Projects', null);
+INSERT INTO text VALUES ('PROJECT_TITLE',           'eu', 'PROJECT', 'Projektuak', null);
+INSERT INTO text VALUES ('PROJECT_DESCRIPTION',     'es', 'PROJECT', '', null); --TODO
+INSERT INTO text VALUES ('PROJECT_DESCRIPTION',     'en', 'PROJECT', '', null); --TODO
+INSERT INTO text VALUES ('PROJECT_DESCRIPTION',     'eu', 'PROJECT', '', null); --TODO
+INSERT INTO text VALUES ('PROJECT_SEARCH',          'es', 'PROJECT', 'Buscar', null);
+INSERT INTO text VALUES ('PROJECT_SEARCH',          'en', 'PROJECT', 'Search', null);
+INSERT INTO text VALUES ('PROJECT_SEARCH',          'eu', 'PROJECT', 'Bilatu', null);
+INSERT INTO text VALUES ('PROJECT_SEARCH_ADVANCED', 'es', 'PROJECT', 'B&uacute;squeda avanzada', null);
+INSERT INTO text VALUES ('PROJECT_SEARCH_ADVANCED', 'en', 'PROJECT', 'Advanced search', null);
+INSERT INTO text VALUES ('PROJECT_SEARCH_ADVANCED', 'eu', 'PROJECT', 'B&uacute;squeda avanzada', null);
+INSERT INTO text VALUES ('PROJECT_SEARCH_TYPE',     'es', 'PROJECT', 'Tipo', null);
+INSERT INTO text VALUES ('PROJECT_SEARCH_TYPE',     'en', 'PROJECT', 'Project type', null);
+INSERT INTO text VALUES ('PROJECT_SEARCH_TYPE',     'eu', 'PROJECT', 'Tipu', null);
+INSERT INTO text VALUES ('PROJECT_SEARCH_LICENSE',  'es', 'PROJECT', 'Licencia', null);
+INSERT INTO text VALUES ('PROJECT_SEARCH_LICENSE',  'en', 'PROJECT', 'License', null);
+INSERT INTO text VALUES ('PROJECT_SEARCH_LICENSE',  'eu', 'PROJECT', 'Lizenzia', null);
+INSERT INTO text VALUES ('PROJECT_VERSION',         'es', 'PROJECT', 'Versi&oacute;n', null);
+INSERT INTO text VALUES ('PROJECT_VERSION',         'en', 'PROJECT', 'Version', null);
+INSERT INTO text VALUES ('PROJECT_VERSION',         'eu', 'PROJECT', 'Versi&oacute;n', null);
+INSERT INTO text VALUES ('PROJECT_CLOSE',           'es', 'PROJECT', 'Cerrar', null);
+INSERT INTO text VALUES ('PROJECT_CLOSE',           'en', 'PROJECT', 'Close', null);
+INSERT INTO text VALUES ('PROJECT_CLOSE',           'eu', 'PROJECT', 'Itxali', null);
+INSERT INTO text VALUES ('PROJECT_LICENSE_SUMMARY', 'es', 'PROJECT', 'En resumen:', null);
+INSERT INTO text VALUES ('PROJECT_LICENSE_SUMMARY', 'en', 'PROJECT', 'In a few words:', null);
+INSERT INTO text VALUES ('PROJECT_LICENSE_SUMMARY', 'eu', 'PROJECT', 'En resumen:', null);
+INSERT INTO text VALUES ('PROJECT_LICENSE_LEGAL',   'es', 'PROJECT', 'Texto completo:', null);
+INSERT INTO text VALUES ('PROJECT_LICENSE_LEGAL',   'en', 'PROJECT', 'Full legal text:', null);
+INSERT INTO text VALUES ('PROJECT_LICENSE_LEGAL',   'eu', 'PROJECT', 'Textu osoa:', null);
+
+
+-- PAGE blog
+INSERT INTO text VALUES ('BLOG_TITLE',       'es', 'BLOG', 'Blog', null);
+INSERT INTO text VALUES ('BLOG_TITLE',       'en', 'BLOG', 'Blog', null);
+INSERT INTO text VALUES ('BLOG_TITLE',       'eu', 'BLOG', 'Blog', null);
+INSERT INTO text VALUES ('BLOG_DESCRIPTION', 'es', 'BLOG', '', null); --TODO
+INSERT INTO text VALUES ('BLOG_DESCRIPTION', 'en', 'BLOG', '', null); --TODO
+INSERT INTO text VALUES ('BLOG_DESCRIPTION', 'eu', 'BLOG', '', null); --TODO
+INSERT INTO text VALUES ('BLOG_MORE',        'es', 'BLOG', 'leer m&aacute;s', null);
+INSERT INTO text VALUES ('BLOG_MORE',        'en', 'BLOG', 'read more', null);
+INSERT INTO text VALUES ('BLOG_MORE',        'eu', 'BLOG', 'gehiago irakurri', null);
+INSERT INTO text VALUES ('BLOG_TAGS',        'es', 'BLOG', 'Tags', null);
+INSERT INTO text VALUES ('BLOG_TAGS',        'en', 'BLOG', 'Tags', null);
+INSERT INTO text VALUES ('BLOG_TAGS',        'eu', 'BLOG', 'Tags', null);
+INSERT INTO text VALUES ('BLOG_SEARCH',      'es', 'BLOG', 'Buscar', null);
+INSERT INTO text VALUES ('BLOG_SEARCH',      'en', 'BLOG', 'Search', null);
+INSERT INTO text VALUES ('BLOG_SEARCH',      'eu', 'BLOG', 'Bilatu', null);
+INSERT INTO text VALUES ('BLOG_TAG_CLOUD',   'es', 'BLOG', 'Nube de tags', null);
+INSERT INTO text VALUES ('BLOG_TAG_CLOUD',   'en', 'BLOG', 'Tag Cloud', null);
+INSERT INTO text VALUES ('BLOG_TAG_CLOUD',   'eu', 'BLOG', 'Tag Cloud', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS',    'es', 'BLOG', 'Comentarios', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS',    'en', 'BLOG', 'Comments', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS',    'eu', 'BLOG', 'Comentarios', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS_0',  'es', 'BLOG', 'No hay comentarios a&uacute;n.', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS_0',  'en', 'BLOG', 'No comments yet.', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS_0',  'eu', 'BLOG', 'No hay comentarios a&uacute;n.', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS_1',  'es', 'BLOG', 'comentario.', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS_1',  'en', 'BLOG', 'comment.', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS_1',  'eu', 'BLOG', 'comantario.', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS_X',  'es', 'BLOG', 'comentarios.', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS_X',  'en', 'BLOG', 'comments.', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS_X',  'eu', 'BLOG', 'comentarios.', null);
+
+
+-- PAGE profile
+INSERT INTO text VALUES ('PROFILE_TITLE',       'es', 'PROFILE', 'Yo', null);
+INSERT INTO text VALUES ('PROFILE_TITLE',       'en', 'PROFILE', 'Me', null);
+INSERT INTO text VALUES ('PROFILE_TITLE',       'eu', 'PROFILE', 'Ni', null);
+INSERT INTO text VALUES ('PROFILE_DESCRIPTION', 'es', 'PROFILE', 'Sobre m&iacute;', null); --TODO
+INSERT INTO text VALUES ('PROFILE_DESCRIPTION', 'en', 'PROFILE', 'About me', null); --TODO
+INSERT INTO text VALUES ('PROFILE_DESCRIPTION', 'eu', 'PROFILE', 'Niri buruz', null); --TODO
+
+
+-- TABLE project_type
+INSERT INTO text VALUES ('PROJECT_TYPE_D',         'es', 'DB_PROJECT_TYPE', 'Desarrollo', null);
+INSERT INTO text VALUES ('PROJECT_TYPE_D',         'en', 'DB_PROJECT_TYPE', 'Development', null);
+INSERT INTO text VALUES ('PROJECT_TYPE_D',         'eu', 'DB_PROJECT_TYPE', 'Development', null);
+INSERT INTO text VALUES ('PROJECT_TYPE_D_SUMMARY', 'es', 'DB_PROJECT_TYPE', 'Desarrollo', null);
+INSERT INTO text VALUES ('PROJECT_TYPE_D_SUMMARY', 'en', 'DB_PROJECT_TYPE', 'Development', null);
+INSERT INTO text VALUES ('PROJECT_TYPE_D_SUMMARY', 'eu', 'DB_PROJECT_TYPE', 'Development', null);
+INSERT INTO text VALUES ('PROJECT_TYPE_S',         'es', 'DB_PROJECT_TYPE', 'Sistemas', null);
+INSERT INTO text VALUES ('PROJECT_TYPE_S',         'en', 'DB_PROJECT_TYPE', 'System', null);
+INSERT INTO text VALUES ('PROJECT_TYPE_S',         'eu', 'DB_PROJECT_TYPE', 'System', null);
+INSERT INTO text VALUES ('PROJECT_TYPE_S_SUMMARY', 'es', 'DB_PROJECT_TYPE', 'Sistemas', null);
+INSERT INTO text VALUES ('PROJECT_TYPE_S_SUMMARY', 'en', 'DB_PROJECT_TYPE', 'System', null);
+INSERT INTO text VALUES ('PROJECT_TYPE_S_SUMMARY', 'eu', 'DB_PROJECT_TYPE', 'System', null);
+INSERT INTO project_type VALUES ('D', 'PROJECT_TYPE_D', 'PROJECT_TYPE_D_SUMMARY');
+INSERT INTO project_type VALUES ('S', 'PROJECT_TYPE_S', 'PROJECT_TYPE_S_SUMMARY');
+
+
+-- TABLE project_url_type
+INSERT INTO text VALUES ('URL_TYPE_W',         'es', 'DB_URL_TYPE', 'Ver sitio web', null);
+INSERT INTO text VALUES ('URL_TYPE_W',         'en', 'DB_URL_TYPE', 'Go to web site', null);
+INSERT INTO text VALUES ('URL_TYPE_W',         'eu', 'DB_URL_TYPE', 'Horrialdera', null);
+INSERT INTO text VALUES ('URL_TYPE_W_SUMMARY', 'es', 'DB_URL_TYPE', 'Ver sitio wew de este proyecto en funcionamiento.', null);
+INSERT INTO text VALUES ('URL_TYPE_W_SUMMARY', 'en', 'DB_URL_TYPE', 'See production web site.', null);
+INSERT INTO text VALUES ('URL_TYPE_W_SUMMARY', 'eu', 'DB_URL_TYPE', 'Horrialdera.', null);
+INSERT INTO text VALUES ('URL_TYPE_P',         'es', 'DB_URL_TYPE', 'Google Play', null);
+INSERT INTO text VALUES ('URL_TYPE_P',         'en', 'DB_URL_TYPE', 'Google Play', null);
+INSERT INTO text VALUES ('URL_TYPE_P',         'eu', 'DB_URL_TYPE', 'Google Play', null);
+INSERT INTO text VALUES ('URL_TYPE_P_SUMMARY', 'es', 'DB_URL_TYPE', 'Ver app en Google Play.', null);
+INSERT INTO text VALUES ('URL_TYPE_P_SUMMARY', 'en', 'DB_URL_TYPE', 'See on Google Play.', null);
+INSERT INTO text VALUES ('URL_TYPE_P_SUMMARY', 'eu', 'DB_URL_TYPE', 'Google Play-n.', null);
+INSERT INTO text VALUES ('URL_TYPE_A',         'es', 'DB_URL_TYPE', 'App Store', null);
+INSERT INTO text VALUES ('URL_TYPE_A',         'en', 'DB_URL_TYPE', 'App Store', null);
+INSERT INTO text VALUES ('URL_TYPE_A',         'eu', 'DB_URL_TYPE', 'App Store', null);
+INSERT INTO text VALUES ('URL_TYPE_A_SUMMARY', 'es', 'DB_URL_TYPE', 'Ver app en App Store.', null);
+INSERT INTO text VALUES ('URL_TYPE_A_SUMMARY', 'en', 'DB_URL_TYPE', 'See on App Store.', null);
+INSERT INTO text VALUES ('URL_TYPE_A_SUMMARY', 'eu', 'DB_URL_TYPE', 'App Store-an.', null);
+INSERT INTO text VALUES ('URL_TYPE_G',         'es', 'DB_URL_TYPE', 'Github', null);
+INSERT INTO text VALUES ('URL_TYPE_G',         'en', 'DB_URL_TYPE', 'Github', null);
+INSERT INTO text VALUES ('URL_TYPE_G',         'eu', 'DB_URL_TYPE', 'Github', null);
+INSERT INTO text VALUES ('URL_TYPE_G_SUMMARY', 'es', 'DB_URL_TYPE', 'Ver c&oacute;digo fuente en Github.', null);
+INSERT INTO text VALUES ('URL_TYPE_G_SUMMARY', 'en', 'DB_URL_TYPE', 'Checkout source code on Github.', null);
+INSERT INTO text VALUES ('URL_TYPE_G_SUMMARY', 'eu', 'DB_URL_TYPE', 'Kodea Github-n.', null);
+INSERT INTO text VALUES ('URL_TYPE_M',         'es', 'DB_URL_TYPE', 'Ver', null);
+INSERT INTO text VALUES ('URL_TYPE_M',         'en', 'DB_URL_TYPE', 'See', null);
+INSERT INTO text VALUES ('URL_TYPE_M',         'eu', 'DB_URL_TYPE', 'Ikusi', null);
+INSERT INTO text VALUES ('URL_TYPE_M_SUMMARY', 'es', 'DB_URL_TYPE', 'Ver', null);
+INSERT INTO text VALUES ('URL_TYPE_M_SUMMARY', 'en', 'DB_URL_TYPE', 'See', null);
+INSERT INTO text VALUES ('URL_TYPE_M_SUMMARY', 'eu', 'DB_URL_TYPE', 'Ikusi', null);
+INSERT INTO project_url_type VALUES ('E', null, null, null);
+INSERT INTO project_url_type VALUES ('W', 'URL_TYPE_W', 'URL_TYPE_W_SUMMARY', 'web.png');
+INSERT INTO project_url_type VALUES ('P', 'URL_TYPE_P', 'URL_TYPE_P_SUMMARY', 'googleplay.png');
+INSERT INTO project_url_type VALUES ('A', 'URL_TYPE_A', 'URL_TYPE_A_SUMMARY', 'appstore.png');
+INSERT INTO project_url_type VALUES ('G', 'URL_TYPE_G', 'URL_TYPE_G_SUMMARY', 'github.png');
+INSERT INTO project_url_type VALUES ('M', 'URL_TYPE_M', 'URL_TYPE_M_SUMMARY', 'misc.png');
+
+
+-- TABLE project_version_type
+INSERT INTO text VALUES ('VERSION_TYPE_ALPHA',         'es', 'VERSION_TYPE', 'Alfa', null);
+INSERT INTO text VALUES ('VERSION_TYPE_ALPHA',         'en', 'VERSION_TYPE', 'Alpha', null);
+INSERT INTO text VALUES ('VERSION_TYPE_ALPHA',         'eu', 'VERSION_TYPE', 'Alpha', null);
+INSERT INTO text VALUES ('VERSION_TYPE_ALPHA_SUMMARY', 'es', 'VERSION_TYPE', 'En sesarrollo. Inestable.', null);
+INSERT INTO text VALUES ('VERSION_TYPE_ALPHA_SUMMARY', 'en', 'VERSION_TYPE', 'In development. Unstable.', null);
+INSERT INTO text VALUES ('VERSION_TYPE_ALPHA_SUMMARY', 'eu', 'VERSION_TYPE', 'En desarrollo. Inestable', null);
+INSERT INTO text VALUES ('VERSION_TYPE_BETA',          'es', 'VERSION_TYPE', 'Beta', null);
+INSERT INTO text VALUES ('VERSION_TYPE_BETA',          'en', 'VERSION_TYPE', 'Beta', null);
+INSERT INTO text VALUES ('VERSION_TYPE_BETA',          'eu', 'VERSION_TYPE', 'Beta', null);
+INSERT INTO text VALUES ('VERSION_TYPE_BETA_SUMMARY',  'es', 'VERSION_TYPE', 'En pruebas. Parcialmente estable.', null);
+INSERT INTO text VALUES ('VERSION_TYPE_BETA_SUMMARY',  'en', 'VERSION_TYPE', 'Under testing. Stability not guaranteed.', null);
+INSERT INTO text VALUES ('VERSION_TYPE_BETA_SUMMARY',  'eu', 'VERSION_TYPE', 'En pruebas. Parcialmente estable.', null);
+INSERT INTO text VALUES ('VERSION_TYPE_PRO',           'es', 'VERSION_TYPE', 'Estable', null);
+INSERT INTO text VALUES ('VERSION_TYPE_PRO',           'en', 'VERSION_TYPE', 'Stable', null);
+INSERT INTO text VALUES ('VERSION_TYPE_PRO',           'eu', 'VERSION_TYPE', 'Estable', null);
+INSERT INTO text VALUES ('VERSION_TYPE_PRO_SUMMARY',   'es', 'VERSION_TYPE', 'Listo para uso en entorno de producci&oacute;n.', null);
+INSERT INTO text VALUES ('VERSION_TYPE_PRO_SUMMARY',   'en', 'VERSION_TYPE', 'Ready for production.', null);
+INSERT INTO text VALUES ('VERSION_TYPE_PRO_SUMMARY',   'eu', 'VERSION_TYPE', 'Listo para uso en entorno de producci&oacute;n.', null);
+INSERT INTO project_version_type VALUES ('A', 'VERSION_TYPE_ALPHA', 'VERSION_TYPE_ALPHA_SUMMARY', '#ff0000');
+INSERT INTO project_version_type VALUES ('B', 'VERSION_TYPE_BETA',  'VERSION_TYPE_BETA_SUMMARY',  '#ffaa00');
+INSERT INTO project_version_type VALUES ('P', 'VERSION_TYPE_PRO',   'VERSION_TYPE_PRO_SUMMARY',   '#00ff00');
+
+
+-- TABLE license
+INSERT INTO text VALUES ('LICENSE_CC-BY-SA_SUMMARY', 'es', 'LICENSE', null, 'LICENSE_CC-BY-SA_SUMMARY__ES');
+INSERT INTO text VALUES ('LICENSE_CC-BY-SA_SUMMARY', 'en', 'LICENSE', null, 'LICENSE_CC-BY-SA_SUMMARY__EN');
+INSERT INTO text VALUES ('LICENSE_CC-BY-SA_SUMMARY', 'eu', 'LICENSE', null, 'LICENSE_CC-BY-SA_SUMMARY__EU');
+INSERT INTO text VALUES ('LICENSE_CC-BY-SA',         'es', 'LICENSE', null, 'LICENSE_CC-BY-SA__ES');
+INSERT INTO text VALUES ('LICENSE_CC-BY-SA',         'en', 'LICENSE', null, 'LICENSE_CC-BY-SA__EN');
+INSERT INTO text VALUES ('LICENSE_CC-BY-SA',         'eu', 'LICENSE', null, 'LICENSE_CC-BY-SA__EU');
+INSERT INTO text VALUES ('LICENSE_GPLV3_SUMMARY',    'es', 'LICENSE', null, 'LICENSE_GPLV3_SUMMARY__ES');
+INSERT INTO text VALUES ('LICENSE_GPLV3_SUMMARY',    'en', 'LICENSE', null, 'LICENSE_GPLV3_SUMMARY__EN');
+INSERT INTO text VALUES ('LICENSE_GPLV3_SUMMARY',    'eu', 'LICENSE', null, 'LICENSE_GPLV3_SUMMARY__EU');
+INSERT INTO text VALUES ('LICENSE_GPLV3',            'es', 'LICENSE', null, 'LICENSE_GPLV3__ES');
+INSERT INTO text VALUES ('LICENSE_GPLV3',            'en', 'LICENSE', null, 'LICENSE_GPLV3__EN');
+INSERT INTO text VALUES ('LICENSE_GPLV3',            'eu', 'LICENSE', null, 'LICENSE_GPLV3__EU');
+INSERT INTO license VALUES ('CC-BY-SA', 'LICENSE_CC-BY-SA_SUMMARY', 'LICENSE_CC-BY-SA', 'CC-BY-SA.png', 'CC-BY-SA.png');
+INSERT INTO license VALUES ('GPLv3',    'LICENSE_GPLV3_SUMMARY',    'LICENSE_GPLV3',    'GPLV3.png',    'GPLV3.png');
+
+
+-- TABLE cv_category
+INSERT INTO text VALUES ('CV_CATEGORY_WORK',             'es', 'DB_CV', 'Experiencia', null);
+INSERT INTO text VALUES ('CV_CATEGORY_WORK',             'en', 'DB_CV', 'Experience', null);
+INSERT INTO text VALUES ('CV_CATEGORY_WORK',             'eu', 'DB_CV', 'Experiencia', null);
+INSERT INTO text VALUES ('CV_CATEGORY_EDUCATION',        'es', 'DB_CV', 'Formaci&oacute;n', null);
+INSERT INTO text VALUES ('CV_CATEGORY_EDUCATION',        'en', 'DB_CV', 'Hezkuntza', null);
+INSERT INTO text VALUES ('CV_CATEGORY_EDUCATION',        'eu', 'DB_CV', 'Education', null);
+INSERT INTO text VALUES ('CV_CATEGORY_PROJECTS',         'es', 'DB_CV', 'Otros proyectos', null);
+INSERT INTO text VALUES ('CV_CATEGORY_PROJECTS',         'en', 'DB_CV', 'Other projects', null);
+INSERT INTO text VALUES ('CV_CATEGORY_PROJECTS',         'eu', 'DB_CV', 'Beste projecktuak', null);
+INSERT INTO text VALUES ('CV_CATEGORY_PROJECTS_SUMMARY', 'es', 'DB_CV', 'Proyectos de software eralizados por cuenta propia', null);
+INSERT INTO text VALUES ('CV_CATEGORY_PROJECTS_SUMMARY', 'en', 'DB_CV', 'Proyectos de software eralizados por cuenta propia', null);
+INSERT INTO text VALUES ('CV_CATEGORY_PROJECTS_SUMMARY', 'eu', 'DB_CV', 'Proyectos de software eralizados por cuenta propia', null);
+INSERT INTO text VALUES ('CV_CATEGORY_OTHER',            'es', 'DB_CV', 'Otra experiencia laboral', null);
+INSERT INTO text VALUES ('CV_CATEGORY_OTHER',            'en', 'DB_CV', 'Otra experiencia laboral', null);
+INSERT INTO text VALUES ('CV_CATEGORY_OTHER',            'eu', 'DB_CV', 'Otra experiencia laboral', null);
+INSERT INTO text VALUES ('CV_CATEGORY_OTHER_SUMMARY',    'es', 'DB_CV', 'Experiencia laboral fuera del &aacute;mbito de IT', null);
+INSERT INTO text VALUES ('CV_CATEGORY_OTHER_SUMMARY',    'en', 'DB_CV', 'Experiencia laboral fuera del &aacute;mbito de IT', null);
+INSERT INTO text VALUES ('CV_CATEGORY_OTHER_SUMMARY',    'eu', 'DB_CV', 'Experiencia laboral fuera del &aacute;mbito de IT', null);
+INSERT INTO cv_category VALUES (1, 'CV_CATEGORY_WORK',      null,                          1 , 1);
+INSERT INTO cv_category VALUES (2, 'CV_CATEGORY_EDUCATION', null,                          1 , 3);
+INSERT INTO cv_category VALUES (3, 'CV_CATEGORY_PROJECTS', 'CV_CATEGORY_PROJECTS_SUMMARY', 0 , 2);
+INSERT INTO cv_category VALUES (4, 'CV_CATEGORY_OTHER',    'CV_CATEGORY_OTHER_SUMMARY',    1 , 4);
+
+
+-- ADD MORE ROWS AS YOU SEE FIT:

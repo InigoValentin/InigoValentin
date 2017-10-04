@@ -6,3 +6,25 @@ div#logo{
 div#logo img{
     max-height: 7em;
 }
+
+div#content{
+    display: table;
+}
+
+div#content div#content_row{
+    display: table-row;
+}
+
+div#content div#content_row div.content_cell{
+    display: table-cell;
+    vertical-align: top;
+    margin:1em;
+}
+
+div#content div#content_row div#content_cell_profile{
+    width: 30%;
+}
+
+div#content div#content_row div#content_cell_content{
+    width: 70%;
+}
