@@ -63,6 +63,21 @@ INSERT INTO text VALUES ('DAY_7', 'en', 'DATE', 'Sunday', null);
 INSERT INTO text VALUES ('DAY_7', 'eu', 'DATE', 'igandea', null);
 
 
+-- SOCIAL
+INSERT INTO text VALUES ('SOCIAL_GITHUB', 'es', 'SOCIAL', 'Github', null);
+INSERT INTO text VALUES ('SOCIAL_GITHUB', 'en', 'SOCIAL', 'Github', null);
+INSERT INTO text VALUES ('SOCIAL_GITHUB', 'eu', 'SOCIAL', 'Github', null);
+INSERT INTO text VALUES ('SOCIAL_RSS', 'es', 'SOCIAL', 'RSS', null);
+INSERT INTO text VALUES ('SOCIAL_RSS', 'en', 'SOCIAL', 'RSS', null);
+INSERT INTO text VALUES ('SOCIAL_RSS', 'eu', 'SOCIAL', 'RSS', null);
+INSERT INTO text VALUES ('SOCIAL_MAIL', 'es', 'SOCIAL', 'Correo electr&oacute;nico', null);
+INSERT INTO text VALUES ('SOCIAL_MAIL', 'en', 'SOCIAL', 'eMail', null);
+INSERT INTO text VALUES ('SOCIAL_MAIL', 'eu', 'SOCIAL', 'ePosta', null);
+INSERT INTO text VALUES ('SOCIAL_LINKEDIN', 'es', 'SOCIAL', 'LinkedIn', null);
+INSERT INTO text VALUES ('SOCIAL_LINKEDIN', 'en', 'SOCIAL', 'LinkedIn', null);
+INSERT INTO text VALUES ('SOCIAL_LINKEDIN', 'eu', 'SOCIAL', 'LinkedIn', null);
+
+
 -- TAGS
 INSERT INTO text VALUES ('TAG_JS',      'es', 'TAG', 'Javascript', null);
 INSERT INTO text VALUES ('TAG_JS',      'en', 'TAG', 'Javascript', null);

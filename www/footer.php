@@ -4,10 +4,16 @@
         <tr>
             <td id='footer_left'>
                 <span id='footer_follow' class='desktop'><?=text($con, "FOOTER_FOLLOW", $lang);?></span>
-                <a title='Github' href='https://www.github.com/u/Seavenois'><img class='footer_social_icon' src='<?=$lserver?>/img/social/github.gif' alt='Github'/></a>
-                <a title='Facebook' href='https://www.facebook.com/ivalentin'><img class='footer_social_icon' src='<?=$lserver?>/img/social/facebook.gif' alt='Facebook'/></a>
-                <a title='Google+' href='https://plus.google.com/108048773942421710294/'><img class='footer_social_icon' src='<?=$lserver?>/img/social/googleplus.gif' alt='Google+'/></a>
-                <a title='RSS' href='<?=$lserver?>/feed/'><img class='footer_social_icon' src='<?=$lserver?>/img/social/rss.gif' alt='RSS'/></a>
+<?php
+                $q_social = mysqli_query($con, "SELECT title, icon, url FROM social WHERE visible = 1 ORDER BY idx;");
+                while ($r_social = mysqli_fetch_array($q_social)){
+?>
+                    <a title='<?=text($con, $r_social["title"], $lang)?>' href='<?=$r_social["url"]?>'>
+                        <img class='footer_social_icon' src='<?=$lserver?>/img/social/x2/<?=$r_social["icon"]?>' alt='<?=text($con, $r_social["title"], $lang)?>' title='<?=text($con, $r_social["title"], $lang)?>'/>
+                    </a>
+<?php
+                }
+?>
             </td>
             <td id='footer_center'><?=text($con, "FOOTER_COPY", $lang);?></td>
             <td id='footer_right'>

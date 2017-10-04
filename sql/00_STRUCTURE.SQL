@@ -48,6 +48,15 @@ CREATE TABLE permissions(
     PRIMARY KEY(user, permission)
 );
 
+CREATE TABLE social(
+    id       INT           AUTO_INCREMENT  PRIMARY KEY,
+    idx      INT           NOT NULL        UNIQUE,
+    visible  BOOLEAN       NOT NULL        DEFAULT 1,
+    title    VARCHAR(32)   NOT NULL        REFERENCES text.id,
+    icon     VARCHAR(16)   NOT NULL,
+    url      VARCHAR(256)  NOT NULL
+);
+
 CREATE TABLE post (
     id         INT           AUTO_INCREMENT  PRIMARY KEY,
     permalink  VARCHAR(300)  NOT NULL,
