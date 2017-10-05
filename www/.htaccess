@@ -78,7 +78,7 @@ Options -MultiViews
         ExpiresByType image/gif "access plus 12 days"
         ExpiresByType image/png "access plus 12 days"
         ExpiresByType video/mkv "access plus 12 days"
-        ExpiresByType text/css "access plus 6 days"
+        #ExpiresByType text/css "access plus 6 days"
         ExpiresByType text/plain "access plus 6 days"
 </IfModule>
 
@@ -92,9 +92,9 @@ Options -MultiViews
 	<filesMatch "\.(ico|jpe?g|png|gif|swf)$">
 		Header set Cache-Control "max-age=864000, public, must-revalidate"
 	</filesMatch>
-	<filesMatch "\.(css)$">
-		Header set Cache-Control "max-age=864000, public, must-revalidate"
-	</filesMatch>
+#	<filesMatch "\.(css)$">
+#		Header set Cache-Control "max-age=864000, public, must-revalidate"
+#	</filesMatch>
 	<filesMatch "\.(js)$">
 		Header set Cache-Control "max-age=864000, private, must-revalidate"
 	</filesMatch>
