@@ -23,14 +23,14 @@
         <style>
 <?php
             include $doc_root . "css/ui.css";
-            include $doc_root . "css/me.css";
+            include $doc_root . "css/profile.css";
 ?>
         </style>
         <!-- CSS for mobile version -->
         <style media='(max-width : 990px)'>
 <?php
             include $doc_root . "css/m/ui.css";
-            include $doc_root . "css/m/me.css";
+            include $doc_root . "css/m/profile.css";
 ?>
         </style>
         <!-- Script files -->
@@ -65,13 +65,13 @@
 ?>
         <div id='content'>
             <div class='section section_no_title'>
+                <h3 id='name' class='section_title'>I&ntilde;igo Valentin</h3>
                 <div class='entry' id='profile'>
                     <div class='table_row'>
                         <div class='table_cell'>
-                            <img id='profile' src='<?=$lserver?>/img/profile/x16/preview/0.png' alt='I&ntilde;igo Valentin' title='I&ntilde;igo Valentin' />
+                            <img id='profile' src='<?=$lserver?>/img/profile/x16/0.png' alt='I&ntilde;igo Valentin' title='I&ntilde;igo Valentin' />
                         </div> <!-- .table_cell -->
                         <div class='table_cell'>
-                            <h3 id='name'>I&ntilde;igo Valentin</h3>
                             <h4 id='tagline'>TR#Developer</h4>
                             <p id='bio'>TR#Bio</p>
                         </div> <!-- .table_cell -->
@@ -93,7 +93,7 @@
                 while ($r_section = mysqli_fetch_array($q_section)){
 ?>
                     <div id='cv' class='entry cv_entry'>
-                        <h4><?=text($con, $r_section["title"], $lang)?></h4>
+                        <h4 class='cv_entry_title'><?=text($con, $r_section["title"], $lang)?></h4>
 <?php
                         if (strlen($r_section["summary"]) > 0){
 ?>

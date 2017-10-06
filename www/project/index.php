@@ -73,7 +73,7 @@
                         while ($r_project = mysqli_fetch_array($q_project)){
 ?>
                             <a href='<?=$lserver?>/project/<?=$r_project["permalink"]?>'>
-                                <div class='entry project_row'>
+                                <div class='entry entry_list project_row'>
                                     <table>
                                         <tr>
 <?php

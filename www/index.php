@@ -83,7 +83,7 @@
                         while ($r_project = mysqli_fetch_array($q_project)){
 ?>
                             <a href='<?=$lserver?>/project/<?=$r_project["permalink"]?>'>
-                                <div class='entry project_row'>
+                                <div class='entry entry_list project_row'>
                                     <table>
                                         <tr>
 <?php
@@ -106,6 +106,8 @@
 <?php
                         }
 ?>
+                    </div> <!-- .section -->
+                    <div class='section'>
                         <h3 class='section_title'>TR#Ultimos posts</h3>
 <?php
                         $q_blog = mysqli_query($con, "SELECT * FROM post WHERE visible = 1 ORDER BY dtime DESC LIMIT 2;");
@@ -113,7 +115,7 @@
                             $q_image = mysqli_query($con, "SELECT * FROM post_image WHERE post = $r_blog[id] ORDER BY id LIMIT 1;");
 ?>
                             <a href='<?=$lserver?>/blog/<?=$r_blog["permalink"]?>'>
-                                <div class='entry blog_row'>
+                                <div class='entry entr_list blog_row'>
                                     <table>
                                         <tr>
 <?php

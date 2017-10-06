@@ -73,7 +73,7 @@
                             $q_blog = mysqli_query($con, "SELECT id, permalink, title, text, DATE_FORMAT(dtime, '%Y-%m-%dT%T') AS isodate, dtime, comments FROM post WHERE visible = 1 ORDER BY dtime DESC;");
                             while($r_blog = mysqli_fetch_array($q_blog)){
 ?>
-                                <div itemscope itemtype='http://schema.org/BlogPosting' class='entry blog_entry'>
+                                <div itemscope itemtype='http://schema.org/BlogPosting' class='entry entry_list blog_entry'>
                                     <meta itemprop='inLanguage' content='<?=$lang?>'/>
                                     <meta itemprop='datePublished dateModified' content='<?=$r_blog["isodate"]?>'/>
                                     <meta itemprop='headline name' content='<?=text($con, $r_blog["title"], $lang)?>'/>

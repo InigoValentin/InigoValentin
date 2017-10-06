@@ -33,10 +33,6 @@ div#content_cell_right{
     width: 20%;
 }
 
-div#main_column{
-    padding: 1em;
-}
-
 div#main_column div.iframe_container{
     width: 100%;
     text-align: center;
@@ -51,7 +47,6 @@ div#main_column iframe.project_embed{
 }
 
 div#right_column{
-    padding: 1em;
     transition: all .3s ease-in-out;
 }
 

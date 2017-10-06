@@ -61,7 +61,27 @@ INSERT INTO text VALUES ('DAY_6', 'eu', 'DATE', 'larunbata', null);
 INSERT INTO text VALUES ('DAY_7', 'es', 'DATE', 'domingo', null);
 INSERT INTO text VALUES ('DAY_7', 'en', 'DATE', 'Sunday', null);
 INSERT INTO text VALUES ('DAY_7', 'eu', 'DATE', 'igandea', null);
-
+INSERT INTO text VALUES ('CV_DATE_FROM_YEAR', 'es', 'DATE', 'Desde #YEAR_START#', null);
+INSERT INTO text VALUES ('CV_DATE_FROM_YEAR', 'en', 'DATE', 'Since #YEAR_START#', null);
+INSERT INTO text VALUES ('CV_DATE_FROM_YEAR', 'eu', 'DATE', '#YEAR_START#tik', null);
+INSERT INTO text VALUES ('CV_DATE_DURING_YEAR', 'es', 'DATE', '#YEAR_START#', null);
+INSERT INTO text VALUES ('CV_DATE_DURING_YEAR', 'en', 'DATE', '#YEAR_START#', null);
+INSERT INTO text VALUES ('CV_DATE_DURING_YEAR', 'eu', 'DATE', '#YEAR_START#n', null);
+INSERT INTO text VALUES ('CV_DATE_FROM_TO_YEAR', 'es', 'DATE', 'Desde #YEAR_START# hasta #YEAR_END#', null);
+INSERT INTO text VALUES ('CV_DATE_FROM_TO_YEAR', 'en', 'DATE', 'From #YEAR_START# until #YEAR_END#', null);
+INSERT INTO text VALUES ('CV_DATE_FROM_TO_YEAR', 'eu', 'DATE', '#YEAR_START#tik #YEAR_END#ra', null);
+INSERT INTO text VALUES ('CV_DATE_FROM_MONTH', 'es', 'DATE', 'Desde #MONTH_START# de #YEAR_START#', null);
+INSERT INTO text VALUES ('CV_DATE_FROM_MONTH', 'en', 'DATE', 'Since #MONTH_START# #YEAR_START#', null);
+INSERT INTO text VALUES ('CV_DATE_FROM_MONTH', 'eu', 'DATE', '#YEAR_START#ko #MONTH_START#tik', null);
+INSERT INTO text VALUES ('CV_DATE_DURING_MONTH', 'es', 'DATE', '#MONTH_START# de #YEAR_START#', null);
+INSERT INTO text VALUES ('CV_DATE_DURING_MONTH', 'en', 'DATE', '#MONTH_START# #YEAR_START#', null);
+INSERT INTO text VALUES ('CV_DATE_DURING_MONTH', 'eu', 'DATE', '#YEAR_START#ko #MONTH_START#n', null);
+INSERT INTO text VALUES ('CV_DATE_FROM_TO_MONTH', 'es', 'DATE', 'Desde #MONTH_START# de #YEAR_START# hasta #MONTH_END# de #YEAR_END#', null);
+INSERT INTO text VALUES ('CV_DATE_FROM_TO_MONTH', 'en', 'DATE', 'From #MONTH_START# #YEAR_START# until #MONTH_END# #YEAR_END#', null);
+INSERT INTO text VALUES ('CV_DATE_FROM_TO_MONTH', 'eu', 'DATE', '#YEAR_START#ko #MONTH_START#tik #YEAR_END#ko #MONTH_END#ra', null);
+INSERT INTO text VALUES ('CV_DATE_FROM_TO_MONTH_YEAR', 'es', 'DATE', 'Desde #MONTH_START# hasta #MONTH_END# de #YEAR_START#', null);
+INSERT INTO text VALUES ('CV_DATE_FROM_TO_MONTH_YEAR', 'en', 'DATE', 'From #MONTH_START# until #MONTH_END# #YEAR_START#', null);
+INSERT INTO text VALUES ('CV_DATE_FROM_TO_MONTH_YEAR', 'eu', 'DATE', '#YEAR_START#ko #MONTH_START#tik #MONTH_START#ra', null);
 
 -- SOCIAL
 INSERT INTO text VALUES ('SOCIAL_GITHUB', 'es', 'SOCIAL', 'Github', null);
