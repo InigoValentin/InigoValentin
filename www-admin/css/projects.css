@@ -1,0 +1,55 @@
+table#project_list{
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+table#project_list th{
+    font-weight: bold;
+    background: linear-gradient(to bottom, #4e9987 0%,#69d8b9 89%,#60caac 97%,#ade8f9 100%);
+    border: 0.1em solid #335533;
+}
+
+table#project_list td{
+    border: 0.1em solid #335533;
+    padding: 0.2em;
+}
+
+table#project_list td.td_project{
+    width: 30%;
+}
+
+table#project_list td.td_project h4{
+    margin: 0.2em;
+}
+
+table#project_list td.td_project h4 img{
+    max-height: 2em;
+    max-width: 2em;
+    vertical-align: middle;
+}
+
+table#project_list td.td_project img.project_image{
+    border: 0.2em solid #335533;
+    border-radius: 0.4em;
+    max-height: 3em;
+    max-width: 3em;
+}
+
+table#project_list td.td_details{
+    width: 50%;
+    font-size: 80%;
+}
+
+table#project_list td.td_actions{
+    width: 20%;
+    text-align: center;
+}
+
+table#project_list td.td_actions input{
+    padding: 0.1em;
+    display: block;
+    margin: auto;
+    width: 90%;
+}
+
