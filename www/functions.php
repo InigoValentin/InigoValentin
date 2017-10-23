@@ -297,7 +297,7 @@
             return $text;
         }
         $cut = substr($text, 0, strpos($text, " ", $length));
-        $cut = closeTags($cut);
+        $cut = close_tags($cut);
         if (strlen($cut) == 0){
             $cut = $text;
         }

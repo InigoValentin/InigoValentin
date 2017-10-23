@@ -29,27 +29,36 @@ function showHeader(header, from){
  * @param lang Two letter language code. 'es', 'en' or 'eu'.
  */
 function showLanguage(lang){
+    var en = document.getElementsByClassName('content_lang_en');
+    var es = document.getElementsByClassName('content_lang_es');
+    var eu = document.getElementsByClassName('content_lang_eu');
     switch (lang){
         case 'es':
-            document.getElementById('content_lang_es').style.display = 'block';
-            document.getElementById('content_lang_eu').style.display = 'none';
-            document.getElementById('content_lang_en').style.display = 'none';
+            for (var i = 0; i < en.length; ++i) {
+                en[i].style.display = 'none';
+                es[i].style.display = 'block';
+                eu[i].style.display = 'none';
+            }
             document.getElementById('lang_tab_es').classList.add("lang_tabs_active");
             document.getElementById('lang_tab_eu').classList.remove("lang_tabs_active");
             document.getElementById('lang_tab_en').classList.remove("lang_tabs_active");
             break;
         case 'eu':
-            document.getElementById('content_lang_es').style.display = 'none';
-            document.getElementById('content_lang_eu').style.display = 'block';
-            document.getElementById('content_lang_en').style.display = 'none';
+            for (var i = 0; i < en.length; ++i) {
+                en[i].style.display = 'none';
+                es[i].style.display = 'none';
+                eu[i].style.display = 'block';
+            }
             document.getElementById('lang_tab_es').classList.remove("lang_tabs_active");
             document.getElementById('lang_tab_eu').classList.add("lang_tabs_active");
             document.getElementById('lang_tab_en').classList.remove("lang_tabs_active");
             break;
         case 'en':
-            document.getElementById('content_lang_es').style.display = 'none';
-            document.getElementById('content_lang_eu').style.display = 'none';
-            document.getElementById('content_lang_en').style.display = 'block';
+            for (var i = 0; i < en.length; ++i) {
+                en[i].style.display = 'block';
+                es[i].style.display = 'none';
+                eu[i].style.display = 'none';
+            }
             document.getElementById('lang_tab_es').classList.remove("lang_tabs_active");
             document.getElementById('lang_tab_eu').classList.remove("lang_tabs_active");
             document.getElementById('lang_tab_en').classList.add("lang_tabs_active");

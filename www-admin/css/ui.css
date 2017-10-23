@@ -409,6 +409,7 @@ a.a_button{
     cursor: pointer;
     max-width: 1.2em;
     vertical-align: middle;
+    opacity: 0.5;
 }
 
 /* Field value, editing. */
@@ -444,27 +445,35 @@ a.a_button{
 div#lang_tabs{
     margin-top: 2em;
     margin-bottom: 2em;
+    text-align: center;
 }
 
 div#lang_tabs table{
-    width: 100%;
+    border-collapse: collapse;
+    border: 0.2em solid #1e9957;
+    border-radius: 0.2em;
+    margin: 0.5em auto 1em auto;
 }
 
 div#lang_tabs td{
-    color: #555555;
+    background-color: #ffffff;
+    color: #29d889;
     font-weight: bold;
-    width: 33%;
-    border: 0.1em solid black;
+    width: 7em;
     margin: 0;
+    padding: 0.2em;
+    border: 0.05em solid #1e9957;
 }
 
 div#lang_tabs td.lang_tabs_active{
-    color: #0078ff;
-    border-bottom: 0.1em solid #ffffff;
+    background-color: #29d889;
+    color: #ffffff;
 }
 
 div.content_lang{
     display: none;
+    margin: 0;
+    padding: 0;
 }
 
 div.content_lang_active{

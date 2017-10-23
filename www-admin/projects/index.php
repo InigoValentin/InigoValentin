@@ -56,9 +56,9 @@
                             <th>Actions</th>
                         </tr>
 <?php
-                        $q_project = mysqli_query($con, "SELECT project.id, permalink, project_type.title AS type, project.title AS title, project.logo AS logo, header, text, license.id AS license, concat(fname, concat(' ', lname)) AS user, visible, comments, (SELECT count(id) FROM project_comment WHERE project = project.id) AS comment_count, (SELECT version_name FROM project_version v, project_version_type WHERE type = id AND v.project = project.id ORDER BY version_code DESC LIMIT 1) AS version, (SELECT dtime FROM project_version v WHERE  v.project = project.id ORDER BY version_code DESC LIMIT 1) AS dtime, (SELECT title FROM project_version v, project_version_type WHERE type = id AND v.project = project.id ORDER BY version_code DESC LIMIT 1) AS version_type, (SELECT color FROM project_version v, project_version_type WHERE type = id AND v.project = project.id ORDER BY version_code DESC LIMIT 1) AS version_color, (SELECT image FROM project_image WHERE project = project.id) AS image, (SELECT count(image) FROM project_image WHERE project = project.id) AS image_count FROM project, project_type, license, user WHERE project.type = project_type.id AND project.license = license.id AND project.user = user.id;");
+                        $q_project = mysqli_query($con, "SELECT project.id, permalink, project_type.title AS type, project.title AS title, project.logo AS logo, header, text, license.id AS license, concat(fname, concat(' ', lname)) AS user, visible, comments, (SELECT count(id) FROM project_comment WHERE project = project.id) AS comment_count, (SELECT version_name FROM project_version v, project_version_type WHERE type = v.id AND v.project = project.id ORDER BY version_code DESC LIMIT 1) AS version, (SELECT dtime FROM project_version v WHERE  v.project = project.id ORDER BY version_code DESC LIMIT 1) AS dtime, (SELECT title FROM project_version v, project_version_type WHERE type = v.id AND v.project = project.id ORDER BY version_code DESC LIMIT 1) AS version_type, (SELECT color FROM project_version v, project_version_type WHERE type = v.id AND v.project = project.id ORDER BY version_code DESC LIMIT 1) AS version_color, (SELECT image FROM project_image WHERE project = project.id) AS image, (SELECT count(image) FROM project_image WHERE project = project.id ORDER BY idx LIMIT 1) AS image_count FROM project, project_type, license, user WHERE project.type = project_type.id AND project.license = license.id AND project.user = user.id;");
                         while ($r_project = mysqli_fetch_array($q_project)){
-                            $title = text($con, $r_project["title"],$lang);
+                            $title = text($con, $r_project["title"], $lang);
 ?>
                             <tr>
                                 <td class='td_project'>
@@ -133,7 +133,6 @@
                                 <td class='td_actions'>
                                     <input type='button' onclick='manageProject(<?=$r_project["id"]?>);' value='Manage / Translate'/>
                                     <input type='button' onclick='deleteProject(<?=$r_project["id"]?>, "<?=$title?>");' value='Delete'/>
-                                    <input type='button' onclick='TODO' value='Moderate comments'/>
                                     <?php
                                     if ($r_project["visible"] == 1){
 ?>

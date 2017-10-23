@@ -1,0 +1,116 @@
+/* /blog/index.php */
+
+table#post_list{
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+table#post_list th{
+    font-weight: bold;
+    background: linear-gradient(to bottom, #4e9987 0%,#69d8b9 89%,#60caac 97%,#ade8f9 100%);
+    border: 0.1em solid #335533;
+}
+
+table#post_list td{
+    border: 0.1em solid #335533;
+    padding: 0.2em;
+}
+
+table#post_list td.td_post{
+    width: 30%;
+}
+
+table#post_list td.td_post h4{
+    margin: 0.2em;
+}
+
+table#post_list td.td_post h4 img{
+    max-height: 2em;
+    max-width: 2em;
+    vertical-align: middle;
+}
+
+table#post_list td.td_post img.post_image{
+    border: 0.2em solid #335533;
+    border-radius: 0.4em;
+    max-height: 3em;
+    max-width: 3em;
+}
+
+table#post_list td.td_post{
+    width: 50%;
+    font-size: 80%;
+}
+
+table#post_list td.td_actions{
+    width: 20%;
+    text-align: center;
+}
+
+table#post_list td.td_actions input{
+    padding: 0.1em;
+    display: block;
+    margin: auto;
+    width: 90%;
+}
+
+
+/* /blog/edit.php */
+
+div#post_edit hr.separator{
+    margin: 1.5em 20% 1.5em 20%;
+    opacity: 0.5;
+}
+
+div#post_edit div#image_reel{
+    overflow-x: scroll;
+    border: 0.1em solid #003400;
+    border-radius: 0.3em;
+    height: 7em;
+    background-color: #334433;
+    padding: 0.5em;
+}
+
+div#post_edit div#image_reel img{
+    vertical-align: middle;
+    max-height: 5em;
+    max-width: 7em;
+    border: 0.2em solid #003400;
+    border-radius: 0.1em;
+    margin: 0.5em;
+    background-color: #ffffff;
+}
+
+div#post_edit table#comments{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+div#post_edit table#comments td{
+    border-right: 0.1em solid #334433;
+    border-left: 0.1em solid #334433;
+    border-bottom: 0.2em solid #334433;
+    border-top: 0.2em solid #334433;
+}
+
+div#post_edit table#comments td.text{
+    width: 35%;
+}
+
+div#post_edit table#comments td.details{
+    width: 50%;
+    line-height: 2
+}
+
+div#post_edit table#comments td.actions{
+    width: 15%;
+    text-align: center;
+}
+
+div#post_edit table#comments td.actions input{
+    width: 90%;
+    margin: auto;
+    padding: 0.2em;
+    display: block;
+}

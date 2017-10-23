@@ -12,18 +12,16 @@
     }
     else{
         $id = intval(mysqli_real_escape_string($con, $_GET["p"]));
-        if (strlen($id) < 1){
-            http_response_code(400); // No or bad ID: Bad request.
+        $visible = intval(mysqli_real_escape_string($con, $_GET["v"]));
+        if (strlen($id) < 1 || ($visible != 1 && $visible != 0)){
+            http_response_code(400); // No or bad ID, visible not 1 or 0: Bad request.
         }
         else{
             if (mysqli_num_rows(mysqli_query($con, "SELECT id FROM post WHERE id = $id;")) == 0){
                 http_response_code(404); // Unexistent id: Not found.
             }
             else{
-                mysqli_query($con, "DELETE FROM post_tag WHERE project = $id;");
-                mysqli_query($con, "DELETE FROM post_image WHERE project = $id;");
-                mysqli_query($con, "DELETE FROM post_comment WHERE project = $id;");
-                mysqli_query($con, "DELETE FROM post WHERE id = $id;");
+                mysqli_query($con, "UPDATE post SET visible = $visible WHERE id = $id;");
                 http_response_code(200); //OK.
             }
         }
