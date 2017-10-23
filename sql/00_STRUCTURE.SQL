@@ -213,7 +213,8 @@ CREATE TABLE stat_visit (
     ip       VARCHAR(50),
     uagent   VARCHAR(400),
     os       VARCHAR(150),
-    browser  VARCHAR(150)
+    browser  VARCHAR(150),
+    dtime    TIMESTAMP     NOT NULL  DEFAULT now()
 );
 
 CREATE TABLE stat_view (

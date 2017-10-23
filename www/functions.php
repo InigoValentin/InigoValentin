@@ -407,7 +407,7 @@
         }
 
         //Look for a visit with the same IP in the last 30 mins.
-        $q = mysqli_query($con, "SELECT stat_visit.id AS visitid FROM stat_view, stat_visit WHERE visit = stat_visit.id AND dtime > DATE_SUB(now(), INTERVAL 30 MINUTE) AND ip = '$ip' AND uagent = '$uagent';");
+        $q = mysqli_query($con, "SELECT stat_visit.id AS visitid FROM stat_view, stat_visit WHERE visit = stat_visit.id AND stat_view.dtime > DATE_SUB(now(), INTERVAL 30 MINUTE) AND ip = '$ip' AND uagent = '$uagent';");
         if (mysqli_num_rows($q) == 0){
             mysqli_query($con, "INSERT INTO stat_visit (ip, uagent, os, browser) VALUES ('$ip', '$uagent', '$os', '$browser');");
             $q = mysqli_query($con, "SELECT stat_visit.id AS visitid FROM stat_visit WHERE ip = '$ip' AND uagent = '$uagent' ORDER BY stat_visit.id DESC LIMIT 1;");
