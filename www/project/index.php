@@ -99,7 +99,8 @@
                     </div> <!-- #main_column -->
                 </div> <!-- #content_cell_main -->
                 <div class='content_cell'  id='content_cell_right'>
-                    <div class='section section_no_title' id='right_column'>
+                    <div class='section' id='right_column'>
+                        <h3 class='section_title'>TR#Search projects</h3>
                         <div class='entry'>
                             <input type='text' placeholder='<?=text($con, "PROJECT_SEARCH", $lang)?>' name='text'/>
                             <input type='hidden' id='advanced_search_indicator' value='0'/>

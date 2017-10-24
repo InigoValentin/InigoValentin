@@ -9,6 +9,20 @@
 }
 
 /**********************************
+ * Elements that are solely for   *
+ * the desktop or mobile          *
+ * version.                       *
+ **********************************/
+
+.desktop{
+    display: initial;
+}
+
+.mobile{
+    display: none;
+}
+
+/**********************************
  * Styles to be applied across    *
  * all the site for all the       *
  * elements of it's type          *
@@ -109,14 +123,14 @@ nav#header span.header_container {
     display: inline-block;
     position: relative;
     transition: all .3s ease-in-out;
-    box-shadow: 0 0 0.063em rgba(0, 0, 0, 0);
-    border: rgba(0,0,0,0) solid 0.063em;
+    box-shadow: 0 0 0.063em #ffffff00;
+    border: 0.06em solid #ffffff00;
     border-radius: 0.5em;
 }
 
 nav#header span.header_container:hover {
-    border: rgba(255, 255, 255, 0.5) solid 0.063em;
-    background-color: rgba(255, 255, 255, 0.2);
+    border: 0.06em solid #ffffff88;
+    background-color: #ffffff33;
 }
 
 /* Contains the icon for each entry */
@@ -127,14 +141,14 @@ nav#header span.header_icon_container{
 
 /* Icon for each entry of the header */
 nav#header img.header_icon{
-    opacity: 0.1;
+    opacity: 0.3;
     width: 1.563em;
     height: 1.563em;
     vertical-align: middle;
     transition: opacity 0.4s ease-in-out;
 }
 nav#header span.header_container:hover img.header_icon{
-    opacity: 0.9;
+    opacity: 1;
 }
 
 

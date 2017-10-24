@@ -13,10 +13,10 @@ div#content div#content_row div.content_cell{
     margin: 0;
 }
 
-div#content div#content_row div#content_cell_main{
+div#content div#content_row div#content_cell_profile{
     width: initial;
 }
 
-div#content div#content_row div#content_cell_right{
+div#content div#content_row div#content_cell_content{
     width: initial;
 }

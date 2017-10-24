@@ -133,7 +133,8 @@
                     </div> <!-- #main_column -->
                 </div> <!-- #content_cell_main -->
                 <div class='content_cell'  id='content_cell_right'>
-                    <div class='section section_no_title' id='right_column'>
+                    <div class='section' id='right_column'>
+                        <h3 class='section_title'>TR#Details</h3>
                         <div class='entry'>
 <?php
                             $q_url = mysqli_query($con, "SELECT url, title, summary, logo FROM project_url, project_url_type WHERE project_url_type.id = project_url.type AND project = $id AND type <> 'E';");
