@@ -32,3 +32,5 @@ www-admin/.htpasswd
 www/.htaccess_local
 www-admin/.htaccess_local
 
+#3rd party software
+www-admin/script/ckeditor
