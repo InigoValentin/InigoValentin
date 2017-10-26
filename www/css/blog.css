@@ -1,62 +1,92 @@
-/* Common elements */
-span.version_type{
-    padding: 0.05em;
-    border 0.1em solid #444444;
-    border-radius: 0.2em;
-}
+/* Blog main page */
 
-
-/* Projects main page */
-
-
-/* Project view page */
-
-div#content{
-    display: table;
-}
-
-div#content-row{
-    display: table-row;
-}
-
-div.content_cell{
-    display: table-cell;
-    padding: 1em;
-    vertical-align: top;
-}
-
-div#content_cell_main{
-    width: 80%;
-}
-
-div#content_cell_right{
-    width: 20%;
-}
-
-div#main_column div.iframe_container{
-    width: 100%;
-    text-align: center;
-}
-
-div#main_column iframe.project_embed{
+div#post_list img.post_list_image{
+    float: left;
     background-color: #ffffff;
-    border-radius: 0.8em;
-    border: 0.1em solid #110022;
-    max-width: 90%;
-    max-height: 70em;
+    border: 0.1em solid #003300;
+    border-radius: 0.3em;
+    margin: 0 0.7em 0.7em 0.7em;
+    max-width: 5em;
+    max-height: 3em;
 }
 
-div#right_column{
-    transition: all .3s ease-in-out;
+div#post_list table.post_list_footer{
+    font-size: 80%;
+    width: 100%;
 }
 
-div#right_column div.url{
+div#post_list table.post_list_footer td.comment_counter{
+    font-style: italic;
+    text-align: right;
+}
+
+div#post_list span.tags{
+    font-size: 80%;
+    font-style: italic;
+}
+
+/* Post view page */
+
+div#post{
+    width: 90%;
+    max-width: 80em;
+    margin: 1em auto 1em auto;
+}
+
+div#post img#post_main_image{
+    display: block;
+    max-height: 11em;
+    margin: 0.5em auto 1em auto;
+    border: 0.1em solid #003400;
+    border-radius: 0.5em;
+    background-color: #ffffff;
+}
+
+div#post div#image_reel{
+    overflow-x: scroll;
+    border: 0.1em solid #003400;
+    border-radius: 0.3em;
+    height: 7em;
+    background-color: #334433;
+    padding: 0.5em;
+}
+
+div#project_edit div#image_reel img{
     vertical-align: middle;
+    max-height: 5em;
+    max-width: 7em;
+    border: 0.2em solid #003400;
+    border-radius: 0.1em;
+    margin: 0.5em;
+    background-color: #ffffff;
 }
 
-div#right_column div.url img{
-    width: 2em;
-    height: 2em;
-    vertical-align: middle;
+table#prev_next{
+    width: 90%;
+    max-width: 60em;
+    border-collapse: collapse;
+    margin: 1em auto 1em auto;
 }
 
+table#prev_next td{
+    width: 50%;
+    text-align: center
+    padding: 0.5em;
+}
+
+table#prev_next td#prev{
+    border-right: 0.03em solid #00440088;
+    text-align: right;
+}
+
+table#prev_next td#next{
+    border-left: 0.03em solid #00440088;
+}
+
+table#prev_next td span.info{
+    font-size: 80%;
+}
+
+table#prev_next td span.title{
+    font-weight: bold;
+}

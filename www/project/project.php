@@ -73,7 +73,7 @@
         <meta property="og:url" content="<?=$lserver?>/project/<?=$r_project["permalink"]?>"/>
         <meta property="og:description" content="<?=$summary?>"/>
 <?php
-        if (strlen($r_project["logo"]) > 0){
+        if (strlen($r_project["logo"]) == 0){
 ?>
             <meta property="og:image" content="<?=$lserver?>/img/logo/x3/favicon.ico"/>
 <?php
@@ -91,7 +91,7 @@
         <meta name="twitter:title" content="<?=$title?> - I&ntilde;igo Valentin"/>
         <meta name="twitter:description" content="<?=$summary?>"/>
 <?php
-        if (strlen($r_project["logo"]) > 0){
+        if (strlen($r_project["logo"]) == 0){
 ?>
             <meta name="twitter:image" content="<?=$lserver?>/img/logo/x3/favicon.ico"/>
 <?php

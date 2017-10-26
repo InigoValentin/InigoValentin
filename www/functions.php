@@ -228,6 +228,35 @@
         return $str;
     }
 
+    /*****************************************************
+     * Generates a "Share" link for a network.           *
+     *                                                   *
+     * @params:                                          *
+     *    con (Mysql connection): Connection handler.    *
+     *    network (int): Social network ID.              *
+     *    server: (string): Server name. Can be empty.   *
+     *    url: (string): URL to be shared.               *
+     *    lang: (string): Language code (two letters).   *
+     * @return: (string): URL-valid string.              *
+     *****************************************************/
+    function share_link($con, $network, $server, $url, $lang){
+        if (strlen($url) == 0){
+            return "";
+        }
+        $out = "<a class='share' target='_blank' ";
+        $q_network = mysqli_query($con, "SELECT url, icon, title, text FROM share WHERE visible = 1 AND id = $network;");
+        if (mysqli_num_rows($q_network) == 0){
+            return "";
+        }
+        else{
+            $r_network = mysqli_fetch_array($q_network);
+            $out = $out . "href='" . $r_network["url"] . htmlspecialchars($url) . "' title='" . text($con, $r_network["text"], $lang) . "'>";
+            $out = $out . "<img class='share' src='" . $server . "/img/social/x1/" . $r_network["icon"] . "' alt='" . text($con, $r_network["text"], $lang) . "' title='" . text($con, $r_network["text"], $lang) . "' />";
+            $out = $out . "</a>";
+            return $out;
+        }
+    }
+
 
     /*****************************************************
      * Retrieves a text fragment from the database.      *

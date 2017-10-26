@@ -107,35 +107,75 @@
                         }
 ?>
                     </div> <!-- .section -->
-                    <div class='section'>
+                    <div class='section' id='blog_section'>
                         <h3 class='section_title'>TR#Ultimos posts</h3>
 <?php
-                        $q_blog = mysqli_query($con, "SELECT * FROM post WHERE visible = 1 ORDER BY dtime DESC LIMIT 2;");
-                        while ($r_blog = mysqli_fetch_array($q_blog)){
-                            $q_image = mysqli_query($con, "SELECT * FROM post_image WHERE post = $r_blog[id] ORDER BY id LIMIT 1;");
+                        $q_blog = mysqli_query($con, "SELECT id, permalink, title, text, DATE_FORMAT(dtime, '%Y-%m-%dT%T') AS isodate, dtime, comments FROM post WHERE visible = 1 ORDER BY dtime DESC;");
+                        while($r_blog = mysqli_fetch_array($q_blog)){
 ?>
-                            <a href='<?=$lserver?>/blog/<?=$r_blog["permalink"]?>'>
-                                <div class='entry entr_list blog_row'>
-                                    <table>
-                                        <tr>
+                            <div itemscope itemtype='http://schema.org/BlogPosting' class='entry entry_list blog_entry'>
+                                <meta itemprop='inLanguage' content='<?=$lang?>'/>
+                                <meta itemprop='datePublished dateModified' content='<?=$r_blog["isodate"]?>'/>
+                                <meta itemprop='headline name' content='<?=text($con, $r_blog["title"], $lang)?>'/>
+                                <meta itemprop='articleBody text' content='<?=text($con, $r_blog["text"], $lang)?>'/>
+                                <meta itemprop='mainEntityOfPage' content='<?=$lserver?>'/>
+                                <h3 class='entry_title'>
+                                    <a itemprop='url' href='<?=$lserver?>/blog/<?=$r_blog["permalink"]?>'><?=text($con, $r_blog["title"], $lang)?></a>
+                                </h3>
 <?php
-                                            if (mysqli_num_rows($q_image) > 0){
-                                                $r_image = mysqli_fetch_array($q_image);
+                                $q_image = mysqli_query($con, "SELECT image FROM post_image WHERE post = $r_blog[id] ORDER BY idx LIMIT 1;");
+                                if (mysqli_num_rows($q_image) > 0){
+                                    $r_image = mysqli_fetch_array($q_image);
 ?>
-                                                <td>
-                                                    <img alt='<?=text($con, $r_blog["title"], $lang)?>' title='<?=text($con, $r_blog["title"], $lang)?>' src='<?=$lserver?>/img/blog/x2/<?=$r_image["image"]?>'/>
-                                                </td>
+                                    <div class='post_list_image_container'>
+                                        <a href='<?=$lserver?>/blog/<?=$r_blog["permalink"]?>'>
+                                            <meta itemprop='image' content='<?=$lserver?>/img/blog/x4/<?=$r_image["image"]?>'/>
+                                            <img class='post_list_image' alt='<?=$r_blog["title"]?>' src='<?=$lserver?>/img/blog/x2/<?=$r_image["image"]?>'/>
+                                        </a>
+                                    </div>
 <?php
-                                            }
+                                }
 ?>
-                                            <td>
-                                                <h4><?=text($con, $r_blog["title"], $lang)?></h4>
-                                                <?=cut_text(text($con, $r_project["header"], $lang), 165, "TR#Leer mas", $lserver . "/blog/" . $r_blog["permalink"])?>
+                                <p><?=cut_text(text($con, $r_blog["text"], $lang), 150, text($con, "BLOG_MORE", $lang), "$lserver/blog/$r_blog[permalink]/")?></p>
+                                <hr/>
+                                <table class='post_list_footer'>
+                                    <tr>
+                                        <td class='date'>
+                                            <span class='date'><?=format_date($r_blog['dtime'], $lang, false)?></span>
+                                        </td>
+<?php
+                                        #Comment counter
+                                        if ($r_blog["comments"] == 1){
+                                            $q_comment = mysqli_query($con, "SELECT count(id) AS count FROM post_comment WHERE post = $r_blog[id] AND approved = 1;");
+                                            $r_comment = mysqli_fetch_array($q_comment);
+?>
+                                            <meta itemprop='commentCount interationCount' content='<?=$r_comment["count"]?>'/>
+                                            <td class='comment_counter'>
+<?php
+                                                if ($r_comment['count'] == 1){
+?>
+                                                    <span class='comment_counter'>1 <?=text($con, "BLOG_COMMENTS_1", $lang)?></span>
+<?php
+                                                }
+                                                else if ($r_comment['count'] == 0){
+?>
+                                                    <span class='comment_counter'><?=text($con, "BLOG_COMMENTS_0", $lang)?></span>
+<?php
+                                                }
+                                                else{
+?>
+                                                    <span class='comment_counter'><?=$r_comment["count"]?> <?=text($con, "BLOG_COMMENTS_X", $lang)?></span>
+<?php
+                                                }
+?>
                                             </td>
-                                        </tr>
-                                    </table>
-                                </div> <!-- .entry -->
-                            </a>
+<?php
+                                        } // if ($r_blog["comments"] == 1)
+?>
+                                    </tr>
+                                </table> <!-- .post_list_footer -->
+                            </div> <!-- .blog_entry -->
+                            </br>
 <?php
                         }
 ?>

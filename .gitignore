@@ -21,12 +21,10 @@ remoteadmin
 www-admin/redirect_s.php
 
 #SQL data
-sql/dbusers.sql
-sql/*row*.sql
 sql/CUSTOM_ROWS.SQL
+sql/DEBUG_ROWS.SQL
 
 #Passwords file
-sql/dbpasswords.sql
 www/.htpasswd
 www-admin/.htpasswd
 www/.htaccess_local

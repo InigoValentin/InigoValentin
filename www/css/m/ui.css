@@ -57,3 +57,8 @@ div#footer a.lang img:hover{
 div.section{
     margin: 1em;
 }
+
+div.section div.entry_list{
+    background-color: #efffef;
+    border: 0.1em solid #aaffaaff;
+}

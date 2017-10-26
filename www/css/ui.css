@@ -472,18 +472,23 @@ div#identification_form{
 
 /* Contain a comment, with the details and the text */
 div.comment{
-    background-color: #cccccc;
-    border: 0.143em solid #777777;
-    border-radius: 0.314em;
+    background-color: #efffef;
+    border: 0.1em solid #aaffaa;
+    border-radius: 0.3em;
     padding: 0.5em;
-    margin: 0.714em 0.625em 0.714em 0.625em;
-    box-shadow: 0 0 0.750em #444444;
+    margin: 0.5em;
 }
 
 /* User who posted the coment */
-h4.comment_user{
+div.comment h4.comment_user{
     margin-top: 0.417em;
     margin-bottom: 0;
+}
+
+div.comment h4.comment_user span.comment_user_registered{
+    font-weight: bold;
+    font-size: 110%;
+    color: #005500;
 }
 
 /* Style for the comment's images */
@@ -554,92 +559,24 @@ img#new_comment_image_preview{
 }
 
 
-
 /**********************************
- * Styles for the pager, present  *
- * in blog, tutorials, etc        *
+ * Styles for the social buttons. *
  **********************************/
 
-/* A table containing the pager */
-table#pager{
-    margin-left: auto;
-    margin-right: auto;
-    border-spacing: 0.625em
+a.share img.share{
+    display: inline-block;
+    vertical-align: top;
+    overflow: hidden;
+    width: 2em;
+    height: 2em;
+    border: 0.1em solid #003300;
+    border-radius: 2em;
+    box-shadow: 0 0 0.3em #005500;
+    margin: 0.2em;
+    transition: all .3s ease-in-out;
 }
 
-/* Each cell in the pager */
-table#pager td{
-    font-weight: bold;
-    color: #cccccc;
-    background-color: #bbbbbb;
-    border: 0.077em solid #666666;
-    border-radius: 0.231em;
-    padding: 0.5em 0.625em 0.5em 0.625em;
-    text-shadow: 0 0 0.75em #000000;
+a.share img.share:hover{
+    box-shadow: 0 0 0.7em #005500;
+    border-radius: 0.7em;
 }
-
-/* The current page */
-table#pager td.pager_current{
-    background-color: #666666;
-    border: 0.077em solid #444444;
-}
-
-/* Dummy td that contains "..." */
-table#pager td.pager_ellipse{
-    background-color: initial;
-    border: initial;
-}
-
-
-
-/**********************************
- * Styles for social sharing icon *
- **********************************/
-
-/* Icons for social media */
-img.share_icon{
-    width: 1.875em;
-    vertical-align: middle;
-}
-
-
-
-/**********************************
- * Styles for downloads           *
- **********************************/
-
-/* Dummy span for download count */
-span#span_download{
-    display: none;
-}
-
-/* Hidden div to confirm downloading */
-div.license{
-    box-shadow: 0 0 1.2em rgba(120, 120, 120, 1);
-    display: none;
-    position: fixed;
-    top: 30%;
-    left: 25%;
-    width: 40%;
-    opacity: 0;
-    z-index: 1001;
-    padding: 0.625em;
-    background-color: #333333;
-    border: 0.150em solid #111111;
-    border-radius: 1.250em;
-}
-
-/* div to dimm the screen */
-#screen_cover{
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: black;
-    display: none;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: all .9s ease-in-out;
-    z-index: 1000;
-}
-

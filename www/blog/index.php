@@ -67,7 +67,7 @@
         <div id='content'>
             <div id='content_row'>
                 <div class='content_cell' id='content_cell_main'>
-                    <div id='main_column' class='section'>
+                    <div id='post_list' class='section'>
                         <h3 class='section_title'><?=text($con, "BLOG_TITLE", $lang)?></h3>
 <?php
                             $q_blog = mysqli_query($con, "SELECT id, permalink, title, text, DATE_FORMAT(dtime, '%Y-%m-%dT%T') AS isodate, dtime, comments FROM post WHERE visible = 1 ORDER BY dtime DESC;");
@@ -80,7 +80,7 @@
                                     <meta itemprop='articleBody text' content='<?=text($con, $r_blog["text"], $lang)?>'/>
                                     <meta itemprop='mainEntityOfPage' content='<?=$lserver?>'/>
                                     <h3 class='entry_title'>
-                                        <a itemprop='url' href='<?=$lserver?>/blog/<?=$r_blog["permalink"]?>'><?=$r_blog["title"]?></a>
+                                        <a itemprop='url' href='<?=$lserver?>/blog/<?=$r_blog["permalink"]?>'><?=text($con, $r_blog["title"], $lang)?></a>
                                     </h3>
 <?php
                                     $q_image = mysqli_query($con, "SELECT image FROM post_image WHERE post = $r_blog[id] ORDER BY idx LIMIT 1;");
@@ -89,52 +89,28 @@
 ?>
                                         <div class='post_list_image_container'>
                                             <a href='<?=$lserver?>/blog/<?=$r_blog["permalink"]?>'>
-                                                <meta itemprop='image' content='<?=$lserver?>/img/blog/view/<?=$r_image["image"]?>'/>
-                                                <img class='post_list_image alt='<?=$r_blog["title"]?>' src='<?=$lserver?>/img/blog/miniature/<?=$r_image["image"]?>'/>
+                                                <meta itemprop='image' content='<?=$lserver?>/img/blog/x4/<?=$r_image["image"]?>'/>
+                                                <img class='post_list_image' alt='<?=$r_blog["title"]?>' src='<?=$lserver?>/img/blog/x2/<?=$r_image["image"]?>'/>
                                             </a>
                                         </div>
 <?php
                                     }
 ?>
-                                    <p><?=cutText($r_blog["text"], 800, text($con, "BLOG_MORE", $lang), "$lserver/blog/$r_blog[permalink]/")?></p>
+                                    <p><?=cut_text(text($con, $r_blog["text"], $lang), 200, text($con, "BLOG_MORE", $lang), "$lserver/blog/$r_blog[permalink]/")?></p>
                                     <hr/>
-                                    <table class='post_footer'>
+                                    <table class='post_list_footer'>
                                         <tr>
+                                            <td class='date'>
+                                                <span class='date'><?=format_date($r_blog['dtime'], $lang, false)?></span>
+                                            </td>
 <?php
-                                            // Tags (if any), date, and comment counter
-                                            $q_tag = mysqli_query($con, "SELECT tag FROM post_tag WHERE post= $r_blog[id];");
-                                            if (mysqli_num_rows($q_tag) > 0){
-                                                $tag_string = "<span class='tags desktop'>" . text($con, "BLOG_TAGS", $lang);
-                                                $tag_raw = "";
-                                                while ($r_tag = mysqli_fetch_array($q_tag)){
-                                                    $tag_string = $tag_string . "<a href='$proto$http_host/blog/search/tag/$r_tag[tag]'> " . text($con, $r_tag["tag"], $lang) . "</a>, ";
-                                                    $tag_raw = $tag_raw . "$r_tag[tag],";
-                                                }
-                                                $tag_string = substr($tag_string, 0, strlen($tag_string) - 2);
-                                                $tag_string = $tag_string . "</span>";
-                                                $tag_raw = substr($tag_raw, 0, strlen($tag_raw) - 1);
-?>
-                                                <meta itemprop='keywords' content='<?=$tag_raw?>'/>
-                                                <td>
-                                                    <span class='date'><?=format_date($r_blog["dtime"], $lang, false)?></span>
-                                                    &nbsp;&nbsp;&nbsp;<?=$tag_string?>
-                                                </td>
-<?php
-                                            }
-                                            else{
-?>
-                                                <td>
-                                                    <span class='date'><?=format_date($r_blog['dtime'], $lang, false)?></span>
-                                                </td>
-<?php
-                                            }
                                             #Comment counter
                                             if ($r_blog["comments"] == 1){
-                                                $q_comment = mysqli_query($con, "SELECT count(id) AS count FROM post_comment WHERE post = $r_blog[id] AND visible = 1;");
+                                                $q_comment = mysqli_query($con, "SELECT count(id) AS count FROM post_comment WHERE post = $r_blog[id] AND approved = 1;");
                                                 $r_comment = mysqli_fetch_array($q_comment);
 ?>
                                                 <meta itemprop='commentCount interationCount' content='<?=$r_comment["count"]?>'/>
-                                                <td class='r_comment'>
+                                                <td class='comment_counter'>
 <?php
                                                     if ($r_comment['count'] == 1){
 ?>
@@ -148,7 +124,7 @@
                                                     }
                                                     else{
 ?>
-                                                        <span class='comment_counter'>$<?=r_comment["count"]?> <?=text($con, "BLOG_COMMENTS_X", $lang)?></span>
+                                                        <span class='comment_counter'><?=$r_comment["count"]?> <?=text($con, "BLOG_COMMENTS_X", $lang)?></span>
 <?php
                                                     }
 ?>
@@ -157,7 +133,26 @@
                                             } // if ($r_blog["comments"] == 1)
 ?>
                                         </tr>
-                                    </table> <!-- .post_footer -->
+                                    </table> <!-- .post_list_footer -->
+<?php
+                                    // Tags
+                                    $q_tag = mysqli_query($con, "SELECT tag FROM post_tag WHERE post= $r_blog[id];");
+                                    if (mysqli_num_rows($q_tag) > 0){
+                                        $tag_string = "<span class='tags'>" . text($con, "BLOG_TAGS", $lang);
+                                        $tag_raw = "";
+                                        while ($r_tag = mysqli_fetch_array($q_tag)){
+                                            $tag_string = $tag_string . "<a href='$proto$http_host/blog/search/tag/$r_tag[tag]'> " . text($con, $r_tag["tag"], $lang) . "</a>, ";
+                                            $tag_raw = $tag_raw . "$r_tag[tag],";
+                                        }
+                                        $tag_string = substr($tag_string, 0, strlen($tag_string) - 2);
+                                        $tag_string = $tag_string . "</span>";
+                                        $tag_raw = substr($tag_raw, 0, strlen($tag_raw) - 1);
+?>
+                                        <meta itemprop='keywords' content='<?=$tag_raw?>'/>
+                                        <?=$tag_string?>
+<?php
+                                    }
+?>
                                 </div> <!-- .blog_entry -->
                                 </br>
 <?php
@@ -166,9 +161,9 @@
                     </div> <!-- #main_column -->
                 </div> <!-- #content_cell_main -->
                 <div class='content_cell'  id='content_cell_right'>
-                    <div class='section section_no_title' id='right_column'>
+                    <div class='section' id='right_column'>
+                        <h3 class='section_title'><?=text($con, "BLOG_SEARCH", $lang)?></h3>
                         <div class='entry'>
-                            <h4><?=text($con, "BLOG_SEARCH", $lang)?></h4>
                             <div id='search_panel_inputs'>
                                 <form action='#' onSubmit='event.preventDefault();launchSearch("<?=$lng["search_field_all"]?>");'>
                                     <input id='search_panel_input' class='search_element' type='text' name='query' placeholder='<?=text($con, "BLOG_SEARCH", $lang)?>'/>
