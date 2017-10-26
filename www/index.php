@@ -76,33 +76,34 @@
                     </div> <!-- .section -->
                 </div> <!-- #content_cell_profile -->
                 <div class='content_cell' id='content_cell_content'>
-                    <div class='section'>
+                    <div class='section' id='projects_section'>
                         <h3 class='section_title'>TR#Ultimos proyectos</h3>
 <?php
                         $q_project = mysqli_query($con, "SELECT id, permalink, type, title, logo, header, license, (SELECT dtime FROM project_version WHERE project = p.id AND visible = 1 ORDER BY dtime desc LIMIT 1) AS modified FROM project p WHERE visible = 1 ORDER BY modified DESC LIMIT 3;");
                         while ($r_project = mysqli_fetch_array($q_project)){
 ?>
-                            <a href='<?=$lserver?>/project/<?=$r_project["permalink"]?>'>
-                                <div class='entry entry_list project_row'>
-                                    <table>
-                                        <tr>
+                            <div class='entry entry_list project_row'>
+                                <table>
+                                    <tr>
 <?php
-                                            if (strlen($r_project["logo"]) > 0){
-?>
-                                                <td>
-                                                    <img alt='<?=text($con, $r_project["title"], $lang)?>' title='<?=text($con, $r_project["title"], $lang)?>' src='<?=$lserver?>/img/project/x2/<?=$r_project["logo"]?>'/>
-                                                </td>
-<?php
-                                            }
+                                        if (strlen($r_project["logo"]) > 0){
 ?>
                                             <td>
-                                                <h4><?=text($con, $r_project["title"], $lang)?></h4>
-                                                <?=text($con, $r_project["header"], $lang)?>
+                                                <a title='<?=text($con, $r_project["title"], $lang)?>' href='<?=$lserver?>/project/<?=$r_project["permalink"]?>'>
+                                                    <img clsass='project_list_image' alt='<?=text($con, $r_project["title"], $lang)?>' title='<?=text($con, $r_project["title"], $lang)?>' src='<?=$lserver?>/img/project/x2/<?=$r_project["logo"]?>'/>
+                                                </a>
                                             </td>
-                                        </tr>
-                                    </table>
-                                </div> <!-- .entry -->
-                            </a>
+<?php
+                                        }
+?>
+                                        <td>
+                                            <a title='<?=text($con, $r_project["title"], $lang)?>' href='<?=$lserver?>/project/<?=$r_project["permalink"]?>'>
+                                                <h4><?=text($con, $r_project["title"], $lang)?></h4>
+                                            </a>                                                <?=text($con, $r_project["header"], $lang)?>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div> <!-- .entry -->
 <?php
                         }
 ?>

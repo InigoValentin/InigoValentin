@@ -29,6 +29,17 @@ div#content div#content_row div#content_cell_content{
     width: 70%;
 }
 
+/* Projects section */
+div#projects_section img.project_list_image{
+    float: left;
+    background-color: #ffffff;
+    border: 0.1em solid #003300;
+    border-radius: 0.3em;
+    margin: 0 0.5em 0.5em 0.5em;
+    max-width: 5em;
+    max-height: 3em;
+}
+
 
 /* Blog section */
 div#blog_section img.post_list_image{
