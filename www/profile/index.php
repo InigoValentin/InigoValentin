@@ -17,7 +17,7 @@
         <meta content='text/html; charset=utf-8' http-equiv='content-type'/>
         <meta charset='utf-8'/>
         <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1'/>
-        <title><?=text($con, "PROFILE_TITLE", $lang)?> - I&ntilde;igo Valentin</title>
+        <title><?=text($con, "PROFILE_TITLE", $lang)?> - <?=text($con, "USER_NAME", $lang);?></title>
         <link rel='shortcut icon' href='<?=$lserver?>/img/logo/x2/favicon.ico'/>
         <!-- CSS files -->
         <style>
@@ -45,15 +45,15 @@
         <link rel='author' href='<?=$lserver?>'/>
         <link rel='publisher' href='<?=$lserver?>'/>
         <meta name='description' content='<?=text($con, "PROFILE_DESCRIPTION", $lang)?>'/>
-        <meta property='og:title' content='<?=text($con, "PROFILE_TITLE", $lang)?> - I&ntilde;igo Valentin'/>
+        <meta property='og:title' content='<?=text($con, "PROFILE_TITLE", $lang)?> - <?=text($con, "USER_NAME", $lang);?>'/>
         <meta property='og:url' content='<?=$lserver?>/me'/>
         <meta property='og:description' content='<?=text($con, "PROFILE_DESCRIPTION", $lang)?>'/>
         <meta property='og:image' content='<?=$lserver?>/img/logo/x3/favicon.ico'/>
-        <meta property='og:site_name' content='I&ntilde;igo Valentin'/>
+        <meta property='og:site_name' content='<?=text($con, "USER_NAME", $lang);?>'/>
         <meta property='og:type' content='website'/>
         <meta property='og:locale' content='<?=$lang?>'/>
         <meta name='twitter:card' content='summary'/>
-        <meta name='twitter:title' content='<?=text($con, "PROFILE_TITLE", $lang)?> - I&ntilde;igo Valentin'/>
+        <meta name='twitter:title' content='<?=text($con, "PROFILE_TITLE", $lang)?> - <?=text($con, "USER_NAME", $lang);?>'/>
         <meta name='twitter:description' content='<?=text($con, "PROFILE_DESCRIPTION", $lang)?>'/>
         <meta name='twitter:image' content='<?=$lserver?>/img/logo/x3/favicon.ico'/>
         <meta name='twitter:url' content='<?=$lserver?>'/>
@@ -65,27 +65,27 @@
 ?>
         <div id='content'>
             <div class='section section_no_title'>
-                <h3 id='name' class='section_title'>I&ntilde;igo Valentin</h3>
+                <h3 id='name' class='section_title'><?=text($con, "USER_NAME", $lang);?></h3>
                 <div class='entry' id='profile'>
                     <div class='table_row'>
                         <div class='table_cell'>
-                            <img id='profile' src='<?=$lserver?>/img/profile/x16/0.png' alt='I&ntilde;igo Valentin' title='I&ntilde;igo Valentin' />
+                            <img id='profile' src='<?=$lserver?>/img/profile/x16/0.png' alt='<?=text($con, "USER_NAME", $lang);?>' title='<?=text($con, "USER_NAME", $lang);?>' />
                         </div> <!-- .table_cell -->
                         <div class='table_cell'>
-                            <h4 id='tagline'>TR#Developer</h4>
-                            <p id='bio'>TR#Bio</p>
+                            <h4 id='tagline'><?=text($con, "USER_TAGLINE", $lang);?></h4>
+                            <p id='bio'><?=text($con, "USER_BIO", $lang);?></p>
                         </div> <!-- .table_cell -->
                     </div> <!-- .table_row -->
                 </div> <!-- #profile -->
             </div> <!-- .section -->
             <div class='section'>
-                <h3 class='section_title'>TR#Curriculum Vitae</h3>
+                <h3 class='section_title'><?=text($con, "PROFILE_CV", $lang);?></h3>
                 <ul class='cv_download'>
                     <li>
-                        <a target='_blank' href='TODO' title='I&ntilde;igo Valentin - TR#Curriculum Vitae'>TR#Download in currlang</a>
+                        <a target='_blank' href='TODO' title='<?=text($con, "USER_NAME", $lang);?> - <?=text($con, "PROFILE_CV", $lang);?>'>TR#Download in currlang</a>
                     </li>
                     <li>
-                        <a href='TODO' title='TR#Curriculum Vitae - Other languages'>TR#Download in other languages</a>
+                        <a href='TODO' title='<?=text($con, "PROFILE_CV_DOWNLOAD_LANG", $lang);?>'><?=text($con, "PROFILE_CV_DOWNLOAD_LANG", $lang);?></a>
                     </li>
                 </ul>
 <?php

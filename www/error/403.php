@@ -16,46 +16,23 @@
     <head>
         <meta content='text/html; charset=windows-1252' http-equiv='content-type'/>
         <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1'>
-        <title>Error - I&ntilde;igo Valentin</title>
+        <title><?=text($con, "ERROR_TITLE", $lang);?> - <?=text($con, "USER_NAME", $lang);?></title>
         <link rel='shortcut icon' href='<?=$lserver?>/img/logo/favicon.ico'>
         <!-- CSS files -->
         <link rel='stylesheet' type='text/css' href='/css/ui.css'/>
+                <!-- CSS files -->
         <style>
-            table#error-code{
-                margin-top:        5em;
-                margin-left:     10%;
-            }
-            td#error-number{
-                font-size:        300%;
-                border-right:    0.063em solid #000000;
-                padding-right:    1.875em;
-                padding-left:    1.250em;
-            }
-            td#error-tag{
-                font-size:        110%;
-                padding-left:    1.750em;
-                padding-right:    1.250em;
-            }
-            div#error-message{
-                width:            80%;
-                margin-left:    10%;
-            }
-            @media (max-width: 990px){
-                table#error-code{
-                    width:            90%;
-                    margin-left:    auto;
-                    margin-right:    auto;
-                    margin-top:        0;
-                    margin-bottom:    0;
-                }
-                div#error-message{
-                    width:            90%;
-                    margin-left:    auto;
-                    margin-right:    auto;
-                    margin-top:        0;
-                    margin-bottom:    0;
-                }
-            }
+<?php
+            include $doc_root . "css/ui.css";
+            include $doc_root . "css/error.css";
+?>
+        </style>
+        <!-- CSS for mobile version -->
+        <style media="(max-width : 990px)">
+<?php
+            include $doc_root . "css/m/ui.css";
+            include $doc_root . "css/m/error.css";
+?>
         </style>
         <meta name="robots" content="noindex follow"/>
     </head>
@@ -70,25 +47,25 @@
                         403
                     </td>
                     <td id='error-tag'>
-                        ERROR<br/>CODE
+                        <?=text($con, "ERROR_DISPLAY", $lang);?>
                     </td>
                 <tr>
             </table>
             <br/><br/><br/><br/>
             <div id='error-message' class='entry'>
-                <h2>Forbidden</h2>
-                This means you are trying to view something you are not allowed to, security wise.
+                <h2><?=text($con, "ERROR_403", $lang);?></h2>
+                <?=text($con, "ERROR_403_DESC", $lang);?>
                 <br/><br/>
-                Try a solution:
+                <?=text($con, "ERROR_TRY", $lang);?>
                 <ul>
                     <li>
-                        <a href='javascript: location.reload();'>Try again.</a>
+                        <a href='javascript: location.reload();'><?=text($con, "ERROR_SOLUTION_0", $lang);?></a>
                     </li>
                     <li>
-                        <a href='javascript: history.go(-1);'>Go to the previous page.</a>
+                        <a href='javascript: history.go(-1);'><?=text($con, "ERROR_SOLUTION_1", $lang);?></a>
                     </li>
                     <li>
-                        <a href='<?=$lserver?>/'>Go to the main page</a>
+                        <a href='<?=$lserver?>/'><?=text($con, "ERROR_SOLUTION_2", $lang);?></a>
                     </li>
                 </ul>
             </div> <!-- #error_message -->

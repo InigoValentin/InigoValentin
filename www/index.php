@@ -17,7 +17,7 @@
         <meta content='text/html; charset=utf-8' http-equiv='content-type'/>
         <meta charset='utf-8'/>
         <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1'/>
-        <title>I&ntilde;igo Valentin</title>
+        <title><?=text($con, "USER_NAME", $lang);?></title>
         <link rel='shortcut icon' href='<?=$lserver?>/img/logo/x2/favicon.ico'/>
         <!-- CSS files -->
         <style>
@@ -44,15 +44,15 @@
         <link rel='author' href='<?=$lserver?>'/>
         <link rel='publisher' href='<?=$lserver?>'/>
         <meta name='description' content=''/>
-        <meta property='og:title' content='I&ntilde;igo Valentin'/>
+        <meta property='og:title' content='<?=text($con, "USER_NAME", $lang);?>'/>
         <meta property='og:url' content='<?=$lserver?>'/>
         <meta property='og:description' content=''/>
         <meta property='og:image' content='<?=$lserver?>/img/logo/x3/favicon.ico''/>
-        <meta property='og:site_name' content='I&ntilde;igo Valentin'/>
+        <meta property='og:site_name' content='<?=text($con, "USER_NAME", $lang);?>'/>
         <meta property='og:type' content='website'/>
         <meta property='og:locale' content='<?=$lang?>'/>
         <meta name='twitter:card' content='summary'/>
-        <meta name='twitter:title' content='I&ntilde;igo Valentin'/>
+        <meta name='twitter:title' content='<?=text($con, "USER_NAME", $lang);?>'/>
         <meta name='twitter:description' content=''/>
         <meta name='twitter:image' content='<?=$lserver?>/img/logo/x3/favicon.ico''/>
         <meta name='twitter:url' content='<?=$lserver?>'/>
@@ -60,7 +60,7 @@
     </head>
     <body>
         <div id='logo'>
-            <img id='logo' src='<?=$lserver?>/img/logo/x6/inigovalentin.png' alt='I&ntilde;igo Valentin'/>
+            <img id='logo' src='<?=$lserver?>/img/logo/x6/inigovalentin.png' alt='<?=text($con, "USER_NAME", $lang);?>'/>
         </div>
 <?php
         include $doc_root . "header.php";
@@ -69,15 +69,15 @@
             <div id='content_row'>
                 <div class='content_cell' id='content_cell_profile'>
                     <div class='section'>
-                        <h3 class='section_title'>I&ntilde;igo Valentin</h3>
+                        <h3 class='section_title'><?=text($con, "USER_NAME", $lang);?></h3>
                         <div class='entry'>
-                            <img id='profile' src='<?=$lserver?>/img/profile/x16/preview/0.png' alt='I&ntilde;igo Valentin' title='I&ntilde;igo Valentin' />
+                            <img id='profile' src='<?=$lserver?>/img/profile/x16/preview/0.png' alt='<?=text($con, "USER_NAME", $lang);?>' title='<?=text($con, "USER_NAME", $lang);?>' />
                         </div> <!-- .entry -->
                     </div> <!-- .section -->
                 </div> <!-- #content_cell_profile -->
                 <div class='content_cell' id='content_cell_content'>
                     <div class='section' id='projects_section'>
-                        <h3 class='section_title'>TR#Ultimos proyectos</h3>
+                        <h3 class='section_title'><?=text($con, 'INDEX_LATEST_PROJECTS', $lang)?></h3>
 <?php
                         $q_project = mysqli_query($con, "SELECT id, permalink, type, title, logo, header, license, (SELECT dtime FROM project_version WHERE project = p.id AND visible = 1 ORDER BY dtime desc LIMIT 1) AS modified FROM project p WHERE visible = 1 ORDER BY modified DESC LIMIT 3;");
                         while ($r_project = mysqli_fetch_array($q_project)){
@@ -109,7 +109,7 @@
 ?>
                     </div> <!-- .section -->
                     <div class='section' id='blog_section'>
-                        <h3 class='section_title'>TR#Ultimos posts</h3>
+                        <h3 class='section_title'><?=text($con, 'INDEX_LATEST_POSTS', $lang)?></h3>
 <?php
                         $q_blog = mysqli_query($con, "SELECT id, permalink, title, text, DATE_FORMAT(dtime, '%Y-%m-%dT%T') AS isodate, dtime, comments FROM post WHERE visible = 1 ORDER BY dtime DESC;");
                         while($r_blog = mysqli_fetch_array($q_blog)){

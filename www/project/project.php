@@ -30,7 +30,7 @@
     <head>
         <meta content="text/html; charset=utf-8" http-equiv="content-type"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1"/>
-        <title><?=$title?> - I&ntilde;igo Valentin</title>
+        <title><?=$title?> - <?=text($con, "USER_NAME", $lang);?></title>
 <?php
         if (strlen($r_project["logo"]) > 0){
 ?>
@@ -69,7 +69,7 @@
         <link rel="author" href="<?=$lserver?>"/>
         <link rel="publisher" href="<?=$lserver?>"/>
         <meta name="description" content="<?=$summary?>"/>
-        <meta property="og:title" content="<?=$title?> - I&ntilde;igo Valentin"/>
+        <meta property="og:title" content="<?=$title?> - <?=text($con, "USER_NAME", $lang);?>"/>
         <meta property="og:url" content="<?=$lserver?>/project/<?=$r_project["permalink"]?>"/>
         <meta property="og:description" content="<?=$summary?>"/>
 <?php
@@ -84,11 +84,11 @@
 <?php
         }
 ?>
-        <meta property="og:site_name" content="I&ntilde;igo Valentin"/>
+        <meta property="og:site_name" content="<?=text($con, "USER_NAME", $lang);?>"/>
         <meta property="og:type" content="website"/>
         <meta property="og:locale" content="<?=$lang?>"/>
         <meta name="twitter:card" content="summary"/>
-        <meta name="twitter:title" content="<?=$title?> - I&ntilde;igo Valentin"/>
+        <meta name="twitter:title" content="<?=$title?> - <?=text($con, "USER_NAME", $lang);?>"/>
         <meta name="twitter:description" content="<?=$summary?>"/>
 <?php
         if (strlen($r_project["logo"]) == 0){
@@ -134,7 +134,7 @@
                 </div> <!-- #content_cell_main -->
                 <div class='content_cell'  id='content_cell_right'>
                     <div class='section' id='right_column'>
-                        <h3 class='section_title'>TR#Details</h3>
+                        <h3 class='section_title'><?=text($con, "PROJECT_DETAILS", $lang);?></h3>
                         <div class='entry'>
 <?php
                             $q_url = mysqli_query($con, "SELECT url, title, summary, logo FROM project_url, project_url_type WHERE project_url_type.id = project_url.type AND project = $id AND type <> 'E';");
@@ -193,7 +193,6 @@
                     <h4><?=text($con, "PROJECT_LICENSE_LEGAL", $lang)?></h4>
                     <div id='license_legal' class='license_text'><?=text($con, $r_license["legal"], $lang)?></div>
                 </div>
-            
             </div> <!-- #license -->
         </div> <!-- #content -->
 <?php

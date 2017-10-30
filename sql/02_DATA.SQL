@@ -137,7 +137,7 @@ INSERT INTO text VALUES ('SHARE_VKONTAKTE_DESC', 'eu', 'SHARE', 'VKontakte', nul
 INSERT INTO share VALUES (1, 1, 1, 'SHARE_FACEBOOK', 'SHARE_FACEBOOK_DESC', 'facebook.gif', 'https://www.facebook.com/sharer/sharer.php?u=');
 INSERT INTO share VALUES (2, 2, 1, 'SHARE_TWITTER', 'SHARE_TWITTER_DESC', 'twitter.gif', 'https://twitter.com/share?url=');
 INSERT INTO share VALUES (3, 3, 1, 'SHARE_GOOGLE', 'SHARE_GOOGLE_DESC', 'google.gif', 'https://plus.google.com/share?url=');
-INSERT INTO share VALUES (4, 4, 1, 'SHARE_TELEGRAM', 'SHARE_TELEGRAM_DESC', 'telegram.gif', 'https://t.me/share/url?url=');
+INSERT INTO share VALUES (4, 4, 1, 'SHARE_TELEGRAM', 'SHARE_TELEGRAM_DESC', 'telegramn.gif', 'https://t.me/share/url?url=');
 INSERT INTO share VALUES (5, 5, 1, 'SHARE_LINKEDIN', 'SHARE_LINKEDIN_DESC', 'linkedin.gif', 'https://www.linkedin.com/shareArticle?mini=true&url=');
 INSERT INTO share VALUES (6, 6, 1, 'SHARE_VKONTAKTE', 'SHARE_VKONTAKTE_DESC', 'vkontakte.gif', 'http://vk.com/share.php?url=');
 

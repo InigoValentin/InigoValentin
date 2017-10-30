@@ -37,7 +37,7 @@
         <meta content='text/html; charset=utf-8' http-equiv='content-type'/>
         <meta charset='utf-8'/>
         <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1'/>
-        <title><?=$title?> - I&ntilde;igo Valentin</title>
+        <title><?=$title?> - <?=text($con, "USER_NAME", $lang);?></title>
         <link rel='shortcut icon' href='<?=$lserver?>/img/logo/favicon.ico'/>
         <!-- CSS files -->
         <style>
@@ -64,7 +64,7 @@
         <link rel='author' href='<?=$lserver?>'/>
         <link rel='publisher' href='<?=$lserver?>'/>
         <meta name='description' content='<?=$text?>'/>
-        <meta property='og:title' content='<?=$title?> - I&ntilde;igo Valentin'/>
+        <meta property='og:title' content='<?=$title?> - <?=text($con, "USER_NAME", $lang);?>'/>
         <meta property='og:url' content='<?=$lserver?>/blog/<?=$permalink?>'/>
         <meta property='og:description' content='<?=$text?>'/>
 <?php
@@ -79,11 +79,11 @@
 <?php
         }
 ?>
-        <meta property='og:site_name' content='I&ntilde;igo Valentin'/>
+        <meta property='og:site_name' content='<?=text($con, "USER_NAME", $lang);?>'/>
         <meta property='og:type' content='website'/>
         <meta property='og:locale' content='<?=$lang?>'/>
         <meta name='twitter:card' content='summary'/>
-        <meta name='twitter:title' content='<?=$title?> - I&ntilde;igo Valentin'/>
+        <meta name='twitter:title' content='<?=$title?> - <?=text($con, "USER_NAME", $lang);?>'/>
         <meta name='twitter:description' content='<?=$text?>'/>
 <?php
         if (strlen($image) == 0){
@@ -183,18 +183,18 @@
                     //Comment form
 ?>
                     <div class='comment' id='comment_new'>
-                        <textarea id='new_comment_text' name='text' maxlength='1800' onfocus='showCommentIdentification();' placeholder='TR#Your comment...'></textarea>
+                        <textarea id='new_comment_text' name='text' maxlength='1800' onfocus='showCommentIdentification();' placeholder='<?text($con, "COMMENT_YOUR", $lang)?>'></textarea>
                         <div id='identification_form'>
                             <br/>
-                            <input id='new_comment_user' name='user' maxlength='50' type='text' placeholder='TR#Your name'/>
-                            <input type='button' value='TR#Send comment'/>
+                            <input id='new_comment_user' name='user' maxlength='50' type='text' placeholder='<?text($con, "COMMENT_YOUR_NAME", $lang)?>'/>
+                            <input type='button' value='<?text($con, "COMMENT_PUBLISH", $lang)?>'/>
                         </div>
                     </div>
 <?php
                 }
                 else{
 ?>
-                    <h4>TR#Comments are closed in this post</h4>
+                    <h4><?text($con, "COMMENT_CLOSED_POST", $lang)?></h4>
 <?php
                 }
 

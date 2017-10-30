@@ -17,7 +17,7 @@
     <head>
         <meta content='text/html; charset=utf-8' http-equiv='content-type'/>
         <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1'/>
-        <title><?=text($con, "PROJECT_TITLE", $lang)?> - I&ntilde;igo Valentin</title>
+        <title><?=text($con, "PROJECT_TITLE", $lang)?> - <?=text($con, "USER_NAME", $lang);?></title>
         <link rel='shortcut icon' href='<?=$lserver?>/img/logo/x2/favicon.ico'/>
         <!-- CSS files -->
         <style>
@@ -45,15 +45,15 @@
         <link rel='author' href='<?=$lserver?>'/>
         <link rel='publisher' href='<?=$lserver?>'/>
         <meta name='description' content='<?=text($con, "PROJECT_DESCRIPTION", $lang)?>'/>
-        <meta property='og:title' content='<?=text($con, "PROJECT_TITLE", $lang)?> - I&ntilde;igo Valentin'/>
+        <meta property='og:title' content='<?=text($con, "PROJECT_TITLE", $lang)?> - <?=text($con, "USER_NAME", $lang);?>'/>
         <meta property='og:url' content='<?=$lserver?>/project/'/>
         <meta property='og:description' content='<?=text($con, "PROJECT_DESCRIPTION", $lang)?>'/>
         <meta property='og:image' content='<?=$lserver?>/img/logo/x3/favicon.ico'/>
-        <meta property='og:site_name' content='I&ntilde;igo Valentin'/>
+        <meta property='og:site_name' content='<?=text($con, "USER_NAME", $lang);?>'/>
         <meta property='og:type' content='website'/>
         <meta property='og:locale' content='<?=$lang?>'/>
         <meta name='twitter:card' content='summary'/>
-        <meta name='twitter:title' content='<?=text($con, "PROJECT_TITLE", $lang)?> - I&ntilde;igo Valentin'/>
+        <meta name='twitter:title' content='<?=text($con, "PROJECT_TITLE", $lang)?> - <?=text($con, "USER_NAME", $lang);?>'/>
         <meta name='twitter:description' content='<?=text($con, "PROJECT_DESCRIPTION", $lang)?>'/>
         <meta name='twitter:image' content='<?=$lserver?>/img/logo/x3/favicon.ico'/>
         <meta name='twitter:url' content='<?=$lserver?>/project/'/>
