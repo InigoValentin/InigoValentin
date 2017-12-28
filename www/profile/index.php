@@ -1,12 +1,12 @@
 <?php
     session_start();
     $http_host = $_SERVER["HTTP_HOST"];
-    $doc_root = $_SERVER["DOCUMENT_ROOT"];
+    $doc_root = $_SERVER["DOCUMENT_ROOT"] . "/";
     include $doc_root . "functions.php";
     $proto = get_protocol();
     $con = start_db();
     $server = $proto . $http_host;
-    $lang = select_language();
+    $lang = select_language($con);
     $lserver = $server . "/" . $lang;
     $cur_section = "me";
     $cur_entry = "";
@@ -82,10 +82,10 @@
                 <h3 class='section_title'><?=text($con, "PROFILE_CV", $lang);?></h3>
                 <ul class='cv_download'>
                     <li>
-                        <a target='_blank' href='TODO' title='<?=text($con, "USER_NAME", $lang);?> - <?=text($con, "PROFILE_CV", $lang);?>'>TR#Download in currlang</a>
+                        <a target='_blank' href='TODO' title='<?=text($con, "USER_NAME", $lang);?> - <?=text($con, "PROFILE_CV", $lang);?>'><?=text($con, "PROFILE_DOWNLOAD_CURRENT", $lang);?></a>
                     </li>
                     <li>
-                        <a href='TODO' title='<?=text($con, "PROFILE_CV_DOWNLOAD_LANG", $lang);?>'><?=text($con, "PROFILE_CV_DOWNLOAD_LANG", $lang);?></a>
+                        <a href='TODO' title='<?=text($con, "PROFILE_CV_DOWNLOAD_LANG", $lang);?>'><?=text($con, "PROFILE_DOWNLOAD_OTHER", $lang);?></a>
                     </li>
                 </ul>
 <?php

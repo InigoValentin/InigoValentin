@@ -1,12 +1,12 @@
 <?php
     session_start();
     $http_host = $_SERVER["HTTP_HOST"];
-    $doc_root = $_SERVER["DOCUMENT_ROOT"];
+    $doc_root = $_SERVER["DOCUMENT_ROOT"] . "/";
     include $doc_root . "functions.php";
     $proto = get_protocol();
     $con = start_db();
     $server = $proto . $http_host;
-    $lang = select_language();
+    $lang = select_language($con);
     $lserver = $server . "/" . $lang;
 
     // Get project data
@@ -117,8 +117,27 @@
                         <div class='entry'>
                             <h4><?=$summary?></h4>
                             <?=text($con, $r_project["text"], $lang)?>
-                            <!-- TODO: Images -->
 <?php
+                            $q_image = mysqli_query($con, "SELECT * FROM project_image WHERE project = $id ORDER BY idx");
+                            if (mysqli_num_rows($q_image) > 0){
+?>
+                                <div id='image_reel'>
+                                    <table>
+                                        <tr>
+<?php
+                                            while ($r_image = mysqli_fetch_array($q_image)){
+?>
+                                                <td>
+                                                    <img title='<?=$title?>' alt='<?=$title?>' src='<?=$lserver?>/img/project/x4/<?=$r_image["image"]?>'/>
+                                                </td>
+<?php
+                                            } // while ($r_image = mysqli_fetch_array($q_image))
+?>
+                                        </tr>
+                                    </table>
+                                </div> <!-- #image_reel -->
+<?php
+                            } // if (mysqli_num_rows($q_image) > 0)
                             $q_embed = mysqli_query($con, "SELECT * FROM project_url WHERE type = 'E' AND project = $id;");
                             while ($r_embed = mysqli_fetch_array($q_embed)){
 ?>

@@ -1,5 +1,18 @@
 /* Blog main page */
 
+dov#content{
+    display: table;
+}
+
+div#content div#content_row{
+    display: table-row;
+}
+
+div#content div#content_row div.content_cell{
+    padding: 1em;
+    display: table-cell;
+}
+
 div#post_list img.post_list_image{
     float: left;
     background-color: #ffffff;
@@ -27,10 +40,14 @@ div#post_list span.tags{
 
 /* Post view page */
 
-div#post{
-    width: 90%;
-    max-width: 80em;
-    margin: 1em auto 1em auto;
+div#content_cell_post{
+    width: 75%;
+}
+
+div#content_cell_info{
+    width: 25%;
+    min-width: 8em;
+    max-width: 20em;
 }
 
 div#post img#post_main_image{
@@ -51,7 +68,7 @@ div#post div#image_reel{
     padding: 0.5em;
 }
 
-div#project_edit div#image_reel img{
+div#post div#image_reel img{
     vertical-align: middle;
     max-height: 5em;
     max-width: 7em;
@@ -61,32 +78,53 @@ div#project_edit div#image_reel img{
     background-color: #ffffff;
 }
 
-table#prev_next{
-    width: 90%;
-    max-width: 60em;
+div#info table#post_details td{
+    width: 50%;
+    padding: 0.5em 1em 0.5em 1em;
+}
+
+div#info div#info_date{
+    text-align: center;
+    font-style: italic;
+    font-size: 70%;
+    opacity: 80%;
+}
+
+div#info div#info_share{
+    text-align: center;
+}
+
+div#info div#info_tags{
+    font-size: 80%;
+    opacity: 90%;
+}
+
+div#info table#prev_next{
     border-collapse: collapse;
     margin: 1em auto 1em auto;
 }
 
-table#prev_next td{
+div#info table#prev_next td{
     width: 50%;
-    text-align: center
     padding: 0.5em;
 }
 
-table#prev_next td#prev{
+div#info table#prev_next td#prev{
     border-right: 0.03em solid #00440088;
+    margin-right: 0.5em;
     text-align: right;
 }
 
-table#prev_next td#next{
+div#info table#prev_next td#next{
     border-left: 0.03em solid #00440088;
+    margin-left: 0.5em;
+    text-align: left;
 }
 
-table#prev_next td span.info{
+div#info table#prev_next td span.info{
     font-size: 80%;
 }
 
-table#prev_next td span.title{
+div#info table#prev_next td span.title{
     font-weight: bold;
 }

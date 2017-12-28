@@ -1,12 +1,12 @@
 <?php
     session_start();
     $http_host = $_SERVER["HTTP_HOST"];
-    $doc_root = $_SERVER["DOCUMENT_ROOT"]; 
+    $doc_root = $_SERVER["DOCUMENT_ROOT"] . "/";
     include $doc_root . "functions.php";
     $proto = get_protocol();
     $con = start_db();
     $server = $proto . $http_host;
-    $lang = select_language();
+    $lang = select_language($con);
     $lserver = $server . "/" . $lang;
     $cur_section = "";
     $cur_entry = "";
@@ -71,13 +71,14 @@
                     <div class='section'>
                         <h3 class='section_title'><?=text($con, "USER_NAME", $lang);?></h3>
                         <div class='entry'>
-                            <img id='profile' src='<?=$lserver?>/img/profile/x16/preview/0.png' alt='<?=text($con, "USER_NAME", $lang);?>' title='<?=text($con, "USER_NAME", $lang);?>' />
+                            <img id='profile' src='<?=$lserver?>/img/profile/x6/0.png' alt='<?=text($con, "USER_NAME", $lang);?>' title='<?=text($con, "USER_NAME", $lang);?>' />
+                            <span id='tagline'><?=text($con, "USER_TAGLINE", $lang);?></span>
                         </div> <!-- .entry -->
                     </div> <!-- .section -->
                 </div> <!-- #content_cell_profile -->
                 <div class='content_cell' id='content_cell_content'>
                     <div class='section' id='projects_section'>
-                        <h3 class='section_title'><?=text($con, 'INDEX_LATEST_PROJECTS', $lang)?></h3>
+                        <h3 class='section_title'><?=text($con, "INDEX_LATEST_PROJECTS", $lang)?></h3>
 <?php
                         $q_project = mysqli_query($con, "SELECT id, permalink, type, title, logo, header, license, (SELECT dtime FROM project_version WHERE project = p.id AND visible = 1 ORDER BY dtime desc LIMIT 1) AS modified FROM project p WHERE visible = 1 ORDER BY modified DESC LIMIT 3;");
                         while ($r_project = mysqli_fetch_array($q_project)){

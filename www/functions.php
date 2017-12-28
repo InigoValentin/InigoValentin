@@ -62,21 +62,29 @@
      * be displayed inf the page. Several methods are    *
      * used: cookie detection, and browser language      *
      * preferences.                                      *
+     * @params:                                          *
+     *    con (Mysql connection): Connection handler.    *
      * @return: (string): Language code.                 *
      *****************************************************/
-    // TODO: Redo using database
-    function select_language(){
+    function select_language($con){
+
+        // Get available languages from db
+        $available_languages = array();
+        $q_lang = mysqli_query($con, "SELECT code FROM lang WHERE active = 1;");
+        while ($r_lang = mysqli_fetch_array($q_lang)){
+            array_push($available_languages, $r_lang["code"]);
+        }
 
         // Check for language in uri
-        $lang = substr($_SERVER['REQUEST_URI'], 1, 2);
-        if ($lang == "es" || $lang == "en" || $lang == "eu"){
+        $lang = substr($_SERVER["REQUEST_URI"], 1, 2);
+        if (in_array($lang, $available_languages)){
             return $lang;
         }
         else{
             // Language is not in url. Find it out and redirect
             // Is passed on the URL?
             $lang = $_GET["lang"];
-            if ($lang == "es" || $lang == "en" || $lang == "eu"){
+            if (in_array($lang, $available_languages)){
                 header("Location: " . get_protocol() . $_SERVER["HTTP_HOST"] . "/" . $lang . $_SERVER["REQUEST_URI"]);
                 return $lang;
             }
@@ -85,7 +93,7 @@
             header("Cache-control: private");
             if (isSet($_COOKIE["lang"])){
                 $lang = $_COOKIE["lang"];
-                if ($lang == "es" || $lang == "en" || $lang == "eu"){
+                if (in_array($lang, $available_languages)){
                     header("Location: " . get_protocol() . $_SERVER["HTTP_HOST"] . "/" . $lang . $_SERVER["REQUEST_URI"]);
                     return $lang;
                 }
@@ -93,17 +101,16 @@
 
             //If no cookie, select from client browser preferences.
             else{
-                $available_languages = array("en", "eu", "es");
                 $langs = prefered_language($available_languages, $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
                 $lang = $langs[0];
-                if ($lang == "es" || $lang == "en" || $lang == "eu"){
+                if (in_array($lang, $available_languages)){
                     header("Location: " . get_protocol() . $_SERVER["HTTP_HOST"] . "/" . $lang . $_SERVER["REQUEST_URI"]);
                     return $lang;
                 }
             }
 
             // If no method was succesfull, default language
-            $lang = "es";
+            $lang = $available_languages[0];
             header("Location: " . get_protocol() . $_SERVER["HTTP_HOST"] . "/" . $lang . $_SERVER["REQUEST_URI"]);
             return $lang;
         }

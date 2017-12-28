@@ -1,12 +1,12 @@
 <?php
     session_start();
     $http_host = $_SERVER["HTTP_HOST"];
-    $doc_root = $_SERVER["DOCUMENT_ROOT"];
+    $doc_root = $_SERVER["DOCUMENT_ROOT"] . "/";
     include $doc_root . "functions.php";
     $proto = get_protocol();
     $con = start_db();
     $server = $proto . $http_host;
-    $lang = select_language();
+    $lang = select_language($con);
     $lserver = $server . "/" . $lang;
 
     // Get post data
@@ -103,148 +103,188 @@
 <?php
         include $doc_root . "header.php";
 ?>
-        <div class='section' id='post'>
-            <h3 class='section_title'><?=$title?></h3>
-            <div class='entry'>
+        <div id='content'>
+            <div id='content_row'>
+                <div id='content_cell_post' class='content_cell'>
+                    <div class='section' id='post'>
+                        <h3 class='section_title'><?=$title?></h3>
+                        <div class='entry'>
 <?php
-                if (strlen($image) > 0){
+                            if (strlen($image) > 0){
 ?>
-                    <img id='post_main_image' src='<?=$lserver?>/img/blog/x6/<?=$image?>' alt='<?=$title?>' title='<?=$title?>' />
+                                <img id='post_main_image' src='<?=$lserver?>/img/blog/x6/<?=$image?>' alt='<?=$title?>' title='<?=$title?>' />
 <?php
-                }
+                            }
 ?>
-                <?=$text?>
+                            <?=$text?>
 <?php
-                $q_image = mysqli_query($con, "SELECT image FROM post_image WHERE post = $id ORDER BY idx OFFSET 1");
-                if (mysqli_num_rows($q_image) > 0){
+                            $q_image = mysqli_query($con, "SELECT image FROM post_image WHERE post = $id ORDER BY idx OFFSET 1");
+                            if (mysqli_num_rows($q_image) > 0){
 ?>
-                    <div id='image_reel'>
+                                <div id='image_reel'>
 <?php
-                        while ($r_image = mysqli_fetch_array($q_image)){
+                                    while ($r_image = mysqli_fetch_array($q_image)){
 ?>
-                            <img src='<?=$lserver?>/img/blog/x6/<?=$r_image["image"]?>' alt='<?=$title?>' title='<?=$title?>' />
+                                        <img src='<?=$lserver?>/img/blog/x6/<?=$r_image["image"]?>' alt='<?=$title?>' title='<?=$title?>' />
 <?php
-                        }
+                                    }
 ?>
-                    </div> <!-- #image_reel -->
+                                </div> <!-- #image_reel -->
 <?php
-                }
+                            }
 ?>
-                <hr/>
-                <!-- TODO: Tags and share -->
+                            <hr/>
 <?php
-                    $q_share = mysqli_query($con, "SELECT id FROM share WHERE visible = 1 ORDER BY idx;");
-                    while ($r_share = mysqli_fetch_array($q_share)){
+                            #Comments
+                            if ($r_post["comments"] == 1){
+                                $q_comment = mysqli_query($con, "SELECT id, post, DATE_FORMAT(dtime, '%Y-%m-%dT%T') AS cdate, DATE_FORMAT(dtime,'%b %d, %Y - %H:%i') AS dtime, user, username, text FROM post_comment WHERE post = $id;");
+                                $count = mysqli_num_rows($q_comment);
+                                if ($count == 1){
 ?>
-                        <?=share_link($con, $r_share["id"], $lserver, "$server/blog/$permalink", $lang)?>
-<?php
-                    }
-?>
-                <hr/>
-<?php
-                #Comments
-                if ($r_post["comments"] == 1){
-                    $q_comment = mysqli_query($con, "SELECT id, post, DATE_FORMAT(dtime, '%Y-%m-%dT%T') AS cdate, DATE_FORMAT(dtime,'%b %d, %Y - %H:%i') AS dtime, user, username, text FROM post_comment WHERE post = $id;");
-                    $count = mysqli_num_rows($q_comment);
-                    if ($count == 1){
-?>
-                        <span class='comment_counter'>1 <?=text($con, "BLOG_COMMENTS_1", $lang)?></span>
-<?php
-                    }
-                    else if ($count == 0){
-?>
-                        <span class='comment_counter'><?=text($con, "BLOG_COMMENTS_0", $lang)?></span>
-<?php
-                    }
-                    else{
-?>
-                        <span class='comment_counter'><?=$count?> <?=text($con, "BLOG_COMMENTS_X", $lang)?></span>
-<?php
-                    }
-                    while ($r_comment = mysqli_fetch_array($q_comment)){
-                        $user = $r_comment["username"];
-                        $user_string = $user;
-                        if (strlen($user) == 0){
-                            $user = mysqli_fetch_array(mysqli_query($con, "SELECT concat(fname, concat(' ', lname)) AS name FROM user WHERE id = $r_comment[user];"))["name"];
-                            $user_string = "<span class='comment_user_registered'>$user</span>";
-                        }
-?>
-                        <div itemprop='comment' itemscope itemtype='http://schema.org/UserComments' id='comment_<?=$r_comment["id"]?>' class='comment'>
-                            <h4  class='comment_user'><?=$user_string?></h4>
-                            <meta itemprop='creator' content='<?=$user?>'>
-                            <span class='comment_date date'>
-                                <time itemprop='commentTime' datetime='<?=$r_comment["cdate"]?>'>
-                                <?=$r_comment["dtime"]?>
-                            </span>
-                            <p itemprop='commentText' class='comment_text'><?=$r_comment["text"]?></p>
-                        </div>
-<?php
-                    }
-                    //Comment form
-?>
-                    <div class='comment' id='comment_new'>
-                        <textarea id='new_comment_text' name='text' maxlength='1800' onfocus='showCommentIdentification();' placeholder='<?text($con, "COMMENT_YOUR", $lang)?>'></textarea>
-                        <div id='identification_form'>
-                            <br/>
-                            <input id='new_comment_user' name='user' maxlength='50' type='text' placeholder='<?text($con, "COMMENT_YOUR_NAME", $lang)?>'/>
-                            <input type='button' value='<?text($con, "COMMENT_PUBLISH", $lang)?>'/>
-                        </div>
-                    </div>
-<?php
-                }
-                else{
-?>
-                    <h4><?text($con, "COMMENT_CLOSED_POST", $lang)?></h4>
-<?php
-                }
-
-?>
-                <hr/>
-<?php
-                // Previous / next
-                $q_prev = mysqli_query($con, "SELECT id, permalink, title FROM post WHERE id <> $id AND dtime <= '$r_post[dtime]' ORDER BY dtime DESC LIMIT 1;");
-                $q_next = mysqli_query($con, "SELECT id, permalink, title FROM post WHERE id <> $id AND dtime >= '$r_post[dtime]' ORDER BY dtime LIMIT 1;");
-                if (mysqli_num_rows($q_prev) > 0 || mysqli_num_rows($q_next) > 0){
-?>
-                    <table id='prev_next'>
-                        <tr>
-                            <td id='prev'>
-<?php
-                                if (mysqli_num_rows($q_prev) > 0){
-                                    $r_prev = mysqli_fetch_array($q_prev);
-?>
-                                    <a href='<?=$lserver?>/blog/<?=$r_prev["permalink"]?>'>
-                                        <span class='info'>Previous post:</span>
-                                        <br/>
-                                        <span class='title'><?=text($con, $r_prev["title"], $lang)?></span>
-                                    </a>
+                                    <span class='comment_counter'>1 <?=text($con, "BLOG_COMMENTS_1", $lang)?></span>
 <?php
                                 }
+                                else if ($count == 0){
 ?>
-                            </td>
-                            <td id='next'>
-<?php
-                                if (mysqli_num_rows($q_next) > 0){
-                                    $r_next = mysqli_fetch_array($q_next);
-?>
-                                    <a href='<?=$lserver?>/blog/<?=$r_next["permalink"]?>'>
-                                        <span class='info'>Next post:</span>
-                                        <br/>
-                                        <span class='title'><?=text($con, $r_next["title"], $lang)?></span>
-                                    </a>
+                                    <span class='comment_counter'><?=text($con, "BLOG_COMMENTS_0", $lang)?></span>
 <?php
                                 }
+                                else{
 ?>
-                            </td>
-                        </tr>
-                    </table>
+                                    <span class='comment_counter'><?=$count?> <?=text($con, "BLOG_COMMENTS_X", $lang)?></span>
 <?php
-                }
+                                }
+                                while ($r_comment = mysqli_fetch_array($q_comment)){
+                                    $user = $r_comment["username"];
+                                    $user_string = $user;
+                                    if (strlen($user) == 0){
+                                        $user = mysqli_fetch_array(mysqli_query($con, "SELECT concat(fname, concat(' ', lname)) AS name FROM user WHERE id = $r_comment[user];"))["name"];
+                                        $user_string = "<span class='comment_user_registered'>$user</span>";
+                                    }
 ?>
-                <hr/>
-                <!-- TODO: Related posts -->
-            </div> <!-- .entry -->
-        </div> <!-- .section -->
+                                    <div itemprop='comment' itemscope itemtype='http://schema.org/UserComments' id='comment_<?=$r_comment["id"]?>' class='comment'>
+                                        <h4  class='comment_user'><?=$user_string?></h4>
+                                        <meta itemprop='creator' content='<?=$user?>'>
+                                        <span class='comment_date date'>
+                                            <time itemprop='commentTime' datetime='<?=$r_comment["cdate"]?>'>
+                                            <?=$r_comment["dtime"]?>
+                                        </span>
+                                        <p itemprop='commentText' class='comment_text'><?=$r_comment["text"]?></p>
+                                    </div>
+<?php
+                                }
+                                //Comment form
+?>
+                                <div class='comment' id='comment_new'>
+                                    <textarea id='new_comment_text' name='text' maxlength='1800' onfocus='showCommentIdentification();' placeholder='<?=text($con, "COMMENT_YOUR", $lang)?>'></textarea>
+                                    <div id='identification_form'>
+                                        <br/>
+                                        <input id='new_comment_user' name='user' maxlength='50' type='text' placeholder='<?text($con, "COMMENT_YOUR_NAME", $lang)?>'/>
+                                        <input type='button' value='<?text($con, "COMMENT_PUBLISH", $lang)?>'/>
+                                    </div>
+                                </div>
+<?php
+                            }
+                            else{
+?>
+                                <h4><?text($con, "COMMENT_CLOSED_POST", $lang)?></h4>
+<?php
+                            }
+?>
+                        </div> <!-- .entry -->
+                    </div> <!-- .section -->
+                </div> <!-- .content_cell -->
+                <div id='content_cell_info' class='content_cell'>
+                    <div class='section' id='info'>
+                        <div id="info_date" class='entry'>
+                            <span class='date'><?=format_date($r_post["dtime"], $lang)?></span>
+                        </div>
+                        <div id="info_share" class='entry'>
+<?php
+                            $q_share = mysqli_query($con, "SELECT id FROM share WHERE visible = 1 ORDER BY idx;");
+                            while ($r_share = mysqli_fetch_array($q_share)){
+?>
+                                <?=share_link($con, $r_share["id"], $lserver, "$server/blog/$permalink", $lang)?>
+<?php
+                            }
+?>
+                        </div>
+<?php
+                        $q_tag = mysqli_query($con, "SELECT tag FROM post_tag WHERE post = $id;");
+                        if (mysqli_num_rows($q_tag) > 0){
+?>
+                            <div id="info_tags" class='entry'>
+<?php
+                                $tag_string = "<span id='tags'>" . text($con, "BLOG_TAGS", $lang) . ": ";
+                                $tag_raw = "";
+                                while ($r_tag = mysqli_fetch_array($q_tag)){
+                                    $tag_string = $tag_string . "<a href='$lserver/blog/search/tag/$r_tag[tag]'>$r_tag[tag]</a>, ";
+                                    $tag_raw = $tag_raw . "$r_tag[tag],";
+                                }
+                                $tag_string = substr($tag_string, 0, strlen($tag_string) - 2);
+                                $tag_string = $tag_string . "</span>";
+                                $tag_raw = substr($tag_raw, 0, strlen($tag_raw) - 1);
+?>
+                                <span class='tags'><?=$tag_string?></span>
+                                <meta itemprop='keywords' content='<?=$tag_raw?>'/>
+                            </div> <!-- #info_tags -->
+<?php
+                        } // if (mysqli_num_rows($q_tag) > 0)
+?>
+                        
+<?php
+                        // Previous / next
+                        $q_prev = mysqli_query($con, "SELECT id, permalink, title FROM post WHERE id <> $id AND dtime <= '$r_post[dtime]' ORDER BY dtime DESC LIMIT 1;");
+                        $q_next = mysqli_query($con, "SELECT id, permalink, title FROM post WHERE id <> $id AND dtime >= '$r_post[dtime]' ORDER BY dtime LIMIT 1;");
+                        if (mysqli_num_rows($q_prev) > 0 || mysqli_num_rows($q_next) > 0){
+?>
+                            <div id='info_prev_next' class='entry'>
+                                <table id='prev_next'>
+                                    <tr>
+                                        <td id='prev'>
+<?php
+                                            if (mysqli_num_rows($q_prev) > 0){
+                                                $r_prev = mysqli_fetch_array($q_prev);
+?>
+                                                <a href='<?=$lserver?>/blog/<?=$r_prev["permalink"]?>'>
+                                                    <span class='info'>Previous post:</span>
+                                                    <br/>
+                                                    <span class='title'><?=text($con, $r_prev["title"], $lang)?></span>
+                                                </a>
+<?php
+                                            }
+?>
+                                        </td>
+                                        <td id='next'>
+<?php
+                                            if (mysqli_num_rows($q_next) > 0){
+                                                $r_next = mysqli_fetch_array($q_next);
+?>
+                                                <a href='<?=$lserver?>/blog/<?=$r_next["permalink"]?>'>
+                                                    <span class='info'>Next post:</span>
+                                                    <br/>
+                                                    <span class='title'><?=text($con, $r_next["title"], $lang)?></span>
+                                                </a>
+<?php
+                                            }
+?>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div> <!-- #info_prev_next -->
+<?php
+                        } //  if (mysqli_num_rows($q_prev) > 0 || mysqli_num_rows($q_next) > 0)
+?>
+                        <div id='info_related' class='entry'>
+                            TODO
+                        </div>
+                        <div id='info_all' class='entry'>
+                            TODO
+                        </div>
+                    </div> <!-- #info -->
+                </div> <!-- .content-cell -->
+            </div> <!-- #content-row -->
+        </div> <!-- #content -->
 <?php
         include $doc_root . "footer.php";
         stats($con, $cur_section, $cur_entry);

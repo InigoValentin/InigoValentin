@@ -1,12 +1,12 @@
 <?php
     session_start();
     $http_host = $_SERVER["HTTP_HOST"];
-    $doc_root = $_SERVER["DOCUMENT_ROOT"];
+    $doc_root = $_SERVER["DOCUMENT_ROOT"] . "/";
     include $doc_root . "functions.php";
     $proto = get_protocol();
     $con = start_db();
     $server = $proto . $http_host;
-    $lang = select_language();
+    $lang = select_language($con);
     $lserver = $server . "/" . $lang;
     $cur_section = "blog";
     $cur_entry = "";
@@ -190,7 +190,9 @@
 ?>
                         </div> <!-- .entry -->
                     </div> <!-- #right_column -->
-                </div> <!-- #content -->
+                </div> <!-- .content_cell -->
+             </div> <!-- #content_row -->
+         </div> <!-- #content -->
 <?php
         include $doc_root . "footer.php";
         stats($con, $cur_section, $cur_entry);

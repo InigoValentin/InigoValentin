@@ -196,7 +196,7 @@ div#footer hr#footer_separator{
 /* Left area of the footer */
 div#footer td#footer_left{
     width: 33%;
-    text-align: left;
+    text-align: center;
 }
 
 /* Middle area of the footer */
@@ -327,8 +327,8 @@ div.unavailable{
 
 /* Icons for sharing page in a social network */
 img.social_icon{
-    width: 4.286em;
-    height: 4.286em;
+    width: 3em;
+    height: 3em;
 }
 
 /* Elements that should have the cursor as pointer */
@@ -567,8 +567,8 @@ a.share img.share{
     display: inline-block;
     vertical-align: top;
     overflow: hidden;
-    width: 2em;
-    height: 2em;
+    width: 1.6em;
+    height: 1.6em;
     border: 0.1em solid #003300;
     border-radius: 2em;
     box-shadow: 0 0 0.3em #005500;

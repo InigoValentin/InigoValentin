@@ -259,12 +259,18 @@ INSERT INTO text VALUES ('BLOG_COMMENTS_X',  'eu', 'BLOG', 'comentarios.', null)
 
 
 -- PAGE profile
-INSERT INTO text VALUES ('PROFILE_TITLE',       'es', 'PROFILE', 'Yo', null);
-INSERT INTO text VALUES ('PROFILE_TITLE',       'en', 'PROFILE', 'Me', null);
-INSERT INTO text VALUES ('PROFILE_TITLE',       'eu', 'PROFILE', 'Ni', null);
-INSERT INTO text VALUES ('PROFILE_DESCRIPTION', 'es', 'PROFILE', 'Sobre m&iacute;', null); --TODO
-INSERT INTO text VALUES ('PROFILE_DESCRIPTION', 'en', 'PROFILE', 'About me', null); --TODO
-INSERT INTO text VALUES ('PROFILE_DESCRIPTION', 'eu', 'PROFILE', 'Niri buruz', null); --TODO
+INSERT INTO text VALUES ('PROFILE_TITLE',            'es', 'PROFILE', 'Yo', null);
+INSERT INTO text VALUES ('PROFILE_TITLE',            'en', 'PROFILE', 'Me', null);
+INSERT INTO text VALUES ('PROFILE_TITLE',            'eu', 'PROFILE', 'Ni', null);
+INSERT INTO text VALUES ('PROFILE_DESCRIPTION',      'es', 'PROFILE', 'Sobre m&iacute;', null);
+INSERT INTO text VALUES ('PROFILE_DESCRIPTION',      'en', 'PROFILE', 'About me', null);
+INSERT INTO text VALUES ('PROFILE_DESCRIPTION',      'eu', 'PROFILE', 'Niri buruz', null);
+INSERT INTO text VALUES ('PROFILE_DOWNLOAD_CURRENT', 'es', 'PROFILE', 'Descargar en castellano', null);
+INSERT INTO text VALUES ('PROFILE_DOWNLOAD_CURRENT', 'en', 'PROFILE', 'Download in english', null);
+INSERT INTO text VALUES ('PROFILE_DOWNLOAD_CURRENT', 'eu', 'PROFILE', 'Euzkaraz deskargatu', null);
+INSERT INTO text VALUES ('PROFILE_DOWNLOAD_OTHER', 'es', 'PROFILE', 'Descargar en otros idiomas', null);
+INSERT INTO text VALUES ('PROFILE_DOWNLOAD_OTHER', 'en', 'PROFILE', 'Download in other languages', null);
+INSERT INTO text VALUES ('PROFILE_DOWNLOAD_OTHER', 'eu', 'PROFILE', 'Beste hizkuntzetan deskargatu', null);
 
 
 -- TABLE project_type
@@ -388,5 +394,16 @@ INSERT INTO cv_category VALUES (2, 'CV_CATEGORY_EDUCATION', null,               
 INSERT INTO cv_category VALUES (3, 'CV_CATEGORY_PROJECTS', 'CV_CATEGORY_PROJECTS_SUMMARY', 0 , 2);
 INSERT INTO cv_category VALUES (4, 'CV_CATEGORY_OTHER',    'CV_CATEGORY_OTHER_SUMMARY',    1 , 4);
 
+
+-- To be filled before installing
+INSERT INTO text VALUES ('USER_NAME', 'es', 'USER', '', null);
+INSERT INTO text VALUES ('USER_NAME', 'en', 'USER', '', null);
+INSERT INTO text VALUES ('USER_NAME', 'eu', 'USER', '', null);
+INSERT INTO text VALUES ('USER_TAGLINE', 'es', 'USER', '', null);
+INSERT INTO text VALUES ('USER_TAGLINE', 'en', 'USER', '', null);
+INSERT INTO text VALUES ('USER_TAGLINE', 'eu', 'USER', '', null);
+INSERT INTO text VALUES ('USER_BIO', 'es', 'USER', '', null);
+INSERT INTO text VALUES ('USER_BIO', 'en', 'USER', '', null);
+INSERT INTO text VALUES ('USER_BIO', 'eu', 'USER', '', null);
 
 -- ADD MORE ROWS AS YOU SEE FIT:

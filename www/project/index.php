@@ -1,12 +1,12 @@
 <?php
     session_start();
     $http_host = $_SERVER["HTTP_HOST"];
-    $doc_root = $_SERVER["DOCUMENT_ROOT"];
+    $doc_root = $_SERVER["DOCUMENT_ROOT"] . "/";
     include $doc_root . "functions.php";
     $proto = get_protocol();
     $con = start_db();
     $server = $proto . $http_host;
-    $lang = select_language();
+    $lang = select_language($con);
     $lserver = $server . "/" . $lang;
     $cur_section = "project";
     $cur_entry = "";
@@ -100,7 +100,7 @@
                 </div> <!-- #content_cell_main -->
                 <div class='content_cell'  id='content_cell_right'>
                     <div class='section' id='right_column'>
-                        <h3 class='section_title'>TR#Search projects</h3>
+                        <h3 class='section_title'><?=text($con, "PROJECT_SEARCH", $lang)?></h3>
                         <div class='entry'>
                             <input type='text' placeholder='<?=text($con, "PROJECT_SEARCH", $lang)?>' name='text'/>
                             <input type='hidden' id='advanced_search_indicator' value='0'/>
