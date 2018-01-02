@@ -57,6 +57,7 @@
         <script type='text/javascript'>
 <?php
             include $doc_root . "script/ui.js";
+            include $doc_root . "script/blog.js";
 ?>
         </script>
         <!-- Meta tags -->
@@ -176,7 +177,7 @@
                                 //Comment form
 ?>
                                 <div class='comment' id='comment_new'>
-                                    <textarea id='new_comment_text' name='text' maxlength='1800' onfocus='showCommentIdentification();' placeholder='<?=text($con, "COMMENT_YOUR", $lang)?>'></textarea>
+                                    <textarea id='new_comment_text' name='text' maxlength='1800' onfocus='showCommentIdentification();' placeholder='<?=text($con, "BLOG_COMMENTS_YOUR", $lang)?>'></textarea>
                                     <div id='identification_form'>
                                         <br/>
                                         <input id='new_comment_user' name='user' maxlength='50' type='text' placeholder='<?text($con, "COMMENT_YOUR_NAME", $lang)?>'/>
@@ -196,19 +197,25 @@
                 </div> <!-- .content_cell -->
                 <div id='content_cell_info' class='content_cell'>
                     <div class='section' id='info'>
+                        <h3 class='section_title'><?=text($con, "BLOG_DETAILS", $lang)?></h3>
                         <div id="info_date" class='entry'>
                             <span class='date'><?=format_date($r_post["dtime"], $lang)?></span>
                         </div>
+                        <hr/>
                         <div id="info_share" class='entry'>
+                            <h4><?=text($con, "BLOG_SHARE", $lang)?></h4>
+                            <div id='social'>
 <?php
-                            $q_share = mysqli_query($con, "SELECT id FROM share WHERE visible = 1 ORDER BY idx;");
-                            while ($r_share = mysqli_fetch_array($q_share)){
+                                $q_share = mysqli_query($con, "SELECT id FROM share WHERE visible = 1 ORDER BY idx;");
+                                while ($r_share = mysqli_fetch_array($q_share)){
 ?>
-                                <?=share_link($con, $r_share["id"], $lserver, "$server/blog/$permalink", $lang)?>
+                                    <?=share_link($con, $r_share["id"], $lserver, "$server/blog/$permalink", $lang)?>
 <?php
-                            }
+                                }
 ?>
-                        </div>
+                            </div> <!-- #social -->
+                        </div> <!-- #info_share -->
+                        <hr/>
 <?php
                         $q_tag = mysqli_query($con, "SELECT tag FROM post_tag WHERE post = $id;");
                         if (mysqli_num_rows($q_tag) > 0){
@@ -228,10 +235,10 @@
                                 <span class='tags'><?=$tag_string?></span>
                                 <meta itemprop='keywords' content='<?=$tag_raw?>'/>
                             </div> <!-- #info_tags -->
+                            <hr/>
 <?php
                         } // if (mysqli_num_rows($q_tag) > 0)
 ?>
-                        
 <?php
                         // Previous / next
                         $q_prev = mysqli_query($con, "SELECT id, permalink, title FROM post WHERE id <> $id AND dtime <= '$r_post[dtime]' ORDER BY dtime DESC LIMIT 1;");
@@ -272,15 +279,97 @@
                                     </tr>
                                 </table>
                             </div> <!-- #info_prev_next -->
+                            <hr/>
 <?php
                         } //  if (mysqli_num_rows($q_prev) > 0 || mysqli_num_rows($q_next) > 0)
 ?>
                         <div id='info_related' class='entry'>
-                            TODO
+                            <h4><?=text($con, "BLOG_RELATED", $lang)?></h4>
+                            <ul>
+<?php
+                                // TODO: Truly select related
+                                $q_related = mysqli_query($con, "SELECT permalink, title FROM post WHERE id <> $id ORDER BY rand() LIMIT 3;");
+                                while($r_related = mysqli_fetch_array($q_related)){
+?>
+                                    <li>
+                                        <a href='<?=$lserver?>/blog/<?=$r_related["permalink"]?>'><?=text($con, $r_related["title"], $lang)?></a>
+                                    </li>
+<?php
+                                }
+?>
+                            </ul>
                         </div>
+                        <hr/>
+                        <div id='info_search' class='entry'>
+                            <h4><?=text($con, "BLOG_SEARCH", $lang)?></h4>
+                            <div id='search_panel_inputs'>
+                                <form action='#' onSubmit='event.preventDefault();launchSearch("<?=$lng["search_field_all"]?>");'>
+                                    <input id='search_panel_input' class='search_element' type='text' name='query' placeholder='<?=text($con, "BLOG_SEARCH", $lang)?>'/>
+                                    <input id='search_panel_submit' class='search_element' type='submit' value='<?=text($con, "BLOG_SEARCH", $lang)?>'/>
+                                </form>
+                            </div>
+                        </div> <!-- #info_search -->
+                        <hr/>
+                        <div id='info_tag_cloud' class='entry'>
+                            <h4><?=text($con, "BLOG_TAG_CLOUD", $lang)?></h4>
+                            <div id='cloud'>
+<?php
+                                //Get the most used tag
+                                $q_max = mysqli_query($con, "SELECT max(count) AS max FROM (SELECT count(post) AS count FROM post_tag GROUP BY tag) AS t;");
+                                $r_max = mysqli_fetch_array($q_max);
+                                $max = $r_max["max"];
+                                $q_tag = mysqli_query($con, "SELECT tag, count(post) AS count FROM post_tag GROUP BY tag;");
+                                while($r_tag = mysqli_fetch_array($q_tag)){
+                                    $size = round(60 + 100 * $r_tag['count'] / $max);
+?>
+                                    <a href='<?=$lserver?>/blog/search/tag/<?=$r_tag["tag"]?>'>
+                                        <span style='font-size: <?=$size?>%'><?=text($con, $r_tag["tag"], $lang)?></span>
+                                    </a>
+<?php
+                                }
+?>
+                            </div>
+                        </div> <!-- #info_tag_cloud -->
+                        <hr/>
                         <div id='info_all' class='entry'>
-                            TODO
-                        </div>
+                            <h4><?=text($con, "BLOG_ARCHIVE", $lang)?></h4>
+<?php
+                            $q_year = mysqli_query($con, "SELECT year(dtime) AS year FROM post WHERE visible = 1 GROUP BY year(dtime) ORDER BY year DESC;");
+                            while($r_year = mysqli_fetch_array($q_year)){
+?>
+                                <div class='year pointer' onClick='toggleElement("year_<?=$r_year["year"]?>");'>
+                                    <img class='slider' id='slid_year_<?=$r_year["year"]?>' src='<?=$server?>/img/misc/slid-right.png' alt='<?=$r_year["year"]?>'/>
+                                    <span class='fake_a'><?=$r_year["year"]?></span>
+                                </div>
+                                <div class='list_year pointer' id='list_year_<?=$r_year["year"]?>'>
+<?php
+                                    $q_month = mysqli_query($con, "SELECT month(dtime) AS month FROM post WHERE visible = 1 AND year(dtime) = $r_year[year] GROUP BY month(dtime) ORDER BY month DESC;");
+                                    while($r_month = mysqli_fetch_array($q_month)){
+?>
+                                        <div class='month pointer' onClick='toggleElement("month_<?=$r_year["year"]?>_<?=$r_month["month"]?>");'>
+                                            <img class='slider' id='slid_month_<?=$r_year["year"]?>_<?=$r_month["month"]?>' src='<?=$server?>/img/misc/slid-right.png' alt='<?=$r_month["month"]?>'/>
+                                            <span class='fake_a'><?=ucfirst(text($con, "MONTH_" . str_pad($r_month["month"], 2, "0", STR_PAD_LEFT), $lang))?></span>
+                                        </div>
+                                        <ul id='list_month_<?=$r_year["year"]?>_<?=$r_month["month"]?>' class='post_list'>
+<?php
+                                            $q_title = mysqli_query($con, "SELECT id, permalink, title FROM post WHERE visible = 1 AND year(dtime) = $r_year[year] AND month(dtime) = '$r_month[month]' ORDER BY dtime DESC;");
+                                            while($r_title = mysqli_fetch_array($q_title)){
+?>
+                                                <li>
+                                                    <a href='<?=$lserver?>/blog/<?=$r_title["permalink"]?>'><?=text($con, $r_title["title"], $lang)?></a>
+                                                </li>
+<?php
+                                            }
+?>
+                                        </ul>
+<?php
+                                    }
+?>
+                                </div> <!-- #list_year_<?=$r_year["year"]?> -->
+<?php
+                            } //while($r_year = mysqli_fetch_array($q_year))
+?>
+                        </div> <!-- #info_all -->
                     </div> <!-- #info -->
                 </div> <!-- .content-cell -->
             </div> <!-- #content-row -->

@@ -161,35 +161,79 @@
                     </div> <!-- #main_column -->
                 </div> <!-- #content_cell_main -->
                 <div class='content_cell'  id='content_cell_right'>
-                    <div class='section' id='right_column'>
-                        <h3 class='section_title'><?=text($con, "BLOG_SEARCH", $lang)?></h3>
-                        <div class='entry'>
+                    <div class='section' id='info'>
+                        <h3 class='section_title'><?=text($con, "BLOG_DETAILS", $lang)?></h3>
+                        <div id='info_search' class='entry'>
+                            <h4><?=text($con, "BLOG_SEARCH", $lang)?></h4>
                             <div id='search_panel_inputs'>
                                 <form action='#' onSubmit='event.preventDefault();launchSearch("<?=$lng["search_field_all"]?>");'>
                                     <input id='search_panel_input' class='search_element' type='text' name='query' placeholder='<?=text($con, "BLOG_SEARCH", $lang)?>'/>
                                     <input id='search_panel_submit' class='search_element' type='submit' value='<?=text($con, "BLOG_SEARCH", $lang)?>'/>
                                 </form>
                             </div>
-                        </div> <!-- .entry -->
-                        <div class='entry'>
+                        </div> <!-- #info_search -->
+                        <hr/>
+                        <div id='info_tag_cloud' class='entry'>
                             <h4><?=text($con, "BLOG_TAG_CLOUD", $lang)?></h4>
+                            <div id='cloud'>
 <?php
-                            //Get the most used tag
-                            $q_max = mysqli_query($con, "SELECT max(count) AS max FROM (SELECT count(post) AS count FROM post_tag GROUP BY tag) AS t;");
-                            $r_max = mysqli_fetch_array($q_max);
+                                //Get the most used tag
+                                $q_max = mysqli_query($con, "SELECT max(count) AS max FROM (SELECT count(post) AS count FROM post_tag GROUP BY tag) AS t;");
+                                $r_max = mysqli_fetch_array($q_max);
                                 $max = $r_max["max"];
-                            $q_tag = mysqli_query($con, "SELECT tag, count(post) AS count FROM post_tag GROUP BY tag;");
-                            while($r_tag = mysqli_fetch_array($q_tag)){
-                                $size = round(60 + 100 * $r_tag['count'] / $max);
+                                $q_tag = mysqli_query($con, "SELECT tag, count(post) AS count FROM post_tag GROUP BY tag;");
+                                while($r_tag = mysqli_fetch_array($q_tag)){
+                                    $size = round(60 + 100 * $r_tag['count'] / $max);
 ?>
-                                <a href='<?=$lserver?>/blog/search/tag/<?=$r_tag["tag"]?>'>
-                                    <span style='font-size: <?=$size?>%'><?=text($con, $r_tag["tag"], $lang)?></span>
-                                </a>
+                                    <a href='<?=$lserver?>/blog/search/tag/<?=$r_tag["tag"]?>'>
+                                        <span style='font-size: <?=$size?>%'><?=text($con, $r_tag["tag"], $lang)?></span>
+                                    </a>
 <?php
-                            }
+                                }
 ?>
-                        </div> <!-- .entry -->
-                    </div> <!-- #right_column -->
+                            </div>
+                        </div> <!-- #info_tag_cloud -->
+                        <hr/>
+                        <div id='info_all' class='entry'>
+                            <h4><?=text($con, "BLOG_ARCHIVE", $lang)?></h4>
+<?php
+                            $q_year = mysqli_query($con, "SELECT year(dtime) AS year FROM post WHERE visible = 1 GROUP BY year(dtime) ORDER BY year DESC;");
+                            while($r_year = mysqli_fetch_array($q_year)){
+?>
+                                <div class='year pointer' onClick='toggleElement("year_<?=$r_year["year"]?>");'>
+                                    <img class='slider' id='slid_year_<?=$r_year["year"]?>' src='<?=$server?>/img/misc/slid-right.png' alt='<?=$r_year["year"]?>'/>
+                                    <span class='fake_a'><?=$r_year["year"]?></span>
+                                </div>
+                                <div class='list_year pointer' id='list_year_<?=$r_year["year"]?>'>
+<?php
+                                    $q_month = mysqli_query($con, "SELECT month(dtime) AS month FROM post WHERE visible = 1 AND year(dtime) = $r_year[year] GROUP BY month(dtime) ORDER BY month DESC;");
+                                    while($r_month = mysqli_fetch_array($q_month)){
+?>
+                                        <div class='month pointer' onClick='toggleElement("month_<?=$r_year["year"]?>_<?=$r_month["month"]?>");'>
+                                            <img class='slider' id='slid_month_<?=$r_year["year"]?>_<?=$r_month["month"]?>' src='<?=$server?>/img/misc/slid-right.png' alt='<?=$r_month["month"]?>'/>
+                                            <span class='fake_a'><?=ucfirst(text($con, "MONTH_" . str_pad($r_month["month"], 2, "0", STR_PAD_LEFT), $lang))?></span>
+                                        </div>
+                                        <ul id='list_month_<?=$r_year["year"]?>_<?=$r_month["month"]?>' class='post_list'>
+<?php
+                                            $q_title = mysqli_query($con, "SELECT id, permalink, title FROM post WHERE visible = 1 AND year(dtime) = $r_year[year] AND month(dtime) = '$r_month[month]' ORDER BY dtime DESC;");
+                                            while($r_title = mysqli_fetch_array($q_title)){
+?>
+                                                <li>
+                                                    <a href='<?=$lserver?>/blog/<?=$r_title["permalink"]?>'><?=text($con, $r_title["title"], $lang)?></a>
+                                                </li>
+<?php
+                                            }
+?>
+                                        </ul>
+<?php
+                                    }
+?>
+                                </div> <!-- #list_year_<?=$r_year["year"]?> -->
+<?php
+                            } //while($r_year = mysqli_fetch_array($q_year))
+?>
+                        </div> <!-- #info_all -->
+                    </div> <!-- #info -->
                 </div> <!-- .content_cell -->
              </div> <!-- #content_row -->
          </div> <!-- #content -->

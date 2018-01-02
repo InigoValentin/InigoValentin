@@ -226,36 +226,51 @@ INSERT INTO text VALUES ('PROJECT_LICENSE_LEGAL',   'eu', 'PROJECT', 'Textu osoa
 
 
 -- PAGE blog
-INSERT INTO text VALUES ('BLOG_TITLE',       'es', 'BLOG', 'Blog', null);
-INSERT INTO text VALUES ('BLOG_TITLE',       'en', 'BLOG', 'Blog', null);
-INSERT INTO text VALUES ('BLOG_TITLE',       'eu', 'BLOG', 'Blog', null);
-INSERT INTO text VALUES ('BLOG_DESCRIPTION', 'es', 'BLOG', '', null); --TODO
-INSERT INTO text VALUES ('BLOG_DESCRIPTION', 'en', 'BLOG', '', null); --TODO
-INSERT INTO text VALUES ('BLOG_DESCRIPTION', 'eu', 'BLOG', '', null); --TODO
-INSERT INTO text VALUES ('BLOG_MORE',        'es', 'BLOG', 'leer m&aacute;s', null);
-INSERT INTO text VALUES ('BLOG_MORE',        'en', 'BLOG', 'read more', null);
-INSERT INTO text VALUES ('BLOG_MORE',        'eu', 'BLOG', 'gehiago irakurri', null);
-INSERT INTO text VALUES ('BLOG_TAGS',        'es', 'BLOG', 'Tags', null);
-INSERT INTO text VALUES ('BLOG_TAGS',        'en', 'BLOG', 'Tags', null);
-INSERT INTO text VALUES ('BLOG_TAGS',        'eu', 'BLOG', 'Tags', null);
-INSERT INTO text VALUES ('BLOG_SEARCH',      'es', 'BLOG', 'Buscar', null);
-INSERT INTO text VALUES ('BLOG_SEARCH',      'en', 'BLOG', 'Search', null);
-INSERT INTO text VALUES ('BLOG_SEARCH',      'eu', 'BLOG', 'Bilatu', null);
-INSERT INTO text VALUES ('BLOG_TAG_CLOUD',   'es', 'BLOG', 'Nube de tags', null);
-INSERT INTO text VALUES ('BLOG_TAG_CLOUD',   'en', 'BLOG', 'Tag Cloud', null);
-INSERT INTO text VALUES ('BLOG_TAG_CLOUD',   'eu', 'BLOG', 'Tag Cloud', null);
-INSERT INTO text VALUES ('BLOG_COMMENTS',    'es', 'BLOG', 'Comentarios', null);
-INSERT INTO text VALUES ('BLOG_COMMENTS',    'en', 'BLOG', 'Comments', null);
-INSERT INTO text VALUES ('BLOG_COMMENTS',    'eu', 'BLOG', 'Comentarios', null);
-INSERT INTO text VALUES ('BLOG_COMMENTS_0',  'es', 'BLOG', 'No hay comentarios a&uacute;n.', null);
-INSERT INTO text VALUES ('BLOG_COMMENTS_0',  'en', 'BLOG', 'No comments yet.', null);
-INSERT INTO text VALUES ('BLOG_COMMENTS_0',  'eu', 'BLOG', 'No hay comentarios a&uacute;n.', null);
-INSERT INTO text VALUES ('BLOG_COMMENTS_1',  'es', 'BLOG', 'comentario.', null);
-INSERT INTO text VALUES ('BLOG_COMMENTS_1',  'en', 'BLOG', 'comment.', null);
-INSERT INTO text VALUES ('BLOG_COMMENTS_1',  'eu', 'BLOG', 'comantario.', null);
-INSERT INTO text VALUES ('BLOG_COMMENTS_X',  'es', 'BLOG', 'comentarios.', null);
-INSERT INTO text VALUES ('BLOG_COMMENTS_X',  'en', 'BLOG', 'comments.', null);
-INSERT INTO text VALUES ('BLOG_COMMENTS_X',  'eu', 'BLOG', 'comentarios.', null);
+INSERT INTO text VALUES ('BLOG_TITLE',         'es', 'BLOG', 'Blog', null);
+INSERT INTO text VALUES ('BLOG_TITLE',         'en', 'BLOG', 'Blog', null);
+INSERT INTO text VALUES ('BLOG_TITLE',         'eu', 'BLOG', 'Blog', null);
+INSERT INTO text VALUES ('BLOG_DESCRIPTION',   'es', 'BLOG', '', null); --TODO
+INSERT INTO text VALUES ('BLOG_DESCRIPTION',   'en', 'BLOG', '', null); --TODO
+INSERT INTO text VALUES ('BLOG_DESCRIPTION',   'eu', 'BLOG', '', null); --TODO
+INSERT INTO text VALUES ('BLOG_MORE',          'es', 'BLOG', 'leer m&aacute;s', null);
+INSERT INTO text VALUES ('BLOG_MORE',          'en', 'BLOG', 'read more', null);
+INSERT INTO text VALUES ('BLOG_MORE',          'eu', 'BLOG', 'gehiago irakurri', null);
+INSERT INTO text VALUES ('BLOG_TAGS',          'es', 'BLOG', 'Tags', null);
+INSERT INTO text VALUES ('BLOG_TAGS',          'en', 'BLOG', 'Tags', null);
+INSERT INTO text VALUES ('BLOG_TAGS',          'eu', 'BLOG', 'Tags', null);
+INSERT INTO text VALUES ('BLOG_SEARCH',        'es', 'BLOG', 'Buscar', null);
+INSERT INTO text VALUES ('BLOG_SEARCH',        'en', 'BLOG', 'Search', null);
+INSERT INTO text VALUES ('BLOG_SEARCH',        'eu', 'BLOG', 'Bilatu', null);
+INSERT INTO text VALUES ('BLOG_DETAILS',       'es', 'BLOG', 'Detalles', null);
+INSERT INTO text VALUES ('BLOG_DETAILS',       'en', 'BLOG', 'Details', null);
+INSERT INTO text VALUES ('BLOG_DETAILS',       'eu', 'BLOG', 'Xehentasunak', null);
+INSERT INTO text VALUES ('BLOG_ARCHIVE',       'es', 'BLOG', 'Archivo', null);
+INSERT INTO text VALUES ('BLOG_ARCHIVE',       'en', 'BLOG', 'Archive', null);
+INSERT INTO text VALUES ('BLOG_ARCHIVE',       'eu', 'BLOG', 'Archibo', null);
+INSERT INTO text VALUES ('BLOG_RELATED',       'es', 'BLOG', 'Posts relacionados', null);
+INSERT INTO text VALUES ('BLOG_RELATED',       'en', 'BLOG', 'Related posts', null);
+INSERT INTO text VALUES ('BLOG_RELATED',       'eu', 'BLOG', 'Harramenak', null);
+INSERT INTO text VALUES ('BLOG_SHARE',         'es', 'BLOG', 'Comparte este post', null);
+INSERT INTO text VALUES ('BLOG_SHARE',         'en', 'BLOG', 'Shate this post', null);
+INSERT INTO text VALUES ('BLOG_SHARE',         'eu', 'BLOG', 'Banatu', null);
+INSERT INTO text VALUES ('BLOG_TAG_CLOUD',     'es', 'BLOG', 'Nube de tags', null);
+INSERT INTO text VALUES ('BLOG_TAG_CLOUD',     'en', 'BLOG', 'Tag Cloud', null);
+INSERT INTO text VALUES ('BLOG_TAG_CLOUD',     'eu', 'BLOG', 'Tag Cloud', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS',      'es', 'BLOG', 'Comentarios', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS',      'en', 'BLOG', 'Comments', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS',      'eu', 'BLOG', 'Comentarios', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS_0',    'es', 'BLOG', 'No hay comentarios a&uacute;n.', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS_0',    'en', 'BLOG', 'No comments yet.', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS_0',    'eu', 'BLOG', 'No hay comentarios a&uacute;n.', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS_1',    'es', 'BLOG', 'comentario.', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS_1',    'en', 'BLOG', 'comment.', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS_1',    'eu', 'BLOG', 'comantario.', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS_X',    'es', 'BLOG', 'comentarios.', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS_X',    'en', 'BLOG', 'comments.', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS_X',    'eu', 'BLOG', 'comentarios.', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS_YOUR', 'es', 'BLOG', 'Tu comentario...', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS_YOUR', 'en', 'BLOG', 'Your comment...', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS_YOUR', 'eu', 'BLOG', 'Tu comentario...', null);
 
 
 -- PAGE profile
@@ -268,9 +283,9 @@ INSERT INTO text VALUES ('PROFILE_DESCRIPTION',      'eu', 'PROFILE', 'Niri buru
 INSERT INTO text VALUES ('PROFILE_DOWNLOAD_CURRENT', 'es', 'PROFILE', 'Descargar en castellano', null);
 INSERT INTO text VALUES ('PROFILE_DOWNLOAD_CURRENT', 'en', 'PROFILE', 'Download in english', null);
 INSERT INTO text VALUES ('PROFILE_DOWNLOAD_CURRENT', 'eu', 'PROFILE', 'Euzkaraz deskargatu', null);
-INSERT INTO text VALUES ('PROFILE_DOWNLOAD_OTHER', 'es', 'PROFILE', 'Descargar en otros idiomas', null);
-INSERT INTO text VALUES ('PROFILE_DOWNLOAD_OTHER', 'en', 'PROFILE', 'Download in other languages', null);
-INSERT INTO text VALUES ('PROFILE_DOWNLOAD_OTHER', 'eu', 'PROFILE', 'Beste hizkuntzetan deskargatu', null);
+INSERT INTO text VALUES ('PROFILE_DOWNLOAD_OTHER',   'es', 'PROFILE', 'Descargar en otros idiomas', null);
+INSERT INTO text VALUES ('PROFILE_DOWNLOAD_OTHER',   'en', 'PROFILE', 'Download in other languages', null);
+INSERT INTO text VALUES ('PROFILE_DOWNLOAD_OTHER',   'eu', 'PROFILE', 'Beste hizkuntzetan deskargatu', null);
 
 
 -- TABLE project_type

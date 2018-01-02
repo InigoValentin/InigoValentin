@@ -40,6 +40,13 @@ a{
     text-decoration: none;
 }
 
+.fake_a{
+    color: #555555;
+    text-shadow: 0 0 0.5em #7777ff;
+    text-decoration: none;
+}
+
+
 /* Elements fith bold font */
 .bold{
     font-weight: bold;
