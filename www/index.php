@@ -112,7 +112,7 @@
                     <div class='section' id='blog_section'>
                         <h3 class='section_title'><?=text($con, 'INDEX_LATEST_POSTS', $lang)?></h3>
 <?php
-                        $q_blog = mysqli_query($con, "SELECT id, permalink, title, text, DATE_FORMAT(dtime, '%Y-%m-%dT%T') AS isodate, dtime, comments FROM post WHERE visible = 1 ORDER BY dtime DESC;");
+                        $q_blog = mysqli_query($con, "SELECT id, permalink, title, text, DATE_FORMAT(dtime, '%Y-%m-%dT%T') AS isodate, dtime, comments FROM post WHERE visible = 1 ORDER BY dtime DESC LIMIT 2;");
                         while($r_blog = mysqli_fetch_array($q_blog)){
 ?>
                             <div itemscope itemtype='http://schema.org/BlogPosting' class='entry entry_list blog_entry'>
@@ -177,7 +177,6 @@
                                     </tr>
                                 </table> <!-- .post_list_footer -->
                             </div> <!-- .blog_entry -->
-                            </br>
 <?php
                         }
 ?>

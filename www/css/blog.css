@@ -1,5 +1,6 @@
-/* Blog main page */
-
+/****************************************
+ * Pages layout.                        *
+ ****************************************/
 div#content{
     display: table;
 }
@@ -11,84 +12,24 @@ div#content div#content_row{
 div#content div#content_row div.content_cell{
     padding: 1em;
     display: table-cell;
+    vertical-align: top;
 }
 
 div#content div#content_row div#content_cell_main{
     width: 75%;
 }
 
-div#post_list img.post_list_image{
-    float: left;
-    background-color: #ffffff;
-    border: 0.1em solid #003300;
-    border-radius: 0.3em;
-    margin: 0 0.7em 0.7em 0.7em;
-    max-width: 5em;
-    max-height: 3em;
-}
-
-div#post_list table.post_list_footer{
-    font-size: 80%;
-    width: 100%;
-}
-
-div#post_list table.post_list_footer td.comment_counter{
-    font-style: italic;
-    text-align: right;
-}
-
-div#post_list span.tags{
-    font-size: 80%;
-    font-style: italic;
-}
-
-
-/* Post view page. */
-div#content_cell_post{
-    /* Post and comments container. */
-    width: 75%;
-}
-
-div#post img#post_main_image{
-    /* Post main image. */
-    display: block;
-    max-height: 11em;
-    margin: 0.5em auto 1em auto;
-    border: 0.1em solid #003400;
-    border-radius: 0.5em;
-    background-color: #ffffff;
-}
-
-div#post div#image_reel{
-    /* Post secondary images container. */
-    overflow-x: scroll;
-    border: 0.1em solid #003400;
-    border-radius: 0.3em;
-    height: 7em;
-    background-color: #334433;
-    padding: 0.5em;
-}
-
-div#post div#image_reel img{
-    /* Secondary images of the post. */
-    vertical-align: middle;
-    max-height: 5em;
-    max-width: 7em;
-    border: 0.2em solid #003400;
-    border-radius: 0.1em;
-    margin: 0.5em;
-    background-color: #ffffff;
-}
-
-div#content_cell_info{
-    /* post info container. */
+div#content div#content_row div#content_cell_info{
+    /* Post info container. */
     width: 25%;
     min-width: 8em;
     max-width: 20em;
 }
 
 
-/* Right panel */
+/****************************************
+ * Right panel.                         *
+ ****************************************/
 div#info hr{
     margin: 0 5% 0 5%;
     opacity: 0.3;
@@ -234,4 +175,73 @@ div#info_all img.post_list_image{
     border: 0.15em solid #333333;
     border-radius: 0.2em;
     box-shadow: 0 0 0.5em #111111;
+}
+
+
+/****************************************
+ * Blog main page.                      *
+ ****************************************/
+div#post_list img.post_list_image{
+    float: left;
+    background-color: #ffffff;
+    border: 0.1em solid #003300;
+    border-radius: 0.3em;
+    margin: 0 0.7em 0.7em 0.7em;
+    max-width: 5em;
+    max-height: 3em;
+}
+
+div#post_list table.post_list_footer{
+    font-size: 80%;
+    width: 100%;
+}
+
+div#post_list table.post_list_footer td.comment_counter{
+    font-style: italic;
+    text-align: right;
+}
+
+div#post_list span.tags{
+    font-size: 80%;
+    font-style: italic;
+}
+
+
+/****************************************
+ * Post view page.                      *
+ ****************************************/
+div#content_cell_post{
+    /* Post and comments container. */
+    width: 75%;
+}
+
+div#post img#post_main_image{
+    /* Post main image. */
+    display: block;
+    max-height: 11em;
+    margin: 0.5em auto 1em auto;
+    border: 0.1em solid #003400;
+    border-radius: 0.5em;
+    background-color: #ffffff;
+}
+
+div#post div#image_reel{
+    /* Post secondary images container. */
+    overflow-x: scroll;
+    border: 0.1em solid #003400;
+    border-radius: 0.3em;
+    height: 7em;
+    background-color: #334433;
+    padding: 0.5em;
+}
+
+div#post div#image_reel img{
+    /* Secondary images of the post. */
+    vertical-align: middle;
+    max-height: 5em;
+    max-width: 7em;
+    border: 0.2em solid #003400;
+    border-radius: 0.1em;
+    margin: 0.5em;
+    background-color: #ffffff;
 }

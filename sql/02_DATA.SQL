@@ -182,14 +182,23 @@ INSERT INTO text VALUES ('HEADER_BLOG',     'eu', 'HEADER', 'Blog', null);
 
 -- PAGE footer
 INSERT INTO text VALUES ('FOOTER_FOLLOW', 'es', 'FOOTER', 'S&iacute;gueme', null);
-INSERT INTO text VALUES ('FOOTER_COPY',   'es', 'FOOTER', 'Copyright I&ntilde;igo Valentin 2014 - 2017', null);
+INSERT INTO text VALUES ('FOOTER_COPY',   'es', 'FOOTER', 'Copyright I&ntilde;igo Valentin 2014 - #YEAR#', null);
 INSERT INTO text VALUES ('FOOTER_HELP',   'es', 'FOOTER', 'Ayuda', null);
 INSERT INTO text VALUES ('FOOTER_FOLLOW', 'en', 'FOOTER', 'Follow me', null);
-INSERT INTO text VALUES ('FOOTER_COPY',   'en', 'FOOTER', 'Copyright I&ntilde;igo Valentin 2014 - 2017', null);
+INSERT INTO text VALUES ('FOOTER_COPY',   'en', 'FOOTER', 'Copyright I&ntilde;igo Valentin 2014 - #YEAR#', null);
 INSERT INTO text VALUES ('FOOTER_HELP',   'en', 'FOOTER', 'Help', null);
 INSERT INTO text VALUES ('FOOTER_FOLLOW', 'eu', 'FOOTER', 'Jarraitu', null);
-INSERT INTO text VALUES ('FOOTER_COPY',   'eu', 'FOOTER', 'Copyright I&ntilde;igo Valentin 2014 - 2017', null);
+INSERT INTO text VALUES ('FOOTER_COPY',   'eu', 'FOOTER', 'Copyright I&ntilde;igo Valentin 2014 - #YEAR#', null);
 INSERT INTO text VALUES ('FOOTER_HELP',   'eu', 'FOOTER', 'Laguntza', null);
+
+
+-- PAGE index
+INSERT INTO text VALUES ('INDEX_LATEST_PROJECTS', 'es', 'INDEX', '&Uacute;ltimos proyectos', null);
+INSERT INTO text VALUES ('INDEX_LATEST_PROJECTS', 'en', 'INDEX', 'Latest projects', null);
+INSERT INTO text VALUES ('INDEX_LATEST_PROJECTS', 'eu', 'INDEX', 'Asken projektuak', null);
+INSERT INTO text VALUES ('INDEX_LATEST_POSTS', 'es', 'INDEX', '&Uacute;ltimos posts', null);
+INSERT INTO text VALUES ('INDEX_LATEST_POSTS', 'en', 'INDEX', 'Latest posts', null);
+INSERT INTO text VALUES ('INDEX_LATEST_POSTS', 'eu', 'INDEX', 'Asken postak', null);
 
 
 -- PAGE project

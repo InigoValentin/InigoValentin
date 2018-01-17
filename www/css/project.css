@@ -1,3 +1,183 @@
+/****************************************
+ * Pages layout.                        *
+ ****************************************/
+div#content{
+    display: table;
+}
+
+div#content div#content_row{
+    display: table-row;
+}
+
+div#content div#content_row div.content_cell{
+    display: table-cell;
+    padding: 1em;
+    vertical-align: top;
+}
+
+div#content_cell_main{
+    width: 75%;
+}
+
+div#content div#content_row div#content_cell_info{
+    /* Project info container. */
+    width: 25%;
+    min-width: 8em;
+    max-width: 20em;
+}
+
+
+/****************************************
+ * Right panel.                         *
+ ****************************************/
+div#info hr{
+    margin: 0 5% 0 5%;
+    opacity: 0.3;
+}
+
+div#info h4{
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+}
+
+div#info div.entry{
+    margin: 0.2em;
+}
+
+div#info div#info_date{
+    /* Date of the post. */
+    text-align: center;
+    font-style: italic;
+    font-size: 70%;
+    opacity: 80%;
+}
+
+div#info div#info_share{
+    /* Share icons. */
+}
+
+div#info div#info_share div#social{
+    text-align: center;
+}
+
+div#info div#info_tags{
+    /* Post tages. */
+    font-size: 80%;
+    opacity: 90%;
+}
+
+div#info div#info_prev_next{
+    /* Previous / next post. */
+}
+
+div#info div#info_prev_next table#prev_next{
+    /* Previous/next posts links. */
+    border-collapse: collapse;
+    margin: 0 auto 0 auto;
+}
+
+div#info div#info_prev_next table#prev_next td{
+    width: 50%;
+    padding: 0.5em;
+}
+
+div#info div#info_prev_next table#prev_next td#prev{
+    border-right: 0.03em solid #00440088;
+    margin-right: 0.5em;
+    text-align: right;
+}
+
+div#info div#info_prev_next table#prev_next td#next{
+    border-left: 0.03em solid #00440088;
+    margin-left: 0.5em;
+    text-align: left;
+}
+
+div#info div#info_prev_next table#prev_next td span.info{
+    font-size: 80%;
+}
+
+div#info div#info_prev_next table#prev_next td span.title{
+    font-weight: bold;
+}
+
+div#info div#info_related{
+    /* Related posts. */
+}
+
+div#info div#info_related ul{
+    margin: 0 0 0 0.6em;
+    padding-left: 0.7em;
+}
+
+div#info div#info_related ul li{
+    margin: 0;
+}
+
+div#info div#info_search{
+    /* Post search form. */
+}
+
+div#info div#info_search input#search_panel_input{
+    display: inline-block;
+    width: 60%;
+}
+
+div#info div#info_search input#search_panel_submit{
+    display: inline-block;
+    width: 30%;
+}
+
+div#info div#info_tag_cloud{
+    /* Tag cloud. */
+}
+
+div#info div#info_tag_cloud div#cloud{
+    text-align: center;
+}
+
+div#info div#info_all{
+    /* Post archive. */
+    margin-right: 0;
+    padding-right: 0;
+}
+
+div#info_all div.list_year{
+    /* Year list in the archive.*/
+    margin-left: 1em;
+    max-height: 0em;
+    overflow-y: hidden;
+    transition: max-height 0.6s ease-in-out;
+}
+
+div#info_all ul.post_list{
+    margin-top: 0em;
+    margin-bottom: 0em;
+    max-height: 0em;
+    overflow-y: hidden;
+    transition: max-height 0.6s ease-in-out;
+}
+
+div#info_all ul.post_list li{
+    padding: 0.2em 0 0 0;
+}
+
+div#info_all div.post_list_image_container{
+    text-align: center;
+}
+
+div#info_all img.post_list_image{
+    float: center;
+    max-width: 15em;
+    max-width: 90%;
+    max-height: 9em;
+    margin: 0.5em 1em 0 0.5em;
+    border: 0.15em solid #333333;
+    border-radius: 0.2em;
+    box-shadow: 0 0 0.5em #111111;
+}
+
+
 /* Common elements */
 span.version_type{
     padding: 0.05em;
@@ -19,27 +199,6 @@ div#right_column div#advanced_search{
 
 /* Project view page */
 
-div#content{
-    display: table;
-}
-
-div#content-row{
-    display: table-row;
-}
-
-div.content_cell{
-    display: table-cell;
-    padding: 1em;
-    vertical-align: top;
-}
-
-div#content_cell_main{
-    width: 80%;
-}
-
-div#content_cell_right{
-    width: 20%;
-}
 
 div#main_column div#image_reel{
     text-align: center;

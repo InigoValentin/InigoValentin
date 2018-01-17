@@ -151,7 +151,7 @@
                         </div> <!-- .entry -->
                     </div> <!-- #main_column -->
                 </div> <!-- #content_cell_main -->
-                <div class='content_cell'  id='content_cell_right'>
+                <div class='content_cell'  id='content_cell_info'>
                     <div class='section' id='right_column'>
                         <h3 class='section_title'><?=text($con, "PROJECT_DETAILS", $lang);?></h3>
                         <div class='entry'>
@@ -195,7 +195,7 @@
                             </span>
                         </div>
                     </div> <!-- #right_column -->
-                </div> <!-- #content_cell_right -->
+                </div> <!-- #content_cell_info -->
             </div> <!-- #content_row -->
             <div id='cover'>
             </div> <!-- #cover -->

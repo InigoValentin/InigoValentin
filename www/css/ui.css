@@ -222,6 +222,9 @@ div#footer td#footer_right{
 div#footer img.footer_social_icon{
     width: 1.875em;
     vertical-align: middle;
+    background-color: #ffffff;
+    border: 0.1em solid #ffffff;
+    border-radius: 0.3em;
 }
 
 div#footer a.lang img{
