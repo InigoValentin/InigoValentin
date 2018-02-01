@@ -17,6 +17,7 @@
 /* Styles for the body of the page */
 body{
     background-color: #111111;
+    padding: 0;
 }
 
 /* Style for all links */
@@ -102,12 +103,12 @@ div#header{
     background-color: #000000;
     margin: 0;
     width: 100%;
-    height: 2em;
+    height: 2.6em;
     padding: 0;
 }
 
 div#header img{
-    height: 1.6em;
+    height: 1.8em;
     vertical-align: center;
 }
 
@@ -146,7 +147,7 @@ div.secondary_header{
     margin: 0;
     display: none;
     width: 100%;
-    height: 2em;
+    height: 2.6em;
 }
 
 div.secondary_header table{
@@ -344,6 +345,31 @@ select{
     border-radius: 0.286em;
     padding: 0.25em;
     text-shadow: 0 0 0.5em #ffffff;
+}
+
+/* Styles so the input field to upload an image with the comment looks like a button */
+label.image_upload {
+    font-family: 'Nunito';
+    font-weight: bold;
+    color: #cccccc;
+    background-color: #555555;
+    border: 0.143em solid #bbbbbb;
+    border-radius: 0.429em;
+    padding: 0.5em;
+    text-shadow: 0 0 0.75em #000000;
+    cursor: pointer;
+}
+
+label.image_upload input {
+    width: 0 !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+}
+
+/* Previsualization for the upload image in a comment */
+img#new_comment_image_preview{
+        max-height: 7.692em;
+        max-width: 11.538em;
 }
 
 /* Style for placeholders in input fields */

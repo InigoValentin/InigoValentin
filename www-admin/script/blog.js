@@ -67,3 +67,8 @@ function visiblePost(id, title, visible){
     xmlhttp.open("GET","/post/visible.php?p=" + id + "&v=" + visible, true);
     xmlhttp.send();
 }
+
+
+function addImage(){
+    
+}

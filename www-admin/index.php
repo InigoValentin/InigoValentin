@@ -51,7 +51,7 @@
                             <h3 class='section_title'>Blog</h3>
                             <div class='entry'>
                                 <ul>
-                                    <li><a href='<?=$server?>/blog/add/'>New post</a></li>
+                                    <li><a href='<?=$server?>/blog/new.php/'>New post</a></li>
                                     <li><a href='<?=$server?>/blog/'>Manage posts</a></li>
                                 </ul>
                             </div>

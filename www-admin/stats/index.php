@@ -42,6 +42,9 @@
         </script>
     </head>
     <body>
+<?php
+        include $doc_root . "header.php";
+?>
         <div id='content'>
             <div class='section' id='post_edit'>
                 <h3 class='section_title'>Visits</h3>

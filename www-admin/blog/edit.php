@@ -131,16 +131,23 @@
                         $q_image = mysqli_query($con, "SELECT id, image FROM post_image WHERE post = $id;");
                         while ($r_image = mysqli_fetch_array($q_image)){
 ?>
-                            <span id='post_image_<?=$r_image["id"]?>'>
-                                <img alt='<?=$title?>' title='<?=$title?>' src='<?=$pserver?>/imgblog/x3/<?=$r_image["image"]?>' />
-                                <img class='pointer' onClick='deleteImage(<?=$r_image["id"]?>)' alt='Delete image' title='Delete image' src='<?=$server?>/img/icon/cancel.png' />
-                            </span>
+                            <div class='post_image' id='post_image_<?=$r_image["id"]?>'>
+                                <img alt='<?=$title?>' title='<?=$title?>' src='<?=$pserver?>/img/blog/x4/<?=$r_image["image"]?>' />
+                                <br/>
+                                <label class="image_control image_upload">
+                                    <input id="image" onchange="preview_image();" type="file" name="image" accept="image/x-png, image/gif, image/jpeg"/>
+                                    @
+                                </label>
+                                <input class='image_control' type='button' onClick='deleteImage(<?=$r_image["id"]?>)' value='X' />
+                            </div>
 <?php
                         }
 ?>
-                        <span id='post_image_add'>
+                        <div class='post_image' id='post_image_add'>
                             <img onClick='addImage(<?=$id?>)' alt='Add image' title='Add image' src='<?=$server?>/img/icon/addimage.png' />
-                        </span> <!-- #image_reel -->
+                            <input type='file' id='header_img_selector' onChange='uploadHeaderImage(event, <?=$r["id"]?>);'/>
+                            <img id="image_preview" src="<?php echo $img; ?>"/><br/><br/>
+                        </div>
                     </div>
                     <hr class='separator'/>
                     <h4>Tags</h4>

@@ -72,14 +72,29 @@ div#post_edit div#image_reel{
     padding: 0.5em;
 }
 
-div#post_edit div#image_reel img{
+div#post_edit div#image_reel div.post_image{
+    display: inline-block;
+    vertical-align: top;
+    margin: 0.5em 0.25em 0.5em 0.25em;
+}
+
+div#post_edit div#image_reel div.post_image img{
     vertical-align: middle;
-    max-height: 5em;
-    max-width: 7em;
+    max-height: 7em;
+    max-width: 9em;
     border: 0.2em solid #003400;
     border-radius: 0.1em;
     margin: 0.5em;
     background-color: #ffffff;
+}
+
+div#post_edit div#image_reel div.post_image .image_control{
+    display: inline-block;
+    font-size: 100%;
+    width: 40%;
+    height: 2em;
+    text-align: center;
+    vertical-align: top;
 }
 
 div#post_edit table#comments{

@@ -262,7 +262,7 @@
             return true;
         }
         else{
-            error_log("Invalid login. username = $user, id = $r[id];");
+            error_log("Invalid login. username = $user.");
             return false;
         }
     }
