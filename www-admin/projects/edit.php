@@ -194,7 +194,7 @@
                                                 <span class='bold'>Version type:</span>
                                                 <span class='field_result'><?=$r_version["type_name"]?></span>
                                                 <img class='button_edit' src='<?=$server?>/img/icon/edit.png' onclick='enableEdit(this);'/>
-                                                <select class='field_editable' value='<?=$r_version["type"]?>'>
+                                                <select class='field_editable'>
 <?php
                                                     $q_version_type = mysqli_query($con, "SELECT id, title, color, (SELECT text FROM text WHERE id = project_version_type.title AND lang = '$lang') AS title FROM project_version_type;");
                                                     while ($r_version_type = mysqli_fetch_array($q_version_type)){
