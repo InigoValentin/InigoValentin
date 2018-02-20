@@ -1,29 +1,29 @@
 <div id='header_parent'>
     <nav id='header'>
-        <a href='<?=$server?>/'>
+        <a href='<?=$lserver?>/'>
             <span class='header_container'>
-                <span class='header_icon_container'><img class='header_icon' alt='<?=text($con, "HEADER_HOME", $lang);?>' src='<?=$server?>/img/icon/home.gif'/></span>
+                <span class='header_icon_container'><img class='header_icon' alt='<?=text($con, "HEADER_HOME", $lang);?>' src='<?=$lserver?>/img/icon/home.gif'/></span>
                 <?=text($con, "HEADER_HOME", $lang);?>
             </span>
         </a>
         <span class='link_separator desktop'></span>
-        <a href='<?=$server?>/me/'>
+        <a href='<?=$lserver?>/profile/'>
             <span class='header_container'>
-                <span class='header_icon_container'><img class='header_icon' alt='<?=text($con, "HEADER_ME", $lang);?>' src='<?=$server?>/img/icon/me.gif'/></span>
-                <?=text($con, "HEADER_ME", $lang);?>
+                <span class='header_icon_container'><img class='header_icon' alt='<?=text($con, "HEADER_ME", $lang);?>' src='<?=$lserver?>/img/icon/profile.gif'/></span>
+                <?=text($con, "HEADER_PROFILE", $lang);?>
             </span>
         </a>
         <span class='link_separator desktop'></span>
-        <a href='<?=$server?>/projects/'>
+        <a href='<?=$lserver?>/project/'>
             <span class='header_container'>
-                <span class='header_icon_container'><img class='header_icon' alt='<?=text($con, "HEADER_PROJECTS", $lang);?>' src='<?=$server?>/img/icon/projects.gif'/></span>
+                <span class='header_icon_container'><img class='header_icon' alt='<?=text($con, "HEADER_PROJECTS", $lang);?>' src='<?=$lserver?>/img/icon/project.gif'/></span>
                 <?=text($con, "HEADER_PROJECTS", $lang);?>
             </span>
         </a>
         <span class='link_separator desktop'></span>
-        <a href='<?=$server?>/blog/'>
+        <a href='<?=$lserver?>/blog/'>
             <span class='header_container'>
-                <span class='header_icon_container'><img class='header_icon' alt='<?=text($con, "HEADER_BLOG", $lang);?>' src='<?=$server?>/img/icon/blog.gif'/></span>
+                <span class='header_icon_container'><img class='header_icon' alt='<?=text($con, "HEADER_BLOG", $lang);?>' src='<?=$lserver?>/img/icon/blog.gif'/></span>
                 <?=text($con, "HEADER_BLOG", $lang);?>
             </span>
         </a>

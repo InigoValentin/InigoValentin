@@ -2,7 +2,7 @@
  * Fonts used across the page     *
  **********************************/
 
-/* Font used for inputs */
+/* Font */
 @font-face {
     font-family: 'Nunito'; 
     src:  url('/fonts/Nunito-Regular.ttf'); 
@@ -27,10 +27,37 @@ a{
 }
 
 /* Elements fith bold font */
-span.bold{
+.bold{
     font-weight: bold;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
+/* Hidden elements */
+.hidden{
+    display: none;
+}
+
+img.slider{
+    width: 1em;
+    height: 1em;
+    vertial-align: middle;
+    transition: all .3s ease-in-out;
+}
+
+div#cover{
+    display: none;
+    background-color: #000000bb;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
 
 
 /**********************************
@@ -55,7 +82,7 @@ nav#header{
     font-size: 110%;
 }
 
-/* Dummy <span> to use as vertical separator between links */
+/* Dummy span to use as vertical separator between links */
 nav#header span.link_separator{
     border-left: 0.077em solid rgba(200, 200, 200, .5);
 }
@@ -167,7 +194,7 @@ div#footer td#footer_center{
 /* Right area of the footer */
 div#footer td#footer_right{
     width: 33%;
-    text-align: right;
+    text-align: center;
 }
 
 /* Icons for social media */
@@ -207,21 +234,42 @@ div#content{
     margin-bottom: 1.875em;
 }
 
-/* .lighted is a style-only class to make contrast against the dark background */
-.lighted{
-    background-color: #898989;
-    border: 0.063em solid #77777;
-    border-radius: 0.15em;
-  padding: 0.5em;
-    box-shadow: 0 0 0.75em #888888;
+div.section{
+    margin: 0.5em;
+    padding: 0;
+    background-color: #ffffff;
+    border: 0.063em solid #005500;
+    border-radius: 1em 1em;
+    box-shadow: 0 0 0.75em #003300;
+    overflow: hidden;
 }
 
-/* Style only class. Is the title of a .lighted element */
-.section_title{
+div.section h3.section_title{
+    font-weight: bold;
+    color: #ccddff;
+    text_align: left;
+    padding: 0.2em 0.4em 0.2em 0.4em;
+    margin: 0;
+    text-shadow: 0 0 0.4em #000022;
     font-size: 150%;
-    margin: 0.625em 0 0.438em 0.625em;
-    text-shadow: 0 0 0.75em #dddddd;
+    background: linear-gradient(to bottom, #1e9957 0%,#29d889 89%,#20ca7c 97%,#7de8b9 100%);
 }
+
+/* .entry is a style only class to show content. Must be allways children os a .lighted element */
+div.section div.entry{
+    border: 0.1em solid #aaffaa00;
+    border-radius: 0.3em;
+    padding: 0.5em;
+    margin: 0.5em;
+    transition: all .4s ease-in-out;
+}
+
+div.section div.entry_list:hover{
+    background-color: #efffef;
+    border: 0.1em solid #aaffaaff;
+}
+
+
 
 /* Style for the mathces in search results */
 span.result_counter{
@@ -229,21 +277,6 @@ span.result_counter{
     margin-bottom: 0.5em;
     font-weight: bold;
     font-style: italic;
-}
-
-/* .entry is a style only class to show content. Must be allways children os a .lighted element */
-.entry{
-    transition: all .3s ease-in-out;
-    margin: 1% 0.438em 0 0.438em;
-    background-color: #cccccc;
-    border: 0.143em solid #555555;
-    border-radius: 0.314em;
-    padding: 0.5em;
-    box-shadow: 0 0 0.5em #333333;
-}
-
-.entry:hover{
-    background-color: #eeeeee;
 }
 
 /* Shown when no records on database */
@@ -328,13 +361,20 @@ input[type=button]{
 /* Style for textboxes */
 input[type=text]{
     font-weight: bold;
-    color: #444444;
-    background-color: #bbbbbb;
-  border: 0.286em solid #dddddd; 
+    color: #224422;
+    background-color: #bbccbb;
+    border: 0.286em solid #ddeedd; 
     border-color: #dddddd;
     border-radius: 0.429em;
     padding: 0.25em;
     text-shadow: 0 0 0.5em #ffffff;
+}
+
+input[type=checkbox]{
+    width: 1em;
+    height: 1em;
+    border-radius: 0.2em;
+    border: 0.063em solid #005500;
 }
 
 /* Style for textareas */
@@ -343,7 +383,7 @@ textarea{
     font-weight: bold;
     color: #444444;
     background-color: #bbbbbb;
-  border: 0.286em solid #dddddd; 
+    border: 0.286em solid #dddddd; 
     border-color: #dddddd;
     border-radius: 0.286em;
     padding: 0.25em;
@@ -356,7 +396,7 @@ select{
     font-weight: bold;
     color: #444444;
     background-color: #bbbbbb;
-  border: 0.286em solid #dddddd; 
+    border: 0.286em solid #dddddd; 
     border-radius: 0.286em;
     padding: 0.25em;
     text-shadow: 0 0 0.5em #ffffff;
@@ -437,7 +477,7 @@ img.comment_image{
     border: 0.077em solid black;
     max-height: 6em;
     max-width: 60%;
-  display: block;
+    display: block;
     vertical-align: top;
     border: 0.133em solid black;
     margin-left: 0.938em;
@@ -530,7 +570,7 @@ table#pager td.pager_current{
     border: 0.077em solid #444444;
 }
 
-/* Dummy <td> that contains "..." */
+/* Dummy td that contains "..." */
 table#pager td.pager_ellipse{
     background-color: initial;
     border: initial;
@@ -559,7 +599,7 @@ span#span_download{
     display: none;
 }
 
-/* Hidden <div> to confirm downloading */
+/* Hidden div to confirm downloading */
 div.license{
     box-shadow: 0 0 1.2em rgba(120, 120, 120, 1);
     display: none;
@@ -575,7 +615,7 @@ div.license{
     border-radius: 1.250em;
 }
 
-/* <div> to dimm the screen */
+/* div to dimm the screen */
 #screen_cover{
     position: fixed;
     top: 0;

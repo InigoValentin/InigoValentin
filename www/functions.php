@@ -66,29 +66,46 @@
      *****************************************************/
     // TODO: Redo using database
     function select_language(){
-        //Try to read cookie.
-        header("Cache-control: private");
-        if (isSet($_COOKIE["lang"])){
-            $lang = $_COOKIE["lang"];
+
+        // Check for language in uri
+        $lang = substr($_SERVER['REQUEST_URI'], 1, 2);
+        if ($lang == "es" || $lang == "en" || $lang == "eu"){
+            return $lang;
+        }
+        else{
+            // Language is not in url. Find it out and redirect
+            // Is passed on the URL?
+            $lang = $_GET["lang"];
             if ($lang == "es" || $lang == "en" || $lang == "eu"){
+                header("Location: " . get_protocol() . $_SERVER["HTTP_HOST"] . "/" . $lang . $_SERVER["REQUEST_URI"]);
                 return $lang;
             }
-            else{
-                return "es";
-            }
-        }
 
-        //If no cookie, select from client browser preferences.
-        else{
-            $available_languages = array("en", "eu", "es");
-            $langs = prefered_language($available_languages, $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
-            $lang = $langs[0];
-            if ($lang != "es" && $lang != "en" && $lang != "eu"){
-                return "es";
+            // Try to read cookie.
+            header("Cache-control: private");
+            if (isSet($_COOKIE["lang"])){
+                $lang = $_COOKIE["lang"];
+                if ($lang == "es" || $lang == "en" || $lang == "eu"){
+                    header("Location: " . get_protocol() . $_SERVER["HTTP_HOST"] . "/" . $lang . $_SERVER["REQUEST_URI"]);
+                    return $lang;
+                }
             }
+
+            //If no cookie, select from client browser preferences.
             else{
-                return $langs[0];
+                $available_languages = array("en", "eu", "es");
+                $langs = prefered_language($available_languages, $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
+                $lang = $langs[0];
+                if ($lang == "es" || $lang == "en" || $lang == "eu"){
+                    header("Location: " . get_protocol() . $_SERVER["HTTP_HOST"] . "/" . $lang . $_SERVER["REQUEST_URI"]);
+                    return $lang;
+                }
             }
+
+            // If no method was succesfull, default language
+            $lang = "es";
+            header("Location: " . get_protocol() . $_SERVER["HTTP_HOST"] . "/" . $lang . $_SERVER["REQUEST_URI"]);
+            return $lang;
         }
     }
 
@@ -210,7 +227,8 @@
         $str = str_replace(" ", "-", $str);
         return $str;
     }
-    
+
+
     /*****************************************************
      * Retrieves a text fragment from the database.      *
      *                                                   *
@@ -221,9 +239,14 @@
      * @return: (string): Text.                          *
      *****************************************************/
     function text($con, $id, $lang){
-        error_log("SELECT text FROM text WHERE id = '$id' AND lang = '$lang';");
-        $q = mysqli_query($con, "SELECT text FROM text WHERE id = '$id' AND lang = '$lang';");
-        return mysqli_fetch_array($q)["text"];
+        $q = mysqli_query($con, "SELECT text, file FROM text WHERE id = '$id' AND lang = '$lang';");
+        $r = mysqli_fetch_array($q);
+        if (strlen($r["file"]) > 0){
+            return file_get_contents($_SERVER["DOCUMENT_ROOT"] . "string/" . $r["file"]);
+        }
+        else{
+            return $r["text"];
+        }
     }
 
 
@@ -274,7 +297,7 @@
             return $text;
         }
         $cut = substr($text, 0, strpos($text, " ", $length));
-        $cut = closeTags($cut);
+        $cut = close_tags($cut);
         if (strlen($cut) == 0){
             $cut = $text;
         }

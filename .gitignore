@@ -23,6 +23,7 @@ www-admin/redirect_s.php
 #SQL data
 sql/dbusers.sql
 sql/*row*.sql
+sql/CUSTOM_ROWS.SQL
 
 #Passwords file
 sql/dbpasswords.sql
@@ -31,3 +32,5 @@ www-admin/.htpasswd
 www/.htaccess_local
 www-admin/.htaccess_local
 
+#3rd party software
+www-admin/script/ckeditor
