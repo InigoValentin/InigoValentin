@@ -1,0 +1,43 @@
+div.section{
+    width: 60%;
+    min-width: 20em;
+    max-width: 80em;
+    margin: auto;
+}
+
+table#error_header{
+    width: 80%;
+    margin: 2em auto 2em auto;
+}
+
+table#error_header td{
+    width: 50%;
+}
+
+table#error_code{
+    display: inline-block;
+    margin-left: 10%;
+    border: 0.1em solid #000011;
+    border-radius: 1em;
+    padding: 0.5em 0 0.5em 0;
+    background-color: #1e9957;
+    filter: drop-shadow(0 0 0.4em #002200);
+    color: #ffffff;
+}
+
+td#error_number{
+    font-size: 300%;
+    border-right: 0.063em solid #000000;
+    padding-right: 0.5em;
+    padding-left: 0.2em;
+}
+td#error_tag{
+    font-size: 110%;
+    padding-left: 1.2em;
+    padding-right: 1em;
+}
+div#error_message{
+    width: 80%;
+    margin: 0 10% 1em 10%;
+    margin-bottom: 4em;
+}

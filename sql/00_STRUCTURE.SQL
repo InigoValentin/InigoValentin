@@ -52,7 +52,17 @@ CREATE TABLE social(
     id       INT           AUTO_INCREMENT  PRIMARY KEY,
     idx      INT           NOT NULL        UNIQUE,
     visible  BOOLEAN       NOT NULL        DEFAULT 1,
-    title    VARCHAR(32)   NOT NULL        REFERENCES text.id,
+    title    VARCHAR(32)   NOT NULL        UNIQUE       REFERENCES text.id,
+    icon     VARCHAR(16)   NOT NULL,
+    url      VARCHAR(256)  NOT NULL
+);
+
+CREATE TABLE share(
+    id       INT           AUTO_INCREMENT      PRIMARY KEY,
+    idx      INT           NOT NULL            UNIQUE,
+    visible  BOOLEAN       NOT NULL            DEFAULT 1,
+    title    VARCHAR(32)   NOT NULL            UNIQUE       REFERENCES text.id,
+    text     VARCHAR(32)   REFERENCES text.id,
     icon     VARCHAR(16)   NOT NULL,
     url      VARCHAR(256)  NOT NULL
 );
@@ -75,10 +85,10 @@ CREATE TABLE post_tag (
 );
 
 CREATE TABLE post_image (
-    id      INT           NOT NULL,
-    post    INT           NOT NULL  REFERENCES post.id,
-    image   VARCHAR(200)  NOT NULL,
-    PRIMARY KEY(id, post)
+    id     INT           AUTO_INCREMENT  PRIMARY KEY,
+    post   INT           NOT NULL        REFERENCES post.id,
+    idx    INT           NOT NULL,
+    image  VARCHAR(200)  NOT NULL
 );
 
 CREATE TABLE post_comment (
@@ -148,17 +158,17 @@ CREATE TABLE project_url_type (
 );
 
 CREATE TABLE project_url (
-    project  INT            NOT NULL  REFERENCES project.id,
-    type     VARCHAR(1)     NOT NULL  REFERENCES project_url_type,
-    url      VARCHAR(1024)  NOT NULL,
-    PRIMARY KEY (project, type)
+    id       INT            AUTO_INCREMENT  PRIMARY KEY,
+    project  INT            NOT NULL        REFERENCES project.id,
+    type     VARCHAR(1)     NOT NULL        REFERENCES project_url_type,
+    url      VARCHAR(1024)  NOT NULL
 );
 
 CREATE TABLE project_image (
-    id       INT           NOT NULL,
-    project  INT           NOT NULL  REFERENCES project.id,
-    image    VARCHAR(200)  NOT NULL,
-    PRIMARY KEY(id, project)
+    id       INT           AUTO_INCREMENT  PRIMARY KEY,
+    project  INT           NOT NULL        REFERENCES project.id,
+    idx      INT           NOT NULL,
+    image    VARCHAR(200)  NOT NULL
 );
 
 CREATE TABLE project_tag (
@@ -213,7 +223,8 @@ CREATE TABLE stat_visit (
     ip       VARCHAR(50),
     uagent   VARCHAR(400),
     os       VARCHAR(150),
-    browser  VARCHAR(150)
+    browser  VARCHAR(150),
+    dtime    TIMESTAMP     NOT NULL  DEFAULT now()
 );
 
 CREATE TABLE stat_view (

@@ -97,6 +97,49 @@ INSERT INTO text VALUES ('SOCIAL_LINKEDIN', 'es', 'SOCIAL', 'LinkedIn', null);
 INSERT INTO text VALUES ('SOCIAL_LINKEDIN', 'en', 'SOCIAL', 'LinkedIn', null);
 INSERT INTO text VALUES ('SOCIAL_LINKEDIN', 'eu', 'SOCIAL', 'LinkedIn', null);
 
+-- SHARE
+INSERT INTO text VALUES ('SHARE_FACEBOOK', 'es', 'SHARE', 'Facebook', null);
+INSERT INTO text VALUES ('SHARE_FACEBOOK', 'en', 'SHARE', 'Facebook', null);
+INSERT INTO text VALUES ('SHARE_FACEBOOK', 'eu', 'SHARE', 'Facebook', null);
+INSERT INTO text VALUES ('SHARE_TWITTER', 'es', 'SHARE', 'Twitter', null);
+INSERT INTO text VALUES ('SHARE_TWITTER', 'en', 'SHARE', 'Twitter', null);
+INSERT INTO text VALUES ('SHARE_TWITTER', 'eu', 'SHARE', 'Twitter', null);
+INSERT INTO text VALUES ('SHARE_GOOGLE', 'es', 'SHARE', 'Google +', null);
+INSERT INTO text VALUES ('SHARE_GOOGLE', 'en', 'SHARE', 'Google +', null);
+INSERT INTO text VALUES ('SHARE_GOOGLE', 'eu', 'SHARE', 'Google +', null);
+INSERT INTO text VALUES ('SHARE_TELEGRAM', 'es', 'SHARE', 'Telegram', null);
+INSERT INTO text VALUES ('SHARE_TELEGRAM', 'en', 'SHARE', 'Telegram', null);
+INSERT INTO text VALUES ('SHARE_TELEGRAM', 'eu', 'SHARE', 'Telegram', null);
+INSERT INTO text VALUES ('SHARE_LINKEDIN', 'es', 'SHARE', 'LinkedIn', null);
+INSERT INTO text VALUES ('SHARE_LINKEDIN', 'en', 'SHARE', 'LinkedIn', null);
+INSERT INTO text VALUES ('SHARE_LINKEDIN', 'eu', 'SHARE', 'LinkedIn', null);
+INSERT INTO text VALUES ('SHARE_VKONTAKTE', 'es', 'SHARE', 'VKontakte', null);
+INSERT INTO text VALUES ('SHARE_VKONTAKTE', 'en', 'SHARE', 'VKontakte', null);
+INSERT INTO text VALUES ('SHARE_VKONTAKTE', 'eu', 'SHARE', 'VKontakte', null);
+INSERT INTO text VALUES ('SHARE_FACEBOOK_DESC', 'es', 'SHARE', 'Publicar en Facebook', null);
+INSERT INTO text VALUES ('SHARE_FACEBOOK_DESC', 'en', 'SHARE', 'Share on Facebook', null);
+INSERT INTO text VALUES ('SHARE_FACEBOOK_DESC', 'eu', 'SHARE', 'Facebook', null);
+INSERT INTO text VALUES ('SHARE_TWITTER_DESC', 'es', 'SHARE', 'Publicar en Twitter', null);
+INSERT INTO text VALUES ('SHARE_TWITTER_DESC', 'en', 'SHARE', 'Share on Twitter', null);
+INSERT INTO text VALUES ('SHARE_TWITTER_DESC', 'eu', 'SHARE', 'Twitter', null);
+INSERT INTO text VALUES ('SHARE_GOOGLE_DESC', 'es', 'SHARE', 'Publicar en Google +', null);
+INSERT INTO text VALUES ('SHARE_GOOGLE_DESC', 'en', 'SHARE', 'Share on Google +', null);
+INSERT INTO text VALUES ('SHARE_GOOGLE_DESC', 'eu', 'SHARE', 'Google +', null);
+INSERT INTO text VALUES ('SHARE_TELEGRAM_DESC', 'es', 'SHARE', 'Publicar en Telegram', null);
+INSERT INTO text VALUES ('SHARE_TELEGRAM_DESC', 'en', 'SHARE', 'Share on Telegram', null);
+INSERT INTO text VALUES ('SHARE_TELEGRAM_DESC', 'eu', 'SHARE', 'Telegram', null);
+INSERT INTO text VALUES ('SHARE_LINKEDIN_DESC', 'es', 'SHARE', 'Publicar en LinkedIn', null);
+INSERT INTO text VALUES ('SHARE_LINKEDIN_DESC', 'en', 'SHARE', 'Share on LinkedIn', null);
+INSERT INTO text VALUES ('SHARE_LINKEDIN_DESC', 'eu', 'SHARE', 'LinkedIn', null);
+INSERT INTO text VALUES ('SHARE_VKONTAKTE_DESC', 'es', 'SHARE', 'Publicar en VKontakte', null);
+INSERT INTO text VALUES ('SHARE_VKONTAKTE_DESC', 'en', 'SHARE', 'Share on VKontakte', null);
+INSERT INTO text VALUES ('SHARE_VKONTAKTE_DESC', 'eu', 'SHARE', 'VKontakte', null);
+INSERT INTO share VALUES (1, 1, 1, 'SHARE_FACEBOOK', 'SHARE_FACEBOOK_DESC', 'facebook.gif', 'https://www.facebook.com/sharer/sharer.php?u=');
+INSERT INTO share VALUES (2, 2, 1, 'SHARE_TWITTER', 'SHARE_TWITTER_DESC', 'twitter.gif', 'https://twitter.com/share?url=');
+INSERT INTO share VALUES (3, 3, 1, 'SHARE_GOOGLE', 'SHARE_GOOGLE_DESC', 'google.gif', 'https://plus.google.com/share?url=');
+INSERT INTO share VALUES (4, 4, 1, 'SHARE_TELEGRAM', 'SHARE_TELEGRAM_DESC', 'telegramn.gif', 'https://t.me/share/url?url=');
+INSERT INTO share VALUES (5, 5, 1, 'SHARE_LINKEDIN', 'SHARE_LINKEDIN_DESC', 'linkedin.gif', 'https://www.linkedin.com/shareArticle?mini=true&url=');
+INSERT INTO share VALUES (6, 6, 1, 'SHARE_VKONTAKTE', 'SHARE_VKONTAKTE_DESC', 'vkontakte.gif', 'http://vk.com/share.php?url=');
 
 -- TAGS
 INSERT INTO text VALUES ('TAG_JS',      'es', 'TAG', 'Javascript', null);
@@ -139,14 +182,23 @@ INSERT INTO text VALUES ('HEADER_BLOG',     'eu', 'HEADER', 'Blog', null);
 
 -- PAGE footer
 INSERT INTO text VALUES ('FOOTER_FOLLOW', 'es', 'FOOTER', 'S&iacute;gueme', null);
-INSERT INTO text VALUES ('FOOTER_COPY',   'es', 'FOOTER', 'Copyright I&ntilde;igo Valentin 2014 - 2017', null);
+INSERT INTO text VALUES ('FOOTER_COPY',   'es', 'FOOTER', 'Copyright I&ntilde;igo Valentin 2014 - #YEAR#', null);
 INSERT INTO text VALUES ('FOOTER_HELP',   'es', 'FOOTER', 'Ayuda', null);
 INSERT INTO text VALUES ('FOOTER_FOLLOW', 'en', 'FOOTER', 'Follow me', null);
-INSERT INTO text VALUES ('FOOTER_COPY',   'en', 'FOOTER', 'Copyright I&ntilde;igo Valentin 2014 - 2017', null);
+INSERT INTO text VALUES ('FOOTER_COPY',   'en', 'FOOTER', 'Copyright I&ntilde;igo Valentin 2014 - #YEAR#', null);
 INSERT INTO text VALUES ('FOOTER_HELP',   'en', 'FOOTER', 'Help', null);
 INSERT INTO text VALUES ('FOOTER_FOLLOW', 'eu', 'FOOTER', 'Jarraitu', null);
-INSERT INTO text VALUES ('FOOTER_COPY',   'eu', 'FOOTER', 'Copyright I&ntilde;igo Valentin 2014 - 2017', null);
+INSERT INTO text VALUES ('FOOTER_COPY',   'eu', 'FOOTER', 'Copyright I&ntilde;igo Valentin 2014 - #YEAR#', null);
 INSERT INTO text VALUES ('FOOTER_HELP',   'eu', 'FOOTER', 'Laguntza', null);
+
+
+-- PAGE index
+INSERT INTO text VALUES ('INDEX_LATEST_PROJECTS', 'es', 'INDEX', '&Uacute;ltimos proyectos', null);
+INSERT INTO text VALUES ('INDEX_LATEST_PROJECTS', 'en', 'INDEX', 'Latest projects', null);
+INSERT INTO text VALUES ('INDEX_LATEST_PROJECTS', 'eu', 'INDEX', 'Asken projektuak', null);
+INSERT INTO text VALUES ('INDEX_LATEST_POSTS', 'es', 'INDEX', '&Uacute;ltimos posts', null);
+INSERT INTO text VALUES ('INDEX_LATEST_POSTS', 'en', 'INDEX', 'Latest posts', null);
+INSERT INTO text VALUES ('INDEX_LATEST_POSTS', 'eu', 'INDEX', 'Asken postak', null);
 
 
 -- PAGE project
@@ -183,45 +235,186 @@ INSERT INTO text VALUES ('PROJECT_LICENSE_LEGAL',   'eu', 'PROJECT', 'Textu osoa
 
 
 -- PAGE blog
-INSERT INTO text VALUES ('BLOG_TITLE',       'es', 'BLOG', 'Blog', null);
-INSERT INTO text VALUES ('BLOG_TITLE',       'en', 'BLOG', 'Blog', null);
-INSERT INTO text VALUES ('BLOG_TITLE',       'eu', 'BLOG', 'Blog', null);
-INSERT INTO text VALUES ('BLOG_DESCRIPTION', 'es', 'BLOG', '', null); --TODO
-INSERT INTO text VALUES ('BLOG_DESCRIPTION', 'en', 'BLOG', '', null); --TODO
-INSERT INTO text VALUES ('BLOG_DESCRIPTION', 'eu', 'BLOG', '', null); --TODO
-INSERT INTO text VALUES ('BLOG_MORE',        'es', 'BLOG', 'leer m&aacute;s', null);
-INSERT INTO text VALUES ('BLOG_MORE',        'en', 'BLOG', 'read more', null);
-INSERT INTO text VALUES ('BLOG_MORE',        'eu', 'BLOG', 'gehiago irakurri', null);
-INSERT INTO text VALUES ('BLOG_TAGS',        'es', 'BLOG', 'Tags', null);
-INSERT INTO text VALUES ('BLOG_TAGS',        'en', 'BLOG', 'Tags', null);
-INSERT INTO text VALUES ('BLOG_TAGS',        'eu', 'BLOG', 'Tags', null);
-INSERT INTO text VALUES ('BLOG_SEARCH',      'es', 'BLOG', 'Buscar', null);
-INSERT INTO text VALUES ('BLOG_SEARCH',      'en', 'BLOG', 'Search', null);
-INSERT INTO text VALUES ('BLOG_SEARCH',      'eu', 'BLOG', 'Bilatu', null);
-INSERT INTO text VALUES ('BLOG_TAG_CLOUD',   'es', 'BLOG', 'Nube de tags', null);
-INSERT INTO text VALUES ('BLOG_TAG_CLOUD',   'en', 'BLOG', 'Tag Cloud', null);
-INSERT INTO text VALUES ('BLOG_TAG_CLOUD',   'eu', 'BLOG', 'Tag Cloud', null);
-INSERT INTO text VALUES ('BLOG_COMMENTS',    'es', 'BLOG', 'Comentarios', null);
-INSERT INTO text VALUES ('BLOG_COMMENTS',    'en', 'BLOG', 'Comments', null);
-INSERT INTO text VALUES ('BLOG_COMMENTS',    'eu', 'BLOG', 'Comentarios', null);
-INSERT INTO text VALUES ('BLOG_COMMENTS_0',  'es', 'BLOG', 'No hay comentarios a&uacute;n.', null);
-INSERT INTO text VALUES ('BLOG_COMMENTS_0',  'en', 'BLOG', 'No comments yet.', null);
-INSERT INTO text VALUES ('BLOG_COMMENTS_0',  'eu', 'BLOG', 'No hay comentarios a&uacute;n.', null);
-INSERT INTO text VALUES ('BLOG_COMMENTS_1',  'es', 'BLOG', 'comentario.', null);
-INSERT INTO text VALUES ('BLOG_COMMENTS_1',  'en', 'BLOG', 'comment.', null);
-INSERT INTO text VALUES ('BLOG_COMMENTS_1',  'eu', 'BLOG', 'comantario.', null);
-INSERT INTO text VALUES ('BLOG_COMMENTS_X',  'es', 'BLOG', 'comentarios.', null);
-INSERT INTO text VALUES ('BLOG_COMMENTS_X',  'en', 'BLOG', 'comments.', null);
-INSERT INTO text VALUES ('BLOG_COMMENTS_X',  'eu', 'BLOG', 'comentarios.', null);
+INSERT INTO text VALUES ('BLOG_TITLE',         'es', 'BLOG', 'Blog', null);
+INSERT INTO text VALUES ('BLOG_TITLE',         'en', 'BLOG', 'Blog', null);
+INSERT INTO text VALUES ('BLOG_TITLE',         'eu', 'BLOG', 'Blog', null);
+INSERT INTO text VALUES ('BLOG_DESCRIPTION',   'es', 'BLOG', '', null); --TODO
+INSERT INTO text VALUES ('BLOG_DESCRIPTION',   'en', 'BLOG', '', null); --TODO
+INSERT INTO text VALUES ('BLOG_DESCRIPTION',   'eu', 'BLOG', '', null); --TODO
+INSERT INTO text VALUES ('BLOG_MORE',          'es', 'BLOG', 'leer m&aacute;s', null);
+INSERT INTO text VALUES ('BLOG_MORE',          'en', 'BLOG', 'read more', null);
+INSERT INTO text VALUES ('BLOG_MORE',          'eu', 'BLOG', 'gehiago irakurri', null);
+INSERT INTO text VALUES ('BLOG_TAGS',          'es', 'BLOG', 'Tags', null);
+INSERT INTO text VALUES ('BLOG_TAGS',          'en', 'BLOG', 'Tags', null);
+INSERT INTO text VALUES ('BLOG_TAGS',          'eu', 'BLOG', 'Tags', null);
+INSERT INTO text VALUES ('BLOG_SEARCH',        'es', 'BLOG', 'Buscar', null);
+INSERT INTO text VALUES ('BLOG_SEARCH',        'en', 'BLOG', 'Search', null);
+INSERT INTO text VALUES ('BLOG_SEARCH',        'eu', 'BLOG', 'Bilatu', null);
+INSERT INTO text VALUES ('BLOG_DETAILS',       'es', 'BLOG', 'Detalles', null);
+INSERT INTO text VALUES ('BLOG_DETAILS',       'en', 'BLOG', 'Details', null);
+INSERT INTO text VALUES ('BLOG_DETAILS',       'eu', 'BLOG', 'Xehentasunak', null);
+INSERT INTO text VALUES ('BLOG_ARCHIVE',       'es', 'BLOG', 'Archivo', null);
+INSERT INTO text VALUES ('BLOG_ARCHIVE',       'en', 'BLOG', 'Archive', null);
+INSERT INTO text VALUES ('BLOG_ARCHIVE',       'eu', 'BLOG', 'Archibo', null);
+INSERT INTO text VALUES ('BLOG_RELATED',       'es', 'BLOG', 'Posts relacionados', null);
+INSERT INTO text VALUES ('BLOG_RELATED',       'en', 'BLOG', 'Related posts', null);
+INSERT INTO text VALUES ('BLOG_RELATED',       'eu', 'BLOG', 'Harramenak', null);
+INSERT INTO text VALUES ('BLOG_SHARE',         'es', 'BLOG', 'Comparte este post', null);
+INSERT INTO text VALUES ('BLOG_SHARE',         'en', 'BLOG', 'Shate this post', null);
+INSERT INTO text VALUES ('BLOG_SHARE',         'eu', 'BLOG', 'Banatu', null);
+INSERT INTO text VALUES ('BLOG_TAG_CLOUD',     'es', 'BLOG', 'Nube de tags', null);
+INSERT INTO text VALUES ('BLOG_TAG_CLOUD',     'en', 'BLOG', 'Tag Cloud', null);
+INSERT INTO text VALUES ('BLOG_TAG_CLOUD',     'eu', 'BLOG', 'Tag Cloud', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS',      'es', 'BLOG', 'Comentarios', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS',      'en', 'BLOG', 'Comments', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS',      'eu', 'BLOG', 'Comentarios', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS_0',    'es', 'BLOG', 'No hay comentarios a&uacute;n.', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS_0',    'en', 'BLOG', 'No comments yet.', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS_0',    'eu', 'BLOG', 'No hay comentarios a&uacute;n.', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS_1',    'es', 'BLOG', 'comentario.', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS_1',    'en', 'BLOG', 'comment.', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS_1',    'eu', 'BLOG', 'comantario.', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS_X',    'es', 'BLOG', 'comentarios.', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS_X',    'en', 'BLOG', 'comments.', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS_X',    'eu', 'BLOG', 'comentarios.', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS_YOUR', 'es', 'BLOG', 'Tu comentario...', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS_YOUR', 'en', 'BLOG', 'Your comment...', null);
+INSERT INTO text VALUES ('BLOG_COMMENTS_YOUR', 'eu', 'BLOG', 'Tu comentario...', null);
 
 
 -- PAGE profile
-INSERT INTO text VALUES ('PROFILE_TITLE',       'es', 'PROFILE', 'Yo', null);
-INSERT INTO text VALUES ('PROFILE_TITLE',       'en', 'PROFILE', 'Me', null);
-INSERT INTO text VALUES ('PROFILE_TITLE',       'eu', 'PROFILE', 'Ni', null);
-INSERT INTO text VALUES ('PROFILE_DESCRIPTION', 'es', 'PROFILE', 'Sobre m&iacute;', null); --TODO
-INSERT INTO text VALUES ('PROFILE_DESCRIPTION', 'en', 'PROFILE', 'About me', null); --TODO
-INSERT INTO text VALUES ('PROFILE_DESCRIPTION', 'eu', 'PROFILE', 'Niri buruz', null); --TODO
+INSERT INTO text VALUES ('PROFILE_TITLE',            'es', 'PROFILE', 'Yo', null);
+INSERT INTO text VALUES ('PROFILE_TITLE',            'en', 'PROFILE', 'Me', null);
+INSERT INTO text VALUES ('PROFILE_TITLE',            'eu', 'PROFILE', 'Ni', null);
+INSERT INTO text VALUES ('PROFILE_DESCRIPTION',      'es', 'PROFILE', 'Sobre m&iacute;', null);
+INSERT INTO text VALUES ('PROFILE_DESCRIPTION',      'en', 'PROFILE', 'About me', null);
+INSERT INTO text VALUES ('PROFILE_DESCRIPTION',      'eu', 'PROFILE', 'Niri buruz', null);
+INSERT INTO text VALUES ('PROFILE_DOWNLOAD_CURRENT', 'es', 'PROFILE', 'Descargar en castellano', null);
+INSERT INTO text VALUES ('PROFILE_DOWNLOAD_CURRENT', 'en', 'PROFILE', 'Download in english', null);
+INSERT INTO text VALUES ('PROFILE_DOWNLOAD_CURRENT', 'eu', 'PROFILE', 'Euzkaraz deskargatu', null);
+INSERT INTO text VALUES ('PROFILE_DOWNLOAD_OTHER',   'es', 'PROFILE', 'Descargar en otros idiomas', null);
+INSERT INTO text VALUES ('PROFILE_DOWNLOAD_OTHER',   'en', 'PROFILE', 'Download in other languages', null);
+INSERT INTO text VALUES ('PROFILE_DOWNLOAD_OTHER',   'eu', 'PROFILE', 'Beste hizkuntzetan deskargatu', null);
+
+
+-- PAGE error
+INSERT INTO text VALUES ('ERROR_TITLE',           'es', 'ERROR', 'Error', null);
+INSERT INTO text VALUES ('ERROR_TITLE',           'en', 'ERROR', 'Error', null);
+INSERT INTO text VALUES ('ERROR_TITLE',           'eu', 'ERROR', 'Errorea', null);
+INSERT INTO text VALUES ('ERROR_ERROR',           'es', 'ERROR', 'ERROR', null);
+INSERT INTO text VALUES ('ERROR_ERROR',           'en', 'ERROR', 'ERROR', null);
+INSERT INTO text VALUES ('ERROR_ERROR',           'eu', 'ERROR', 'ERROR', null);
+INSERT INTO text VALUES ('ERROR_CODE',            'es', 'ERROR', 'CODE', null);
+INSERT INTO text VALUES ('ERROR_CODE',            'en', 'ERROR', 'CODE', null);
+INSERT INTO text VALUES ('ERROR_CODE',            'eu', 'ERROR', 'CODE', null);
+INSERT INTO text VALUES ('ERROR_400_TITLE',       'es', 'ERROR', 'Bad request', null);
+INSERT INTO text VALUES ('ERROR_400_TITLE',       'en', 'ERROR', 'Bad request', null);
+INSERT INTO text VALUES ('ERROR_400_TITLE',       'eu', 'ERROR', 'Bad request', null);
+INSERT INTO text VALUES ('ERROR_400_DESCRIPTION', 'es', 'ERROR', 'La solicitud se ha recibido con errores... y no se como responder.', null);
+INSERT INTO text VALUES ('ERROR_400_DESCRIPTION', 'en', 'ERROR', 'This server doesnt understand your request.', null);
+INSERT INTO text VALUES ('ERROR_400_DESCRIPTION', 'eu', 'ERROR', 'La solicitud se ha recibido con errores... y no se como responder.', null);
+INSERT INTO text VALUES ('ERROR_400_SOLUTION',    'es', 'ERROR', 'Prueba una soluci&oacute;n:', null);
+INSERT INTO text VALUES ('ERROR_400_SOLUTION',    'en', 'ERROR', 'Try a solution:', null);
+INSERT INTO text VALUES ('ERROR_400_SOLUTION',    'eu', 'ERROR', 'Prueba una soluci&oacute;n:', null);
+INSERT INTO text VALUES ('ERROR_400_SOLUTION_0',  'es', 'ERROR', 'Volver a la p&aacute;gina anterior', null);
+INSERT INTO text VALUES ('ERROR_400_SOLUTION_0',  'en', 'ERROR', 'Go to the previous page', null);
+INSERT INTO text VALUES ('ERROR_400_SOLUTION_0',  'eu', 'ERROR', 'Volver a la p&aacute;gina anterior', null);
+INSERT INTO text VALUES ('ERROR_400_SOLUTION_1',  'es', 'ERROR', 'Ir a la p&aacute; principal', null);
+INSERT INTO text VALUES ('ERROR_400_SOLUTION_1',  'en', 'ERROR', 'Go to the main page', null);
+INSERT INTO text VALUES ('ERROR_400_SOLUTION_1',  'eu', 'ERROR', 'Ir a la p&aacute; principal', null);
+INSERT INTO text VALUES ('ERROR_400_SOLUTION_2',  'es', 'ERROR', 'Ver v&iacute;deos de gatitos en Youtube', null);
+INSERT INTO text VALUES ('ERROR_400_SOLUTION_2',  'en', 'ERROR', 'Watch cute cat videos in Youtube', null);
+INSERT INTO text VALUES ('ERROR_400_SOLUTION_2',  'eu', 'ERROR', 'Ver v&iacute;deos de gatitos en Youtube', null);
+INSERT INTO text VALUES ('ERROR_401_TITLE',       'es', 'ERROR', 'Sin autorizaci&oacute;n', null);
+INSERT INTO text VALUES ('ERROR_401_TITLE',       'en', 'ERROR', 'Unauthorized', null);
+INSERT INTO text VALUES ('ERROR_401_TITLE',       'eu', 'ERROR', 'Sin autorizaci&oacute;n', null);
+INSERT INTO text VALUES ('ERROR_401_DESCRIPTION', 'es', 'ERROR', 'Est&aacute;s intentando ver algo que no debes. No soy muy de prohibir, as&iacute; que lo m&aacutes probable es que sea algo momentaneo.', null);
+INSERT INTO text VALUES ('ERROR_401_DESCRIPTION', 'en', 'ERROR', 'You are trying to see something you are not supposed to.', null);
+INSERT INTO text VALUES ('ERROR_401_DESCRIPTION', 'eu', 'ERROR', 'Est&aacute;s intentando ver algo que no debes. No soy muy de prohibir, as&iacute; que lo m&aacutes probable es que sea algo momentaneo.', null);
+INSERT INTO text VALUES ('ERROR_401_SOLUTION',    'es', 'ERROR', 'Prueba una soluci&oacute;n:', null);
+INSERT INTO text VALUES ('ERROR_401_SOLUTION',    'en', 'ERROR', 'Try a solution:', null);
+INSERT INTO text VALUES ('ERROR_401_SOLUTION',    'eu', 'ERROR', 'Prueba una soluci&oacute;n:', null);
+INSERT INTO text VALUES ('ERROR_401_SOLUTION_0',  'es', 'ERROR', 'Volver a la p&aacute;gina anterior', null);
+INSERT INTO text VALUES ('ERROR_401_SOLUTION_0',  'en', 'ERROR', 'Go to the previous page', null);
+INSERT INTO text VALUES ('ERROR_401_SOLUTION_0',  'eu', 'ERROR', 'Volver a la p&aacute;gina anterior', null);
+INSERT INTO text VALUES ('ERROR_401_SOLUTION_1',  'es', 'ERROR', 'Ir a la p&aacute; principal', null);
+INSERT INTO text VALUES ('ERROR_401_SOLUTION_1',  'en', 'ERROR', 'Go to the main page', null);
+INSERT INTO text VALUES ('ERROR_401_SOLUTION_1',  'eu', 'ERROR', 'Ir a la p&aacute; principal', null);
+INSERT INTO text VALUES ('ERROR_401_SOLUTION_2',  'es', 'ERROR', 'Ver v&iacute;deos de gatitos en Youtube', null);
+INSERT INTO text VALUES ('ERROR_401_SOLUTION_2',  'en', 'ERROR', 'Watch cute cat videos in Youtube', null);
+INSERT INTO text VALUES ('ERROR_401_SOLUTION_2',  'eu', 'ERROR', 'Ver v&iacute;deos de gatitos en Youtube', null);
+INSERT INTO text VALUES ('ERROR_403_TITLE',       'es', 'ERROR', 'Prohibido', null);
+INSERT INTO text VALUES ('ERROR_403_TITLE',       'en', 'ERROR', 'Forbidden', null);
+INSERT INTO text VALUES ('ERROR_403_TITLE',       'eu', 'ERROR', 'Debekatuta', null);
+INSERT INTO text VALUES ('ERROR_403_DESCRIPTION', 'es', 'ERROR', 'Est&aacute;s intentando ver algo que no debes. No soy muy de prohibir, as&iacute; que lo m&aacutes probable es que sea algo momentaneo.', null);
+INSERT INTO text VALUES ('ERROR_403_DESCRIPTION', 'en', 'ERROR', 'You are trying to see something you are not supposed to.', null);
+INSERT INTO text VALUES ('ERROR_403_DESCRIPTION', 'eu', 'ERROR', 'Est&aacute;s intentando ver algo que no debes. No soy muy de prohibir, as&iacute; que lo m&aacutes probable es que sea algo momentaneo.', null);
+INSERT INTO text VALUES ('ERROR_403_SOLUTION',    'es', 'ERROR', 'Prueba una soluci&oacute;n:', null);
+INSERT INTO text VALUES ('ERROR_403_SOLUTION',    'en', 'ERROR', 'Try a solution:', null);
+INSERT INTO text VALUES ('ERROR_403_SOLUTION',    'eu', 'ERROR', 'Prueba una soluci&oacute;n:', null);
+INSERT INTO text VALUES ('ERROR_403_SOLUTION_0',  'es', 'ERROR', 'Volver a la p&aacute;gina anterior', null);
+INSERT INTO text VALUES ('ERROR_403_SOLUTION_0',  'en', 'ERROR', 'Go to the previous page', null);
+INSERT INTO text VALUES ('ERROR_403_SOLUTION_0',  'eu', 'ERROR', 'Volver a la p&aacute;gina anterior', null);
+INSERT INTO text VALUES ('ERROR_403_SOLUTION_1',  'es', 'ERROR', 'Ir a la p&aacute; principal', null);
+INSERT INTO text VALUES ('ERROR_403_SOLUTION_1',  'en', 'ERROR', 'Go to the main page', null);
+INSERT INTO text VALUES ('ERROR_403_SOLUTION_1',  'eu', 'ERROR', 'Ir a la p&aacute; principal', null);
+INSERT INTO text VALUES ('ERROR_403_SOLUTION_2',  'es', 'ERROR', 'Ver v&iacute;deos de gatitos en Youtube', null);
+INSERT INTO text VALUES ('ERROR_403_SOLUTION_2',  'en', 'ERROR', 'Watch cute cat videos in Youtube', null);
+INSERT INTO text VALUES ('ERROR_403_SOLUTION_2',  'eu', 'ERROR', 'Ver v&iacute;deos de gatitos en Youtube', null);
+INSERT INTO text VALUES ('ERROR_404_TITLE',       'es', 'ERROR', 'No enconrtado', null);
+INSERT INTO text VALUES ('ERROR_404_TITLE',       'en', 'ERROR', 'Not found', null);
+INSERT INTO text VALUES ('ERROR_404_TITLE',       'eu', 'ERROR', 'No enconrtado', null);
+INSERT INTO text VALUES ('ERROR_404_DESCRIPTION', 'es', 'ERROR', 'La p&aacute;gina que buscas no existe en este universo. Int&eacute;ntalo en uno diferente.', null);
+INSERT INTO text VALUES ('ERROR_404_DESCRIPTION', 'en', 'ERROR', 'Sorry. The page you are looking for doesn&#39;t exist in this universe. Try in an alternate one.', null);
+INSERT INTO text VALUES ('ERROR_404_DESCRIPTION', 'eu', 'ERROR', 'La p&aacute;gina que buscas no existe en este universo. Int&eacute;ntalo en uno diferente.', null);
+INSERT INTO text VALUES ('ERROR_404_SOLUTION',    'es', 'ERROR', 'Prueba una soluci&oacute;n:', null);
+INSERT INTO text VALUES ('ERROR_404_SOLUTION',    'en', 'ERROR', 'Try a solution:', null);
+INSERT INTO text VALUES ('ERROR_404_SOLUTION',    'eu', 'ERROR', 'Prueba una soluci&oacute;n:', null);
+INSERT INTO text VALUES ('ERROR_404_SOLUTION_0',  'es', 'ERROR', 'Volver a la p&aacute;gina anterior', null);
+INSERT INTO text VALUES ('ERROR_404_SOLUTION_0',  'en', 'ERROR', 'Go to the previous page', null);
+INSERT INTO text VALUES ('ERROR_404_SOLUTION_0',  'eu', 'ERROR', 'Volver a la p&aacute;gina anterior', null);
+INSERT INTO text VALUES ('ERROR_404_SOLUTION_1',  'es', 'ERROR', 'Ir a la p&aacute; principal', null);
+INSERT INTO text VALUES ('ERROR_404_SOLUTION_1',  'en', 'ERROR', 'Go to the main page', null);
+INSERT INTO text VALUES ('ERROR_404_SOLUTION_1',  'eu', 'ERROR', 'Ir a la p&aacute; principal', null);
+INSERT INTO text VALUES ('ERROR_404_SOLUTION_2',  'es', 'ERROR', 'Ver v&iacute;deos de gatitos en Youtube', null);
+INSERT INTO text VALUES ('ERROR_404_SOLUTION_2',  'en', 'ERROR', 'Watch cute cat videos in Youtube', null);
+INSERT INTO text VALUES ('ERROR_404_SOLUTION_2',  'eu', 'ERROR', 'Ver v&iacute;deos de gatitos en Youtube', null);
+INSERT INTO text VALUES ('ERROR_500_TITLE',       'es', 'ERROR', 'Error del servidor', null);
+INSERT INTO text VALUES ('ERROR_500_TITLE',       'en', 'ERROR', 'Server error', null);
+INSERT INTO text VALUES ('ERROR_500_TITLE',       'eu', 'ERROR', 'Errorea serbidorean', null);
+INSERT INTO text VALUES ('ERROR_500_DESCRIPTION', 'es', 'ERROR', 'La he liado parda. El fallo est&aacute; en mi lado, pero no te preocupes, ahor&aacute; mismo el inform&aacute;tico estar&aacute; sudando tinta gorda para arreglarlo.', null);
+INSERT INTO text VALUES ('ERROR_500_DESCRIPTION', 'en', 'ERROR', 'This one is on me: I&#39;ve messed something up. Sorry! I&#39;m probably trying to fix it right now.', null);
+INSERT INTO text VALUES ('ERROR_500_DESCRIPTION', 'eu', 'ERROR', 'La he liado parda. El fallo est&aacute; en mi lado, pero no te preocupes, ahor&aacute; mismo el inform&aacute;tico estar&aacute; sudando tinta gorda para arreglarlo.', null);
+INSERT INTO text VALUES ('ERROR_500_SOLUTION',    'es', 'ERROR', 'Prueba una soluci&oacute;n:', null);
+INSERT INTO text VALUES ('ERROR_500_SOLUTION',    'en', 'ERROR', 'Try a solution:', null);
+INSERT INTO text VALUES ('ERROR_500_SOLUTION',    'eu', 'ERROR', 'Prueba una soluci&oacute;n:', null);
+INSERT INTO text VALUES ('ERROR_500_SOLUTION_0',  'es', 'ERROR', 'Volver a la p&aacute;gina anterior', null);
+INSERT INTO text VALUES ('ERROR_500_SOLUTION_0',  'en', 'ERROR', 'Go to the previous page', null);
+INSERT INTO text VALUES ('ERROR_500_SOLUTION_0',  'eu', 'ERROR', 'Volver a la p&aacute;gina anterior', null);
+INSERT INTO text VALUES ('ERROR_500_SOLUTION_1',  'es', 'ERROR', 'Ir a la p&aacute; principal', null);
+INSERT INTO text VALUES ('ERROR_500_SOLUTION_1',  'en', 'ERROR', 'Go to the main page', null);
+INSERT INTO text VALUES ('ERROR_500_SOLUTION_1',  'eu', 'ERROR', 'Ir a la p&aacute; principal', null);
+INSERT INTO text VALUES ('ERROR_500_SOLUTION_2',  'es', 'ERROR', 'Ver v&iacute;deos de gatitos en Youtube', null);
+INSERT INTO text VALUES ('ERROR_500_SOLUTION_2',  'en', 'ERROR', 'Watch cute cat videos in Youtube', null);
+INSERT INTO text VALUES ('ERROR_500_SOLUTION_2',  'eu', 'ERROR', 'Ver v&iacute;deos de gatitos en Youtube', null);
+INSERT INTO text VALUES ('ERROR_XXX_TITLE',       'es', 'ERROR', 'Error inesperado', null);
+INSERT INTO text VALUES ('ERROR_XXX_TITLE',       'en', 'ERROR', 'Unexpected error', null);
+INSERT INTO text VALUES ('ERROR_XXX_TITLE',       'eu', 'ERROR', 'Error inesperado', null);
+INSERT INTO text VALUES ('ERROR_XXX_DESCRIPTION', 'es', 'ERROR', 'Algo ha ido mal...', null);
+INSERT INTO text VALUES ('ERROR_XXX_DESCRIPTION', 'en', 'ERROR', 'Something went wrong...', null);
+INSERT INTO text VALUES ('ERROR_XXX_DESCRIPTION', 'eu', 'ERROR', 'Algo ha ido mal...', null);
+INSERT INTO text VALUES ('ERROR_XXX_SOLUTION',    'es', 'ERROR', 'Prueba una soluci&oacute;n:', null);
+INSERT INTO text VALUES ('ERROR_XXX_SOLUTION',    'en', 'ERROR', 'Try a solution:', null);
+INSERT INTO text VALUES ('ERROR_XXX_SOLUTION',    'eu', 'ERROR', 'Prueba una soluci&oacute;n:', null);
+INSERT INTO text VALUES ('ERROR_XXX_SOLUTION_0',  'es', 'ERROR', 'Volver a la p&aacute;gina anterior', null);
+INSERT INTO text VALUES ('ERROR_XXX_SOLUTION_0',  'en', 'ERROR', 'Go to the previous page', null);
+INSERT INTO text VALUES ('ERROR_XXX_SOLUTION_0',  'eu', 'ERROR', 'Volver a la p&aacute;gina anterior', null);
+INSERT INTO text VALUES ('ERROR_XXX_SOLUTION_1',  'es', 'ERROR', 'Ir a la p&aacute; principal', null);
+INSERT INTO text VALUES ('ERROR_XXX_SOLUTION_1',  'en', 'ERROR', 'Go to the main page', null);
+INSERT INTO text VALUES ('ERROR_XXX_SOLUTION_1',  'eu', 'ERROR', 'Ir a la p&aacute; principal', null);
+INSERT INTO text VALUES ('ERROR_XXX_SOLUTION_2',  'es', 'ERROR', 'Ver v&iacute;deos de gatitos en Youtube', null);
+INSERT INTO text VALUES ('ERROR_XXX_SOLUTION_2',  'en', 'ERROR', 'Watch cute cat videos in Youtube', null);
+INSERT INTO text VALUES ('ERROR_XXX_SOLUTION_2',  'eu', 'ERROR', 'Ver v&iacute;deos de gatitos en Youtube', null);
 
 
 -- TABLE project_type
@@ -345,5 +538,16 @@ INSERT INTO cv_category VALUES (2, 'CV_CATEGORY_EDUCATION', null,               
 INSERT INTO cv_category VALUES (3, 'CV_CATEGORY_PROJECTS', 'CV_CATEGORY_PROJECTS_SUMMARY', 0 , 2);
 INSERT INTO cv_category VALUES (4, 'CV_CATEGORY_OTHER',    'CV_CATEGORY_OTHER_SUMMARY',    1 , 4);
 
+
+-- To be filled before installing
+INSERT INTO text VALUES ('USER_NAME', 'es', 'USER', '', null);
+INSERT INTO text VALUES ('USER_NAME', 'en', 'USER', '', null);
+INSERT INTO text VALUES ('USER_NAME', 'eu', 'USER', '', null);
+INSERT INTO text VALUES ('USER_TAGLINE', 'es', 'USER', '', null);
+INSERT INTO text VALUES ('USER_TAGLINE', 'en', 'USER', '', null);
+INSERT INTO text VALUES ('USER_TAGLINE', 'eu', 'USER', '', null);
+INSERT INTO text VALUES ('USER_BIO', 'es', 'USER', '', null);
+INSERT INTO text VALUES ('USER_BIO', 'en', 'USER', '', null);
+INSERT INTO text VALUES ('USER_BIO', 'eu', 'USER', '', null);
 
 -- ADD MORE ROWS AS YOU SEE FIT:

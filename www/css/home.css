@@ -28,3 +28,59 @@ div#content div#content_row div#content_cell_profile{
 div#content div#content_row div#content_cell_content{
     width: 70%;
 }
+
+/* Profile section */
+div#content_cell_profile img{
+    position: relative;
+    max-width: 8em;
+    max-height: 8em;
+    border-radius: 1.2em;
+    margin: 0.5em;
+    border: 0.1em solid #000000;
+    vertical-align: top;
+    z-index: 2;
+}
+
+div#content_cell_profile span#tagline{
+    display: inline-block;
+    padding-top: 0.5em;
+    margin-left: -1em;
+    padding-left: 1em;
+    padding-right: 0.5em;
+    border-bottom: 0.1em solid #000000;
+    border-bottom-right-radius: 0.3em;
+    z-index: 1;
+}
+
+/* Projects section */
+div#projects_section img.project_list_image{
+    float: left;
+    background-color: #ffffff;
+    border: 0.1em solid #003300;
+    border-radius: 0.3em;
+    margin: 0 0.5em 0.5em 0.5em;
+    max-width: 5em;
+    max-height: 3em;
+}
+
+
+/* Blog section */
+div#blog_section img.post_list_image{
+    float: left;
+    background-color: #ffffff;
+    border: 0.1em solid #003300;
+    border-radius: 0.3em;
+    margin: 0 0.5em 0.5em 0.5em;
+    max-width: 5em;
+    max-height: 3em;
+}
+
+div#blog_section table.post_list_footer{
+    font-size: 80%;
+    width: 100%;
+}
+
+div#blog_section table.post_list_footer td.comment_counter{
+    font-style: italic;
+    text-align: right;
+}

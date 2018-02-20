@@ -62,21 +62,29 @@
      * be displayed inf the page. Several methods are    *
      * used: cookie detection, and browser language      *
      * preferences.                                      *
+     * @params:                                          *
+     *    con (Mysql connection): Connection handler.    *
      * @return: (string): Language code.                 *
      *****************************************************/
-    // TODO: Redo using database
-    function select_language(){
+    function select_language($con){
+
+        // Get available languages from db
+        $available_languages = array();
+        $q_lang = mysqli_query($con, "SELECT code FROM lang WHERE active = 1;");
+        while ($r_lang = mysqli_fetch_array($q_lang)){
+            array_push($available_languages, $r_lang["code"]);
+        }
 
         // Check for language in uri
-        $lang = substr($_SERVER['REQUEST_URI'], 1, 2);
-        if ($lang == "es" || $lang == "en" || $lang == "eu"){
+        $lang = substr($_SERVER["REQUEST_URI"], 1, 2);
+        if (in_array($lang, $available_languages)){
             return $lang;
         }
         else{
             // Language is not in url. Find it out and redirect
             // Is passed on the URL?
             $lang = $_GET["lang"];
-            if ($lang == "es" || $lang == "en" || $lang == "eu"){
+            if (in_array($lang, $available_languages)){
                 header("Location: " . get_protocol() . $_SERVER["HTTP_HOST"] . "/" . $lang . $_SERVER["REQUEST_URI"]);
                 return $lang;
             }
@@ -85,7 +93,7 @@
             header("Cache-control: private");
             if (isSet($_COOKIE["lang"])){
                 $lang = $_COOKIE["lang"];
-                if ($lang == "es" || $lang == "en" || $lang == "eu"){
+                if (in_array($lang, $available_languages)){
                     header("Location: " . get_protocol() . $_SERVER["HTTP_HOST"] . "/" . $lang . $_SERVER["REQUEST_URI"]);
                     return $lang;
                 }
@@ -93,17 +101,16 @@
 
             //If no cookie, select from client browser preferences.
             else{
-                $available_languages = array("en", "eu", "es");
                 $langs = prefered_language($available_languages, $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
                 $lang = $langs[0];
-                if ($lang == "es" || $lang == "en" || $lang == "eu"){
+                if (in_array($lang, $available_languages)){
                     header("Location: " . get_protocol() . $_SERVER["HTTP_HOST"] . "/" . $lang . $_SERVER["REQUEST_URI"]);
                     return $lang;
                 }
             }
 
             // If no method was succesfull, default language
-            $lang = "es";
+            $lang = $available_languages[0];
             header("Location: " . get_protocol() . $_SERVER["HTTP_HOST"] . "/" . $lang . $_SERVER["REQUEST_URI"]);
             return $lang;
         }
@@ -226,6 +233,35 @@
         $str = preg_replace("/[^\da-zA-Z ]/i", "", $str);
         $str = str_replace(" ", "-", $str);
         return $str;
+    }
+
+    /*****************************************************
+     * Generates a "Share" link for a network.           *
+     *                                                   *
+     * @params:                                          *
+     *    con (Mysql connection): Connection handler.    *
+     *    network (int): Social network ID.              *
+     *    server: (string): Server name. Can be empty.   *
+     *    url: (string): URL to be shared.               *
+     *    lang: (string): Language code (two letters).   *
+     * @return: (string): URL-valid string.              *
+     *****************************************************/
+    function share_link($con, $network, $server, $url, $lang){
+        if (strlen($url) == 0){
+            return "";
+        }
+        $out = "<a class='share' target='_blank' ";
+        $q_network = mysqli_query($con, "SELECT url, icon, title, text FROM share WHERE visible = 1 AND id = $network;");
+        if (mysqli_num_rows($q_network) == 0){
+            return "";
+        }
+        else{
+            $r_network = mysqli_fetch_array($q_network);
+            $out = $out . "href='" . $r_network["url"] . htmlspecialchars($url) . "' title='" . text($con, $r_network["text"], $lang) . "'>";
+            $out = $out . "<img class='share' src='" . $server . "/img/social/x1/" . $r_network["icon"] . "' alt='" . text($con, $r_network["text"], $lang) . "' title='" . text($con, $r_network["text"], $lang) . "' />";
+            $out = $out . "</a>";
+            return $out;
+        }
     }
 
 
@@ -407,7 +443,7 @@
         }
 
         //Look for a visit with the same IP in the last 30 mins.
-        $q = mysqli_query($con, "SELECT stat_visit.id AS visitid FROM stat_view, stat_visit WHERE visit = stat_visit.id AND dtime > DATE_SUB(now(), INTERVAL 30 MINUTE) AND ip = '$ip' AND uagent = '$uagent';");
+        $q = mysqli_query($con, "SELECT stat_visit.id AS visitid FROM stat_view, stat_visit WHERE visit = stat_visit.id AND stat_view.dtime > DATE_SUB(now(), INTERVAL 30 MINUTE) AND ip = '$ip' AND uagent = '$uagent';");
         if (mysqli_num_rows($q) == 0){
             mysqli_query($con, "INSERT INTO stat_visit (ip, uagent, os, browser) VALUES ('$ip', '$uagent', '$os', '$browser');");
             $q = mysqli_query($con, "SELECT stat_visit.id AS visitid FROM stat_visit WHERE ip = '$ip' AND uagent = '$uagent' ORDER BY stat_visit.id DESC LIMIT 1;");

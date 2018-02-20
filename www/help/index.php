@@ -1,12 +1,12 @@
 <?php
     session_start();
     $http_host = $_SERVER["HTTP_HOST"];
-    $doc_root = $_SERVER["DOCUMENT_ROOT"]; 
+    $doc_root = $_SERVER["DOCUMENT_ROOT"] . "/";
     include $doc_root . "functions.php";
     $proto = get_protocol();
     $con = start_db();
     $server = $proto . $http_host;
-    $lang = select_language();
+    $lang = select_language($con);
     $lserver = $server . "/" . $lang;
     $cur_section = "";
     $cur_entry = "";
@@ -17,7 +17,7 @@
         <meta content='text/html; charset=utf-8' http-equiv='content-type'/>
         <meta charset='utf-8'/>
         <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1'/>
-        <title>I&ntilde;igo Valentin</title>
+        <title><?=text($con, "USER_NAME", $lang);?></title>
         <link rel='shortcut icon' href='<?=$lserver?>/img/logo/favicon.ico'/>
         <!-- CSS files -->
         <style>
@@ -44,15 +44,15 @@
         <link rel='author' href='<?=$lserver?>'/>
         <link rel='publisher' href='<?=$lserver?>'/>
         <meta name='description' content=''/>
-        <meta property='og:title' content='I&ntilde;igo Valentin'/>
+        <meta property='og:title' content='<?=text($con, "USER_NAME", $lang);?>'/>
         <meta property='og:url' content='<?=$lserver?>'/>
         <meta property='og:description' content=''/>
         <meta property='og:image' content=''/>
-        <meta property='og:site_name' content='I&ntilde;igo Valentin'/>
+        <meta property='og:site_name' content='<?=text($con, "USER_NAME", $lang);?>'/>
         <meta property='og:type' content='website'/>
         <meta property='og:locale' content='<?=$lang?>'/>
         <meta name='twitter:card' content='summary'/>
-        <meta name='twitter:title' content='I&ntilde;igo Valentin'/>
+        <meta name='twitter:title' content='<?=text($con, "USER_NAME", $lang);?>'/>
         <meta name='twitter:description' content=''/>
         <meta name='twitter:image' content=''/>
         <meta name='twitter:url' content='<?=$lserver?>'/>

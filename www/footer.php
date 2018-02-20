@@ -3,7 +3,7 @@
     <table id='footer_table'>
         <tr>
             <td id='footer_left'>
-                <span id='footer_follow' class='desktop'><?=text($con, "FOOTER_FOLLOW", $lang);?></span>
+                <span id='footer_follow' class='desktop'><?=text($con, "FOOTER_FOLLOW", $lang);?><br/></span>
 <?php
                 $q_social = mysqli_query($con, "SELECT title, icon, url FROM social WHERE visible = 1 ORDER BY idx;");
                 while ($r_social = mysqli_fetch_array($q_social)){
@@ -15,7 +15,7 @@
                 }
 ?>
             </td>
-            <td id='footer_center'><?=text($con, "FOOTER_COPY", $lang);?></td>
+            <td id='footer_center'><?=str_replace("#YEAR#", date("Y"), text($con, "FOOTER_COPY", $lang));?></td>
             <td id='footer_right'>
                 <a href='<?=$lserver?>/help/'><?=text($con, "FOOTER_HELP", $lang);?></a>
                 <br/><br/>

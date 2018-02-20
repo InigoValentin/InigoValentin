@@ -1,12 +1,12 @@
 <?php
     session_start();
     $http_host = $_SERVER["HTTP_HOST"];
-    $doc_root = $_SERVER["DOCUMENT_ROOT"];
+    $doc_root = $_SERVER["DOCUMENT_ROOT"] . "/";
     include $doc_root . "functions.php";
     $proto = get_protocol();
     $con = start_db();
     $server = $proto . $http_host;
-    $lang = select_language();
+    $lang = select_language($con);
     $lserver = $server . "/" . $lang;
 
     // Get project data
@@ -30,7 +30,7 @@
     <head>
         <meta content="text/html; charset=utf-8" http-equiv="content-type"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1"/>
-        <title><?=$title?> - I&ntilde;igo Valentin</title>
+        <title><?=$title?> - <?=text($con, "USER_NAME", $lang);?></title>
 <?php
         if (strlen($r_project["logo"]) > 0){
 ?>
@@ -69,11 +69,11 @@
         <link rel="author" href="<?=$lserver?>"/>
         <link rel="publisher" href="<?=$lserver?>"/>
         <meta name="description" content="<?=$summary?>"/>
-        <meta property="og:title" content="<?=$title?> - I&ntilde;igo Valentin"/>
+        <meta property="og:title" content="<?=$title?> - <?=text($con, "USER_NAME", $lang);?>"/>
         <meta property="og:url" content="<?=$lserver?>/project/<?=$r_project["permalink"]?>"/>
         <meta property="og:description" content="<?=$summary?>"/>
 <?php
-        if (strlen($r_project["logo"]) > 0){
+        if (strlen($r_project["logo"]) == 0){
 ?>
             <meta property="og:image" content="<?=$lserver?>/img/logo/x3/favicon.ico"/>
 <?php
@@ -84,14 +84,14 @@
 <?php
         }
 ?>
-        <meta property="og:site_name" content="I&ntilde;igo Valentin"/>
+        <meta property="og:site_name" content="<?=text($con, "USER_NAME", $lang);?>"/>
         <meta property="og:type" content="website"/>
         <meta property="og:locale" content="<?=$lang?>"/>
         <meta name="twitter:card" content="summary"/>
-        <meta name="twitter:title" content="<?=$title?> - I&ntilde;igo Valentin"/>
+        <meta name="twitter:title" content="<?=$title?> - <?=text($con, "USER_NAME", $lang);?>"/>
         <meta name="twitter:description" content="<?=$summary?>"/>
 <?php
-        if (strlen($r_project["logo"]) > 0){
+        if (strlen($r_project["logo"]) == 0){
 ?>
             <meta name="twitter:image" content="<?=$lserver?>/img/logo/x3/favicon.ico"/>
 <?php
@@ -117,8 +117,27 @@
                         <div class='entry'>
                             <h4><?=$summary?></h4>
                             <?=text($con, $r_project["text"], $lang)?>
-                            <!-- TODO: Images -->
 <?php
+                            $q_image = mysqli_query($con, "SELECT * FROM project_image WHERE project = $id ORDER BY idx");
+                            if (mysqli_num_rows($q_image) > 0){
+?>
+                                <div id='image_reel'>
+                                    <table>
+                                        <tr>
+<?php
+                                            while ($r_image = mysqli_fetch_array($q_image)){
+?>
+                                                <td>
+                                                    <img title='<?=$title?>' alt='<?=$title?>' src='<?=$lserver?>/img/project/x4/<?=$r_image["image"]?>'/>
+                                                </td>
+<?php
+                                            } // while ($r_image = mysqli_fetch_array($q_image))
+?>
+                                        </tr>
+                                    </table>
+                                </div> <!-- #image_reel -->
+<?php
+                            } // if (mysqli_num_rows($q_image) > 0)
                             $q_embed = mysqli_query($con, "SELECT * FROM project_url WHERE type = 'E' AND project = $id;");
                             while ($r_embed = mysqli_fetch_array($q_embed)){
 ?>
@@ -132,8 +151,9 @@
                         </div> <!-- .entry -->
                     </div> <!-- #main_column -->
                 </div> <!-- #content_cell_main -->
-                <div class='content_cell'  id='content_cell_right'>
-                    <div class='section section_no_title' id='right_column'>
+                <div class='content_cell'  id='content_cell_info'>
+                    <div class='section' id='right_column'>
+                        <h3 class='section_title'><?=text($con, "PROJECT_DETAILS", $lang);?></h3>
                         <div class='entry'>
 <?php
                             $q_url = mysqli_query($con, "SELECT url, title, summary, logo FROM project_url, project_url_type WHERE project_url_type.id = project_url.type AND project = $id AND type <> 'E';");
@@ -175,7 +195,7 @@
                             </span>
                         </div>
                     </div> <!-- #right_column -->
-                </div> <!-- #content_cell_right -->
+                </div> <!-- #content_cell_info -->
             </div> <!-- #content_row -->
             <div id='cover'>
             </div> <!-- #cover -->
@@ -192,7 +212,6 @@
                     <h4><?=text($con, "PROJECT_LICENSE_LEGAL", $lang)?></h4>
                     <div id='license_legal' class='license_text'><?=text($con, $r_license["legal"], $lang)?></div>
                 </div>
-            
             </div> <!-- #license -->
         </div> <!-- #content -->
 <?php

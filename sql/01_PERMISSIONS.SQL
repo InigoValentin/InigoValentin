@@ -22,6 +22,9 @@
 --GRANT SELECT ON         iv.project_version_type TO 'ivext'@'localhost' IDENTIFIED BY 'XXX';
 --GRANT SELECT, INSERT ON iv.project_comment      TO 'ivext'@'localhost' IDENTIFIED BY 'XXX';
 --GRANT SELECT ON         iv.settings             TO 'ivext'@'localhost' IDENTIFIED BY 'XXX';
+--GRANT SELECT ON         iv.share                TO 'ivext'@'localhost' IDENTIFIED BY 'XXX';
+--GRANT SELECT, INSERT ON iv.stat_view            TO 'ivext'@'localhost' IDENTIFIED BY 'XXX';
+--GRANT SELECT, INSERT ON iv.stat_visit           TO 'ivext'@'localhost' IDENTIFIED BY 'XXX';
 --GRANT SELECT ON         iv.social               TO 'ivext'@'localhost' IDENTIFIED BY 'XXX';
 
 
