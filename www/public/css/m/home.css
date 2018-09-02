@@ -1,0 +1,22 @@
+div#content {
+    display: initial;
+}
+
+div#content div#content_row{
+    display: initial;
+    margin: 0;
+    padding: 0;
+}
+
+div#content div#content_row div.content_cell{
+    display: initial;
+    margin: 0;
+}
+
+div#content div#content_row div#content_cell_profile{
+    width: initial;
+}
+
+div#content div#content_row div#content_cell_content{
+    width: initial;
+}

@@ -1,0 +1,45 @@
+/* Projects page */
+div#project_list{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+div#project_list div.project{
+    position: relative;
+    display: inline-block;
+    height: 7em;
+    width: 27em;
+    margin: 1em;
+    padding: 1em;
+    border: 0.1em solid #000000;
+    border-left: 1.5em solid #000000;
+    text-align: left;
+    transition: all 1s ease-in-out;
+}
+div#project_list div.project:hover{
+    border: 0.1em solid #00ff00;
+    border-left: 1.5em solid #00ff00;
+}
+
+div#project_list div.project table{
+    width: 100%;
+}
+
+div#project_list div.project table img.project_logo{
+    height: 4em;
+    width: 4em;
+    border: 0.1em solid #000000;
+    border-radius: 0.3em;
+}
+
+div#project_list div.project table h4.project_name{
+    margin: 0.1em;
+    text-align: center;
+}
+
+div#project_list div.project table span.project_tagline{
+    font-size: 80%;
+    font-style: italic;
+}

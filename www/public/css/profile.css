@@ -1,0 +1,74 @@
+div#left a.profile_button{
+    display: block;
+    width: 70%;
+    margin: 1em auto 1em auto;
+    border: 0.2em solid #007700;
+    background-color: #aaffaa;
+    font-weight: bold;
+}
+
+div#left a.profile_button img{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+
+div#right div#profile{
+    display: table;
+}
+
+div#right div#profile div.table_row{
+    diplay: table-row;
+}
+
+div#right div#profile div.table_row div.table_cell{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+div#right div#profile img{
+    max-width: 10em;
+    max-height: 10em;
+    border-radius: 1.2em;
+    margin: 1em;
+    border: 0.3em solid #000000;
+}
+
+div#right div.cv_entry{
+    margin: 0.5em;
+}
+
+div#right div.cv_entry h4.cv_entry_title{
+    padding-left: 1em;
+    font-weight: bold;
+    font-size: 130%;
+    border-bottom: 0.1em solid #00330077;
+    margin-bottom: 0em;
+    border-bottom-left-radius: 0.5em;
+}
+
+div#right div.role{
+    margin: 0em 1em 0 1em;
+    border-left: 0.1em solid #00330077;
+}
+
+div#right div.role h4{
+    border-bottom: 0.1em solid #00330077;
+    font-weight: bold;
+    font-size: 130%;
+    margin-left: 0;
+    margin-bottom: 0.2em;
+    padding: 0 1em 0 0.4em;
+    display: inline-block;
+}
+
+div#right div.role h5{
+    font-style: italic;
+    margin: 0.5em 1em 0.5em 1em;
+}
+
+div#right div.role p{
+    margin: 0.5em 2em 0 2em;
+    padding-bottom: 1em;
+}

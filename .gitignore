@@ -1,6 +1,8 @@
-#Kate files
+#IDE files
 .kateproject.d/
 .kateproject
+.project
+.settings
 
 #OS files
 .directory
@@ -10,6 +12,7 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+*.swp
 
 #Utility folders
 3rdparty/
@@ -21,14 +24,16 @@ remoteadmin
 www-admin/redirect_s.php
 
 #SQL data
-sql/CUSTOM_ROWS.SQL
-sql/DEBUG_ROWS.SQL
+sql/XX*
 
 #Passwords file
-www/.htpasswd
+.htpasswd*
+auth.php_*
 www-admin/.htpasswd
 www/.htaccess_local
-www-admin/.htaccess_local
+
+# Test environments-related files
+.ht*_*
 
 #3rd party software
 www-admin/script/ckeditor

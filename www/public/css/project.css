@@ -1,0 +1,77 @@
+div#info{
+    display: inline-block;
+    width: 60%;
+    vertical-align: top;
+}
+
+div#info h4#summary{
+    margin: 2em;
+    font-style: italic;
+}
+
+div#info p#text{
+    margin: 2em;
+}
+
+div#info p#text img#logo{
+    width: 6em;
+    height: 6em;
+    border: 0.1em solid #000000;
+    float: left;
+    margin: 0.5em 1.5em 1.5em 0.5em;
+    border-radius: 0.5em;
+}
+
+div#info div#image_reel{
+    margin: 2em auto 1em auto;
+    width: 80%;
+    overflow-x: scroll;
+    border: 0.1em solid #000000;
+    background-color: #aaaaaa;
+    text-align: center;
+}
+
+div#info div#image_reel table tr td img{
+    max-height: 7em;
+    max-width: 7em;
+    border: 0.2em solid #777777;
+    border-radius: 0.2em;
+    background-color: #ffffff;
+    margin: 0.5em;
+}
+
+div#details{
+    display: inline-block;
+    width: 30%;
+    vertical-align: top;
+}
+
+div#details div.details{
+    margin: 0.5em 1.5em 0.5em 1.5em;
+}
+
+div#details div.details hr.details_separator{
+    margin: 1em -0.5em 0.5em -0.5em;
+}
+
+div#details div#tags a.tag{
+    font-style: italic;
+    font-size: 90%;
+}
+
+div#details div#links a.link{
+    display: block;
+    margin-bottom: 1em;
+}
+
+div#details div#links a.link img.link{
+    vertical-align: middle;
+    width: 1.5em;
+    height: 1.5em;
+}
+
+div#details div#license img{
+    max-width: 8em;
+    max-height: 2em;
+    vertical-align: bottom;
+}
