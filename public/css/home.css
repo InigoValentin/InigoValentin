@@ -1,0 +1,30 @@
+/* Profile section. */
+div#left{
+    display: inline-block;
+    vertical-align: top;
+    width: 46%;
+    margin: 0;
+    padding: 1em;
+}
+
+article#profile img#profile_image{
+    display: inline-block;
+    vertical-align: middle;
+    width: 200px;
+    height: 200px;
+    border: 0.2em solid #446644;
+    border-radius: 1em 5em;
+}
+article#profile div#profile_content{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Projects section. */
+div#right{
+    display: inline-block;
+    vertical-align: top;
+    width: 46%;
+    margin: 0;
+    padding: 1em;
+}

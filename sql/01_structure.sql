@@ -21,42 +21,6 @@ CREATE TABLE text (
 );
 CREATE INDEX i_text ON text(id, lang);
 
-CREATE TABLE user (
-    id        INT            AUTO_INCREMENT  PRIMARY KEY,
-    username  VARCHAR(64)    NOT NULL,
-    email     VARCHAR(128)   NOT NULL,
-    password  CHAR(128)      NOT NULL,
-    salt      CHAR(128)      NOT NULL,
-    fname     VARCHAR(64),
-    lname     VARCHAR(64),
-    picture   VARCHAR(100),
-    phone     VARCHAR(16),
-    cp        VARCHAR(6),
-    admin     BOOLEAN        NOT NULL        DEFAULT 0,
-    active    BOOLEAN        NOT NULL        DEFAULT 0
-);
-
-CREATE TABLE login_attempts (
-    user     INT          NOT NULL  REFERENCES user.id,
-    dtime    VARCHAR(30)  NOT NULL,
-    success  BOOLEAN      NOT NULL  DEFAULT 0
-);
-
-CREATE TABLE permissions(
-    user        INT          REFERENCES user.id,
-    permission  VARCHAR(32)  NOT NULL,
-    PRIMARY KEY(user, permission)
-);
-
-CREATE TABLE social(
-    id       INT           AUTO_INCREMENT  PRIMARY KEY,
-    idx      INT           NOT NULL        UNIQUE,
-    visible  BOOLEAN       NOT NULL        DEFAULT 1,
-    title    VARCHAR(32)   NOT NULL        UNIQUE       REFERENCES text.id,
-    icon     VARCHAR(16)   NOT NULL,
-    url      VARCHAR(256)  NOT NULL
-);
-
 CREATE TABLE share(
     id       INT           AUTO_INCREMENT      PRIMARY KEY,
     idx      INT           NOT NULL            UNIQUE,
@@ -95,25 +59,6 @@ CREATE TABLE project (
     comments   BOOLEAN       NOT NULL               DEFAULT 1
 );
 
-CREATE TABLE project_version_type (
-    id       VARCHAR(1)   NOT NULL  PRIMARY KEY,
-    title    VARCHAR(32)  NOT NULL  REFERENCES text.id,
-    summary  VARCHAR(32)  NOT NULL  REFERENCES text.id,
-    color    VARCHAR(7)
-);
-
-CREATE TABLE project_version (
-    project       INT          NOT NULL,
-    version_code  INT          NOT NULL,
-    version_name  VARCHAR(16)  NOT NULL,
-    type          VARCHAR(1)   NOT NULL            REFERENCES project_version_type.id,
-    summary       VARCHAR(32)  NOT NULL            REFERENCES text.id,
-    changelog     VARCHAR(32)  REFERENCES text.id,
-    dtime         DATETIME     NOT NULL            DEFAULT now(),
-    visible       BOOLEAN      NOT NULL            DEFAULT 1,
-    PRIMARY KEY (project, version_code)
-);
-
 CREATE TABLE project_url_type (
     id       VARCHAR(1)   NOT NULL            PRIMARY KEY,
     title    VARCHAR(32)  REFERENCES text.id,
@@ -144,7 +89,6 @@ CREATE TABLE project_tag (
 CREATE TABLE project_comment (
     id        INT            AUTO_INCREMENT            PRIMARY KEY,
     project   INT            NOT NULL                  REFERENCES project(id),
-    version   INT            NOT NULL                  REFERENCES project_version(version_code),
     text      VARCHAR(5000)  NOT NULL,
     dtime     TIMESTAMP      NOT NULL                  DEFAULT now(),
     user      INT            REFERENCES user.id,
@@ -154,7 +98,7 @@ CREATE TABLE project_comment (
     visit     INT            REFERENCES stat_visit.id
 );
 
-CREATE TABLE cv_category (
+CREATE TABLE cv_section (
     id        INT          AUTO_INCREMENT      PRIMARY KEY,
     title     VARCHAR(32)  REFERENCES text.id,
     summary   VARCHAR(32)  REFERENCES text.id,
@@ -178,8 +122,7 @@ CREATE TABLE cv (
 CREATE TABLE settings (
     name     VARCHAR(64)  PRIMARY KEY,
     value    VARCHAR(64)  NOT NULL,
-    user     INT          REFERENCES user.id,
-    changed  TIMESTAMP    NOT NULL            DEFAULT now()
+    changed  TIMESTAMP    NOT NULL DEFAULT now()
 );
 
 CREATE TABLE stat_visit (
@@ -199,5 +142,4 @@ CREATE TABLE stat_view (
     dtime    TIMESTAMP     NOT NULL  DEFAULT now()
 );
 CREATE INDEX i_visit ON stat_view(visit, dtime);
-
 
