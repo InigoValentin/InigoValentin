@@ -91,29 +91,29 @@ div#cover{
 }
 
 
-div#header{
+header{
     background-color: #000000;
     width: 100%;
     text-align: center;
 }
 
-div#header div#logo{
+header div#logo{
 	color: #ffffff;
     font-size: 4em;
     font-family: 'Latin';
 }
 
-div#header nav a{
+header nav a{
 	font-size: 1.5em;
     margin: 0.5em;
     color: #ffffff;
     text-decoration: none;
     position: relative;
 }
-div#header nav a:hover{
+header nav a:hover{
 	color: #ffffff;
 }
-div#header nav a:before {
+header nav a:before {
 	content: " ";
 	position: absolute;
 	width: 100%;
@@ -125,17 +125,17 @@ div#header nav a:before {
 	transform: scaleX(0);
 	transition: all 0.3s ease-in-out 0s;
 }
-div#header nav a:hover:before {
+header nav a:hover:before {
   	visibility: visible;
   	transform: scaleX(1);
 }
-div#header nav a img{
+header nav a img{
 	height: 1.5em;
     vertical-align: bottom;
 }
 
 /* The actual footer */
-div#footer{
+footer{
     background-color: #000000;
     font-size: 80%;
     text-align: center;
@@ -151,20 +151,20 @@ div#footer{
 }
 
 /* A table containing all the elements in the footer */
-div#footer table#footer_table{
+footer table#footer_table{
     margin-left: auto;
     margin-right: auto;
     width: 80%;
     table-layout: fixed;
 }
 @media screen and (max-width : 990px){
-    div#footer table#footer_table{
+    footer table#footer_table{
         width: 95%;
     }
 }
 
 /* An horizontal line separating the page contents from the footer. */
-div#footer table#footer_table hr#footer_separator{
+footer table#footer_table hr#footer_separator{
     border: 0;
     background-color: #444444;
     height: 0.1em;
@@ -172,19 +172,19 @@ div#footer table#footer_table hr#footer_separator{
 }
 
 /* Left area of the footer. */
-div#footer table#footer_table td#footer_left{
+footer table#footer_table td#footer_left{
     width: 33%;
     text-align: center;
 }
 
 /* Social label. */
-div#footer table#footer_table td#footer_left span#footer_follow{
+footer table#footer_table td#footer_left span#footer_follow{
     display: block;
     margin: 0 0 1em 0;
 }
 
 /* Icons for social media */
-div#footer table#footer_table td#footer_left img.footer_social_icon{
+footer table#footer_table td#footer_left img.footer_social_icon{
     width: 2em;
     margin: 0.2em;
     vertical-align: middle;
@@ -194,25 +194,25 @@ div#footer table#footer_table td#footer_left img.footer_social_icon{
 }
 
 /* Middle area of the footer */
-div#footer table#footer_table td#footer_center{
+footer table#footer_table td#footer_center{
     width: 33%;
     text-align: center;
 }
 
 /* Right area of the footer */
-div#footer table#footer_table td#footer_right{
+footer table#footer_table td#footer_right{
     width: 33%;
     text-align: center;
 }
 
 /* Help link. */
-div#footer table#footer_table td#footer_right span#footer_help{
+footer table#footer_table td#footer_right span#footer_help{
     display: block;
     margin: 0 0 1em 0;
 }
 
 /* Language flags. */
-div#footer table#footer_table td#footer_right a.lang img{
+footer table#footer_table td#footer_right a.lang img{
     height: 1em;
     margin: 0.5em;
     border-radius: 0.2em;
@@ -221,11 +221,11 @@ div#footer table#footer_table td#footer_right a.lang img{
     box-shadow: 0 0 0.7em #dde;
     transition: all .3s ease-in-out;
 }
-div#footer table#footer_table td#footer_right a.lang img:hover{
+footer table#footer_table td#footer_right a.lang img:hover{
     box-shadow: 0 0 1em #111;
 }
 @media screen and (max-width : 990px){
-    div#footer table#footer_table td#footer_right a.lang img{
+    footer table#footer_table td#footer_right a.lang img{
         height: 1.5em;
         margin: 0.2em;
         border-radius: 0.1em;
@@ -235,26 +235,25 @@ div#footer table#footer_table td#footer_right a.lang img:hover{
 }
 
 
-/* The content is everything between the header and the footer */
-div#content{
+main{
     background-color: #000000;
     width: 100%;
 }
 
-div.section{
+section{
     margin: 0.5em;
     padding: 1em;
-    background-color: #ffffff;
+    background-color: #f0f0f0;
     border: 0.2em solid #666666;
     overflow: hidden;
 }
 @media screen and (max-width : 990px){
-    div.section{
+    section{
         margin: 1em;
     }
 }
 
-div.section h3.section_title{
+section h3{
 	font-weight: bold;
 	color: #ffffff;
 	background-color: #000000;
@@ -264,11 +263,11 @@ div.section h3.section_title{
 	margin: -1em -1em 1em -1em;
 }
 
-div.section h3.section_title:before {
+section h3:before {
 	content: " /";
 
 /* .entry is a style only class to show content. Must be allways children os a .lighted element */
-div.section div.entry{
+section article{
     border: 0.1em solid #aaffaa00;
     border-radius: 0.3em;
     padding: 0.5em;
@@ -276,7 +275,7 @@ div.section div.entry{
     transition: all .4s ease-in-out;
 }
 
-div.section div.entry_list:hover{
+section section_list:hover{
     background-color: #efffef;
     border: 0.1em solid #aaffaaff;
 }

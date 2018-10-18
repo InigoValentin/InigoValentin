@@ -2,7 +2,7 @@
 -- Uncomment all entries.
 
 --GRANT SELECT ON         web.cv_category          TO 'webext'@'localhost' IDENTIFIED BY 'XXX';
---GRANT SELECT ON         web.cv_entry             TO 'webext'@'localhost' IDENTIFIED BY 'XXX';
+--GRANT SELECT ON         web.cv                   TO 'webext'@'localhost' IDENTIFIED BY 'XXX';
 --GRANT SELECT ON         web.lang                 TO 'webext'@'localhost' IDENTIFIED BY 'XXX';
 --GRANT SELECT ON         web.license              TO 'webext'@'localhost' IDENTIFIED BY 'XXX';
 --GRANT SELECT ON         web.text                 TO 'webext'@'localhost' IDENTIFIED BY 'XXX';

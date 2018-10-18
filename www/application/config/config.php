@@ -1,15 +1,11 @@
 <?php
 
     include __DIR__ . "/auth.php";
+    require_once(__DIR__ . "/../helper/net.php");
 
-    if (isset($_SERVER["HTTPS"]) && ($_SERVER["HTTPS"] == "on" || $_SERVER["HTTPS"] == 1) || isset($_SERVER["HTTP_X_FORWARDED_PROTO"]) && $_SERVER["HTTP_X_FORWARDED_PROTO"] == "https") {
-        $root = "https://" . $_SERVER["HTTP_HOST"] . "/";
-    }
-    else {
-        $root = "http://" . $_SERVER["HTTP_HOST"] . "/";
-    }
+    $root = get_protocol() . $_SERVER["HTTP_HOST"] . "/";
 
-    $base_dir = $_SERVER["DOCUMENT_ROOT"];
+    $base_dir = $_SERVER["DOCUMENT_ROOT"] . "/";
 
     $path = [
         "img" => [
@@ -18,14 +14,15 @@
         ],
         "fonts" => $root . "fonts/",
         "css" => $root . "css/",
+        "demo" => $root . "demo/",
         "js" => $root . "js/",
         "application" => "$base_dir../application/",
-        "classes" => "$base_dir../application/class/",
-        "controller" => "$base_dir../application/class/controller/Controller.php",
-        "model" => "$base_dir../application/class/model/",
-        "view" => "$base_dir../application/class/view/",
+        "controller" => "$base_dir../application/Controller.php",
+        "entity" => "$base_dir../application/entity/",
+        "page" => "$base_dir../application/page/",
+        "view" => "$base_dir../application/view/",
         "helper" => "$base_dir../application/helper/",
-        "string" => "$base_dir../application/class/view/string/"
+        "string" => "$base_dir../application/view/string/"
     ];
 
 ?>

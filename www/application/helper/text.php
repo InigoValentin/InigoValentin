@@ -2,7 +2,7 @@
 
 
     /**
-     * This function selects the language the page will be displayed on.
+     * Selects the language the page will be displayed on.
      * 
      * First, it tries to read the language cookie in the client. If none is
      * set, get the browser language preference list. If none is provided or
@@ -45,9 +45,9 @@
 
 
     /**
-     * This function parses the language prefrences of the client broser,
-     * comparing them to the languages offered by the site and selects the
-     * prefered one among the ones supported.
+     * Parses the language prefrences of the client broser, comparing them to
+     * the languages offered by the site and selects the prefered one among
+     * the ones supported.
      * 
      * @param string[] available_languages List of lowercase, two-letter
      *                                      language codes allowed by the site.
@@ -83,8 +83,8 @@
 
 
     /**
-     * This function turns a date string into a human readable string on the
-     * specified language. Only works for spanish, basque and english.
+     * Tturns a date string into a human readable string on the specified
+     * language. Only works for spanish, basque and english.
      * 
      * @param string $str_date Date string ('yyyy-mm-dd' or 'yyyy-mm-dd HH:MM:SS')
      * @param string $lang Language code (es, en, eu).
@@ -145,6 +145,7 @@
      */
     function text($model, $id){
         global $path;
+error_log("SELECT text, file FROM text WHERE id = '$id' AND lang = '" . $model->lang . "';");
         $q = mysqli_query($model->db, "SELECT text, file FROM text WHERE id = '$id' AND lang = '" . $model->lang . "';");
         $r = mysqli_fetch_array($q);
         if (strlen($r["file"]) > 0){

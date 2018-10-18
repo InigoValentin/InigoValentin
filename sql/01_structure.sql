@@ -162,7 +162,7 @@ CREATE TABLE cv_category (
     priority  INT          NOT NULL            UNIQUE
 );
 
-CREATE TABLE cv_entry (
+CREATE TABLE cv (
     id               INT          AUTO_INCREMENT  PRIMARY KEY,
     category         INT          NOT NULL        REFERENCES cv_category.id,
     role             VARCHAR(32)  NOT NULL        REFERENCES text.id,

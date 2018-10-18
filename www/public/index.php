@@ -8,6 +8,8 @@
     $params = explode('/', $request);
     // Here you should probably gather the rest as params
 
+error_log($path["controller"]);
+
     // Call the action
     $controller = new Controller($params);
 ?>
