@@ -25,7 +25,6 @@
         if (isSet($_COOKIE["lang"])){
             $lang = $_COOKIE["lang"];
             if (in_array($lang, $available_languages)){
-                header("Location: " . get_protocol() . $_SERVER["HTTP_HOST"] . "/" . $lang . $_SERVER["REQUEST_URI"]);
                 return $lang;
             }
         }
@@ -33,13 +32,11 @@
         // If no cookie, select from client browser preferences.
         $lang = prefered_language($available_languages, $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
         if (in_array($lang, $available_languages)){
-            header("Location: " . get_protocol() . $_SERVER["HTTP_HOST"] . "/" . $lang . $_SERVER["REQUEST_URI"]);
             return $lang;
         }
 
         // If no method was succesfull, default language
         $lang = $available_languages[0];
-        header("Location: " . get_protocol() . $_SERVER["HTTP_HOST"] . "/" . $lang . $_SERVER["REQUEST_URI"]);
         return $lang;
     }
 
@@ -77,8 +74,14 @@
             }
 
         }
-        arsort($langs);
-        return $langs[0];
+        if (count($langs) > 0){
+            arsort($langs);
+            //return $langs[0];
+            array_values($langs)[0];
+        }
+        else{
+            return 'en';
+        }
     }
 
 
@@ -145,7 +148,6 @@
      */
     function text($model, $id){
         global $path;
-error_log("SELECT text, file FROM text WHERE id = '$id' AND lang = '" . $model->lang . "';");
         $q = mysqli_query($model->db, "SELECT text, file FROM text WHERE id = '$id' AND lang = '" . $model->lang . "';");
         $r = mysqli_fetch_array($q);
         if (strlen($r["file"]) > 0){
@@ -219,12 +221,12 @@ error_log("SELECT text, file FROM text WHERE id = '$id' AND lang = '" . $model->
      * @return string srcset atttribute content.
      */
     function srcset($file){
-        global $path;
+        global $static;
         $srcset = "";
         $dir = dirname($file);
         $name = basename($file);
         foreach (range(1, 9) as $d) {
-            $srcset = $srcset . $path["img"]["content"] . $dir . "/x" . $d . "00/" . $name . " " . $d . "00px, ";
+            $srcset = $srcset . $static["content"] . $dir . "/x" . $d . "00/" . $name . " " . $d . "00px, ";
         }
         $srcset = rtrim($srcset, ", ");
         return $srcset;

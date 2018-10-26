@@ -1,32 +1,111 @@
-div#info{
+section{
+	text-align: center;
+}
+section h3{
+	text-align: left;
+}
+div#info_summary{
     display: inline-block;
-    width: 60%;
+    width: 65%;
+    margin: 0;
     vertical-align: top;
+    padding: 1em 3em;
+    min-height: 13em;
+    text-align: left;
+}
+@media screen and (max-width : 800px){
+	div#info_summary{
+	    display: block;
+	    width: 95%;
+	    margin: 1em auto;
+	    padding: 1em 2em;
+	}
 }
 
-div#info h4#summary{
-    margin: 2em;
+div#info_summary h4{
+    margin: 1em 2em 0 2em;
     font-style: italic;
 }
 
-div#info p#text{
+div#info_summary p#text{
     margin: 2em;
 }
 
-div#info p#text img#logo{
-    width: 6em;
-    height: 6em;
-    border: 0.1em solid #000000;
+div#info_summary p#text img#logo{
+    padding: 0.5em;
+    width: 7em;
+    height: 7em;
+    background-color: #cccccc;
+    border: 0.1em solid #60ae29;
+    box-shadow: inset 0 0 0.5em #00220077;
+    border-radius: 1em;
     float: left;
-    margin: 0.5em 1.5em 1.5em 0.5em;
+    margin: 0 2em 1em 0;
+}
+
+div#info_details{
+    display: inline-block;
+    width: 22%;
+    vertical-align: top;
+    margin: 0;
+    border-left: 0.1em solid #aacaaa;
+    border-right: 0.1em solid #aacaaa;
+    background: linear-gradient(to bottom, #e5f0e500 0%, #e5f0e5ff 20%, #e5f0e5ff 80%, #e5f0e500 100%);
+    padding: 1em;
+    text-align: left;
+}
+@media screen and (max-width : 800px){
+	div#info_details{
+		text-align: center;
+	    display: block;
+	    width: 90%;
+	    margin: 1em auto;
+	    border-top: 0.1em solid #aacaaa;
+	    border-bottom: 0.1em solid #aacaaa;
+	    border-left: 0;
+	    border-right: 0;
+	    background: linear-gradient(to right, #e5f0e500 0%, #e5f0e5ff 20%, #e5f0e5ff 80%, #e5f0e500 100%);
+	    padding: 1em;
+	}
+}
+div#info_details div.details{
+    margin: 0.5em 1.5em 0.5em 1.5em;
+}
+
+div#info_details div.details hr.details_separator{
+    margin: 1em -0.5em 0.5em -0.5em;
+}
+
+div#info_details div#tags{
+    font-style: italic;
+    font-size: 90%;
+}
+
+div#info_details div#links a.link{
+    display: block;
+    margin-bottom: 1em;
+    font-size: 70%;
+}
+
+div#info_details div#links a.link img.link{
+    vertical-align: middle;
+    width: 1.5em;
+    height: 1.5em;
+}
+
+div#info_details div#license img{
+    max-width: 8em;
+    max-height: 2em;
+    vertical-align: bottom;
+}
+
+iframe#demo{
+    margin: auto;
+    border: 0.2emsolid #000000;
     border-radius: 0.5em;
 }
 
-div#info iframe#demo{
-    margin: auto;
-}
-
-div#info div#image_reel{
+div#image_reel{
     margin: 2em auto 1em auto;
     width: 80%;
     overflow-x: scroll;
@@ -35,47 +114,11 @@ div#info div#image_reel{
     text-align: center;
 }
 
-div#info div#image_reel table tr td img{
+div#image_reel table tr td img{
     max-height: 7em;
     max-width: 7em;
     border: 0.2em solid #777777;
     border-radius: 0.2em;
     background-color: #ffffff;
     margin: 0.5em;
-}
-
-div#details{
-    display: inline-block;
-    width: 30%;
-    vertical-align: top;
-}
-
-div#details div.details{
-    margin: 0.5em 1.5em 0.5em 1.5em;
-}
-
-div#details div.details hr.details_separator{
-    margin: 1em -0.5em 0.5em -0.5em;
-}
-
-div#details div#tags a.tag{
-    font-style: italic;
-    font-size: 90%;
-}
-
-div#details div#links a.link{
-    display: block;
-    margin-bottom: 1em;
-}
-
-div#details div#links a.link img.link{
-    vertical-align: middle;
-    width: 1.5em;
-    height: 1.5em;
-}
-
-div#details div#license img{
-    max-width: 8em;
-    max-height: 2em;
-    vertical-align: bottom;
 }

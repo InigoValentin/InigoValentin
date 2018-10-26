@@ -3,8 +3,9 @@
  *
  * @param obj The iframe.
  */
-function resizeDemo(obj) {
-    obj.style.height = (obj.contentWindow.document.body.scrollHeight + 20) + 'px';
+function resizeDemo() {
+	var obj = document.getElementById('demo');
+    obj.style.height = (obj.contentWindow.document.body.scrollHeight + 50) + 'px';
     obj.style.width = (obj.contentWindow.document.body.scrollWidth + 20) + 'px';
 }
 

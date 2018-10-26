@@ -7,10 +7,10 @@
         <title><?=$page->title?></title>
         <link rel='shortcut icon' href='<?=$page->favicon?>'/>
         <!-- CSS files -->
-        <link rel='stylesheet' type='text/css' href='<?=$path["css"]?>ui.css'/>
-        <link rel='stylesheet' type='text/css' href='<?=$path["css"]?>profile.css'/>
+        <link rel='stylesheet' type='text/css' href='<?=$static["css"]?>ui.css'/>
+        <link rel='stylesheet' type='text/css' href='<?=$static["css"]?>profile.css'/>
         <!-- Script files -->
-        <script type="text/javascript" src="<?=$path["js"]?>ui.js"></script>
+        <script type="text/javascript" src="<?=$static["js"]?>ui.js"></script>
         <!-- Meta tags -->
         <link rel='canonical' href='<?=$page->canonical?>'/>
         <link rel='author' href='<?=$page->author?>'/>
@@ -32,32 +32,61 @@
     </head>
     <body>
 <?php
-        include __DIR__ . "/inc/header.php";
+        include $path["inc"] . "header.php";
 ?>
         <main>
-            <section>
-                <div id='left'>
-                    <div id='logo'>
-                        <img id='profile' src='<?=$path["img"]["content"]?>profile/x6/0.png' alt='<?=text($page, "USER_NAME");?>' title='<?=text($page, "USER_NAME");?>' />
-                    </div>
-                    <!-- TODO: Skills -->
-                </div> <!-- #left -->
-                <div id='right'>
+            <section id='info'>
+                <h3>
+                    <?=text($page, "USER_NAME");?>
+                </h3>
+                <img id='profile_image' srcset='<?=srcset("profile/profile.png")?>' src='<?=$static["content"]?>profile/x400/profile.png' alt='<?=text($page, "USER_NAME");?>' title='<?=text($page, "USER_NAME");?>' />
+                <div id='social'>
+                    <a target='_blank' title='eMail' href='mailto:i@inigovalentin.com'>
+                        <img class='footer_social_icon' src='<?=$static["layout"]?>social/email.svg' alt='eMail' title='eMail'/>
+                    </a>
+                    <a target='_blank' title='Telegram' href='https://telegram.me/InigoValentin'>
+                        <img class='footer_social_icon' src='<?=$static["layout"]?>social/telegram.svg' alt='Telegram' title='Telegram'/>
+                    </a>
+                    <a target='_blank' title='Github' href='https://github.com/InigoValentin'>
+                        <img class='footer_social_icon' src='<?=$static["layout"]?>social/github.svg' alt='Github' title='Github'/>
+                    </a>
+                    <a target='_blank' title='LinkedIn' href='https://www.linkedin.com/in/ivalentin'>
+                        <img class='footer_social_icon' src='<?=$static["layout"]?>social/linkedin.svg' alt='LinkedIn' title='LinkedIn'/>
+                    </a>
+                </div>
+            </section>
+            <section id='about'>
+                <h3>
+                    <?=text($page, "PROFILE_DESCRIPTION");?>
+                </h3>
+                <p>
+                    <?=text($page, "USER_TEXT");?>
+                </p>
+                <div id='cv_download'>
+                    <a class='a_button' target='_blank' href='<?=$static["cv"] . $page->cv[0]->file?>'>
+                        <?=text($page, "PROFILE_CV");?>
+                    </a>
+                    <details>
+                        <summary class='pointer'><?=text($page, "PROFILE_CV_LANG");?></summary>
+                        <ul>
 <?php
-                    foreach($page->entry["WORK"] as $entry){
-                        // TODO: Something if its the current one.
+                            for ($i = 1; $i < count($page->cv); $i ++) {
 ?>
-                        <div class='entry'>
-                            <h4><?=$entry->role?> - <?=$entry->company?></h4>
-                        </div>
+                                <li>
+                                    <a target='_blank' href='<?=$static["cv"] . $page->cv[$i]->file?>'>
+                                        <?=$page->cv[$i]->lang->name?>
+                                    </a>
+                                </li>
 <?php
-                    }
+                            }
 ?>
-                </div> <!-- #right -->
+                        </ul>
+                    </details>
+                </div>
             </section>
         </main>
 <?php
-        include __DIR__ . "/inc/footer.php";
+        include $path["inc"] . "footer.php";
 ?>
     </body>
 </html>

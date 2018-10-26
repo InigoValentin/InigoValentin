@@ -7,10 +7,10 @@
         <title><?=$page->title?></title>
         <link rel='shortcut icon' href='<?=$page->favicon?>'/>
         <!-- CSS files -->
-        <link rel='stylesheet' type='text/css' href='<?=$path["css"]?>ui.css'/>
-        <link rel='stylesheet' type='text/css' href='<?=$path["css"]?>projects.css'/>
+        <link rel='stylesheet' type='text/css' href='<?=$static["css"]?>ui.css'/>
+        <link rel='stylesheet' type='text/css' href='<?=$static["css"]?>projects.css'/>
         <!-- Script files -->
-        <script type="text/javascript" src="<?=$path["js"]?>ui.js"></script>
+        <script type="text/javascript" src="<?=$static["js"]?>ui.js"></script>
         <!-- Meta tags -->
         <link rel='canonical' href='<?=$page->canonical?>'/>
         <link rel='author' href='<?=$page->author?>'/>
@@ -32,49 +32,46 @@
     </head>
     <body>
 <?php
-        include __DIR__ . "/inc/header.php";
+        include $path["inc"] . "header.php";
 ?>
         <main>
             <section>
                 <h3><?=$page->title?></h3>
-                <!-- TODO: Search and sorting -->
-                <div id='project_list'>
 <?php
                     foreach ($page->project as $project){
 ?>
-                        <article class='project'>
-                            <table>
-                                <tr>
+                    <article class='project'>
+                        <table>
+                            <tr>
 <?php
                                     if (strlen($project->logo) > 0){
 ?>
-                                        <td>
-                                            <a href='<?=$root?>project/<?=$project->permalink?>'>
-                                                <img class='project_logo' alt='<?=$project->title?>' title='<?=$project->title?>' src='<?=$path["img"]["content"]?>project/<?=$project->logo?>'/>
-                                            </a>
-                                        </td>
+                                    <td>
+                                        <a href='<?=$base_url?>/project/<?=$project->permalink?>'>
+                                            <img class='project_image' alt='<?=$project->title?>' title='<?=$project->title?>' src='<?=$static["content"]?>project/<?=$project->logo?>' srcset='<?=srcset("project/" . $project->logo)?>'/>
+                                        </a>
+                                    </td>
 <?php
                                     }
 ?>
-                                    <td>
-                                        <a href='<?=$root?>project/<?=$project->permalink?>'>
-                                            <h4 class='project_name'><?=$project->title?></h4>
-                                        </a>
-                                        <span>
-                                            <?=$project->header?>
-                                        </span>
-                                    </td>
-                                </tr>
-                            </table>
-                        </article> <!-- .project -->
+                                <td class='project_details'>
+                                    <a href='<?=$base_url?>/project/<?=$project->permalink?>'>
+                                        <h4 class='project_name'><?=$project->title?></h4>
+                                    </a>
+                                    <span>
+                                        <?=$project->header?>
+                                    </span>
+                                </td>
+                            </tr>
+                        </table>
+                    </article> <!-- .project -->
 <?php
                     }
 ?>
-                </div> <!-- #project_list -->
             </section>
         </main>
 <?php
-        include __DIR__ . "/inc/footer.php";
+        include $path["inc"] . "footer.php";
 ?>
     </body>
 </html>

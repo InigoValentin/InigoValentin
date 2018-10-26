@@ -12,7 +12,7 @@
 .desktop{
     display: initial;
 }
-@media screen and (max-width : 990px){
+@media screen and (max-width : 800px){
     .desktop{
         display: none;
     }
@@ -22,7 +22,7 @@
 .mobile{
     display: none;
 }
-@media screen and (max-width : 990px){
+@media screen and (max-width : 800px){
     .mobile{
         display: initial !important;
     }
@@ -38,6 +38,15 @@ body{
     padding: 0;
     margin: 0;
     background-color: #000000;
+    font-size: 90%;
+    min-height: 100vh;
+	flex-direction: column;
+	display: flex;
+}
+@media screen and (max-width : 800px){
+	body{
+	    font-size: 100%;
+	}
 }
 
 /* Style for all links. */
@@ -98,41 +107,65 @@ header{
 }
 
 header div#logo{
-	color: #ffffff;
+    color: #ffffff;
     font-size: 4em;
     font-family: 'Latin';
 }
-
+header nav{
+	width: 100%;
+}
 header nav a{
-	font-size: 1.5em;
+    font-size: 1.5em;
     margin: 0.5em;
     color: #ffffff;
     text-decoration: none;
     position: relative;
 }
 header nav a:hover{
-	color: #ffffff;
+    color: #ffffff;
 }
 header nav a:before {
-	content: " ";
-	position: absolute;
-	width: 100%;
-	height: 0.1em;
-	bottom: -0.1em;
-	left: 0;
-	background-color: #ffffff;
-	visibility: hidden;
-	transform: scaleX(0);
-	transition: all 0.3s ease-in-out 0s;
+    content: " ";
+    position: absolute;
+    width: 100%;
+    height: 0.1em;
+    bottom: -0.1em;
+    left: 0;
+    background-color: #ffffff;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out 0s;
 }
 header nav a:hover:before {
-  	visibility: visible;
-  	transform: scaleX(1);
+    visibility: visible;
+    transform: scaleX(1);
 }
 header nav a img{
-	height: 1.5em;
+    height: 1.5em;
     vertical-align: bottom;
 }
+@media screen and (max-width : 800px){
+    header nav{
+        overflow: hidden;
+        white-space: nowrap;
+    }
+    header nav a{
+        display: inline-block;
+        width: 32%;
+        margin: 0;
+        padding: 0.5em 0;
+        text-align: center;
+        color: #ffffff;
+        text-decoration: none;
+        border: 0.1em solid #aaaaaa;
+        background-color: #222222;
+    }
+    header nav a img{
+        height: 1.1em;
+        vertical-align: middle;
+    }
+}
+
 
 /* The actual footer */
 footer{
@@ -157,7 +190,7 @@ footer table#footer_table{
     width: 80%;
     table-layout: fixed;
 }
-@media screen and (max-width : 990px){
+@media screen and (max-width : 800px){
     footer table#footer_table{
         width: 95%;
     }
@@ -224,7 +257,7 @@ footer table#footer_table td#footer_right a.lang img{
 footer table#footer_table td#footer_right a.lang img:hover{
     box-shadow: 0 0 1em #111;
 }
-@media screen and (max-width : 990px){
+@media screen and (max-width : 800px){
     footer table#footer_table td#footer_right a.lang img{
         height: 1.5em;
         margin: 0.2em;
@@ -233,38 +266,55 @@ footer table#footer_table td#footer_right a.lang img:hover{
         box-shadow: 0 0 0 #dde;
     }
 }
-
-
 main{
     background-color: #000000;
     width: 100%;
+    max-width: 90em;
+    margin: 2em auto;
+    padding: 0;
+    text-align: center;
+    flex: 1;
+}
+@media screen and (max-width : 800px){
+    main{
+        width: 100%;
+        margin: 1em auto;
+    }
 }
 
 section{
+    text-align: left;
     margin: 0.5em;
     padding: 1em;
     background-color: #f0f0f0;
-    border: 0.2em solid #666666;
+    border: 0.1em solid #003300;
     overflow: hidden;
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
+    border-bottom-left-radius: 1.5em;
+    border-bottom-right-radius: 1.5em;
 }
-@media screen and (max-width : 990px){
+@media screen and (max-width : 800px){
     section{
         margin: 1em;
     }
 }
 
 section h3{
-	font-weight: bold;
-	color: #ffffff;
-	background-color: #000000;
-	border: 0.2em solid #666666;
-	font-size: 150%;
-	padding: 0.2em 0.5em 0.2em 0.5em;
-	margin: -1em -1em 1em -1em;
+    position: relative;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #60ae29;
+    border-bottom: 0.1em solid #003300;
+    font-size: 150%;
+    padding: 0.5em 2em 0.2em 3em;
+    margin: -0.8em -1em 1em -1em;
+    font-variant: small-caps;
 }
 
 section h3:before {
-	content: " /";
+    content: " /";
+    opacity: 0.3;
 }
 
 /* .entry is a style only class to show content. Must be allways children os a .lighted element */
@@ -274,6 +324,13 @@ section article{
     padding: 0.5em;
     margin: 0.5em;
     transition: all .4s ease-in-out;
+}
+section article h4{
+    font-variant: small-caps;
+    text-decoration: underline;
+    text-decoration-color: #33553377;
+    font-size: 130%;
+    margin: 0.2em auto 1em auto;
 }
 
 section section_list:hover{
@@ -360,14 +417,41 @@ input[type=submit]{
 
 /* Style forr buttons */
 input[type=button]{
-    font-weight: bold;
-    color: #cccccc;
-    background-color: #555555;
-    border: 0.143em solid #bbbbbb;
-    border-radius: 0.429em;
-    padding: 0.5em;
-    text-shadow: 0 0 0.75em #000000;
     cursor: pointer;
+    display: inline-block;
+    color: #cccccc;
+    background-color: #278c3a;
+    border: 0.143em solid #66bf38;
+    border-radius: 0.429em;
+    padding: 0.5em 0.8em;
+    text-shadow: 0 0 0.75em #000000;
+    text-decoration: none;
+    font-family: 'Nunito';
+    font-weight: bold;
+    font-variant: small-caps;
+    letter-spacing: 0.07em;
+    font-size: 110%;
+    box-shadow: inset 0 0 0.2em #082400;
+    text-transform: capitalize;
+}
+@media screen and (max-width : 800px){
+	input[type=button]{
+		font-size: 120%;	
+		padding: 0.9em 1.4em;
+	}
+}
+input[type=button]::first-letter{
+    color: #eeeeee;
+}
+input[type=button]:hover{
+    color: #ffffff;
+    background-color: #34b94d;
+    box-shadow: inset 0 0 0.1em #000;
+    border: 0.2em solid #285710;
+}
+input[type=button]:hover::first-letter{
+    color: #ffffff;
+}
 }
 
 /* Style for textboxes */
@@ -447,15 +531,38 @@ textarea.error{
 a.a_button{
     display: inline-block;
     color: #cccccc;
-    background-color: #555555;
-    border: 0.143em solid #bbbbbb;
+    background-color: #278c3a;
+    border: 0.143em solid #66bf38;
     border-radius: 0.429em;
-    padding: 0.5em;
+    padding: 0.5em 0.8em;
     text-shadow: 0 0 0.75em #000000;
     text-decoration: none;
-    font: -webkit-small-control;
     font-family: 'Nunito';
     font-weight: bold;
+    font-variant: small-caps;
+    letter-spacing: 0.07em;
+    font-size: 110%;
+    box-shadow: inset 0 0 0.2em #082400;
+    text-transform: capitalize;
+    transition: all .3s ease-in-out;
+}
+@media screen and (max-width : 800px){
+	a.a_button{
+		font-size: 120%;	
+		padding: 0.9em 1.4em;
+	}
+}
+a.a_button::first-letter{
+    color: #eeeeee;
+}
+a.a_button:hover{
+    color: #ffffff;
+    background-color: #34b94d;
+    box-shadow: inset 0 0 0.1em #000;
+    border: 0.2em solid #285710;
+}
+a.a_button:hover::first-letter{
+    color: #ffffff;
 }
 
 /**********************************

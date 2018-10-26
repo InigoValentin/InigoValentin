@@ -1,7 +1,7 @@
 -- AVAILABLE LANGUAGES
 INSERT INTO lang VALUES ('es', 'Castellano', '1');
 INSERT INTO lang VALUES ('en', 'English', '1');
-INSERT INTO lang VALUES ('eu', 'Euskara', '1');
+INSERT INTO lang VALUES ('eu', 'Euskara', '0');
 
 -- DATE ELEMENTS
 INSERT INTO text VALUES ('MONTH_01', 'es', 'DATE', 'enero', null);
@@ -61,27 +61,6 @@ INSERT INTO text VALUES ('DAY_6', 'eu', 'DATE', 'larunbata', null);
 INSERT INTO text VALUES ('DAY_7', 'es', 'DATE', 'domingo', null);
 INSERT INTO text VALUES ('DAY_7', 'en', 'DATE', 'Sunday', null);
 INSERT INTO text VALUES ('DAY_7', 'eu', 'DATE', 'igandea', null);
-INSERT INTO text VALUES ('CV_DATE_FROM_YEAR', 'es', 'DATE', 'Desde #YEAR_START#', null);
-INSERT INTO text VALUES ('CV_DATE_FROM_YEAR', 'en', 'DATE', 'Since #YEAR_START#', null);
-INSERT INTO text VALUES ('CV_DATE_FROM_YEAR', 'eu', 'DATE', '#YEAR_START#tik', null);
-INSERT INTO text VALUES ('CV_DATE_DURING_YEAR', 'es', 'DATE', '#YEAR_START#', null);
-INSERT INTO text VALUES ('CV_DATE_DURING_YEAR', 'en', 'DATE', '#YEAR_START#', null);
-INSERT INTO text VALUES ('CV_DATE_DURING_YEAR', 'eu', 'DATE', '#YEAR_START#n', null);
-INSERT INTO text VALUES ('CV_DATE_FROM_TO_YEAR', 'es', 'DATE', 'Desde #YEAR_START# hasta #YEAR_END#', null);
-INSERT INTO text VALUES ('CV_DATE_FROM_TO_YEAR', 'en', 'DATE', 'From #YEAR_START# until #YEAR_END#', null);
-INSERT INTO text VALUES ('CV_DATE_FROM_TO_YEAR', 'eu', 'DATE', '#YEAR_START#tik #YEAR_END#ra', null);
-INSERT INTO text VALUES ('CV_DATE_FROM_MONTH', 'es', 'DATE', 'Desde #MONTH_START# de #YEAR_START#', null);
-INSERT INTO text VALUES ('CV_DATE_FROM_MONTH', 'en', 'DATE', 'Since #MONTH_START# #YEAR_START#', null);
-INSERT INTO text VALUES ('CV_DATE_FROM_MONTH', 'eu', 'DATE', '#YEAR_START#ko #MONTH_START#tik', null);
-INSERT INTO text VALUES ('CV_DATE_DURING_MONTH', 'es', 'DATE', '#MONTH_START# de #YEAR_START#', null);
-INSERT INTO text VALUES ('CV_DATE_DURING_MONTH', 'en', 'DATE', '#MONTH_START# #YEAR_START#', null);
-INSERT INTO text VALUES ('CV_DATE_DURING_MONTH', 'eu', 'DATE', '#YEAR_START#ko #MONTH_START#n', null);
-INSERT INTO text VALUES ('CV_DATE_FROM_TO_MONTH', 'es', 'DATE', 'Desde #MONTH_START# de #YEAR_START# hasta #MONTH_END# de #YEAR_END#', null);
-INSERT INTO text VALUES ('CV_DATE_FROM_TO_MONTH', 'en', 'DATE', 'From #MONTH_START# #YEAR_START# until #MONTH_END# #YEAR_END#', null);
-INSERT INTO text VALUES ('CV_DATE_FROM_TO_MONTH', 'eu', 'DATE', '#YEAR_START#ko #MONTH_START#tik #YEAR_END#ko #MONTH_END#ra', null);
-INSERT INTO text VALUES ('CV_DATE_FROM_TO_MONTH_YEAR', 'es', 'DATE', 'Desde #MONTH_START# hasta #MONTH_END# de #YEAR_START#', null);
-INSERT INTO text VALUES ('CV_DATE_FROM_TO_MONTH_YEAR', 'en', 'DATE', 'From #MONTH_START# until #MONTH_END# #YEAR_START#', null);
-INSERT INTO text VALUES ('CV_DATE_FROM_TO_MONTH_YEAR', 'eu', 'DATE', '#YEAR_START#ko #MONTH_START#tik #MONTH_START#ra', null);
 
 -- SECTIONS
 INSERT INTO text VALUES ('SECTION_HOME', 'es', 'SECTION', 'Inicio', null);
@@ -174,6 +153,18 @@ INSERT INTO text VALUES ('TAG_SWIFT',   'eu', 'TAG', 'Swift', null);
 INSERT INTO text VALUES ('TAG_WEB',     'es', 'TAG', 'Web', null);
 INSERT INTO text VALUES ('TAG_WEB',     'en', 'TAG', 'Web', null);
 INSERT INTO text VALUES ('TAG_WEB',     'eu', 'TAG', 'Web', null);
+INSERT INTO text VALUES ('TAG_CSS',     'es', 'TAG', 'CSS', null);
+INSERT INTO text VALUES ('TAG_CSS',     'en', 'TAG', 'CSS', null);
+INSERT INTO text VALUES ('TAG_CSS',     'eu', 'TAG', 'CSS', null);
+INSERT INTO text VALUES ('TAG_PHP',     'es', 'TAG', 'PHP', null);
+INSERT INTO text VALUES ('TAG_PHP',     'en', 'TAG', 'PHP', null);
+INSERT INTO text VALUES ('TAG_PHP',     'eu', 'TAG', 'PHP', null);
+INSERT INTO text VALUES ('TAG_MYSQL',   'es', 'TAG', 'MySQL', null);
+INSERT INTO text VALUES ('TAG_MYSQL',   'en', 'TAG', 'MySQL', null);
+INSERT INTO text VALUES ('TAG_MYSQL',   'eu', 'TAG', 'MySQL', null);
+INSERT INTO text VALUES ('TAG_SQLITE',  'es', 'TAG', 'SQLite', null);
+INSERT INTO text VALUES ('TAG_SQLITE',  'en', 'TAG', 'SQLite', null);
+INSERT INTO text VALUES ('TAG_SQLITE',  'eu', 'TAG', 'SQLite', null);
 
 
 
@@ -190,12 +181,21 @@ INSERT INTO text VALUES ('FOOTER_HELP',   'eu', 'FOOTER', 'Laguntza', null);
 
 
 -- PAGE index
-INSERT INTO text VALUES ('INDEX_PROFILE',  'es', 'HEADER', 'Yo', null);
-INSERT INTO text VALUES ('INDEX_PROFILE',  'en', 'HEADER', 'Me', null);
-INSERT INTO text VALUES ('INDEX_PROFILE',  'eu', 'HEADER', 'Ni', null);
-INSERT INTO text VALUES ('INDEX_PROJECTS', 'es', 'HEADER', 'Proyectos', null);
-INSERT INTO text VALUES ('INDEX_PROJECTS', 'en', 'HEADER', 'Projects', null);
-INSERT INTO text VALUES ('INDEX_PROJECTS', 'eu', 'HEADER', 'Proiektuak', null);
+INSERT INTO text VALUES ('INDEX_PROFILE',      'es', 'INDEX', 'Yo', null);
+INSERT INTO text VALUES ('INDEX_PROFILE',      'en', 'INDEX', 'Me', null);
+INSERT INTO text VALUES ('INDEX_PROFILE',      'eu', 'INDEX', 'Ni', null);
+INSERT INTO text VALUES ('INDEX_PROFILE_MORE', 'es', 'INDEX', 'M&aacute;s sobre mi', null);
+INSERT INTO text VALUES ('INDEX_PROFILE_MORE', 'en', 'INDEX', 'More about me', null);
+INSERT INTO text VALUES ('INDEX_PROFILE_MORE', 'eu', 'INDEX', 'Ni', null);
+INSERT INTO text VALUES ('INDEX_PROFILE_CV',   'es', 'INDEX', 'CV', null);
+INSERT INTO text VALUES ('INDEX_PROFILE_CV',   'en', 'INDEX', 'R&eacute;sum&eacute;', null);
+INSERT INTO text VALUES ('INDEX_PROFILE_CV',   'eu', 'INDEX', 'CV', null);
+INSERT INTO text VALUES ('INDEX_PROJECTS',     'es', 'INDEX', 'Proyectos', null);
+INSERT INTO text VALUES ('INDEX_PROJECTS',     'en', 'INDEX', 'Projects', null);
+INSERT INTO text VALUES ('INDEX_PROJECTS',     'eu', 'INDEX', 'Proiektuak', null);
+INSERT INTO text VALUES ('INDEX_PROJECTS_ALL', 'es', 'INDEX', 'Ver todos', null);
+INSERT INTO text VALUES ('INDEX_PROJECTS_ALL', 'en', 'INDEX', 'See all projects', null);
+INSERT INTO text VALUES ('INDEX_PROJECTS_ALL', 'eu', 'INDEX', 'Ver todos', null);
 
 
 -- PAGE project
@@ -253,9 +253,15 @@ INSERT INTO text VALUES ('PROFILE_DOWNLOAD_CURRENT', 'eu', 'PROFILE', 'Euzkaraz 
 INSERT INTO text VALUES ('PROFILE_DOWNLOAD_OTHER',   'es', 'PROFILE', 'Descargar en otros idiomas', null);
 INSERT INTO text VALUES ('PROFILE_DOWNLOAD_OTHER',   'en', 'PROFILE', 'Download in other languages', null);
 INSERT INTO text VALUES ('PROFILE_DOWNLOAD_OTHER',   'eu', 'PROFILE', 'Beste hizkuntzetan deskargatu', null);
-INSERT INTO text VALUES ('PROFILE_CV',               'es', 'PROFILE', 'Curriculum', null);
-INSERT INTO text VALUES ('PROFILE_CV',               'en', 'PROFILE', 'Curriculum', null);
-INSERT INTO text VALUES ('PROFILE_CV',               'eu', 'PROFILE', 'Curriculum', null);
+INSERT INTO text VALUES ('PROFILE_CV',               'es', 'PROFILE', 'CV', null);
+INSERT INTO text VALUES ('PROFILE_CV',               'en', 'PROFILE', 'R&eacute;sum&eacute;', null);
+INSERT INTO text VALUES ('PROFILE_CV',               'eu', 'PROFILE', 'R&eacute;sum&eacute;', null);
+INSERT INTO text VALUES ('PROFILE_CV_PRINTABLE',     'es', 'PROFILE', 'Ver en formato imprimible', null);
+INSERT INTO text VALUES ('PROFILE_CV_PRINTABLE',     'en', 'PROFILE', 'View printable format', null);
+INSERT INTO text VALUES ('PROFILE_CV_PRINTABLE',     'eu', 'PROFILE', 'R&eacute;sum&eacute;', null);
+INSERT INTO text VALUES ('PROFILE_CV_LANG',          'es', 'PROFILE', 'Otros idiomas', null);
+INSERT INTO text VALUES ('PROFILE_CV_LANG',          'en', 'PROFILE', 'Other languages', null);
+INSERT INTO text VALUES ('PROFILE_CV_LANG',          'eu', 'PROFILE', 'Beste hizkuntzak', null);
 INSERT INTO text VALUES ('PROFILE_SKILLS',           'es', 'PROFILE', 'Habilidades', null);
 INSERT INTO text VALUES ('PROFILE_SKILLS',           'en', 'PROFILE', 'Skills', null);
 INSERT INTO text VALUES ('PROFILE_SKILLS',           'eu', 'PROFILE', 'Habilitateak', null);
@@ -402,8 +408,8 @@ INSERT INTO project_type VALUES ('S', 'PROJECT_TYPE_S', 'PROJECT_TYPE_S_SUMMARY'
 INSERT INTO text VALUES ('URL_TYPE_W',         'es', 'DB_URL_TYPE', 'Ver sitio web', null);
 INSERT INTO text VALUES ('URL_TYPE_W',         'en', 'DB_URL_TYPE', 'Go to web site', null);
 INSERT INTO text VALUES ('URL_TYPE_W',         'eu', 'DB_URL_TYPE', 'Horrialdera', null);
-INSERT INTO text VALUES ('URL_TYPE_W_SUMMARY', 'es', 'DB_URL_TYPE', 'Ver sitio wew de este proyecto en funcionamiento.', null);
-INSERT INTO text VALUES ('URL_TYPE_W_SUMMARY', 'en', 'DB_URL_TYPE', 'See production web site.', null);
+INSERT INTO text VALUES ('URL_TYPE_W_SUMMARY', 'es', 'DB_URL_TYPE', 'Ver el sitio web.', null);
+INSERT INTO text VALUES ('URL_TYPE_W_SUMMARY', 'en', 'DB_URL_TYPE', 'See web site.', null);
 INSERT INTO text VALUES ('URL_TYPE_W_SUMMARY', 'eu', 'DB_URL_TYPE', 'Horrialdera.', null);
 INSERT INTO text VALUES ('URL_TYPE_P',         'es', 'DB_URL_TYPE', 'Google Play', null);
 INSERT INTO text VALUES ('URL_TYPE_P',         'en', 'DB_URL_TYPE', 'Google Play', null);
@@ -430,9 +436,9 @@ INSERT INTO text VALUES ('URL_TYPE_M_SUMMARY', 'es', 'DB_URL_TYPE', 'Ver', null)
 INSERT INTO text VALUES ('URL_TYPE_M_SUMMARY', 'en', 'DB_URL_TYPE', 'See', null);
 INSERT INTO text VALUES ('URL_TYPE_M_SUMMARY', 'eu', 'DB_URL_TYPE', 'Ikusi', null);
 INSERT INTO project_url_type VALUES ('E', null, null, null);
-INSERT INTO project_url_type VALUES ('W', 'URL_TYPE_W', 'URL_TYPE_W_SUMMARY', 'web.svg');
-INSERT INTO project_url_type VALUES ('P', 'URL_TYPE_P', 'URL_TYPE_P_SUMMARY', 'googleplay.svg');
-INSERT INTO project_url_type VALUES ('A', 'URL_TYPE_A', 'URL_TYPE_A_SUMMARY', 'appstore.svg');
+INSERT INTO project_url_type VALUES ('W', 'URL_TYPE_W', 'URL_TYPE_W_SUMMARY', 'www.svg');
+INSERT INTO project_url_type VALUES ('P', 'URL_TYPE_P', 'URL_TYPE_P_SUMMARY', 'google_play.svg');
+INSERT INTO project_url_type VALUES ('A', 'URL_TYPE_A', 'URL_TYPE_A_SUMMARY', 'app_store.svg');
 INSERT INTO project_url_type VALUES ('G', 'URL_TYPE_G', 'URL_TYPE_G_SUMMARY', 'github.svg');
 INSERT INTO project_url_type VALUES ('M', 'URL_TYPE_M', 'URL_TYPE_M_SUMMARY', 'misc.svg');
 
@@ -453,30 +459,3 @@ INSERT INTO text VALUES ('LICENSE_GPLV3',            'en', 'LICENSE', null, 'LIC
 INSERT INTO text VALUES ('LICENSE_GPLV3',            'eu', 'LICENSE', null, 'LICENSE_GPLV3__EU');
 INSERT INTO license VALUES ('CC-BY-SA', 'LICENSE_CC-BY-SA_SUMMARY', 'LICENSE_CC-BY-SA', 'CC-BY-SA.svg', 'CC-BY-SA.svg');
 INSERT INTO license VALUES ('GPLv3',    'LICENSE_GPLV3_SUMMARY',    'LICENSE_GPLV3',    'GPLV3.svg',    'GPLV3.svg');
-
-
--- TABLE cv_section
-INSERT INTO text VALUES ('CV_SECTION_WORK',             'es', 'DB_CV', 'Experiencia', null);
-INSERT INTO text VALUES ('CV_SECTION_WORK',             'en', 'DB_CV', 'Experience', null);
-INSERT INTO text VALUES ('CV_SECTION_WORK',             'eu', 'DB_CV', 'Experiencia', null);
-INSERT INTO text VALUES ('CV_SECTION_EDUCATION',        'es', 'DB_CV', 'Formaci&oacute;n', null);
-INSERT INTO text VALUES ('CV_SECTION_EDUCATION',        'en', 'DB_CV', 'Hezkuntza', null);
-INSERT INTO text VALUES ('CV_SECTION_EDUCATION',        'eu', 'DB_CV', 'Education', null);
-INSERT INTO text VALUES ('CV_SECTION_PROJECTS',         'es', 'DB_CV', 'Otros proyectos', null);
-INSERT INTO text VALUES ('CV_SECTION_PROJECTS',         'en', 'DB_CV', 'Other projects', null);
-INSERT INTO text VALUES ('CV_SECTION_PROJECTS',         'eu', 'DB_CV', 'Beste projecktuak', null);
-INSERT INTO text VALUES ('CV_SECTION_PROJECTS_SUMMARY', 'es', 'DB_CV', 'Proyectos de software eralizados por cuenta propia', null);
-INSERT INTO text VALUES ('CV_SECTION_PROJECTS_SUMMARY', 'en', 'DB_CV', 'Proyectos de software eralizados por cuenta propia', null);
-INSERT INTO text VALUES ('CV_SECTION_PROJECTS_SUMMARY', 'eu', 'DB_CV', 'Proyectos de software eralizados por cuenta propia', null);
-INSERT INTO text VALUES ('CV_SECTION_OTHER',            'es', 'DB_CV', 'Otra experiencia laboral', null);
-INSERT INTO text VALUES ('CV_SECTION_OTHER',            'en', 'DB_CV', 'Otra experiencia laboral', null);
-INSERT INTO text VALUES ('CV_SECTION_OTHER',            'eu', 'DB_CV', 'Otra experiencia laboral', null);
-INSERT INTO text VALUES ('CV_SECTION_OTHER_SUMMARY',    'es', 'DB_CV', 'Experiencia laboral fuera del &aacute;mbito de IT', null);
-INSERT INTO text VALUES ('CV_SECTION_OTHER_SUMMARY',    'en', 'DB_CV', 'Experiencia laboral fuera del &aacute;mbito de IT', null);
-INSERT INTO text VALUES ('CV_SECTION_OTHER_SUMMARY',    'eu', 'DB_CV', 'Experiencia laboral fuera del &aacute;mbito de IT', null);
-INSERT INTO cv_section VALUES (1, 'CV_SECTION_WORK',      null,                          1 , 1);
-INSERT INTO cv_section VALUES (2, 'CV_SECTION_EDUCATION', null,                          1 , 3);
-INSERT INTO cv_section VALUES (3, 'CV_SECTION_PROJECTS', 'CV_SECTION_PROJECTS_SUMMARY', 0 , 2);
-INSERT INTO cv_section VALUES (4, 'CV_SECTION_OTHER',    'CV_SECTION_OTHER_SUMMARY',    1 , 4);
-
-

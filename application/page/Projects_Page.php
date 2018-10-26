@@ -26,24 +26,21 @@
          */
         public function __construct($db, $lang){
             global $path;
-            global $root;
+            global $base_url;
             parent:: __construct($db, $lang);
             $this->view = $path["view"] . "projects.php";
             $s =
               "SELECT id " .
               "FROM project " .
-              "WHERE visible = 1;";
+              "WHERE visible = 1 " .
+              "ORDER BY idx;";
             $q = mysqli_query($this->db, $s);
             while($r = mysqli_fetch_array($q)){
                 array_push($this->project, new Project($this->db, $this->lang, $r["id"]));
             }
             $this->title = text($this, "PROJECT_TITLE") . " - " . text($this, "USER_NAME");
-            $this->name = text($this, "USER_NAME");
             $this->description = text($this, "PROJECT_DESCRIPTION");
-            $this->favicon = $path["img"]["layout"] . "logo/logo.svg";
-            $this->icon = $path["img"]["layout"] . "logo/logo.svg";
-            $this->canonical = $root . $lang . "/project/";
-            $this->author = $root . $lang . "/";
+            $this->canonical = $base_url . "/project/";
         }
     }
 ?>

@@ -26,7 +26,10 @@
         public function __construct($params){
 
             global $path;
-            global $root;
+            global $base_url;
+            global $static;
+            global $static_url;
+            global $base_dir;
             $page;
 
             $db = start_db();
@@ -42,10 +45,11 @@
             if (sizeof($pars) > 0 && preg_match("/^[a-zA-Z]{2}$/", $pars[0])){
                 $lang = $pars[0];
                 array_splice($pars, 0, 1);
+                // Override global to include language in URL
+                $base_url = get_protocol() . $_SERVER["HTTP_HOST"] . "/" . $lang;
             }
             else{
                 $lang = select_language($db);
-                // TODO: Redirect to url with lang?
             }
             foreach($pars as $p){
                 array_push($route, $p);
@@ -75,12 +79,11 @@
             }
 
             // Load the view, or set an error code.
-            if (isset($page)){
-                require_once($page->view);
-            }
-            else{
+            if (!isset($page)){
                 http_response_code(404);
+                $page = new Error_Page($db, $lang);
             }
+            require_once($page->view);
         }
     }
 ?>

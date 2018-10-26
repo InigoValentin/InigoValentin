@@ -4,7 +4,6 @@
     require_once($path["entity"] . "License.php");
     require_once($path["entity"] . "Project_Type.php");
     require_once($path["entity"] . "Project_Image.php");
-    require_once($path["entity"] . "Project_Comment.php");
     require_once($path["entity"] . "Project_Tag.php");
     require_once($path["entity"] . "Project_Url.php");
     require_once($path["helper"] . "text.php");
@@ -26,6 +25,11 @@
          * Permalink for linking the project (relative).
          */
         public $permalink;
+
+        /**
+         * Project index for sorting.
+         */
+        public $idx;
 
         /**
          * {@see Project_Type} of project.
@@ -63,12 +67,6 @@
         public $image = [];
 
         /**
-         * Array with the {@see Project_Comment} posted in the project, sorted
-         * from new to old.
-         */
-        public $comment = [];
-
-        /**
          * Array with the {@see Project_Tag} of the project.
          */
         public $tag = [];
@@ -94,6 +92,7 @@
               "SELECT " .
               "  id, " .
               "  permalink, " .
+              "  idx, " .
               "  type, " .
               "  title, " .
               "  logo, " .
@@ -112,6 +111,7 @@
                 $r = mysqli_fetch_array($q);
                 $this->id = $r["id"];
                 $this->permalink = $r["permalink"];
+                $this->idx = $r["idx"];
                 $this->title = text($this, $r["title"]);
                 $this->logo = $r["logo"];
                 $this->header = text($this, $r["header"]);
@@ -144,14 +144,6 @@
             $q_url = mysqli_query($this->db, $s_url);
             while($r_url = mysqli_fetch_array($q_url)){
                 array_push($this->url, new Project_Url($this->db, $this->lang, $r_url["id"]));
-            }
-            $s_comment =
-              "SELECT id " .
-              "FROM project_comment " .
-              "WHERE project = " . $this->id . ";";
-            $q_comment = mysqli_query($this->db, $s_comment);
-            while($r_comment = mysqli_fetch_array($q_comment)){
-                array_push($this->comment, new Project_Comment($this->db, $r_comment["id"]));
             }
         }
     }

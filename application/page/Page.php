@@ -1,8 +1,5 @@
 <?php
 
-    require_once($path["entity"] . "Footer.php");
-
-
     /**
      * Page superclass.
      *
@@ -27,10 +24,9 @@
         public $lang;
 
         /**
-         * Footer.
-         * @see Footer_Page
+         * List of available {@see Lang}uages (lowercase, two-letter language code).
          */
-        public $footer;
+        public $available_langs = [];
 
         /**
          * Title of the page, in the defined language.
@@ -63,9 +59,10 @@
         public $canonical;
 
         /**
-         * Autjhor URL.
+         * Author URL.
          */
         public $author;
+
 
         /**
          * Constructor.
@@ -74,9 +71,23 @@
          * @param string $lang Lowercase, two-letter language code.
          */
         public function __construct($db, $lang){
+            global $static;
+            global $base_url;
             $this->db = $db;
             $this->lang = $lang;
-            $this->footer = new Footer($db, $lang);
+            $s_lang =
+              "SELECT code AS id " .
+              "FROM lang " .
+              "WHERE active = 1; ";
+            $q_lang = mysqli_query($db, $s_lang);
+            while($r_lang = mysqli_fetch_array($q_lang)){
+                array_push($this->available_langs, new Lang($db, $r_lang["id"]));
+            }
+            $this->favicon = $static["layout"] . "logo/logo.svg";
+            $this->icon = $static["layout"] . "logo/logo.svg";
+            $this->name = text($this, "USER_NAME");
+            $this->author = $base_url;
+            $this->name = text($this, "USER_NAME");
         }
     }
 ?>

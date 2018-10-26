@@ -1,74 +1,110 @@
-div#left a.profile_button{
-    display: block;
-    width: 70%;
-    margin: 1em auto 1em auto;
-    border: 0.2em solid #007700;
-    background-color: #aaffaa;
-    font-weight: bold;
+main{
+    text-align: center;
 }
 
-div#left a.profile_button img{
+section#info{
+    text-align: left;
     display: inline-block;
-    vertical-align: middle;
+    vertical-align: top;
+    width: 30%;
+    margin: auto 2em auto auto;
+}
+@media screen and (max-width : 800px){
+	section#info{
+	    width: 90%;
+	    margin: auto;
+	    text-align: center;
+	}
+	section#info h3{
+	    text-align: left;
+	}
 }
 
-
-
-div#right div#profile{
-    display: table;
-}
-
-div#right div#profile div.table_row{
-    diplay: table-row;
-}
-
-div#right div#profile div.table_row div.table_cell{
-    display: table-cell;
-    vertical-align: middle;
-}
-
-div#right div#profile img{
+section#info img#profile_image{
+    display: block;
+    margin: 0.5em auto;
     max-width: 10em;
     max-height: 10em;
     border-radius: 1.2em;
-    margin: 1em;
     border: 0.3em solid #000000;
 }
-
-div#right div.cv_entry{
-    margin: 0.5em;
+@media screen and (max-width : 800px){
+	section#info img#profile_image{
+	    display: inline-block;
+	    vertical-align: middle;
+	    width: 30%;
+	    max-width: 12em;
+	    max-height: 12em;
+	}
+}
+section#info div#social{
+    text-align: center;
+    margin: auto;
+}
+@media screen and (max-width : 800px){
+	section#info div#social{
+	    display: inline-block;
+	    vertical-align: middle;
+	    width: 40%;
+	    margin: auto;
+	}
+}
+section#info div#social img{
+    width: 60px;
+    height: 60px;
+    margin: 10px;
+    vertical-align: middle;
+    background-color: #ffffff;
+    border: 0.2em solid #ffffff;
+    border-radius: 0.4em;
+    box-shadow: 0 0 0.3em #003300;
+    transition: all .2s ease-in-out;
+}
+section#info div#social img:hover{
+    width: 70px;
+    height: 70px;
+    margin: 5px;
+    border-radius: 50%;
+    box-shadow: 0 0 0.5em #55aa55;
 }
 
-div#right div.cv_entry h4.cv_entry_title{
-    padding-left: 1em;
-    font-weight: bold;
-    font-size: 130%;
-    border-bottom: 0.1em solid #00330077;
-    margin-bottom: 0em;
-    border-bottom-left-radius: 0.5em;
-}
-
-div#right div.role{
-    margin: 0em 1em 0 1em;
-    border-left: 0.1em solid #00330077;
-}
-
-div#right div.role h4{
-    border-bottom: 0.1em solid #00330077;
-    font-weight: bold;
-    font-size: 130%;
-    margin-left: 0;
-    margin-bottom: 0.2em;
-    padding: 0 1em 0 0.4em;
+section#about{
+    text-align: left;
     display: inline-block;
+    vertical-align: top;
+    width: 50%;
 }
-
-div#right div.role h5{
+@media screen and (max-width : 800px){
+	section#about{
+	    width: 90%;
+	    margin: 2em auto auto auto;
+	}
+}
+section#about p{
     font-style: italic;
-    margin: 0.5em 1em 0.5em 1em;
+    text-indent: 1em;
+    margin: 2em 4em;
+    color: #335333;
 }
-
-div#right div.role p{
-    margin: 0.5em 2em 0 2em;
-    padding-bottom: 1em;
+section#about div#cv_download{
+    text-align: center;
+}
+section#about div#cv_download a.a_button{
+    display: inline-block;
+    vertical-align: top;
+    margin: auto 3em 1.5em auto;
+}
+section#about div#cv_download details{
+    display: inline-block;
+    vertical-align: top;
+    font-style: italic;
+    margin-top: 0.5em;
+}
+section#about div#cv_download details summary{
+    color: #777777;
+    font-size: 90%;
+}
+section#about div#cv_download details ul{
+    text-align: left;
+    margin: 0.1em;
 }

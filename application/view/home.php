@@ -7,10 +7,10 @@
         <title><?=$page->title?></title>
         <link rel='shortcut icon' href='<?=$page->favicon?>'/>
         <!-- CSS files -->
-        <link rel='stylesheet' type='text/css' href='<?=$path["css"]?>ui.css'/>
-        <link rel='stylesheet' type='text/css' href='<?=$path["css"]?>home.css'/>
+        <link rel='stylesheet' type='text/css' href='<?=$static["css"]?>ui.css'/>
+        <link rel='stylesheet' type='text/css' href='<?=$static["css"]?>home.css'/>
         <!-- Script files -->
-        <script type="text/javascript" src="<?=$path["js"]?>ui.js"></script>
+        <script type="text/javascript" src="<?=$static["js"]?>ui.js"></script>
         <!-- Meta tags -->
         <link rel='canonical' href='<?=$page->canonical?>'/>
         <link rel='author' href='<?=$page->author?>'/>
@@ -32,76 +32,71 @@
     </head>
     <body>
 <?php
-        include __DIR__ . "/inc/header.php";
+        include $path["inc"] . "header.php";
 ?>
         <main>
-            <div id='left'>
-                <section>
-                    <h3>
-                        <?=$page->name?>
-                    </h3>
-                    <!-- TODO: Profile form model -->
-                    <article id='profile'>
-                        <img id='profile_image' srcset='<?=srcset("profile/profile.png")?>' src='<?=$path["img"]["content"]?>profile/x400/profile.png' alt='<?=text($page, "USER_NAME");?>' title='<?=text($page, "USER_NAME");?>' />
-                        <div id='profile_content'>
-                            <span id='tagline'><?=text($page, "USER_TAGLINE");?></span>
-                            <span id='bio'><?=text($page, "USER_BIO");?></span>
-                            <a class='a_button' href='<?=$root?>profile/'>
-                                <?=text($page, "INDEX_PROFILE");?>
-                            </a>
-                        </div>
-                    </article>
-                </section>
-            </div> <!-- left -->
-            <div id='right'>
-                <section>
-                    <h3>
-                        <?=text($page, "INDEX_PROJECTS");?>
-                    </h3>
+            <section id='profile'>
+                <h3>
+                    <?=$page->name?>
+                </h3>
+                <!-- TODO: Profile form model -->
+                <article>
+                    <img id='profile_image' srcset='<?=srcset("profile/profile.png")?>' src='<?=$static["content"]?>profile/x400/profile.png' alt='<?=text($page, "USER_NAME");?>' title='<?=text($page, "USER_NAME");?>' />
+                    <div id='profile_content'>
+                        <h4 id='tagline'><?=text($page, "USER_TAGLINE");?></h4>
+                        <p id='bio'><?=text($page, "USER_BIO");?></p>
+                    </div>
+                    <div class='buttons'>
+                        <a class='a_button' href='<?=$base_url?>/profile/'>
+                            <?=text($page, "INDEX_PROFILE_MORE");?>
+                        </a>
+                    </div>
+                </article>
+            </section>
+            <section id='projects'>
+                <h3>
+                    <?=text($page, "INDEX_PROJECTS");?>
+                </h3>
 <?php
-                    foreach ($page->project as $project){
+            foreach ($page->project as $project){
 ?>
-                        <article>
-                            <table>
-                                <tr>
+                <article class='project'>
+                    <table>
+                        <tr>
 <?php
-                                    if (strlen($project->logo) > 0){
+                            if (strlen($project->logo) > 0){
 ?>
-                                        <td>
-                                            <a href='<?=$root?>project/<?=$project->permalink?>'>
-                                                <img alt='<?=text($page, $project->title)?>' title='<?=text($page, $project->title)?>' srcset='<?=srcset("project/" . $project->logo)?>' src='<?=$path["img"]["content"]?>project/x200/<?=$project->logo?>'/>
-                                            </a>
-                                        </td>
+                                <td>
+                                    <a href='<?=$base_url?>/project/<?=$project->permalink?>'>
+                                        <img class='project_image' alt='<?=text($page, $project->title)?>' title='<?=text($page, $project->title)?>' srcset='<?=srcset("project/" . $project->logo)?>' src='<?=$static["content"]?>project/x200/<?=$project->logo?>'/>
+                                    </a>
+                                </td>
 <?php
-                                    }
+                            }
 ?>
-                                    <td>
-                                        <a href='<?=$root?>project/<?=$project->permalink?>'>
-                                            <h4 class='project_name'><?=$project->title?></h4>
-                                        </a>
-                                        <span>
-                                            <?=$project->header?>
-                                        </span>
-                                    </td>
-                                </tr>
-                            </table>
-                        </article>
+                            <td class='project_details'>
+                                <a href='<?=$base_url?>/project/<?=$project->permalink?>'>
+                                    <h4 class='project_name'><?=$project->title?></h4>
+                                </a>
+                                <span>
+                                    <?=$project->header?>
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                </article>
 <?php
-                    }
+                }
 ?>
-                    <a class='a_button' href='<?=$root?>project/'>
-                        <span class='header_container'>
-                            <span class='header_icon_container'>
-                                <img class='header_icon' alt='<?=text($page, "HEADER_PROJECTS");?>' src='<?=$path["img"]["layout"]?>icon/projects.gif'/>
-                            </span>
-                            <?=text($page, "INDEX_PROJECTS");?>
-                        </span>
+                <div class='buttons'>
+                    <a class='a_button' href='<?=$base_url?>/project/'>
+                        <?=text($page, "INDEX_PROJECTS_ALL");?>
                     </a>
-                </section>
-            </div> <!-- #right -->
+                </div>
+            </section>
         </main>
 <?php
-        include __DIR__ . "/inc/footer.php";
+        include $path["inc"] . "footer.php";
 ?>
     </body>
 </html>

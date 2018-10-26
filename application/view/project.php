@@ -7,11 +7,11 @@
         <title><?=$page->title?></title>
         <link rel='shortcut icon' href='<?=$page->favicon?>'/>
         <!-- CSS files -->
-        <link rel='stylesheet' type='text/css' href='<?=$path["css"]?>ui.css'/>
-        <link rel='stylesheet' type='text/css' href='<?=$path["css"]?>project.css'/>
+        <link rel='stylesheet' type='text/css' href='<?=$static["css"]?>ui.css'/>
+        <link rel='stylesheet' type='text/css' href='<?=$static["css"]?>project.css'/>
         <!-- Script files -->
-        <script type="text/javascript" src="<?=$path["js"]?>ui.js"></script>
-        <script type="text/javascript" src="<?=$path["js"]?>project.js"></script>
+        <script type="text/javascript" src="<?=$static["js"]?>ui.js"></script>
+        <script type="text/javascript" src="<?=$static["js"]?>project.js"></script>
         <!-- Meta tags -->
         <link rel='canonical' href='<?=$page->canonical?>'/>
         <link rel='author' href='<?=$page->author?>'/>
@@ -33,31 +33,75 @@
     </head>
     <body>
 <?php
-        include __DIR__ . "/inc/header.php";
+        include $path["inc"] . "header.php";
 ?>
         <main>
-            <section id='info'>
+            <section>
                 <h3>
                     <?=$page->project->title?>
                 </h3>
-                <h4 id='summary'>
-                    <?=$page->project->header?>
-                </h4>
-                <p id='text'>
+                <article>
+                    <div id='info_summary'>
+                        <h4>
+                            <?=$page->project->header?>
+                        </h4>
+                        <p id='text'>
 <?php
-                    if (strlen($page->project->logo) > 0){
+                            if (strlen($page->project->logo) > 0){
 ?>
-                        <img id='logo' src='<?=$path["img"]["content"]?>project/<?=$page->project->logo?>' title='<?=$page->project->title?>' alt='<?=$page->project->title?>'/>
+                                <img id='logo' src='<?=$static["content"]?>project/<?=$page->project->logo?>' title='<?=$page->project->title?>' alt='<?=$page->project->title?>'/>
 <?php
-                    }
+                            }
 ?>
-                    <?=$page->project->text?>
-                </p>
+                            <?=$page->project->text?>
+                        </p>
+                    </div>
+                    <div id='info_details'>
+                        <div id='tags' class='details'>
+<?php
+                            $str_tag = "";
+                            foreach($page->project->tag as $tag){
+                                $str_tag = $str_tag . $tag->tag . ", ";
+                            }
+                            $str_tag = rtrim($str_tag, ", ");
+?>
+                            <?=text($page, "PROJECT_TAGS")?>: <?=$str_tag?>
+                            <hr class='details_separator'/>
+                        </div> <!-- #tags -->
+<?php
+                        if (sizeof($page->project->url) > 0){
+?>
+                            <div id='links' class='details'>
+<?php
+                                foreach($page->project->url as $url){
+                                    if ($url->type->id != "E"){
+?>
+                                        <td>
+                                            <a target='_blank' class='link' href='<?=$url->url?>'>
+                                                <img class='link' title='<?=$url->type->title?>' alt='<?=$url->type->title?>' src='<?=$static["layout"]?>social/<?=$url->type->logo?>'/>
+                                                <?=$url->type->summary?>
+                                            </a>
+                                        </td>
+<?php
+                                    }
+                                }
+?>
+                                <hr class='details_separator'/>
+                            </div> <!-- #links -->
+<?php
+                        }
+?>
+                        <div id='license' class='details'>
+                            <?=text($page, "PROJECT_LICENSE")?>:
+                            <img src='<?=$static["layout"]?>license/<?=$page->project->license->logo?>' title='<?=$page->project->license->id?>' alt='<?=$page->project->license->id?>'/>
+                        </div> <!-- #license -->
+                    </div> <!-- #info_details -->
+                </article>
 <?php
                 foreach($page->project->url as $embed){
                     if ($embed->type->id == "E"){
 ?>
-                        <iframe id='demo' src='<?=$path["demo"]?><?=$embed->url?>' onload='resizeDemo(this);'></iframe>
+                        <iframe id='demo' src='<?=$static["demo"]?><?=$embed->url?>' onload='setTimeout(function(){resizeDemo();}, 500);'></iframe>
 <?php
                     }
                 }
@@ -72,7 +116,7 @@
                                 foreach($page->project->image as $image){
 ?>
                                     <td>
-                                        <img title='<?=$page->project->title?>' alt='<?=$page->project->title?>' src='<?=$path["img"]["content"]?>project/<?=$image->image?>'/>
+                                        <img title='<?=$page->project->title?>' alt='<?=$page->project->title?>' src='<?=$static["content"]?>project/<?=$image->image?>'/>
                                     </td>
 <?php
                                 }
@@ -83,53 +127,10 @@
 <?php
                 }
 ?>
-            </div> <!-- #info -->
-            <section id='details'>
-                <h3 class='section_title'>
-                    <?=text($page, "PROJECT_INFO")?>
-                </h3>
-                <div id='tags' class='details'>
+            </section>
+        </main>
 <?php
-                    $str_tag = "";
-                    foreach($page->project->tag as $tag){
-                        $str_tag = $str_tag . "<a class='tag' href='TODO' title='" . $tag->tag . "'>" . $tag->tag . "</a>, ";
-                    }
-                    $str_tag = rtrim($str_tag, ", ");
-?>
-                    <?=text($page, "PROJECT_TAGS")?>: <?=$str_tag?>
-                    <hr class='details_separator'/>
-                </div> <!-- #tags -->
-<?php
-                if (sizeof($page->project->url) > 0){
-?>
-                    <div id='links' class='details'>
-<?php
-                        foreach($page->project->url as $url){
-                            if ($url->type->id != "E"){
-?>
-                                <td>
-                                    <a class='link' href='<?=$url->url?>'>
-                                        <img class='link' title='<?=$url->type->title?>' alt='<?=$url->type->title?>' src='<?=$path["img"]["content"]?>url/<?=$url->type->logo?>'/>
-                                        <?=$url->type->title?>
-                                    </a>
-                                </td>
-<?php
-                            }
-                        }
-?>
-                        <hr class='details_separator'/>
-                    </div> <!-- #links -->
-<?php
-                }
-?>
-                <div id='license' class='details'>
-                    <?=text($page, "PROJECT_LICENSE")?>:
-                    <img src='<?=$path["img"]["content"]?>license/<?=$page->project->license->logo?>' title='<?=$page->project->license->id?>' alt='<?=$page->project->license->id?>'/>
-                </div> <!-- #license -->
-            </section> <!-- #details -->
-        </main> <!-- .content -->
-<?php
-        include __DIR__ . "/inc/footer.php";
+        include $path["inc"] . "footer.php";
 ?>
     </body>
 </html>

@@ -26,22 +26,20 @@
          */
         public function __construct($db, $lang, $id){
             global $path;
-            global $root;
+            global $base_url;
+            global $static;
             parent:: __construct($db, $lang);
             $this->view = $path["view"] . "project.php";
             $this->project = new Project($this->db, $this->lang, $id);
             $this->title = $this->project->title . " - " . text($this, "USER_NAME");
-            $this->name = text($this, "USER_NAME");
             $this->description = $this->project->header;
-            $this->favicon = $path["img"]["layout"] . "logo/logo.svg";
             if (strlen($this->project->logo) > 0){
-                $this->icon = $path["img"]["content"] . "project/" . $this->project->logo;
+                $this->icon = $static["content"] . "project/" . $this->project->logo;
             }
             else{
-                $this->icon = $path["img"]["layout"] . "logo/logo.svg";
+                $this->icon = $static["layout"] . "logo/logo.svg";
             }
-            $this->canonical = $root . $lang . "/project/" . $this->project->permalink;
-            $this->author = $root . $lang . "/";
+            $this->canonical = $base_url . "/project/" . $this->project->permalink . "/";
         }
     }
 ?>

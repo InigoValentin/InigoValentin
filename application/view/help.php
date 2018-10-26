@@ -1,98 +1,59 @@
-<?php
-    session_start();
-    $http_host = $_SERVER["HTTP_HOST"];
-    $doc_root = $_SERVER["DOCUMENT_ROOT"] . "/";
-    include $doc_root . "functions.php";
-    $proto = get_protocol();
-    $con = start_db();
-    $server = $proto . $http_host;
-    $lang = select_language($con);
-    $lserver = $server . "/" . $lang;
-    $cur_section = "";
-    $cur_entry = "";
-?>
 <!DOCTYPE html>
-<html>
+<html lang='<?=$page->lang?>'>
     <head>
         <meta content='text/html; charset=utf-8' http-equiv='content-type'/>
         <meta charset='utf-8'/>
         <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1'/>
-        <title><?=text($con, "USER_NAME", $lang);?></title>
-        <link rel='shortcut icon' href='<?=$lserver?>/img/logo/favicon.ico'/>
+        <title><?=$page->title?></title>
+        <link rel='shortcut icon' href='<?=$page->favicon?>'/>
         <!-- CSS files -->
-        <style>
-<?php
-            include $doc_root . "css/ui.css";
-            include $doc_root . "css/home.css";
-?>
-        </style>
-        <!-- CSS for mobile version -->
-        <style media='(max-width : 990px)'>
-<?php
-            include $doc_root . "css/m/ui.css";
-            include $doc_root . "css/m/home.css";
-?>
-        </style>
+        <link rel='stylesheet' type='text/css' href='<?=$static["css"]?>ui.css'/>
+        <link rel='stylesheet' type='text/css' href='<?=$static["css"]?>help.css'/>
         <!-- Script files -->
-        <script type='text/javascript'>
-<?php
-            include $doc_root . "script/ui.js";
-?>
-        </script>
+        <script type="text/javascript" src="<?=$static["js"]?>ui.js"></script>
+        <script type="text/javascript" src="<?=$static["js"]?>help.js"></script>
         <!-- Meta tags -->
-        <link rel='canonical' href='<?=$lserver?>'/>
-        <link rel='author' href='<?=$lserver?>'/>
-        <link rel='publisher' href='<?=$lserver?>'/>
-        <meta name='description' content=''/>
-        <meta property='og:title' content='<?=text($con, "USER_NAME", $lang);?>'/>
-        <meta property='og:url' content='<?=$lserver?>'/>
-        <meta property='og:description' content=''/>
-        <meta property='og:image' content=''/>
-        <meta property='og:site_name' content='<?=text($con, "USER_NAME", $lang);?>'/>
+        <link rel='canonical' href='<?=$page->canonical?>'/>
+        <link rel='author' href='<?=$page->author?>'/>
+        <link rel='publisher' href='<?=$page->author?>'/>
+        <meta name='description' content='<?=$page->description?>'/>
+        <meta property='og:title' content='<?=$page->title?>'/>
+        <meta property='og:url' content='<?=$page->canonical?>'/>
+        <meta property='og:description' content='<?=$page->description?>'/>
+        <meta property='og:image' content='<?=$page->icon?>'/>
+        <meta property='og:site_name' content='<?=$page->name?>'/>
         <meta property='og:type' content='website'/>
-        <meta property='og:locale' content='<?=$lang?>'/>
+        <meta property='og:locale' content='<?=$page->lang?>'/>
         <meta name='twitter:card' content='summary'/>
-        <meta name='twitter:title' content='<?=text($con, "USER_NAME", $lang);?>'/>
-        <meta name='twitter:description' content=''/>
-        <meta name='twitter:image' content=''/>
-        <meta name='twitter:url' content='<?=$lserver?>'/>
+        <meta name='twitter:title' content='<?=$page->title?>'/>
+        <meta name='twitter:description' content='<?=$page->description?>'/>
+        <meta name='twitter:image' content='<?=$page->icon?>'/>
+        <meta name='twitter:url' content='<?=$page->canonical?>'/>
         <meta name='robots' content='index follow'/>
     </head>
     <body>
-        <div id='body'>
-            <div id='body_row'>
-                <div id='left'>
-                    <div id='logo'>
-                        <img id='logo' src='<?=$lserver?>/img/logo/x6/inigovalentin.png' alt='<?=text($con, "USER_NAME", $lang);?>'/>
-                    </div>
-                    <div class='entry'>
-                        <img id='profile' src='<?=$lserver?>/img/profile/x6/0.png' alt='<?=text($con, "USER_NAME", $lang);?>' title='<?=text($con, "USER_NAME", $lang);?>' />
-                        <br/>
-                        <span id='tagline'><?=text($con, "USER_TAGLINE", $lang);?></span>
-                    </div> <!-- .entry -->
-                    <a class='a_button' href='<?=$lserver?>/profile/'>
-                        <span class='header_container'>
-                            <span class='header_icon_container'><img class='header_icon' alt='<?=text($con, "HEADER_ME", $lang);?>' src='<?=$lserver?>/img/icon/profile.gif'/></span>
-                            <?=text($con, "INDEX_PROFILE", $lang);?>
-                        </span>
-                    </a>
-                    <span class='link_separator desktop'></span>
-                    <a class='a_button' href='<?=$lserver?>/project/'>
-                        <span class='header_container'>
-                            <span class='header_icon_container'><img class='header_icon' alt='<?=text($con, "HEADER_PROJECTS", $lang);?>' src='<?=$lserver?>/img/icon/projects.gif'/></span>
-                            <?=text($con, "INDEX_PROJECTS", $lang);?>
-                        </span>
-                    </a>
 <?php
-                    include $doc_root . "footer.php";
+        include $path["inc"] . "header.php";
 ?>
-                </div> <!-- left -->
-                <div id='right'>
+        <main>
+<?php
+            foreach($page->help as $key=>$help) {
+?>
+                <section id='<?=$key?>' class='help'>
+                    <h3 class='pointer' onClick='toggleHelp("<?=$key?>");'>
+                        <img class='slider' src='<?=$static["layout"]?>control/slid_r.svg' alt='>'/>
+                        <?=$help["title"]?>
+                    </h3>
                     <p>
-                        <?=text($con, "USER_BIO", $lang);?>
+                        <?=$help["text"]?>
                     </p>
-                </div>
-            </div> <!-- #body_row -->
-        </div> <!-- #body -->
+                </section>
+<?php
+            }
+?>
+        </main>
+<?php
+        include $path["inc"] . "footer.php";
+?>
     </body>
 </html>

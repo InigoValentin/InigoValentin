@@ -1,43 +1,50 @@
-div.section{
-    width: 60%;
-    min-width: 20em;
-    max-width: 80em;
+section{
     margin: auto;
+    max-width: 60em;
+    border: 0.1em solid #330000;
 }
 
-table#error_header{
-    width: 80%;
-    margin: 2em auto 2em auto;
-}
-
-table#error_header td{
-    width: 50%;
-}
-
-table#error_code{
-    display: inline-block;
-    margin-left: 10%;
-    border: 0.1em solid #000011;
-    border-radius: 1em;
-    padding: 0.5em 0 0.5em 0;
-    background-color: #1e9957;
-    filter: drop-shadow(0 0 0.4em #002200);
+section h3{
     color: #ffffff;
+    background-color: #ef3939;
+    border-bottom: 0.1em solid #330000;
 }
 
-td#error_number{
+section div#left{
+    display: inline-block;
+    vertical-align: middle;
+    width: 15em;
+    height: 6em;
+    margin: 2em;
+    padding-top: 2em;
+    background-color: #ef3939;
+    color: #ffffff;
+    font-weight: bold;
+    border: 0.3em solid #330000;
+    border-radius: 0.5em;
+    text-align: center;
+    text-shadow: 0 0 0.1em #000000;
+    box-shadow: 0 0 0.2em #ef3939;
+}
+section div#left p{
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: bold;
+    font-size: 150%;
+    margin: 0.2em;
+}
+section div#left p#code{
     font-size: 300%;
-    border-right: 0.063em solid #000000;
-    padding-right: 0.5em;
-    padding-left: 0.2em;
 }
-td#error_tag{
-    font-size: 110%;
-    padding-left: 1.2em;
-    padding-right: 1em;
+section div#left p span{
+    display: block;
 }
-div#error_message{
-    width: 80%;
-    margin: 0 10% 1em 10%;
-    margin-bottom: 4em;
+
+section div#right{
+    display: inline-block;
+    vertical-align: middle;
+    margin: 1.5em 1em 1.5em 0;
+    padding-left: 2em;
+    max-width: 35em;
+    border-left: 0.2em solid #444444
 }

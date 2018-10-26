@@ -36,7 +36,7 @@ FallbackResource /index.php
         ExpiresByType image/gif "access plus 12 days"
         ExpiresByType image/png "access plus 12 days"
         ExpiresByType video/mkv "access plus 12 days"
-        #ExpiresByType text/css "access plus 6 days"
+        ExpiresByType text/css "access plus 6 days"
         ExpiresByType text/plain "access plus 6 days"
 </IfModule>
 
@@ -47,14 +47,14 @@ FallbackResource /index.php
 # Used to: control the cache times of the different files on the client.
 #
 <ifModule mod_headers.c>
-	<filesMatch "\.(ico|jpe?g|png|gif|swf)$">
-		Header set Cache-Control "max-age=864000, public, must-revalidate"
+	<filesMatch "\.(ico|jpe?g|png|gif|swf|svg)$">
+		Header set Cache-Control "max-age=86400, public, must-revalidate"
 	</filesMatch>
-#	<filesMatch "\.(css)$">
-#		Header set Cache-Control "max-age=864000, public, must-revalidate"
-#	</filesMatch>
+	<filesMatch "\.(css)$">
+		Header set Cache-Control "max-age=86400, public, must-revalidate"
+	</filesMatch>
 	<filesMatch "\.(js)$">
-		Header set Cache-Control "max-age=864000, private, must-revalidate"
+		Header set Cache-Control "max-age=86400, private, must-revalidate"
 	</filesMatch>
 	<filesMatch "\.(x?html?|php)$">
 		Header set Cache-Control "max-age=86400, private, must-revalidate"
