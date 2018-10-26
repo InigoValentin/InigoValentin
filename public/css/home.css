@@ -1,0 +1,64 @@
+section#profile{
+    display: inline-block;
+    vertical-align: top;
+    width: 40%;
+    margin:  auto 2em auto auto;
+}
+@media screen and (max-width : 800px){
+    section#profile{
+        display: block;
+        width: 90%;
+        margin: auto;
+    }
+}
+section#profile article img#profile_image{
+    display: inline-block;
+    vertical-align: top;
+    width: 25%;
+    height: 25%;
+    border: 0.2em solid #446644;
+    border-radius: 1em 5em;
+}
+section#profile article div#profile_content{
+    width: 60%;
+    padding: 0.5em 1.5em;
+    display: inline-block;
+    vertical-align: top;
+}
+section#projects{
+    display: inline-block;
+    vertical-align: top;
+    width: 50%;
+    margin: 0;
+}
+@media screen and (max-width : 800px){
+    section#projects{
+        display: block;
+        width: 90%;
+        margin: 2em auto auto auto;
+    }
+}
+section#projects article.project img.project_image{
+    padding: 0.5em;
+    width: 5em;
+    height: 5em;
+    background-color: #cccccc;
+    border: 0.1em solid #60ae29;
+    box-shadow: inset 0 0 0.5em #00220077;
+    border-radius: 1em;
+}
+@media screen and (max-width : 800px){
+	section#projects article.project img.project_image{
+	    padding: 0.9em;
+	    width: 10em;
+	    height: 10em;
+	}
+}
+section#projects article.project td.project_details{
+    vertical-align: top;
+    padding-left: 1em;
+}
+section div.buttons{
+    text-align: right;
+    padding: 0.5em 2em 0 2em;
+}

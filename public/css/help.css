@@ -1,0 +1,29 @@
+section{
+    padding: 0;
+    max-height: 2.8em;
+    overflow-y: hidden;
+    border-bottom-right-radius: 0.5em;
+    border-bottom-left-radius: 0.5em;
+    transition: all .5s ease-in-out;
+}
+section.selected{
+    max-height: 15em;
+    border-bottom-right-radius: 1.5em;
+    border-bottom-left-radius: 1.5em;
+}
+section h3{
+    margin: 0;
+}
+section h3 img.slider{
+    width: 1em;
+    height: 1em;
+    transition: all .3s ease-in-out;
+    float: left;
+    margin-left: -2em;
+}
+section.selected h3 img.slider{
+    transform: rotate(90deg);
+}
+section p{
+    margin: 1em 2em;
+}

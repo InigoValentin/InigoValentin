@@ -1,0 +1,51 @@
+/* Projects page */
+section{
+    width: 90%;
+    margin: auto;
+    text-align: center;
+}
+section h3{
+    text-align: left;
+}
+
+section article.project{
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    width: 40%;
+    margin: 2em 3%;
+    padding: 1em;
+    text-align: left;
+    border-left: 0.1em solid #aacaaa;
+    border-right: 0.1em solid #aacaaa;
+    background: linear-gradient(to bottom, #e5f0e500 0%, #e5f0e5ff 20%, #e5f0e5ff 80%, #e5f0e500 100%);
+}
+@media screen and (max-width : 800px){
+	section article.project{
+	    width: 90%;
+	    margin: 1em auto;
+	}
+}
+
+section article.project table{
+    width: 100%;
+}
+
+section article.project table img.project_image{
+    padding: 0.5em;
+    width: 7em;
+    height: 7em;
+    background-color: #cccccc;
+    border: 0.1em solid #60ae29;
+    box-shadow: inset 0 0 0.5em #00220077;
+    border-radius: 1em;
+}
+
+div#project_list article.project table td.project_details{
+    padding-left: 1.5em;
+}
+
+div#project_list article.project table span.project_tagline{
+    font-size: 80%;
+    font-style: italic;
+}

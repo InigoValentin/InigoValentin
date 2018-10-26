@@ -1,0 +1,687 @@
+/* Website fonts. */
+@font-face {
+    font-family: 'Nunito'; 
+    src:  url('/fonts/Nunito-Regular.ttf'); 
+}
+@font-face {
+    font-family: 'Latin'; 
+    src:  url('/fonts/Latin-Modern-Mono-Light-Bold.otf');
+}
+
+/* Elements to be shown only in large screens. */
+.desktop{
+    display: initial;
+}
+@media screen and (max-width : 800px){
+    .desktop{
+        display: none;
+    }
+}
+
+/* Elements to be shown only in small screens. */
+.mobile{
+    display: none;
+}
+@media screen and (max-width : 800px){
+    .mobile{
+        display: initial !important;
+    }
+}
+
+/* Styles for the body of the page. */
+html {
+    height: 100%;
+}
+
+body{
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: #000000;
+    font-size: 90%;
+    min-height: 100vh;
+	flex-direction: column;
+	display: flex;
+}
+@media screen and (max-width : 800px){
+	body{
+	    font-size: 100%;
+	}
+}
+
+/* Style for all links. */
+a{
+    color: #555555;
+    text-shadow: 0 0 0.5em #7777ff;
+    text-decoration: none;
+}
+
+/* Styles for elements that look and act as links. */
+.fake_a{
+    color: #555555;
+    text-shadow: 0 0 0.5em #7777ff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* Bold elements. */
+.bold{
+    font-weight: bold;
+}
+
+/* Elements that look and act as buttons or links.*/
+.pointer {
+    cursor: pointer;
+}
+
+/* Hidden elements. */
+.hidden{
+    display: none;
+}
+
+img.slider{
+    width: 1em;
+    height: 1em;
+    vertial-align: middle;
+    transition: all .3s ease-in-out;
+}
+
+div#cover{
+    display: none;
+    background-color: #000000bb;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+
+header{
+    background-color: #000000;
+    width: 100%;
+    text-align: center;
+}
+
+header div#logo{
+    color: #ffffff;
+    font-size: 4em;
+    font-family: 'Latin';
+}
+header nav{
+	width: 100%;
+}
+header nav a{
+    font-size: 1.5em;
+    margin: 0.5em;
+    color: #ffffff;
+    text-decoration: none;
+    position: relative;
+}
+header nav a:hover{
+    color: #ffffff;
+}
+header nav a:before {
+    content: " ";
+    position: absolute;
+    width: 100%;
+    height: 0.1em;
+    bottom: -0.1em;
+    left: 0;
+    background-color: #ffffff;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out 0s;
+}
+header nav a:hover:before {
+    visibility: visible;
+    transform: scaleX(1);
+}
+header nav a img{
+    height: 1.5em;
+    vertical-align: bottom;
+}
+@media screen and (max-width : 800px){
+    header nav{
+        overflow: hidden;
+        white-space: nowrap;
+    }
+    header nav a{
+        display: inline-block;
+        width: 32%;
+        margin: 0;
+        padding: 0.5em 0;
+        text-align: center;
+        color: #ffffff;
+        text-decoration: none;
+        border: 0.1em solid #aaaaaa;
+        background-color: #222222;
+    }
+    header nav a img{
+        height: 1.1em;
+        vertical-align: middle;
+    }
+}
+
+
+/* The actual footer */
+footer{
+    background-color: #000000;
+    font-size: 80%;
+    text-align: center;
+    height: 3.5em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3em;
+    margin-bottom: 2em;
+    color: #dddddd;
+    bottom: 0;
+    left: 0;
+    padding: 1em 2em 3em 2em;
+}
+
+/* A table containing all the elements in the footer */
+footer table#footer_table{
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    table-layout: fixed;
+}
+@media screen and (max-width : 800px){
+    footer table#footer_table{
+        width: 95%;
+    }
+}
+
+/* An horizontal line separating the page contents from the footer. */
+footer table#footer_table hr#footer_separator{
+    border: 0;
+    background-color: #444444;
+    height: 0.1em;
+    width: 70%;
+}
+
+/* Left area of the footer. */
+footer table#footer_table td#footer_left{
+    width: 33%;
+    text-align: center;
+}
+
+/* Social label. */
+footer table#footer_table td#footer_left span#footer_follow{
+    display: block;
+    margin: 0 0 1em 0;
+}
+
+/* Icons for social media */
+footer table#footer_table td#footer_left img.footer_social_icon{
+    width: 2em;
+    margin: 0.2em;
+    vertical-align: middle;
+    background-color: #ffffff;
+    border: 0.1em solid #ffffff;
+    border-radius: 0.3em;
+}
+
+/* Middle area of the footer */
+footer table#footer_table td#footer_center{
+    width: 33%;
+    text-align: center;
+}
+
+/* Right area of the footer */
+footer table#footer_table td#footer_right{
+    width: 33%;
+    text-align: center;
+}
+
+/* Help link. */
+footer table#footer_table td#footer_right span#footer_help{
+    display: block;
+    margin: 0 0 1em 0;
+}
+
+/* Language flags. */
+footer table#footer_table td#footer_right a.lang img{
+    height: 1em;
+    margin: 0.5em;
+    border-radius: 0.2em;
+    border: 0.15em solid #555555;
+    cursor: pointer;
+    box-shadow: 0 0 0.7em #dde;
+    transition: all .3s ease-in-out;
+}
+footer table#footer_table td#footer_right a.lang img:hover{
+    box-shadow: 0 0 1em #111;
+}
+@media screen and (max-width : 800px){
+    footer table#footer_table td#footer_right a.lang img{
+        height: 1.5em;
+        margin: 0.2em;
+        border-radius: 0.1em;
+        border: 0.1em solid #555555;
+        box-shadow: 0 0 0 #dde;
+    }
+}
+main{
+    background-color: #000000;
+    width: 100%;
+    max-width: 90em;
+    margin: 2em auto;
+    padding: 0;
+    text-align: center;
+    flex: 1;
+}
+@media screen and (max-width : 800px){
+    main{
+        width: 100%;
+        margin: 1em auto;
+    }
+}
+
+section{
+    text-align: left;
+    margin: 0.5em;
+    padding: 1em;
+    background-color: #f0f0f0;
+    border: 0.1em solid #003300;
+    overflow: hidden;
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
+    border-bottom-left-radius: 1.5em;
+    border-bottom-right-radius: 1.5em;
+}
+@media screen and (max-width : 800px){
+    section{
+        margin: 1em;
+    }
+}
+
+section h3{
+    position: relative;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #60ae29;
+    border-bottom: 0.1em solid #003300;
+    font-size: 150%;
+    padding: 0.5em 2em 0.2em 3em;
+    margin: -0.8em -1em 1em -1em;
+    font-variant: small-caps;
+}
+
+section h3:before {
+    content: " /";
+    opacity: 0.3;
+}
+
+/* .entry is a style only class to show content. Must be allways children os a .lighted element */
+section article{
+    border: 0.1em solid #aaffaa00;
+    border-radius: 0.3em;
+    padding: 0.5em;
+    margin: 0.5em;
+    transition: all .4s ease-in-out;
+}
+section article h4{
+    font-variant: small-caps;
+    text-decoration: underline;
+    text-decoration-color: #33553377;
+    font-size: 130%;
+    margin: 0.2em auto 1em auto;
+}
+
+section section_list:hover{
+    background-color: #efffef;
+    border: 0.1em solid #aaffaaff;
+}
+
+
+
+/* Style for the mathces in search results */
+span.result_counter{
+    margin-left: 1.2em;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+    font-style: italic;
+}
+
+/* Shown when no records on database */
+div.unavailable{
+    margin-left: 4em;
+    font-style: italic;
+}
+
+
+/**********************************
+ * Styles to be applied to some   *
+ * horizontally scrollable        *
+ * elements                       *
+ **********************************/
+
+/* Horizontall scrollbar that apears when a project has lots of renders */
+.slider::-webkit-scrollbar{
+    width: 0.5em;
+    height: 0.25em;
+    background-color: #444444;
+} 
+.slider::-webkit-scrollbar-thumb{
+    background-color: #cccccc;
+    border-radius: 0.714em;
+}
+.slider::-webkit-scrollbar-thumb:hover{
+    background-color: #cccccc;
+    border: 0.143em solid #000000;
+}
+.slider::-webkit-scrollbar-thumb:active{
+    background-color: #cccccc;
+    border: 0.143em solid #000000;
+}
+
+/* Icons for sharing page in a social network */
+img.social_icon{
+    width: 3em;
+    height: 3em;
+}
+
+/* Elements that should have the cursor as pointer */
+.pointer{
+    cursor: pointer;
+}
+
+
+
+/**********************************
+ * Styles for diverse input       *
+ * elements. Type-assigned        *
+ **********************************/
+
+/* Font for all the input elements */
+input{
+    font-family: 'Nunito';
+}
+
+/* Style for the "submit" type elements in forms */
+input[type=submit]{
+    font-weight: bold;
+    color: #cccccc;
+    background-color: #555555;
+    border: 0.143em solid #bbbbbb;
+    border-radius: 0.429em;
+    padding: 0.5em;
+    text-shadow: 0 0 0.75em #000000;
+    cursor: pointer;
+}
+
+/* Style forr buttons */
+input[type=button]{
+    cursor: pointer;
+    display: inline-block;
+    color: #cccccc;
+    background-color: #278c3a;
+    border: 0.143em solid #66bf38;
+    border-radius: 0.429em;
+    padding: 0.5em 0.8em;
+    text-shadow: 0 0 0.75em #000000;
+    text-decoration: none;
+    font-family: 'Nunito';
+    font-weight: bold;
+    font-variant: small-caps;
+    letter-spacing: 0.07em;
+    font-size: 110%;
+    box-shadow: inset 0 0 0.2em #082400;
+    text-transform: capitalize;
+}
+@media screen and (max-width : 800px){
+	input[type=button]{
+		font-size: 120%;	
+		padding: 0.9em 1.4em;
+	}
+}
+input[type=button]::first-letter{
+    color: #eeeeee;
+}
+input[type=button]:hover{
+    color: #ffffff;
+    background-color: #34b94d;
+    box-shadow: inset 0 0 0.1em #000;
+    border: 0.2em solid #285710;
+}
+input[type=button]:hover::first-letter{
+    color: #ffffff;
+}
+}
+
+/* Style for textboxes */
+input[type=text]{
+    font-weight: bold;
+    color: #224422;
+    background-color: #bbccbb;
+    border: 0.286em solid #ddeedd; 
+    border-color: #dddddd;
+    border-radius: 0.429em;
+    padding: 0.25em;
+    text-shadow: 0 0 0.5em #ffffff;
+}
+
+input[type=checkbox]{
+    width: 1em;
+    height: 1em;
+    border-radius: 0.2em;
+    border: 0.063em solid #005500;
+}
+
+/* Style for textareas */
+textarea{
+    width: 80%;
+    font-weight: bold;
+    color: #444444;
+    background-color: #bbbbbb;
+    border: 0.286em solid #dddddd; 
+    border-color: #dddddd;
+    border-radius: 0.286em;
+    padding: 0.25em;
+    text-shadow: 0 0 0.5em #ffffff;
+    resize: none;
+}
+
+/* Style for selects */
+select{
+    font-weight: bold;
+    color: #444444;
+    background-color: #bbbbbb;
+    border: 0.286em solid #dddddd; 
+    border-radius: 0.286em;
+    padding: 0.25em;
+    text-shadow: 0 0 0.5em #ffffff;
+}
+
+/* Style for placeholders in input fields */
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: #777777;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #777777;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #777777;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #777777;
+}
+
+/* Style-only class user to indicate that a field is incorrect. Ususally this class is added to an element with js */
+.error{
+    border-color: #ffaaaa;
+}
+
+/* Style for the textbox input when the entered text is not the expected one */
+input[type=text].error{
+    border-color: #ffaaaa;
+}
+
+/* Style for the textared input when the entered text is not the expected one */
+textarea.error{
+    border-color: #ffaaaa;
+}
+
+/* Style for buttons that act as links */
+a.a_button{
+    display: inline-block;
+    color: #cccccc;
+    background-color: #278c3a;
+    border: 0.143em solid #66bf38;
+    border-radius: 0.429em;
+    padding: 0.5em 0.8em;
+    text-shadow: 0 0 0.75em #000000;
+    text-decoration: none;
+    font-family: 'Nunito';
+    font-weight: bold;
+    font-variant: small-caps;
+    letter-spacing: 0.07em;
+    font-size: 110%;
+    box-shadow: inset 0 0 0.2em #082400;
+    text-transform: capitalize;
+    transition: all .3s ease-in-out;
+}
+@media screen and (max-width : 800px){
+	a.a_button{
+		font-size: 120%;	
+		padding: 0.9em 1.4em;
+	}
+}
+a.a_button::first-letter{
+    color: #eeeeee;
+}
+a.a_button:hover{
+    color: #ffffff;
+    background-color: #34b94d;
+    box-shadow: inset 0 0 0.1em #000;
+    border: 0.2em solid #285710;
+}
+a.a_button:hover::first-letter{
+    color: #ffffff;
+}
+
+/**********************************
+ * Styles for comment-related     *
+ * elements                       *
+ **********************************/
+
+/* Contains fields to identify the user before the comment can be posted. Hidden by css, must be displayed with js */
+div#identification_form{
+    display: none;
+}
+
+/* Contain a comment, with the details and the text */
+div.comment{
+    background-color: #efffef;
+    border: 0.1em solid #aaffaa;
+    border-radius: 0.3em;
+    padding: 0.5em;
+    margin: 0.5em;
+}
+
+/* User who posted the coment */
+div.comment h4.comment_user{
+    margin-top: 0.417em;
+    margin-bottom: 0;
+}
+
+div.comment h4.comment_user span.comment_user_registered{
+    font-weight: bold;
+    font-size: 110%;
+    color: #005500;
+}
+
+/* Style for the comment's images */
+img.comment_image{
+    border: 0.077em solid black;
+    max-height: 6em;
+    max-width: 60%;
+    display: block;
+    vertical-align: top;
+    border: 0.133em solid black;
+    margin-left: 0.938em;
+    margin-bottom: 0.938em;
+    box-shadow: 0 0 1em #444444;
+}
+
+/* Paragraph with the comment text */
+p.comment_text{
+    vertical-align: top;
+    width: auto;
+    display: block;
+    margin-top: 0.938em;
+    margin-left: 0.938em;
+}
+
+span.comment_date{
+    font-size: 80%;
+    font-style: italic;
+}
+
+/* Input field for the comment text */
+textarea#new_comment_text{
+    width: 98%;
+}
+
+/* Input field for the comment user */
+input#new_comment_user{
+    width: 47%;
+}
+
+/* Input field for the comment email */
+input#new_comment_email{
+    width: 47%;
+}
+
+/* Styles so the input field to upload an image with the comment looks like a button */
+label.image_upload {
+    font-weight: bold;
+    color: #cccccc;
+    background-color: #555555;
+    border: 0.067em solid #bbbbbb;
+    border-radius: 0.2em;
+    padding: 0.5em;
+    text-shadow: 0 0 0.750em #000000;
+    font-size: 0.813em; /*Same as buttons*/
+    font-family: 'Nunito';
+}
+
+label.image_upload input {
+    width: 0 !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+}
+
+/* Previsualization for the upload image in a comment */
+img#new_comment_image_preview{
+    max-height: 7.692em;
+    max-width: 11.538em;
+}
+
+
+/**********************************
+ * Styles for the social buttons. *
+ **********************************/
+
+a.share img.share{
+    display: inline-block;
+    vertical-align: top;
+    overflow: hidden;
+    width: 1.6em;
+    height: 1.6em;
+    border: 0.1em solid #003300;
+    border-radius: 2em;
+    box-shadow: 0 0 0.3em #005500;
+    margin: 0.2em;
+    transition: all .3s ease-in-out;
+}
+
+a.share img.share:hover{
+    box-shadow: 0 0 0.7em #005500;
+    border-radius: 0.7em;
+}

@@ -1,7 +1,3 @@
-#Kate files
-.kateproject.d/
-.kateproject
-
 #OS files
 .directory
 .DS_Store
@@ -10,25 +6,33 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+*.swp
 
-#Utility folders
-3rdparty/
-pending/
-utils-local/
-copy
-remotecopy
-remoteadmin
-www-admin/redirect_s.php
+#IDE files
+.kateproject.d/
+.kateproject
+.project
+.settings
+.externalToolBuilders
 
-#SQL data
-sql/CUSTOM_ROWS.SQL
-sql/DEBUG_ROWS.SQL
+#Local server and deploy tools
+deploy
+server_*
+.php_pid
+
+#SQL custom data
+sql/DES/
+sql/PRE/
+sql/DBG/
 
 #Passwords file
-www/.htpasswd
-www-admin/.htpasswd
-www/.htaccess_local
-www-admin/.htaccess_local
+.htpasswd*
+application/config/auth.php_*
 
-#3rd party software
-www-admin/script/ckeditor
+#Content images
+public/img/content/*.png
+public/img/content/*.svg
+public/img/content/*/*.png
+public/img/content/*/*.svg
+public/img/content/*/*/*.png
+public/img/content/*/*/*.svg
