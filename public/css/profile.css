@@ -10,14 +10,14 @@ section#info{
     margin: auto 2em auto auto;
 }
 @media screen and (max-width : 800px){
-	section#info{
-	    width: 90%;
-	    margin: auto;
-	    text-align: center;
-	}
-	section#info h3{
-	    text-align: left;
-	}
+    section#info{
+        width: 90%;
+        margin: auto;
+        text-align: center;
+    }
+    section#info h3{
+        text-align: left;
+    }
 }
 
 section#info img#profile_image{
@@ -26,28 +26,28 @@ section#info img#profile_image{
     max-width: 10em;
     max-height: 10em;
     border-radius: 1.2em;
-    border: 0.3em solid #000000;
+    box-shadow: 0 0 0 0.1em #000000, 0 0 0 0.3em #66bf38, 0 0 0 0.4em #000000;
 }
 @media screen and (max-width : 800px){
-	section#info img#profile_image{
-	    display: inline-block;
-	    vertical-align: middle;
-	    width: 30%;
-	    max-width: 12em;
-	    max-height: 12em;
-	}
+    section#info img#profile_image{
+        display: inline-block;
+        vertical-align: middle;
+        width: 30%;
+        max-width: 12em;
+        max-height: 12em;
+    }
 }
 section#info div#social{
     text-align: center;
     margin: auto;
 }
 @media screen and (max-width : 800px){
-	section#info div#social{
-	    display: inline-block;
-	    vertical-align: middle;
-	    width: 40%;
-	    margin: auto;
-	}
+    section#info div#social{
+        display: inline-block;
+        vertical-align: middle;
+        width: 40%;
+        margin: auto;
+    }
 }
 section#info div#social img{
     width: 60px;
@@ -73,12 +73,13 @@ section#about{
     display: inline-block;
     vertical-align: top;
     width: 50%;
+    margin: auto;
 }
 @media screen and (max-width : 800px){
-	section#about{
-	    width: 90%;
-	    margin: 2em auto auto auto;
-	}
+    section#about{
+        width: 90%;
+        margin: 2em auto auto auto;
+    }
 }
 section#about p{
     font-style: italic;

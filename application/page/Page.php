@@ -1,5 +1,7 @@
 <?php
 
+    require_once($path["entity"] . "Lang.php");
+
     /**
      * Page superclass.
      *

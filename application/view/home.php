@@ -47,6 +47,10 @@
                         <p id='bio'><?=text($page, "USER_BIO");?></p>
                     </div>
                     <div class='buttons'>
+                        <a class='a_button' title='eMail' href='mailto:i@inigovalentin.com'>
+                            <?=text($page, "INDEX_PROFILE_MAIL");?>
+                            <img class='footer_social_icon' src='<?=$static["layout"]?>social/email.svg' alt='eMail' title='eMail'/>
+                        </a>
                         <a class='a_button' href='<?=$base_url?>/profile/'>
                             <?=text($page, "INDEX_PROFILE_MORE");?>
                         </a>

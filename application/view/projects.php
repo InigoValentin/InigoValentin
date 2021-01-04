@@ -36,7 +36,7 @@
 ?>
         <main>
             <section>
-                <h3><?=$page->title?></h3>
+                <h3><?=text($page, "PROJECT_TITLE");?></h3>
 <?php
                     foreach ($page->project as $project){
 ?>

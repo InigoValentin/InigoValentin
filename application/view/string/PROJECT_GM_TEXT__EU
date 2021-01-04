@@ -1,0 +1,12 @@
+Gasteizko Margolariak es una Asociaci&oacute;n Cultural y una Cuadrilla de Blusas y Neskas en Vitoria-Gasteiz.
+<br/><br/>
+Este aplicativo incluye:
+<p style="margin:1.5em;">
+    <span style="font-weight: bold;">Sitio web p&uacute;blico</span> con informaci&ooacute;n para socios. Durante las fiestas permite consultar el programa, las actividades en la ciudad y conocer la localizaci&oacute; en tiempo real de la cuadrilla. Durante el resto del a&ntilde;o presenta informaci&oacute;n y noticias para socios. Adem&aacute;s incluye una API para las aplicaciones.
+</p>
+<p style="margin:1.5em;">
+    <span style="font-weight: bold;">Sitio web privado</span> para gesti&oacute;n interna. Permite a la direcci&oacute;n de la Asociaci&oacute;n configurar los calendarios, el programa de fiestas, el registro de socios...
+</p>
+<p style="margin:1.5em;">
+    <span style="font-weight: bold;">Aplicaci&oacute;nes para Android e iOS</span> para los socios. Permiten la sincronizaci&oacute;n en tiempo real con el contenido del sitio web, adem&aacute;s de hacer uso de la funci&oacute; de geolocalizaci&oacute;n para recomendar eeventos durante las fiestas, anunciar la ubicaci&oacute;n de la cuadrilla y recibir notificaciones.
+</p>

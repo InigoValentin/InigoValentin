@@ -16,6 +16,16 @@
         public $cv = [];
 
         /**
+         * {@see CV} in the current languages.
+         */
+        public $main_cv;
+
+        /**
+         * List {@see CV}s in other languages.
+         */
+        public $other_cv = [];
+
+        /**
          * Constructor.
          *
          * Retrieves the data and initializes the variables.
@@ -35,7 +45,14 @@
               "ORDER BY lang = '" . $this->lang . "' DESC;";
             $q = mysqli_query($this->db, $s);
             while($r = mysqli_fetch_array($q)){
-                array_push($this->cv, new Cv($this->db, $r["id"]));
+                $c = new Cv($this->db, $r["id"]);
+                array_push($this->cv, $c);
+                if ($c->lang == $this->lang){
+                    $this->main_cv = $c;
+                }
+                else{
+                     array_push($this->other_cv, $c);
+                }
             }
             $this->title = text($this, "USER_NAME");
             $this->description = text($this, "SECTION_ME") . " - " . text($this, "USER_NAME");

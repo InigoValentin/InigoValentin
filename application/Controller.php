@@ -4,9 +4,6 @@
     require_once($path["helper"] . "db.php");
     require_once($path["helper"] . "text.php");
     require_once($path["helper"] . "net.php");
-    foreach (glob($path["page"] . "*.php") as $pagename){
-        require_once($pagename);
-    }
 
 
     /**
@@ -57,22 +54,27 @@
 
             // Select the model to load.
             if (sizeof($route) == 0){
+                require_once($path["page"] . "Home_Page.php");
                 $page = new Home_Page($db, $lang);
             }
             else{
                 if (strtoupper($route[0]) == "HELP"){
+                    require_once($path["page"] . "Help_Page.php");
                     $page = new Help_Page($db, $lang);
                 }
                 if (strtoupper($route[0]) == "PROFILE"){
+                    require_once($path["page"] . "Profile_Page.php");
                     $page = new Profile_Page($db, $lang);
                 }
                 elseif (strtoupper($route[0]) == "PROJECT"){
                     if (sizeof($route) > 1){
                         // Project page
+                        require_once($path["page"] . "Project_Page.php");
                         $page = new Project_Page($db, $lang, $route[1]);
                     }
                     else{
                         // Project list page
+                        require_once($path["page"] . "Projects_Page.php");
                         $page = new Projects_Page($db, $lang);
                     }
                 }
@@ -81,6 +83,7 @@
             // Load the view, or set an error code.
             if (!isset($page)){
                 http_response_code(404);
+                require_once($path["page"] . "Error_Page.php");
                 $page = new Error_Page($db, $lang);
             }
             require_once($page->view);

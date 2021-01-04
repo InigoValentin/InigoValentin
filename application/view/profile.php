@@ -63,18 +63,18 @@
                     <?=text($page, "USER_TEXT");?>
                 </p>
                 <div id='cv_download'>
-                    <a class='a_button' target='_blank' href='<?=$static["cv"] . $page->cv[0]->file?>'>
+                    <a class='a_button' target='_blank' href='<?=$static["cv"] . $page->main_cv->file?>'>
                         <?=text($page, "PROFILE_CV");?>
                     </a>
                     <details>
                         <summary class='pointer'><?=text($page, "PROFILE_CV_LANG");?></summary>
                         <ul>
 <?php
-                            for ($i = 1; $i < count($page->cv); $i ++) {
+                            for ($i = 1; $i < count($page->other_cv); $i ++) {
 ?>
                                 <li>
-                                    <a target='_blank' href='<?=$static["cv"] . $page->cv[$i]->file?>'>
-                                        <?=$page->cv[$i]->lang->name?>
+                                    <a target='_blank' href='<?=$static["cv"] . $page->other_cv[$i]->file?>'>
+                                        <?=$page->other_cv[$i]->lang->name?>
                                     </a>
                                 </li>
 <?php
