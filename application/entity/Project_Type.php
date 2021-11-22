@@ -1,57 +1,86 @@
 <?php
 
-    require_once($path["entity"] . "Entity.php");
-    require_once($path["helper"] . "text.php");
+require_once(PATH::ENTITY . "Entity.php");
 
+
+/**
+ * Type of a project.
+ *
+ * Represents an object from the table 'project_type'.
+ */
+class Project_Type extends Entity{
 
     /**
-     * Type of a project.
-     *
-     * Represents an object from the table 'project_type'.
+     * @var int Identifier of the project type.
      */
-    class Project_Type extends Entity{
+    private $id;
 
-        /**
-         * Identifier of the project type.
-         */
-        public $id;
+    /**
+     * @var String Type denomination, in the defined language.
+     */
+    private $title;
 
-        /**
-         * Type denomination, in the defined language.
-         */
-        public $title;
+    /**
+     * @var String Type description, in the defined language.
+     */
+    private $summary;
 
-        /**
-         * Type description, in the defined language.
-         */
-        public $summary;
-
-        /**
-         * Constructor.
-         *
-         * Searches the database and retrieves the information about the
-         * type, populating it.
-         *
-         * @param MySQL_connection $db Connection to the database.
-         * @param string $lang Lowercase, two-letter language code.
-         * @param string $id Identifier of the project type.
-         */
-        public function __construct($db, $lang, $id){
-            parent::__construct($db, $lang);
-            $s =
-              "SELECT " .
-              "  id, " .
-              "  title, " .
-              "  summary " .
-              "FROM project_type " .
-              "WHERE id = '$id' ;";
-            $q = mysqli_query($this->db, $s);
-            if (mysqli_num_rows($q) > 0){
-                $r = mysqli_fetch_array($q);
-                $this->id = $r["id"];
-                $this->title = text($this, $r["title"]);
-                $this->summary = text($this, $r["summary"]);
-            }
+    /**
+     * Constructor.
+     *
+     * Searches the database and retrieves the information about the
+     * type, populating it.
+     *
+     * @param string $id Identifier of the project type.
+     */
+    public function __construct($id){
+        $statement = get_context()->get_db()->prepare("
+          SELECT
+            id,
+            title,
+            summary
+          FROM project_type
+          WHERE id = :id;
+        ");
+        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+        $statement->execute();
+        $r_type = $statement->fetch(PDO::FETCH_ASSOC);
+        if ($r_type !== false){
+            $this->id = $r_type["id"];
+            $this->title = TEXT::get($r_type["title"]);
+            $this->summary = TEXT::get($$r_type["summary"]);
+            $this->mark_as_loaded(true);
+            $this->mark_as_complete(true);
+        }
+        else{
+            Log::warn("Project type with id '$id' doesn't exist");
         }
     }
-?>
+    
+    /**
+     * Retrieves the project type identifier
+     *
+     * @return int Project type ID.
+     */
+    public function get_id(){
+        return $this->id;
+    }
+    
+    /**
+     * Retrieves the project type title.
+     *
+     * @return string Type name.
+     */
+    public function get_title(){
+        return $this->title;
+    }
+    
+    /**
+     * Retrieves the project type description.
+     *
+     * @return string Type summary.
+     */
+    public function get_summary(){
+        return $this->summary;
+    }
+}

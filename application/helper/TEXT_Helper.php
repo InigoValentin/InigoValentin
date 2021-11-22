@@ -1,5 +1,25 @@
 <?php
+/**
+ * DB helper file.
+ *
+ * Provides a helper to perform database operations.
+ *
+ * @author Iñigo Valentin <i@inigovalentin.com>
+ * @license https://www.gnu.org/licenses/gpl-3.0.en.html GNU General Public License V3
+ * @package IV
+ */
 
+require_once(__DIR__ . "/Helper.php");
+
+
+/**
+ * Text helper.
+ *
+ * Contains utilities to show and manipulate texts.
+ *
+ * @category Helper.
+ */
+final class TEXT extends Helper{
 
     /**
      * Selects the language the page will be displayed on.
@@ -8,10 +28,9 @@
      * set, get the browser language preference list. If none is provided or
      * they are not supported, it will use the default language.
      * 
-     * @param MySQL_connection $db Connection to the database.
      * @return string Lowercase, two-letter language code.
      */
-    function select_language($db){
+    function select_language(){
 
         // Get available languages from db
         $available_languages = array();
@@ -142,19 +161,41 @@
     /**
      * Retrieves a text fragment from the database.
      * 
-     * @param Page|Entity $model An initialized data model.
      * @param string $id Text identifier.
+     * @param bool $html True to decode for HTML.
      * @returns string The text.
      */
-    function text($model, $id){
-        global $path;
-        $q = mysqli_query($model->db, "SELECT text, file FROM text WHERE id = '$id' AND lang = '" . $model->lang . "';");
-        $r = mysqli_fetch_array($q);
-        if (strlen($r["file"]) > 0){
-            return file_get_contents($path["string"] . $r["file"]);
+    public static function get($id, $html = true){
+        $statement = get_context()->get_db()->prepare("
+          SELECT
+            text,
+            file
+          FROM text
+          WHERE
+            id = :id AND
+            lang = :lang
+        ");
+        $statement->bindValue(':id', $id, PDO::PARAM_STR);
+        $statement->bindValue(':lang', get_context()->get_lang(), PDO::PARAM_STR);
+        $statement->execute();
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
+        if ($row !== false){
+            $text = "";
+            if (strlen($row["file"]) > 0){
+                $text = file_get_contents(PATH::TEXT . $row["file"]);
+            }
+            else{
+                $text = $row["text"];
+            }
+            $text = utf8_decode($text);
+            if ($html === true){
+                $text = htmlentities($text, ENT_QUOTES);
+            }
+            return $text;
         }
         else{
-            return $r["text"];
+            Log::error("Text resource with id '$id' not found.");
+            return false;
         }
     }
 
@@ -220,7 +261,7 @@
      * @param string $file Path to the file, relative to $path["img"]["content"]).
      * @return string srcset atttribute content.
      */
-    function srcset($file){
+    public static function srcset($file){
         global $static;
         $srcset = "";
         $dir = dirname($file);
@@ -232,5 +273,4 @@
         return $srcset;
     }
 
-?>
-
+}

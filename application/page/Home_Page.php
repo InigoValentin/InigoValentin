@@ -1,48 +1,60 @@
 <?php
 
-    require_once($path["page"] . "Page.php");
-    require_once($path["entity"] . "Project.php");
-    require_once($path["helper"] . "text.php");
+require_once(PATH::PAGE . "Page.php");
+require_once(PATH::ENTITY . "Project.php");
 
+/**
+ * Home page model.
+ */
+class Home_Page extends Page{
+
+    private $max_projects = 3;
 
     /**
-     * Home page model.
+     * List of recent projects.
      */
-    class Home_Page extends Page{
+    private $projects = [];
 
-        private $max_projects = 3;
+    /**
+     * Constructor.
+     *
+     * Retrieves the data and initializes the variables.
+     */
+    public function __construct(){
+        $this->view = PATH::VIEW . "home.php";
+        parent::__construct();
+        $this->set_view("home.php");
+        $this->set_title(Text::get("USER_NAME"));
+        $this->set_description(Text::get("USER_NAME"));
+        $this->set_canonical("");
+        $this->add_css("home.css");
+        $this->set_code(200);
+        $this->set_message("OK");
 
-        /**
-         * List of recent projects.
-         */
-        public $project = [];
-
-        /**
-         * Constructor.
-         *
-         * Retrieves the data and initializes the variables.
-         *
-         * @param MySQL_connection $db Connection to the database.
-         * @param string $lang Lowercase, two-letter language code.
-         */
-        public function __construct($db, $lang){
-            global $path;
-            global $base_url;
-            parent::__construct($db, $lang);
-            $this->view = $path["view"] . "home.php";
-            $s_project =
-              "SELECT id " .
-              "FROM project " .
-              "WHERE visible = 1 " .
-              "ORDER BY idx DESC " .
-              "LIMIT " . $this->max_projects . ";";
-            $q_project = mysqli_query($this->db, $s_project);
-            while($r_project = mysqli_fetch_array($q_project)){
-                array_push($this->project, new Project($this->db, $this->lang, $r_project["id"]));
-            }
-            $this->title = text($this, "USER_NAME");
-            $this->description = text($this, "USER_NAME") . " - " . text($this, "USER_TAGLINE");
-            $this->canonical = $base_url . "/";
+        $statement = get_context()->get_db()->prepare("
+          SELECT id
+          FROM project
+          WHERE visible = 1
+          ORDER BY idx DESC
+          LIMIT :limit
+        ");
+        $statement->bindValue(':limit', $this->max_projects, PDO::PARAM_INT);
+        
+        
+        $statement->execute();
+        while ($r_project = $statement->fetch(PDO::FETCH_ASSOC)) {
+            Log::debug("Instantiating new project: " . $r_project["id"]);
+            array_push($this->project, new Project($r_project["id"]));
         }
+        
     }
-?>
+    /**
+     * Retrieves the projects to show on the page.
+     *
+     * @return Project[] Project list.
+     */
+    public function get_projects(){
+        return $this->projects;
+    }
+
+}

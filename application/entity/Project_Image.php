@@ -1,62 +1,102 @@
 <?php
 
-    require_once($path["entity"] . "Entity.php");
+require_once(PATH::ENTITY . "Entity.php");
 
+
+/**
+ * Image of a project.
+ *
+ * Represents an object from the table 'project_image'.
+ */
+class Project_Image extends Entity{
 
     /**
-     * Image of a project.
-     *
-     * Represents an object from the table 'project_image'.
+     * @var int Image identifier.
      */
-    class Project_Image extends Entity{
+    private $id;
 
-        /**
-         * Image identifier.
-         */
-        public $id;
+    /**
+     * @var int Project identifier.
+     */
+    private $project;
 
-        /**
-         * Project identifier.
-         */
-        public $project;
+    /**
+     * @var int Indicates the order position among other images.
+     */
+    private $idx;
 
-        /**
-         * Indicates the order position among other images.
-         */
-        public $idx;
+    /**
+     * @var int Filename of the image.
+     */
+    private $image;
 
-        /**
-         * Filename of the image.
-         */
-        public $image;
-
-        /**
-         * Constructor.
-         *
-         * Searches the database and retrieves the information about the
-         * image, populating it.
-         *
-         * @param MySQL_connection $db Connection to the database.
-         * @param int $id Identifier of the image.
-         */
-        public function __construct($db, $id){
-            parent::__construct($db, null);
-            $s =
-              "SELECT " .
-              "  id, " .
-              "  project, " .
-              "  idx, " .
-              "  image " .
-              "FROM project_image " .
-              "WHERE id = $id ;";
-            $q = mysqli_query($this->db, $s);
-            if (mysqli_num_rows($q) > 0){
-                $r = mysqli_fetch_array($q);
-                $this->id = $r["id"];
-                $this->project = $r["project"];
-                $this->idx = $r["idx"];
-                $this->image = $r["image"];
-            }
+    /**
+     * Constructor.
+     *
+     * Searches the database and retrieves the information about the
+     * image, populating it.
+     *
+     * @param int $id Identifier of the image.
+     */
+    public function __construct($id){
+        $statement = get_context()->get_db()->prepare("
+          SELECT
+            id,
+            project,
+            idx,
+            image
+          FROM project_image
+          WHERE id = :id
+        ");
+        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+        $statement->execute();
+        $r_image = $statement->fetch(PDO::FETCH_ASSOC);
+        if ($r_image !== false){
+            $this->id = $r_image["id"];
+            $this->project = $r_image["title"];
+            $this->idx = $r_image["idx"];
+            $this->image = $r_image["image"];
+            $this->mark_as_loaded(true);
+            $this->mark_as_complete(true);
+        }
+        else{
+            Log::warn("Project image with id '$id' doesn't exist");
         }
     }
-?>
+    
+    /**
+     * Retrieves the image identifier
+     *
+     * @return int Image ID.
+     */
+    public function get_id(){
+        return $this->id;
+    }
+    
+    /**
+     * Retrieves the project identifier
+     *
+     * @return int Project ID.
+     */
+    public function get_project(){
+        return $this->project;
+    }
+    
+    /**
+     * Retrieves the image index for sorting.
+     *
+     * @return int Image index.
+     */
+    public function get_idx(){
+        return $this->idx;
+    }
+    
+    /**
+     * Retrieves the image filename.
+     *
+     * @return string Image filename.
+     */
+    public function get_image(){
+        return $this->image;
+    }
+}

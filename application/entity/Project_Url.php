@@ -1,64 +1,102 @@
 <?php
 
-    require_once($path["entity"] . "Entity.php");
-    require_once($path["entity"] . "Project_Url_Type.php");
+require_once(PATH::ENTITY . "Entity.php");
 
+
+/**
+ * URL related to a project.
+ *
+ * Represents an object from the table 'project_url'.
+ */
+class Project_Url extends Entity{
 
     /**
-     * URL related to a project.
-     *
-     * Represents an object from the table 'project_url'.
+     * @var int Identifier of the URL.
      */
-    class Project_Url extends Entity{
+    private $id;
 
-        /**
-         * Identifier of the url.
-         */
-        public $id;
+    /**
+     * @var int Identifier of the project the URL is related to.
+     */
+    private $project;
 
-        /**
-         * Identifier of the project the URL is related to.
-         */
-        public $project;
+    /**
+     * @var Project_Url_Type URL type.
+     */
+    private $type;
 
-        /**
-         * URL {@see Project_Url_Type}.
-         */
-        public $type;
+    /**
+     * @var string Full URL address.
+     */
+    private $url;
 
-        /**
-         * Full URL address.
-         */
-        public $url;
-
-        /**
-         * Constructor.
-         *
-         * Searches the database and retrieves the information about the
-         * url, populating it and its items.
-         *
-         * @param MySQL_connection $db Connection to the database.
-         * @param string $lang Lowercase, two-letter language code.
-         * @param int $id Identifier of the url.
-         */
-        public function __construct($db, $lang, $id){
-            parent::__construct($db, $lang);
-            $s =
-              "SELECT " .
-              "  id, " .
-              "  project, " .
-              "  type, " .
-              "  url " .
-              "FROM project_url " .
-              "WHERE id = $id ;";
-            $q = mysqli_query($this->db, $s);
-            if (mysqli_num_rows($q) > 0){
-                $r = mysqli_fetch_array($q);
-                $this->id = $r["id"];
-                $this->project = $r["project"];
-                $this->url = $r["url"];
-                $this->type = new Project_Url_Type($this->db, $this->lang, $r["type"]);
-            }
+    /**
+     * Constructor.
+     *
+     * Searches the database and retrieves the information about the
+     * url, populating it and its items.
+     *
+     * @param int $id Identifier of the URL.
+     */
+    public function __construct($id){
+        $statement = get_context()->get_db()->prepare("
+          SELECT
+            id
+            project
+            type
+            url
+          FROM project_url
+          WHERE id = :id
+        ");
+        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+        $statement->execute();
+        $r_url = $statement->fetch(PDO::FETCH_ASSOC);
+        if ($r_url !== false){
+            $this->id = $r_url["id"];
+            $this->project = $r_url["project"];
+            $this->type = new Project_Url_Type($r_url["type"]);
+            $this->url = $r_url["url"];
+            $this->mark_as_loaded(true);
+            $this->mark_as_complete(true);
+        }
+        else{
+            Log::warn("Project URL with id '$id' doesn't exist");
         }
     }
-?>
+    
+    /**
+     * Retrieves the URL identifier
+     *
+     * @return int URL ID.
+     */
+    public function get_id(){
+        return $this->id;
+    }
+    
+    /**
+     * Retrieves the project identifier
+     *
+     * @return int Project ID.
+     */
+    public function get_project(){
+        return $this->project;
+    }
+    
+    /**
+     * Retrieves the url type.
+     *
+     * @return Project_Url_Type URL type.
+     */
+    public function get_type(){
+        return $this->type;
+    }
+    
+    /**
+     * Retrieves the URL
+     *
+     * @return string The URL.
+     */
+    public function get_url(){
+        return $this->url;
+    }
+}

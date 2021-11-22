@@ -55,9 +55,11 @@
                                     }
 ?>
                                 <td class='project_details'>
-                                    <a href='<?=$base_url?>/project/<?=$project->permalink?>'>
-                                        <h4 class='project_name'><?=$project->title?></h4>
-                                    </a>
+                                    <h4 class='project_name'>
+                                        <a href='<?=$base_url?>/project/<?=$project->permalink?>'>
+                                            <?=$project->title?>
+                                        </a>
+                                    </h4>
                                     <span>
                                         <?=$project->header?>
                                     </span>

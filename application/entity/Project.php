@@ -1,150 +1,412 @@
 <?php
 
-    require_once($path["entity"] . "Entity.php");
-    require_once($path["entity"] . "License.php");
-    require_once($path["entity"] . "Project_Type.php");
-    require_once($path["entity"] . "Project_Image.php");
-    require_once($path["entity"] . "Project_Tag.php");
-    require_once($path["entity"] . "Project_Url.php");
-    require_once($path["helper"] . "text.php");
+require_once(PATH::ENTITY . "Entity.php");
+require_once(PATH::ENTITY . "License.php");
+require_once(PATH::ENTITY . "Project_Type.php");
+require_once(PATH::ENTITY . "Project_Image.php");
+require_once(PATH::ENTITY . "Project_Url.php");
 
+
+/**
+ * Project.
+ *
+ * Represents an object from the table 'project'.
+ */
+class Project extends Entity{
 
     /**
-     * Project.
-     *
-     * Represents an object from the table 'project'.
+     * @var int Project identifier.
      */
-    class Project extends Entity{
+    private $id;
 
-        /**
-         * Project identifier.
-         */
-        public $id;
+    /**
+     * @var string Permalink for linking the project (relative).
+     */
+    private $permalink;
 
-        /**
-         * Permalink for linking the project (relative).
-         */
-        public $permalink;
+    /**
+     * @var int Project index for sorting.
+     */
+    private $index;
 
-        /**
-         * Project index for sorting.
-         */
-        public $idx;
+    /**
+     * @var int Project type identifier.
+     */
+    private $type_id;
+    
+    /**
+     * @var Project_Type Type of project.
+     */
+    private $type;
 
-        /**
-         * {@see Project_Type} of project.
-         */
-        public $type;
+    /**
+     * @var string Project title in the selected language.
+     */
+    private $title;
 
-        /**
-         * Project title in the defined language.
-         */
-        public $title;
+    /**
+     * @var string Project logo filename.
+     */
+    private $logo;
 
-        /**
-         * Project logo filename.
-         */
-        public $logo;
+    /**
+     * @var string Project summary in the selected language.
+     */
+    private $header;
 
-        /**
-         * Project summary in the defined language.
-         */
-        public $header;
+    /**
+     * @var String Project description in the selected language.
+     */
+    private $text;
+    
+    /**
+     * @var int License identifier.
+     */
+    private $license_id;
 
-        /**
-         * Project description in the defined language.
-         */
-        public $text;
+    /**
+     * @var License Project license.
+     */
+    private $license;
 
-        /**
-         * Project {@see License}.
-         */
-        public $license;
+    /**
+     * @var Project_Image[] List of project images.
+     */
+    private $images = [];
 
-        /**
-         * Array with the project {@see Project_Image}.
-         */
-        public $image = [];
+    /**
+     * @var Project_Tag[] List of project tags.
+     */
+    private $tags = [];
 
-        /**
-         * Array with the {@see Project_Tag} of the project.
-         */
-        public $tag = [];
+    /**
+     * @var Project_URL[] List of the project URLs
+     */
+    private $urls = [];
+    
+    /**
+     * @var bool[] Control flags to check loading status.
+     */
+    private $load_flags = [
+        "type" => false,
+        "images" => false,
+        "tags" => false,
+        "urls" => false
+    ];
 
-        /**
-         * Array with {@see Project_Url} related to the project.
-         */
-        public $url = [];
+    /**
+     * Constructor.
+     *
+     * Searches the database and retrieves the information about the
+     * project, populating it and it's items.
+     *
+     * @param string $id Identifier or permalink of the project.
+     */
+    public function __construct($id){
+        Log::debug("Loading project with ID: " . $id);
+        $statement = get_context()->get_db()->prepare("
+          SELECT
+            id,
+            permalink,
+            idx,
+            type,
+            title,
+            logo,
+            header,
+            text,
+            license
+          FROM project
+          WHERE
+            id = :id OR
+            permalink = :permalink
+          LIMIT 1
+        ");
+        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+        $statement->bindValue(':permalink', $id, PDO::PARAM_STR);
+        $statement->execute();
+        $r_project = $statement->fetch(PDO::FETCH_ASSOC);
+        if ($r_project !== false){
+            $this->id = $r_project["id"];
+            $this->permalink = $r_project["permalink"];
+            $this->idx = $r_project["idx"];
+            $this->title = Text::get($r_project["title"]);
+            $this->logo = $r_project["logo"];
+            $this->header = Text::get($r_project["header"]);
+            $this->text = Text::get($r_project["text"]);
+            $this->type_id = $r_project["type"];
+            $this->license_id = $r_project["license"];
+            $this->mark_as_loaded(true);
+        }
+        else{
+            Log::debug("Project with id '$id' doesn't exist");
+        }
+    }
 
-        /**
-         * Constructor.
-         *
-         * Searches the database and retrieves the information about the
-         * project, populating it and it's items.
-         *
-         * @param MySQL_connection $db Connection to the database.
-         * @param string $lang Lowercase, two-letter language code.
-         * @param string $id Identifier or permalink of the project.
-         */
-        public function __construct($db, $lang, $id){
-            parent::__construct($db, $lang);
-            $s =
-              "SELECT " .
-              "  id, " .
-              "  permalink, " .
-              "  idx, " .
-              "  type, " .
-              "  title, " .
-              "  logo, " .
-              "  header, " .
-              "  text, " .
-              "  license " .
-              "FROM project " .
-              "WHERE " .
-              "  visible = 1 AND " .
-              "  ( " .
-              "    id = '$id' OR " .
-              "    permalink = '$id' " .
-              "  );";
-            $q = mysqli_query($this->db, $s);
-            if (mysqli_num_rows($q) > 0){
-                $r = mysqli_fetch_array($q);
-                $this->id = $r["id"];
-                $this->permalink = $r["permalink"];
-                $this->idx = $r["idx"];
-                $this->title = text($this, $r["title"]);
-                $this->logo = $r["logo"];
-                $this->header = text($this, $r["header"]);
-                $this->text = text($this, $r["text"]);
-                $this->type = new Project_Type($this->db, $this->lang, $r["type"]);
-                $this->license = new License($this->db, $this->lang, $r["license"]);
+    /**
+     * Retrieves the project identifier
+     *
+     * @return int Project ID.
+     */
+    public function get_id(){
+        return $this->id;
+    }
+
+    /**
+     * Retrieves the project permalink
+     *
+     * @return string Project permalink
+     */
+    public function get_permalink(){
+        return $this->permalink;
+    }
+
+    /**
+     * Retrieves the project index for sorting purpuses.
+     *
+     * @return int Project index
+     */
+    public function get_index(){
+        return $this->index;
+    }
+
+    /**
+     * Loads the project type information.
+     * 
+     * Not exposed, must be called before accessing the project type.
+     */
+    private function load_type(){
+        if ($this->get_flag("type") === false){
+            $this->type = new Project_Type($this->type_id);
+            $this->set_flag("type", true);
+        }
+    }
+    
+    /**
+     * Retrieves the project type.
+     *
+     * @return Project_Type The project type.
+     */
+    public function get_type(){
+        if ($this->get_flag("type") === false){
+            $this->load_type();
+        }
+        return $this->type;
+    }
+
+    /**
+     * Retrieves the project title.
+     *
+     * @return string Title.
+     */
+    public function get_title(){
+        return $this->title;
+    }
+
+    /**
+     * Retrieves the project logo.
+     *
+     * @return string The logo filename.
+     */
+    public function get_logo(){
+        return $this->logo;
+    }
+
+    /**
+     * Retrieves a short project description.
+     *
+     * @return string Project header.
+     */
+    public function get_header(){
+        return $this->header;
+    }
+
+    /**
+     * Retrieves the project description.
+     *
+     * @return string Project description text.
+     */
+    public function get_text(){
+        return $this->text;
+    }
+    
+    /**
+     * Loads the project license information.
+     *
+     * Not exposed, must be called before accessing the project license.
+     */
+    private function load_license(){
+        if ($this->get_flag("license") === false){
+            $this->type = new License($this->licenses_id);
+            $this->set_flag("license", true);
+        }
+    }
+
+    /**
+     * Retrieves the project license.
+     *
+     * @return License Project license.
+     */
+    public function get_license(){
+        if ($this->get_flag("license") === false){
+            $this->load_license();
+        }
+        return $this->license;
+    }
+    
+    /**
+     * Loads the project images.
+     *
+     * Not exposed, must be called before accessing the project images.
+     */
+    private function load_images(){
+        if ($this->get_flag("images") === false){
+            $statement = get_context()->get_db()->prepare("
+              SELECT id 
+              FROM project_image
+              WHERE project = :id
+              ORDER BY idx
+            ");
+            $statement->bindValue(':id', $this->id, PDO::PARAM_INT);
+            $statement->execute();
+            while ($r_image = $statement->fetch(PDO::FETCH_ASSOC)){
+                array_push($this->images, new Project_Image($r_image["id"]));
             }
-            $s_image =
-              "SELECT id " .
-              "FROM project_image " .
-              "WHERE project = " . $this->id . " " .
-              "ORDER BY idx; ";
-            $q_image = mysqli_query($this->db, $s_image);
-            while($r_image = mysqli_fetch_array($q_image)){
-                array_push($this->image, new Project_Image($this->db, $r_image["id"]));
+            $this->set_flag("images", true);
+        }
+    }
+
+    /**
+     * Retrieves the projcet images
+     *
+     * @return Project_Image[] List of the project images.
+     */
+    public function get_images(){
+        if ($this->get_flag("images") === false){
+            $this->load_images();
+        }
+        return $this->images;
+    }
+    
+    /**
+     * Loads the project tags.
+     *
+     * Not exposed, must be called before accessing the project tags.
+     */
+    private function load_tags(){
+        if ($this->get_flag("tags") === false){
+            $statement = get_context()->get_db()->prepare("
+              SELECT id
+              FROM project_tag
+              WHERE project = :id
+            ");
+            $statement->bindValue(':id', $this->id, PDO::PARAM_INT);
+            $statement->execute();
+            while ($r_tag = $statement->fetch(PDO::FETCH_ASSOC)){
+                array_push($this->tags, Text::get($r_tag["id"]));
             }
-            $s_tag =
-              "SELECT tag " .
-              "FROM project_tag " .
-              "WHERE project = " . $this->id . ";";
-            $q_tag = mysqli_query($this->db, $s_tag);
-            while($r_tag = mysqli_fetch_array($q_tag)){
-                array_push($this->tag, new Project_Tag($this->db, $this->lang, $this->id, $r_tag["tag"]));
+            $this->set_flag("tags", true);
+        }
+    }
+
+    /**
+     * Retrieves the project tags.
+     *
+     * @return Project_Tag[] Project tags. 
+     */
+    public function get_tags(){
+        if ($this->get_flag("tags") === false){
+            $this->load_tags();
+        }
+        return $this->tags;
+    }
+    
+    /**
+     * Loads the project URLs.
+     *
+     * Not exposed, must be called before accessing the project URLs.
+     */
+    private function load_urls(){
+        if ($this->get_flag("urls") === false){
+            $statement = get_context()->get_db()->prepare("
+              SELECT id
+              FROM project_url
+              WHERE project = :id
+            ");
+            $statement->bindValue(':id', $this->id, PDO::PARAM_INT);
+            $statement->execute();
+            while ($r_url = $statement->fetch(PDO::FETCH_ASSOC)){
+                array_push($this->urls, new Project_Url($r_url["id"]));
             }
-            $s_url =
-              "SELECT id " .
-              "FROM project_url " .
-              "WHERE project = " . $this->id . ";";
-            error_log($s_url);
-            $q_url = mysqli_query($this->db, $s_url);
-            while($r_url = mysqli_fetch_array($q_url)){
-                array_push($this->url, new Project_Url($this->db, $this->lang, $r_url["id"]));
+            $this->set_flag("urls", true);
+        }
+    }
+
+    /**
+     * Retrieves the project URLs
+     *
+     * @return Project_URL[] List of the project URLs. 
+     */
+    public function get_urls(){
+        if ($this->get_flag("urls") === false){
+            $this->load_urls();
+        }
+        return $this->urls;
+    }
+
+    /**
+     * Retrieves a state flag
+     *
+     * @return boolean Flag value, false if it doesn't exist. 
+     */
+    private function get_flag($flag){
+        $value = false;
+        if (array_key_exists($flag , $this->load_flags)){
+            $value = $this->load_flags[$flag];
+        }
+        return $value;
+    }
+
+    /**
+     * Sets a load status flag.
+     * 
+     * If, once set, all flags are set to true, mark_as_complete(true)
+     * will be automatically called.
+     * 
+     * @param string $flag Flag name.
+     * @param boolean $value Flag name.
+     */
+    private function set_flag($flag, $value){
+        $key_found = false;
+        $keys = array_keys($this->load_flags);
+        foreach($keys as $key){
+            if ($key === $flag){
+                $key_found = true;
+                break;
+            }
+        }
+        if ($key_found == false){
+            Log::warn("Trying to set non-existing flag '$flag' in project");
+            return false;
+        }
+        else{
+            if ($value !== true && $value !== false){
+                Log::warn("Trying to set project flag '$flag' to an invalid value: " . $value);
+                return false;
+            }
+            else{
+                $this->load_flags[$flag] = $value;
+                
+                // Once set, loop all keys to check if they are all true
+                $all_loaded = true;
+                foreach($this->load_flags as $value){
+                    if ($value !== true){
+                        $all_loaded = false;
+                        break;
+                    }
+                }
+                $this->mark_as_complete($all_loaded);
+                return true;
             }
         }
     }
-?>
+}

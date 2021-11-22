@@ -76,12 +76,12 @@
                                 foreach($page->project->url as $url){
                                     if ($url->type->id != "E"){
 ?>
-                                        <td>
+                                        <div>
                                             <a target='_blank' class='link' href='<?=$url->url?>'>
                                                 <img class='link' title='<?=$url->type->title?>' alt='<?=$url->type->title?>' src='<?=$static["layout"]?>social/<?=$url->type->logo?>'/>
                                                 <?=$url->type->summary?>
                                             </a>
-                                        </td>
+                                        </div>
 <?php
                                     }
                                 }

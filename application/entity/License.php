@@ -1,72 +1,120 @@
 <?php
 
-    require_once($path["entity"] . "Entity.php");
-    require_once($path["helper"] . "text.php");
+require_once(PATH::ENTITY . "Entity.php");
 
+
+/**
+ * License.
+ *
+ * Represents an object from the table 'license'.
+ */
+class License extends Entity{
 
     /**
-     * License.
-     *
-     * Represents an object from the table 'license'.
+     * @var string License identifier. Usually an abbreviation.
      */
-    class License extends Entity{
+    private $id;
 
-        /**
-         * License identifier. Usually an abbreviation.
-         */
-        public $id;
+    /**
+     * @var string Short, easily readable text summarizing the full text of
+     * the license.
+     */
+    private $summary;
 
-        /**
-         * Short, easily readable text summarizing the full text of the
-         * license.
-         */
-        public $summary;
+    /**
+     * @var string Full text of the license.
+     */
+    private $legal;
 
-        /**
-         * Full text of the license.
-         */
-        public $legal;
+    /**
+     * @var string License logo.
+     */
+    private $logo;
 
-        /**
-         * License logo.
-         */
-        public $logo;
+    /**
+     * @var string License icon, small.
+     */
+    private $icon;
 
-        /**
-         * License icon, small.
-         */
-        public $icon;
-
-        /**
-         * Constructor.
-         *
-         * Searches the database and retrieves the information about the
-         * object, populating it.
-         *
-         * @param MySQL_connection $db Connection to the database.
-         * @param string $lang Lowercase, two-letter language code.
-         * @param string $id Database identifier of the license.
-         */
-        public function __construct($db, $lang, $id){
-            parent::__construct($db, $lang);
-            $s =
-              "SELECT " .
-              "  id, " .
-              "  summary, " .
-              "  legal, " .
-              "  logo, " .
-              "  icon " .
-              "FROM license " .
-              "WHERE id = '$id'; ";
-            $q = mysqli_query($this->db, $s);
-            if (mysqli_num_rows($q) > 0){
-                $r = mysqli_fetch_array($q);
-                $this->id = $r["id"];
-                $this->summary = text($this, $r["summary"]);
-                $this->legal = text($this, $r["legal"]);
-                $this->logo = $r["logo"];
-                $this->icon = $r["icon"];
-            }
+    /**
+     * Constructor.
+     *
+     * Searches the database and retrieves the information about the
+     * object, populating it.
+     *
+     * @param string $id Identifier of the license.
+     */
+    public function __construct($id){
+        $statement = get_context()->get_db()->prepare("
+          SELECT
+            id
+            summary
+            legal
+            logo
+            icon
+          FROM license
+          WHERE id = :id
+        ");
+        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+        $statement->execute();
+        $r_license = $statement->fetch(PDO::FETCH_ASSOC);
+        if ($r_license !== false){
+            $this->id = $r_license["id"];
+            $this->summary = TEXT::get($r_license["summary"]);
+            $this->legal = TEXT::get($r_license["legal"]);
+            $this->logo = $r_license["logo"];
+            $this->icon = $r_license["icon"];
+            $this->mark_as_loaded(true);
+            $this->mark_as_complete(true);
+        }
+        else{
+            Log::warn("License with id '$id' doesn't exist");
         }
     }
-?>
+    
+    /**
+     * Retrieves the license identifier
+     *
+     * @return string License ID.
+     */
+    public function get_id(){
+        return $this->id;
+    }
+    
+    /**
+     * Retrieves a short, easily readable text summarizing the full text of
+     * the license.
+     *
+     * @return string License summary.
+     */
+    public function get_summary(){
+        return $this->summary;
+    }
+    
+    /**
+     * Retrieves the full text of the license
+     *
+     * @return string License legal text.
+     */
+    public function get_legal(){
+        return $this->legal;
+    }
+    
+    /**
+     * Retrieves the license logo.
+     *
+     * @return string The logo filename.
+     */
+    public function get_logo(){
+        return $this->logo;
+    }
+    
+    /**
+     * Retrieves the license icon.
+     *
+     * @return string The icon filename.
+     */
+    public function get_icon(){
+        return $this->icon;
+    }
+}

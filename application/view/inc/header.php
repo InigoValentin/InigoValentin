@@ -4,17 +4,17 @@
         inigoValentin
     </div>
     <nav>
-        <a href='<?=$base_url?>/'>
-            <img src='<?=$static["layout"]?>icon/home.svg'/>
-            <?=text($page, "SECTION_HOME")?>
+        <a href='<?=URL::BASE?>/'>
+            <img src='<?=URL::IMG["LAYOUT"]?>icon/home.svg'/>
+            <?=TEXT::get("SECTION_HOME")?>
         </a>
-        <a href='<?=$base_url?>/profile/'/>
-            <img src='<?=$static["layout"]?>icon/profile.svg'/>
-            <?=text($page, "SECTION_ME")?>
+        <a href='<?=URL::BASE?>/profile/'>
+            <img src='<?=URL::IMG["LAYOUT"]?>icon/profile.svg'/>
+            <?=TEXT::get("SECTION_ME")?>
         </a>
-        <a href='<?=$base_url?>/project/'>
-            <img src='<?=$static["layout"]?>icon/project.svg'/>
-            <?=text($page, "SECTION_PROJECTS")?>
+        <a href='<?=URL::BASE?>/project/'>
+            <img src='<?=URL::IMG["LAYOUT"]?>icon/project.svg'/>
+            <?=TEXT::get("SECTION_PROJECTS")?>
         </a>
     </nav>
 </header>
