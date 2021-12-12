@@ -1,0 +1,58 @@
+<% content_for :head do %>
+    <%= stylesheet_link_tag 'main', media: 'all', 'data-turbolinks-track': 'reload' %>
+<% end %>
+<section id='profile'>
+    <h3>
+        <%= @user.full_name %>
+    </h3>
+    <article>
+        <%=image_tag(@user.picture[0], id: "profile_image")%>
+        <div id='profile_content'>
+            <h4 id='tagline'><%= @user.i18n_tagline %></h4>
+            <p id='bio'><%= @user.i18n_bio %></p>
+        </div>
+        <div class='buttons'>
+            <a class='a_button' title='eMail' href='mailto:<%=@user.mail_adresses[0].address%>'>
+                <%= image_tag (
+                        "social/email.svg"
+                    ),
+                    class: "footer_social_icon",
+                    alt: t('social.mail'),
+                    title: t('social.mail')
+                %>
+            </a>
+            <%= link_to(
+                t('index.profile_more'), profile_path(), class: "a_button"
+            ) %>
+        </div>
+    </article>
+</section>
+<section id='projects'>
+    <h3>
+        <%= t('index.projects') %>
+    </h3>
+    <% @projects.each do |project| %>
+        <article class='project'>
+            <table>
+                <tr>
+                    <td>
+                        <% if project.logo.attached? %>
+                            <%= link_to(
+                                image_tag(project.logo, class: "project_image"),
+                                project_show_path(permalink: project.permalink)
+                            ) %>
+                        <% end %>
+                    </td>
+                    <td class='project_details'>
+                        <h4 class='project_name'>
+                            <%= link_to(project.i18n_title, project_show_path(permalink: project.permalink)) %>
+                        </h4>
+                        <span>
+                            <%= project.i18n_header %>
+                        </span>
+                    </td>
+                </tr>
+            </table>
+        </article>
+    <% end %>
+</section>

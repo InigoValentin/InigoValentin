@@ -1,0 +1,171 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': "'foo'"
+#
+# To learn more, please read the Rails Internationalization guide
+# available at https://guides.rubyonrails.org/i18n.html.
+
+es:
+    hello: "Hola Mundo!"
+    time:
+        monday: "lunes"
+        tuesday: "martes"
+        wednesday: "miercoles"
+        thursday: "jueves"
+        friday: "viernes"
+        saturday: "sábado"
+        sunday: "domingo"
+        january: "enero"
+        february: "febrero"
+        march: "marzo"
+        april: "abril"
+        may: "mayo"
+        june: "junio"
+        july: "julio"
+        august: "agosto"
+        september: "septiembre"
+        october: "octubre"
+        november: "noviembre"
+        december: "diciembre"
+    project_type:
+        development: "Software"
+        system: "Sistemas"
+        development_summary: "Desarrollo de software"
+        system_summary: "Montaje de sistema"
+    url_type:
+        app_store: "App Store"
+        github: "Github"
+        website: "Website"
+        google_play: "Google Play"
+        live: "Ver"
+        app_store_summary: "Ver en App Store"
+        github_summary: "C&ocute;digo fuente en Github"
+        website_summary: "Ir al sitio"
+        google_play_summary: "Ver en Google Play"
+        live_summary: "Ejecutar en el navegador"
+    error:
+        code: "CODE"
+        error: "ERROR"
+        title: "Error"
+        try_solution: "Intenta una de estas soluciones:"
+        error_400_title: "Bad request"
+        error_401_title: "Unauthorized"
+        error_403_title: "Forbidden"
+        error_404_title: "Not found"
+        error_500_title: "Server error"
+        error_xxx_title: "Unexpected error"
+        error_400_solution_0: "Ir a la página anterior"
+        error_400_solution_1: "Ir a la página principal"
+        error_400_solution_2: "Ver videos de gatitos en Youtube"
+        error_401_solution_0: "Ir a la página anterior"
+        error_401_solution_1: "Ir a la página principal"
+        error_401_solution_2: "Ver videos de gatitos en Youtube"
+        error_403_solution_0: "Ir a la página anterior"
+        error_403_solution_1: "Ir a la página principal"
+        error_403_solution_2: "Ver videos de gatitos en Youtube"
+        error_404_solution_0: "Ir a la página anterior"
+        error_404_solution_1: "Ir a la página principal"
+        error_404_solution_2: "Ver videos de gatitos en Youtube"
+        error_500_solution_0: "Ir a la página anterior"
+        error_500_solution_1: "Ir a la página principal"
+        error_500_solution_2: "Ver videos de gatitos en Youtube"
+        error_xxx_solution_0: "Ir a la página anterior"
+        error_xxx_solution_1: "Ir a la página principal"
+        error_xxx_solution_2: "Ver videos de gatitos en Youtube"
+        error_400_description: "En servidor no entendio la solicitud."
+        error_401_description: "Estás intentando ver algo que no deberías."
+        error_403_description: "Estás intentando ver algo que no deberías."
+        error_404_description: "La página que buscas no existe en este universo. Prueba en uno alternativo."
+        error_500_description: "Esto es culpa mí, ahora mismo estoy intentando solucionarlo."
+        error_xxx_description: "Algo ha ido mal..."
+    header:
+        home: "Inicio"
+        profile: "Yo"
+        projects: "Proyectos"
+    footer:
+        copy: "Copyright Iñigo Valentin 2014 - %{year}"
+        help: "Ayuda"
+        follow: "Sígueme"
+    index:
+        profile: "Yo"
+        projects: "Proyectos"
+        profile_cv: "Currículo"
+        profile_more: "Más sobre mí"
+        projects_all: "Ver todos los proyectos"
+    profile:
+        cv: "Currículo"
+        title: "Yo"
+        skills: "Habilidades"
+        cv_lang: "Otros idiomas"
+        description: "Sobre mí"
+        cv_printable: "Formato imprimible"
+        download_other: "Descargar en otros idiomas"
+        download_current: "Descargar"
+    project:
+        info: "Detalles"
+        tags: "Tags"
+        close: "Cerrar"
+        title: "Proyectos"
+        search: "Buscar"
+        license: "Licencia"
+        version: "Versión"
+        description: "Descripció"
+        search_type: "Tipo"
+        license_legal: "Texto legal:"
+        search_license: "Licencia"
+        license_summary: "En pocas palabras:"
+        search_advanced: "Búsqueda avanzada"
+    share:
+        google: "Google +"
+        twitter: "Twitter"
+        facebook: "Facebook"
+        linkedin: "LinkedIn"
+        telegram: "Telegram"
+        vkontakte: "VKontakte"
+        google_summary: "Compartir en Google +"
+        twitter_summary: "Compartir en Twitter"
+        facebook_summary: "Compartir en Facebook"
+        linkedin_summary: "Compartir en LinkedIn"
+        telegram_summary: "Compartir en Telegram"
+        vkontakte_summary: "Compartir en VKontakte"
+    social:
+        rss: "RSS"
+        mail: "eMail"
+        github: "Github"
+        linkedin: "LinkedIn"
+    tag:
+        js: "Javascript"
+        css: "CSS"
+        ios: "iOS"
+        php: "PHP"
+        web: "Web"
+        java: "Java"
+        html5: "HTML5"
+        mysql: "MySQL"
+        swift: "Swift"
+        sqlite: "SQLite"
+        android: "Android"

@@ -1,0 +1,13 @@
+<% content_for :head do %>
+    <%= stylesheet_link_tag 'profile', media: 'all', 'data-turbolinks-track': 'reload' %>
+<% end %>
+<section id='info'>
+    <h3>
+        <%= @user.full_name %>
+    </h3>
+    <article>
+        <%=image_tag(@user.picture[0], id: "profile_image")%>
+        <div id='social'>
+        </div>
+    </article>
+</section>

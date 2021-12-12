@@ -1,0 +1,39 @@
+<footer>
+    <hr id='footer_separator'/>
+    <br/>
+    <table id='footer_table'>
+        <tr>
+            <td id='footer_left'>
+                <span id='footer_follow' class='desktop'>
+                    <%= t('footer.follow') %>
+                </span>
+                <a target='_blank' title='eMail' href='mailto:i@inigovalentin.com'>
+                    <%= image_tag ("social/email.svg"), class: "footer_social_icon", alt: t('social.mail') , title: t('social.mail') %>
+                </a>
+                <a target='_blank' title='Telegram' href='https://telegram.me/InigoValentin'>
+                    <%= image_tag ("social/telegram.svg"), class: "footer_social_icon", alt: t('social.telegram') , title: t('social.telegram') %>
+                </a>
+                <a target='_blank' title='Github' href='https://github.com/InigoValentin'>
+                    <%= image_tag ("social/github.svg"), class: "footer_social_icon", alt: t('social.github') , title: t('social.github') %>
+                </a>
+                <a target='_blank' title='LinkedIn' href='https://www.linkedin.com/in/ivalentin'>
+                    <%= image_tag ("social/linkedin.svg"), class: "footer_social_icon", alt: t('social.linkedin') , title: t('social.linkedin') %>
+                </a>
+            </td>
+            <td id='footer_center'>
+                <%= t('footer.copy', year: Date.today.year) %>
+            </td>
+            <td id='footer_right'>
+                <a id='footer_help' href='<?=URL::BASE?>/help/'>
+                    <%= t('footer.help') %>
+                </a>
+                <br/><br/>
+                <% I18n.available_locales.each do |locale| %>
+                    <a class='lang' href='<?=$dest?>'>
+                        <%= image_tag ("lang/" + locale.to_s + ".svg") %>
+                    </a>
+                <% end %>
+            </td>
+        </tr>
+    </table>
+</footer>
