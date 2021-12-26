@@ -31,6 +31,10 @@
 
 en:
     hello: "Hello world"
+    lang:
+        es: "Spanish"
+        en: "English"
+        eu: "Basque"
     time:
         monday: "Monday"
         tuesday: "Tuesday"
@@ -107,24 +111,30 @@ en:
         profile: "Me"
         projects: "Projects"
     footer:
-        copy: "Copyright Iñigo Valentin 2014 - %{year}"
+        copy: "Copyright %{name} 2014 - %{year}"
         help: "Help"
         follow: "Follow me"
+        lang_es: "Mostrar en castellano"
+        lang_en: "Show in english"
+        lang_eu: "Euskaraz ikusi"
     index:
         profile: "Me"
         projects: "Projects"
-        profile_cv: "R&eacute;sum&eacute;"
+        profile_cv: "Résumé"
         profile_more: "More about me"
         projects_all: "See all projects"
     profile:
-        cv: "R&eacute;sum&eacute;"
+        resume: "Résumé"
         title: "Me"
         skills: "Skills"
-        cv_lang: "Other languages"
+        resume_lang: "Other languages"
         description: "About me"
-        cv_printable: "View printable format"
+        resume_printable: "View printable format"
         download_other: "Download in other languages"
         download_current: "Download in english"
+        resume_es: "View in spanish"
+        resume_en: "View in english"
+        resume_eu: "View in basque"
     project:
         info: "Details"
         tags: "Tags"
@@ -169,3 +179,28 @@ en:
         swift: "Swift"
         sqlite: "SQLite"
         android: "Android"
+    help:
+        about_title: "Sobre este sitio"
+        about_text: "TODO"
+        privace_title: "Privacidad"
+        privacy_text: "Let's be honest. Nobody likes being tracked. At least I don't. That's why I don't track you.
+                       <br/><br/>
+                       I try to collect as few personal information about you as posible. There is no advertising, no registration is needed to download anything, no email subscription to see any content on the page, no third party code to track visits...
+                       <br/><br/>
+                       I like to keep a basic track of the visits on the site, it's good for my ego. To do so, I keep IP address of visitors, which I only keep for 72 hours. After that time, they get hashed (meaning I can't ever know the real IP address)
+                       <br/><br/>
+                       And that's pretty much it."
+        cookies_title: "Cookies"
+        cookies_text: "Being consequent with the previous paragraph, I've got bad news.
+                       <br/><br/>No cookies on this site.
+                       <br/><br/>:("
+        license_title: "Licencia"
+        license_text: "Bad news first: There are some icons (application stores, social networks, code repositories...) which, of course, are no work of mine, and are propery of their respective owners.
+                       <br/><br/>
+                       But as for everything else:
+                       <br/><br/>
+                       On most projects and code on this site you'll find it's license, usually a GPL one. For every thing else in this site a <a rel='license' target='_blank' href='http://creativecommons.org/licenses/by-sa/4.0/'>Creative Commons Attribution-ShareAlike 4.0 International License</a> applies.
+                       <br/><br/>
+                       Wich means that you can use, modify, and share this work or its modifications, as long as you give credit to me (for example, by linking to this page) and you keep this license unchanged.
+                       <br/><br/>
+                       So, go on! Start copying and downloading as if there were no tomorrow."

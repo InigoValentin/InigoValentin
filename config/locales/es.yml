@@ -31,6 +31,10 @@
 
 es:
     hello: "Hola Mundo!"
+    lang:
+        es: "Castellano"
+        en: "Inglés'"
+        eu: "Euskera"
     time:
         monday: "lunes"
         tuesday: "martes"
@@ -59,11 +63,11 @@ es:
     url_type:
         app_store: "App Store"
         github: "Github"
-        website: "Website"
+        website: "Sitio web"
         google_play: "Google Play"
         live: "Ver"
         app_store_summary: "Ver en App Store"
-        github_summary: "C&ocute;digo fuente en Github"
+        github_summary: "Codigo fuente en Github"
         website_summary: "Ir al sitio"
         google_play_summary: "Ver en Google Play"
         live_summary: "Ejecutar en el navegador"
@@ -107,9 +111,12 @@ es:
         profile: "Yo"
         projects: "Proyectos"
     footer:
-        copy: "Copyright Iñigo Valentin 2014 - %{year}"
+        copy: "Copyright %{name} 2014 - %{year}"
         help: "Ayuda"
         follow: "Sígueme"
+        lang_es: "Mostrar en castellano"
+        lang_en: "Show in english"
+        lang_eu: "Euskaraz ikusi"
     index:
         profile: "Yo"
         projects: "Proyectos"
@@ -117,14 +124,17 @@ es:
         profile_more: "Más sobre mí"
         projects_all: "Ver todos los proyectos"
     profile:
-        cv: "Currículo"
+        resume: "Currículo"
         title: "Yo"
         skills: "Habilidades"
-        cv_lang: "Otros idiomas"
+        resume_lang: "Otros idiomas"
         description: "Sobre mí"
-        cv_printable: "Formato imprimible"
+        resume_printable: "Formato imprimible"
         download_other: "Descargar en otros idiomas"
         download_current: "Descargar"
+        resume_es: "Ver en castellano"
+        resume_en: "Ver en inglés"
+        resume_eu: "Ver en euskera"
     project:
         info: "Detalles"
         tags: "Tags"
@@ -133,7 +143,7 @@ es:
         search: "Buscar"
         license: "Licencia"
         version: "Versión"
-        description: "Descripció"
+        description: "Descripción"
         search_type: "Tipo"
         license_legal: "Texto legal:"
         search_license: "Licencia"
@@ -169,3 +179,36 @@ es:
         swift: "Swift"
         sqlite: "SQLite"
         android: "Android"
+    help:
+        about_title: "Sobre este sitio"
+        about_text: "TODO"
+        privacy_title: "Privacidad"
+        privacy_text: "Vamos a ser sinceros, a nadie le gusta que le rastreen. Al menos a mi no, y por eso no te rastreo a ti.
+                       <br/><br/>
+                       Intento recopilar la menor información posible sobre ti. No hay anuncios, no hay registro para ver o descargar contenido, no hay suscripciones por email, no hay servicios externos para contabilizar visitas...
+                       <br/><br/>
+                       Si que mantengo unas estadísticas basicas sobre las visitas a este sitio, es algo que me resulta muy util. Para eso si que necesito almacenar tu dirección IP, y solo durante 72 horas. Despues, no tengo forma de volver a saberla.
+                       <br/><br/>
+                       Y ya está."
+        cookies_title: "Cookies"
+        cookies_text: "Siendo consecuente con el parrafo anterior....
+                       <br/><br/>... no hay cookies en este sitio.
+                       <br/><br/>:)"
+        license_title: "Licencia"
+        license_text: "Primero lo malo: Hay algunos iconos (tiendas de aplicaciones, redes sociales, sitios web externos...) que, por supuesto, no son creación mía', y son propiedad de sus respectivos propietarios.
+                       <br/><br/>
+                       Pero para todo lo demás:
+                       <br/><br/>
+                       En la mayoría de proyectos encontrarás un apartado sobre la licencia, normalmente una GPL o Creative Commons. Para todo lo demás, se aplica la licencia <a rel='license' target='_blank' href='http://creativecommons.org/licenses/by-sa/4.0/'>Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+                       <br/><br/>
+                       Lo que significa que puedes usar, modificar, y difundir estos contenidos y sus modificaciones, siempre que me menciones como fuente (por ejemplo, con un enlace a esta página) y mantengas la misma licencia."
+                       
+
+
+
+
+
+
+
+
+

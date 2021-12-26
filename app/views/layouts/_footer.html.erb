@@ -7,31 +7,39 @@
                 <span id='footer_follow' class='desktop'>
                     <%= t('footer.follow') %>
                 </span>
-                <a target='_blank' title='eMail' href='mailto:i@inigovalentin.com'>
-                    <%= image_tag ("social/email.svg"), class: "footer_social_icon", alt: t('social.mail') , title: t('social.mail') %>
-                </a>
-                <a target='_blank' title='Telegram' href='https://telegram.me/InigoValentin'>
-                    <%= image_tag ("social/telegram.svg"), class: "footer_social_icon", alt: t('social.telegram') , title: t('social.telegram') %>
-                </a>
-                <a target='_blank' title='Github' href='https://github.com/InigoValentin'>
-                    <%= image_tag ("social/github.svg"), class: "footer_social_icon", alt: t('social.github') , title: t('social.github') %>
-                </a>
-                <a target='_blank' title='LinkedIn' href='https://www.linkedin.com/in/ivalentin'>
-                    <%= image_tag ("social/linkedin.svg"), class: "footer_social_icon", alt: t('social.linkedin') , title: t('social.linkedin') %>
-                </a>
+                <% @user.user_social_links.each do |link| %>
+                <%= link_to(
+                    image_tag(link.social_link.logo, class: "footer_social_icon", alt: link.social_link.i18n_link_title, title: link.social_link.i18n_link_title),
+                    link.generate_link,
+                    target: "_blank",
+                    title: link.social_link.i18n_link_title
+                ) %>
+            <% end %>
             </td>
             <td id='footer_center'>
-                <%= t('footer.copy', year: Date.today.year) %>
+                <%= t('footer.copy', name: @user.full_name, year: Date.today.year) %>
             </td>
             <td id='footer_right'>
-                <a id='footer_help' href='<?=URL::BASE?>/help/'>
-                    <%= t('footer.help') %>
-                </a>
+                <%= link_to(
+                    t("footer.help"),
+                    help_path,
+                    id: "footer_help",
+                    title: t("footer.help")
+                ) %>
                 <br/><br/>
+                <%
+                    path = request.fullpath
+                    if path.to_s[0..4] =~ /[a-z]{2}/ then
+                        path = path[3..] + "/"
+                    end
+                %>
                 <% I18n.available_locales.each do |locale| %>
-                    <a class='lang' href='<?=$dest?>'>
-                        <%= image_tag ("lang/" + locale.to_s + ".svg") %>
-                    </a>
+                    <%= link_to(
+                        image_tag("lang/#{locale.to_s}.svg", alt: t("footer.lang_#{locale.to_s}"), title: t("footer.lang_#{locale.to_s}")),
+                        request.protocol + request.host_with_port + "/" + locale.to_s + path,
+                        class: "lang",
+                        title: t("footer.lang_#{locale.to_s}")
+                    ) %>
                 <% end %>
             </td>
         </tr>

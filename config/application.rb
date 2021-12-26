@@ -27,5 +27,14 @@ module InigoValentin
     .active_storage
     .content_types_to_serve_as_binary
     .delete('image/svg+xml')
+    
+    ActiveStorage::Engine.config
+    .active_storage
+    .content_types_to_serve_as_binary
+    .delete('text/html')
+    
+    ActiveStorage::Engine.config.active_storage.content_types_allowed_inline.append('text/html')
+    print ActiveStorage::Engine.config.active_storage.content_types_to_serve_as_binary
+    print ActiveStorage::Engine.config.active_storage.content_types_allowed_inline
   end
 end

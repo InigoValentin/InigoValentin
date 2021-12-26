@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_12_114959) do
+ActiveRecord::Schema.define(version: 2021_12_13_105552) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -92,6 +92,26 @@ ActiveRecord::Schema.define(version: 2021_12_12_114959) do
     t.index ["technology_id"], name: "index_projects_technologies_on_technology_id"
   end
 
+  create_table "resumes", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "language"
+    t.integer "priority"
+    t.boolean "printable"
+    t.string "format"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_resumes_on_user_id"
+  end
+
+  create_table "social_links", charset: "utf8mb4", force: :cascade do |t|
+    t.string "site_name"
+    t.string "pattern"
+    t.string "regexp"
+    t.string "link_title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "tags", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "project_id", null: false
     t.string "tag"
@@ -132,6 +152,17 @@ ActiveRecord::Schema.define(version: 2021_12_12_114959) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "user_social_links", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "social_link_id", null: false
+    t.integer "priority"
+    t.string "link"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["social_link_id"], name: "index_user_social_links_on_social_link_id"
+    t.index ["user_id"], name: "index_user_social_links_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
     t.string "username"
     t.string "full_name"
@@ -154,6 +185,9 @@ ActiveRecord::Schema.define(version: 2021_12_12_114959) do
   add_foreign_key "mail_adresses", "users"
   add_foreign_key "projects", "licenses"
   add_foreign_key "projects", "users"
+  add_foreign_key "resumes", "users"
   add_foreign_key "tags", "projects"
   add_foreign_key "texts", "users"
+  add_foreign_key "user_social_links", "social_links"
+  add_foreign_key "user_social_links", "users"
 end
