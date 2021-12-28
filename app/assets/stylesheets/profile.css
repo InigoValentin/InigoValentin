@@ -7,16 +7,12 @@ section#info{
     display: inline-block;
     vertical-align: top;
     width: 30%;
-    margin: auto 2em auto auto;
 }
 @media screen and (max-width : 800px){
     section#info{
         width: 90%;
         margin: auto;
         text-align: center;
-    }
-    section#info h3{
-        text-align: left;
     }
 }
 
@@ -37,6 +33,15 @@ section#info img#profile_image{
         max-height: 12em;
     }
 }
+section#info h5{
+    margin-top: 0;
+}
+section#info h5 span{
+    display: block;
+    text-align: center;
+    font-size: 110%;
+    padding: 0.5em;
+}
 section#info div#social{
     text-align: center;
     margin: auto;
@@ -45,7 +50,7 @@ section#info div#social{
     section#info div#social{
         display: inline-block;
         vertical-align: middle;
-        width: 40%;
+        width: 100%;
         margin: auto;
     }
 }
@@ -87,25 +92,35 @@ section#about p{
     margin: 2em 4em;
     color: #335333;
 }
+@media screen and (max-width : 800px){
+    section#about p{
+        font-style: initial;
+        text-indent: 0.7em;
+        color: initial;
+        margin: 0 0 1em 0;
+    }
+}
 section#about div#resume_download{
     text-align: center;
 }
 section#about div#resume_download a.a_button{
     display: inline-block;
     vertical-align: top;
-    margin: auto 3em 1.5em auto;
+    margin: auto 1.5em 1.5em auto;
 }
 section#about div#resume_download details{
     display: inline-block;
     vertical-align: top;
     font-style: italic;
     margin-top: 0.5em;
+    width: 15em;
 }
 section#about div#resume_download details summary{
     color: #777777;
     font-size: 90%;
+    text-align: left;
 }
 section#about div#resume_download details ul{
     text-align: left;
-    margin: 0.1em;
+    margin: 0.1em 0.1em 0.1em 0.1em;
 }

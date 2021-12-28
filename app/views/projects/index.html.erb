@@ -1,5 +1,5 @@
 <% content_for :head do %>
-    <%= stylesheet_link_tag 'projects', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "projects", media: "all", "data-turbolinks-track": "reload" %>
 <% end %>
 <section>
     <h3>
@@ -9,17 +9,28 @@
         <article class='project'>
             <table>
                 <tr>
-                    <td>
+                    <td class='logo'>
                         <% if project.logo.attached? %>
-                            <%= link_to(
-                                image_tag(project.logo, class: "project_image"),
-                                project_show_path(permalink: project.permalink)
-                            ) %>
+                            <%=
+                                link_to(
+                                    image_tag(
+                                        project.logo,
+                                        class: "project_image",
+                                        alt: project.i18n_title
+                                    ),
+                                    project_show_path(permalink: project.permalink)
+                                )
+                            %>
                         <% end %>
                     </td>
                     <td class='project_details'>
                         <h4 class='project_name'>
-                            <%= link_to(project.i18n_title, project_show_path(permalink: project.permalink)) %>
+                            <%=
+                                link_to(
+                                    project.i18n_title,
+                                    project_show_path(permalink: project.permalink)
+                                )
+                            %>
                         </h4>
                         <span>
                             <%= project.i18n_header %>

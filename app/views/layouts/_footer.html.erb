@@ -1,23 +1,27 @@
 <footer>
     <hr id='footer_separator'/>
-    <br/>
     <table id='footer_table'>
         <tr>
             <td id='footer_left'>
                 <span id='footer_follow' class='desktop'>
-                    <%= t('footer.follow') %>
+                    <%= t("footer.follow") %>
                 </span>
                 <% @user.user_social_links.each do |link| %>
-                <%= link_to(
-                    image_tag(link.social_link.logo, class: "footer_social_icon", alt: link.social_link.i18n_link_title, title: link.social_link.i18n_link_title),
-                    link.generate_link,
-                    target: "_blank",
-                    title: link.social_link.i18n_link_title
-                ) %>
+                <%=
+                    link_to(
+                        image_tag(
+                            link.social_link.logo,
+                            class: "footer_social_icon",
+                            alt: link.social_link.i18n_link_title),
+                        link.generate_link,
+                        target: "_blank",
+                        title: link.social_link.i18n_link_title
+                    )
+                %>
             <% end %>
             </td>
             <td id='footer_center'>
-                <%= t('footer.copy', name: @user.full_name, year: Date.today.year) %>
+                <%= t("footer.copy", name: @user.full_name, year: Date.today.year) %>
             </td>
             <td id='footer_right'>
                 <%= link_to(
@@ -34,12 +38,21 @@
                     end
                 %>
                 <% I18n.available_locales.each do |locale| %>
-                    <%= link_to(
-                        image_tag("lang/#{locale.to_s}.svg", alt: t("footer.lang_#{locale.to_s}"), title: t("footer.lang_#{locale.to_s}")),
-                        request.protocol + request.host_with_port + "/" + locale.to_s + path,
-                        class: "lang",
-                        title: t("footer.lang_#{locale.to_s}")
-                    ) %>
+                    <%=
+                        link_to(
+                            image_tag(
+                                "lang/#{locale.to_s}.svg",
+                                alt: t("footer.lang_#{locale.to_s}")
+                            ),
+                            request.protocol +
+                                request.host_with_port +
+                                "/" +
+                                locale.to_s +
+                                path,
+                            class: "lang",
+                            title: t("footer.lang_#{locale.to_s}")
+                        )
+                    %>
                 <% end %>
             </td>
         </tr>

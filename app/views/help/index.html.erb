@@ -1,10 +1,10 @@
 <% content_for :head do %>
-    <%= stylesheet_link_tag 'help', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'help', 'data-turbolinks-track' => true  %>
+    <%= stylesheet_link_tag "help", media: "all", "data-turbolinks-track": "reload" %>
+    <%= javascript_include_tag "help", "data-turbolinks-track" => true  %>
 <% end %>
 <section id='about' class='help'>
     <h3 class='pointer' onClick='toggleHelp("about");'>
-        <%= image_tag("control/slid_r.svg", class: "slider") %>
+        <%= image_tag("control/slid_r.svg", class: "slider", alt: t("help.expand")) %>
         <%= t("help.about_title") %>
     </h3>
     <p>
@@ -13,7 +13,7 @@
 </section>
 <section id='privacy' class='help'>
     <h3 class='pointer' onClick='toggleHelp("privacy");'>
-        <%= image_tag("control/slid_r.svg", class: "slider") %>
+        <%= image_tag("control/slid_r.svg", class: "slider", alt: t("help.expand")) %>
         <%= t("help.privacy_title") %>
     </h3>
     <p>
@@ -22,7 +22,7 @@
 </section>
 <section id='cookies' class='help'>
     <h3 class='pointer' onClick='toggleHelp("cookies");'>
-        <%= image_tag("control/slid_r.svg", class: "slider") %>
+        <%= image_tag("control/slid_r.svg", class: "slider", alt: t("help.expand")) %>
         <%= t("help.cookies_title") %>
     </h3>
     <p>
@@ -31,7 +31,7 @@
 </section>
 <section id='license' class='help'>
     <h3 class='pointer' onClick='toggleHelp("license");'>
-        <%= image_tag("control/slid_r.svg", class: "slider") %>
+        <%= image_tag("control/slid_r.svg", class: "slider", alt: t("help.expand")) %>
         <%= t("help.license_title") %>
     </h3>
     <p>

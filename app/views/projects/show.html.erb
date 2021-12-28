@@ -1,5 +1,5 @@
 <% content_for :head do %>
-    <%= stylesheet_link_tag 'project', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "project", media: "all", "data-turbolinks-track": "reload" %>
 <% end %>
 <section>
     <h3>
@@ -12,7 +12,14 @@
             </h4>
             <p id='text'>
                 <% if @project.logo.attached? %>
-                    <%= image_tag(@project.logo, class: "project_image", id: "logo") %>
+                    <%=
+                        image_tag(
+                            @project.logo,
+                            class: "project_image",
+                            id: "project_image",
+                            alt: ""
+                        )
+                    %>
                 <% end %>
                 <%= @project.i18n_text.html_safe %>
             </p>
@@ -20,20 +27,25 @@
         <div id='info_details'>
             <div id='links' class='details'>
                 <% @project.projectUrls.each do |url| %>
-                    <%= link_to(
-                        image_tag(url.urlTarget.logo, class: "link", title: url.urlTarget.i18n_summary, alt: url.urlTarget.i18n_summary) + url.urlTarget.i18n_name,
-                        url.url,
-                        class: "link",
-                        target: "_blank",
-                        title: url.urlTarget.i18n_summary
+                    <%=
+                        link_to(
+                            image_tag(
+                                url.urlTarget.logo,
+                                class: "link",
+                                title: url.urlTarget.i18n_summary,
+                                alt: url.urlTarget.i18n_summary
+                            ) + url.urlTarget.i18n_name,
+                            url.url,
+                            class: "link",
+                            target: "_blank",
+                            title: url.urlTarget.i18n_summary
                     ) %>
                 <% end %>
             </div>
-            <hr class='details_separator'/>
             <div id='technologies' class='details'>
                 <% @project.technologies.each do |technology| %>
                     <span class='technology technology_<%=technology.nature%>'>
-                        <%= image_tag(technology.logo, class: "technology_logo") %>
+                        <%= image_tag(technology.logo, class: "technology_logo", alt: "") %>
                         <span class='technology_name'>
                             <%= technology.name %>
                         </span>
@@ -42,12 +54,18 @@
             </div>
             <div id='license' class='details'>
                 <%= t("project.license") %>:
-                <%= link_to(
-                    image_tag(@project.license.logo, title: @project.license.name, alt: @project.license.name),
-                    @project.license.url,
-                    target: "_blank",
-                    title: @project.license.name
-                ) %>
+                <%=
+                    link_to(
+                        image_tag(
+                            @project.license.logo,
+                            title: @project.license.name,
+                            alt: @project.license.name
+                        ),
+                        @project.license.url,
+                        target: "_blank",
+                        title: @project.license.name
+                    )
+                %>
             </div> <!-- #license -->
         </div> <!-- #info_details -->
     </article>

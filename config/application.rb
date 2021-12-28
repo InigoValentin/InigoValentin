@@ -20,6 +20,12 @@ module InigoValentin
     # config.eager_load_paths << Rails.root.join("extras")
     config.assets.paths << Rails.root.join("app", "assets", "images")
     
+    # Show assests without digest
+    config.assets.digest = false
+    
+    # Active storage prefix
+    config.active_storage.routes_prefix = '/content'
+    
     # Hack for allowing SVG files. While this hack is here, we should **not**
     # allow arbitrary SVG uploads. https://github.com/rails/rails/issues/34665
     

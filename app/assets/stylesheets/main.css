@@ -12,15 +12,26 @@ section#profile{
     }
 }
 section#profile article img#profile_image{
-    display: inline-block;
-    vertical-align: top;
+    vertical-align: middle;
     width: 25%;
     height: 25%;
     border-radius: 50%;
     box-shadow: 0 0 0 0.1em #000000, 0 0 0 0.3em #66bf38, 0 0 0 0.4em #000000;
+    float: left;
+    margin-right: 1em;
+    margin-bottom: 1em;
+}
+section#profile article h4#tagline{
+    display: inline-block;
+    vertical-align: middle;
+}
+@media screen and (max-width : 800px){
+    section#profile article h4#tagline{
+        display: inline;
+        text-align: justify;
+    }
 }
 section#profile article div#profile_content{
-    width: 60%;
     padding: 0.5em 1.5em;
     display: inline-block;
     vertical-align: top;
@@ -29,6 +40,11 @@ section#profile article div#profile_content{
 section#profile article div.buttons{
     text-align: right;
     padding: 0.5em 2em 0 2em;
+}
+@media screen and (max-width : 800px){
+    section#profile article div.buttons{
+        padding: 0;
+    }
 }
 
 section#profile article div.buttons a.a_button img{
@@ -48,10 +64,15 @@ section#projects{
     section#projects{
         display: block;
         width: 90%;
-        margin: 2em auto auto auto;
+        margin: 2em auto 0 auto;
     }
 }
-section#projects article.project img.project_image{
+@media screen and (max-width : 800px){
+    section#projects article.project table td.icon{
+        vertical-align: top;
+    }
+}
+section#projects article.project table td.icon img.project_image{
     padding: 0.5em;
     width: 5em;
     height: 5em;
@@ -61,17 +82,31 @@ section#projects article.project img.project_image{
     border-radius: 1em;
 }
 @media screen and (max-width : 800px){
-    section#projects article.project img.project_image{
-        padding: 0.9em;
-        width: 10em;
-        height: 10em;
+    section#projects article.project table td.icon img.project_image{
+        padding: 0.2em;
+        width: 10vw;
+        height: 10vw;
     }
 }
 section#projects article.project td.project_details{
     vertical-align: top;
     padding-left: 1em;
 }
+@media screen and (max-width : 800px){
+    section#projects article.project td.project_details{
+        padding-left: 0.3em;
+    }
+    section#projects article.project td.project_details h4{
+        margin-bottom: 0.2em;
+    }
+}
 section#projects div.buttons{
     text-align: right;
     padding: 0.5em 2em 0 2em;
+}
+@media screen and (max-width : 800px){
+    section#projects div.buttons{
+        padding: 0;
+        margin: 0.4em 0.4em;
+    }
 }

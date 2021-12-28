@@ -123,6 +123,7 @@ eu:
         profile_cv: "Curriculum"
         profile_more: "Niri buruz gehiago"
         projects_all: "Proiektu denak ikusi"
+        email: "Idatzi iezadazu "
     profile:
         resume: "Curriculum"
         title: "Ni"
@@ -180,6 +181,7 @@ eu:
         sqlite: "SQLite"
         android: "Android"
     help:
+        expand: "Textua ikusi"
         about_title: "Webgune buruz"
         about_text: "TODO"
         privacy_title: "Priatutasuna"

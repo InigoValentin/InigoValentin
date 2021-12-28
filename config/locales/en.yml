@@ -123,6 +123,7 @@ en:
         profile_cv: "Résumé"
         profile_more: "More about me"
         projects_all: "See all projects"
+        email: "Send me an e-mail"
     profile:
         resume: "Résumé"
         title: "Me"
@@ -180,6 +181,7 @@ en:
         sqlite: "SQLite"
         android: "Android"
     help:
+        expand: "Show text"
         about_title: "Sobre este sitio"
         about_text: "TODO"
         privace_title: "Privacidad"
