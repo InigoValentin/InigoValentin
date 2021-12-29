@@ -180,6 +180,18 @@ en:
         swift: "Swift"
         sqlite: "SQLite"
         android: "Android"
+    contact:
+        title: "Contact me"
+        name: "Your name"
+        mail: "Your eMail address"
+        message: "Message"
+        send: "Send"
+        cancel: "Cancel"
+        close: "Close"
+        confirmation: "The message has been sent!"
+        error:
+            invalid_email: "Invalid email"
+            empty_text: "The message is empty"
     help:
         expand: "Show text"
         about_title: "Sobre este sitio"

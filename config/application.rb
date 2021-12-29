@@ -42,5 +42,19 @@ module InigoValentin
     ActiveStorage::Engine.config.active_storage.content_types_allowed_inline.append('text/html')
     print ActiveStorage::Engine.config.active_storage.content_types_to_serve_as_binary
     print ActiveStorage::Engine.config.active_storage.content_types_allowed_inline
+    
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+       address:              Rails.application.credentials.smtp[:server],
+       port:                 Rails.application.credentials.smtp[:port],
+       domain:               Rails.application.credentials.smtp[:domain],
+       user_name:            Rails.application.credentials.smtp[:username],
+       password:             Rails.application.credentials.smtp[:password],
+       authentication:       Rails.application.credentials.smtp[:authentication],
+       #enable_starttls_auto: Rails.application.credentials.smtp[:enable_starttls_auto]
+       ssl:                  Rails.application.credentials.smtp[:ssl],
+       openssl_verify_mode:  Rails.application.credentials.smtp[:openssl_verify_mode]
+    }
+    
   end
 end

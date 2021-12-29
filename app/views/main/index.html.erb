@@ -19,10 +19,9 @@
                     image_tag(
                         "social/email.svg", 
                         class: "footer_social_icon",
-                        alt: t("social.mail"),
-                        title: t("social.mail")
+                        alt: t("social.mail")
                     ) + t("index.email"),
-                    "mailto:" + @user.mail_adresses[0].address,
+                    "javascript:showContactForm()",
                     class: "a_button"
                 )
             %>

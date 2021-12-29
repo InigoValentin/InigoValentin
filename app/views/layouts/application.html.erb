@@ -7,6 +7,7 @@
         <%= csp_meta_tag %>
 
         <%= stylesheet_link_tag "ui", media: "all", "data-turbolinks-track": "reload" %>
+        <%= javascript_include_tag "main", "data-turbolinks-track" => true  %>
         <%= yield(:head) %>
     </head>
 
@@ -16,5 +17,6 @@
             <%= yield %>
         </main>
         <%= render "layouts/footer" %>
+        <%= render "layouts/contact_form"%>
   </body>
 </html>

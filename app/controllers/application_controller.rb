@@ -2,11 +2,10 @@ class ApplicationController < ActionController::Base
 
     before_action :set_locale
     before_action :set_user
-
-    
+    skip_before_action :verify_authenticity_token
 
     private
-    
+
     def set_user
         @user = User.find(1)
     end

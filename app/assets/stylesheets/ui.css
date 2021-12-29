@@ -294,6 +294,121 @@ footer table#footer_table td#footer_right a.lang img:hover{
         box-shadow: 0 0 0 #dde;
     }
 }
+/* The contact form */
+div#contact_bg{
+    display: none;
+    background: #000000;
+    opacity: 0.6;
+    transition: all .4s ease-in-out;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+section#contact{
+    display: none;
+    position: fixed;
+    top: 20%;
+    width: 60%;
+    margin: auto;
+    left: 20%;
+}
+@media screen and (max-width : 800px){
+    section#contact{
+        width: 90%;
+        top: 15%;
+        left: 5%;
+    }
+}
+section#contact h3 img#contact_close{
+    float:right;
+    width: 1em;
+    height: 1em;
+}
+section#contact div.contact_buttons{
+    text-align: center;
+}
+section#contact div.contact_buttons input{
+    margin: 1em;
+}
+@media screen and (max-width : 800px){
+    section#contact div.contact_buttons input{
+        margin: 0.3em;
+    }
+}
+section#contact div#contact_menu{
+    height: 18em;
+}
+section#contact div#contact_menu table{
+    width: 100%;
+}
+section#contact div#contact_menu table td.label{
+    width: 8em;
+    text-align: right;
+    padding-right: 1em;
+    vertical-align: top;
+}
+section#contact div#contact_menu table input[type=text]{
+    width: 18em;
+}
+@media screen and (max-width : 800px){
+    section#contact div#contact_menu table td.label{
+        width: initial;
+        padding-right: 0.5em;
+        padding-bottom: 1em;
+    }
+    section#contact div#contact_menu table input[type=text]{
+        width: 90%;
+    }
+}
+section#contact div#contact_menu table textarea{
+    width: 90%;
+    height: 5em;
+    margin: auto;
+}
+section#contact div#contact_menu span.contact_error {
+    font-weight: bold;
+    color: #581010;
+    background-color: #E2AAAA;
+    border: 0.2em solid #E02323;
+    border-radius: 0.429em;
+    padding: 0.2em 0.5em;
+    text-shadow: 0 0 0.15em #0003;
+    cursor: pointer;
+    font-size: 80%;
+    margin-top: -0.5em;
+    margin-left: 1em;
+    transition: all .2s ease-in-out;
+}
+section#contact div#contact_progress{
+    height: 18em;
+    text-align: center;
+}
+section#contact div#contact_progress img{
+    margin-top: 6em;
+    width: 3em;
+    height: 3em;
+    animation: contact_progress 4s infinite linear;
+}
+@keyframes contact_progress {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}
+section#contact div#contact_confirmation{
+    height: 18em;
+    text-align: center;
+}
+section#contact div#contact_confirmation p{
+    padding-top: 2em;
+    padding-bottom: 2em;
+    font-size: 150%;
+    font-weight: bold;
+}
 main{
     background-color: #000000;
     width: 100%;
@@ -464,7 +579,7 @@ input[type=submit]{
 }
 
 /* Style forr buttons */
-input[type=button]{
+input[type=button], input[type=submit]{
     cursor: pointer;
     display: inline-block;
     color: #cccccc;
@@ -483,9 +598,9 @@ input[type=button]{
     text-transform: capitalize;
 }
 @media screen and (max-width : 800px){
-    input[type=button]{
-        font-size: 120%;    
-        padding: 0.9em 1.4em;
+    input[type=button], input[type=submit]{
+        /*font-size: 120%;    
+        padding: 0.9em 1.4em;*/
     }
 }
 input[type=button]::first-letter{
@@ -523,12 +638,11 @@ input[type=checkbox]{
 /* Style for textareas */
 textarea{
     width: 80%;
-    font-weight: bold;
-    color: #444444;
-    background-color: #bbbbbb;
-    border: 0.286em solid #dddddd; 
+    color: #224422;
+    background-color: #bbccbb;
+    border: 0.286em solid #ddeedd; 
     border-color: #dddddd;
-    border-radius: 0.286em;
+    border-radius: 0.429em;
     padding: 0.25em;
     text-shadow: 0 0 0.5em #ffffff;
     resize: none;

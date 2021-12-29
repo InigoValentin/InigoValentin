@@ -180,6 +180,18 @@ eu:
         swift: "Swift"
         sqlite: "SQLite"
         android: "Android"
+    contact:
+        title: "Mesua bidali"
+        name: "Zure izena"
+        mail: "Zure eMail"
+        message: "Mesua"
+        send: "Bidali"
+        cancel: "Itxi"
+        close: "Itxi"
+        confirmation: "Mezua bidali da!"
+        error:
+            invalid_email: "eMail-a baliogabea da"
+            empty_text: "Mezua hutsik dago"
     help:
         expand: "Textua ikusi"
         about_title: "Webgune buruz"
