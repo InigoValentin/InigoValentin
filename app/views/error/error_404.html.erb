@@ -1,0 +1,31 @@
+<% content_for :head do %>
+    <%= stylesheet_link_tag "error", media: "all", "data-turbolinks-track": "reload" %>
+<% end %>
+<section>
+    <h3>
+        <%= t("error.error_404_title" ) %>
+    </h3>
+    <div id='left'>
+        <p id='code'>
+            404
+        </p>
+        <p>
+            <span><%= t("error.error" ) %></span>
+            <span><%= t("error.code" ) %></span>
+        </p>
+    </div>
+    <div id='right'>
+        <h4>
+           <%= t("error.error_404_description" ) %>
+        </h4>
+        <%= t("error.try_solution" ) %>
+        <ul>
+            <li>
+                <a href='javascript: history.go(-1);'><%= t("error.error_400_solution_0") %></a>
+            </li>
+            <li>
+                <a href='/'><%= t("error.error_400_solution_1") %></a>
+            </li>
+        </ul>
+    </div>
+</section>

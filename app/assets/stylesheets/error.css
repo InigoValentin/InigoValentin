@@ -1,0 +1,50 @@
+section{
+    margin: auto;
+    max-width: 60em;
+    border: 0.1em solid #330000;
+}
+
+section h3{
+    color: #ffffff;
+    background-color: #ef3939;
+    border-bottom: 0.1em solid #330000;
+}
+
+section div#left{
+    display: inline-block;
+    vertical-align: middle;
+    width: 15em;
+    height: 6em;
+    margin: 2em;
+    padding-top: 2em;
+    background-color: #ef3939;
+    color: #ffffff;
+    font-weight: bold;
+    border: 0.3em solid #330000;
+    border-radius: 0.5em;
+    text-align: center;
+    text-shadow: 0 0 0.1em #000000;
+    box-shadow: 0 0 0.2em #ef3939;
+}
+section div#left p{
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: bold;
+    font-size: 150%;
+    margin: 0.2em;
+}
+section div#left p#code{
+    font-size: 300%;
+}
+section div#left p span{
+    display: block;
+}
+
+section div#right{
+    display: inline-block;
+    vertical-align: middle;
+    margin: 1.5em 1em 1.5em 0;
+    padding-left: 2em;
+    max-width: 35em;
+    border-left: 0.2em solid #444444
+}

@@ -7,6 +7,10 @@
     font-family: 'Latin'; 
     src:  url('/fonts/Latin-Modern-Mono-Light-Bold.otf');
 }
+@font-face {
+    font-family: 'Handwritten'; 
+    src:  url('/fonts/Handwritten.ttf'); 
+}
 
 /* Elements to be shown only in large screens. */
 .desktop{

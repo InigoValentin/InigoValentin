@@ -37,6 +37,8 @@ yarn-debug.log*
 .project
 .custom-data
 
-/config/credentials/development.key
-
-/config/credentials/production.key
+# Credentials and keys
+/config/credentials/*.key
+/config/credentials/*.yml.enc
+/config/credentials.yml.enc
+/config/master.key

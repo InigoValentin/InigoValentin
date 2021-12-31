@@ -1,5 +1,6 @@
 <% content_for :head do %>
     <%= stylesheet_link_tag "project", media: "all", "data-turbolinks-track": "reload" %>
+    <%= javascript_include_tag "project", "data-turbolinks-track" => true  %>
 <% end %>
 <section>
     <h3>
@@ -10,7 +11,7 @@
             <h4>
                 <%= @project.i18n_header %>
             </h4>
-            <p id='text'>
+            <div id='text'>
                 <% if @project.logo.attached? %>
                     <%=
                         image_tag(
@@ -22,7 +23,15 @@
                     %>
                 <% end %>
                 <%= @project.i18n_text.html_safe %>
-            </p>
+            </div>
+            <% if @project.comment != nil %>
+                <div id='comment'>
+                    <div id='comment_title'>
+                        <%= t("project.comment", name: @user.first_name) %>
+                    </div>
+                    <%= @project.i18n_comment.html_safe %>
+                </div>
+            <% end %>
         </div>
         <div id='info_details'>
             <div id='links' class='details'>
@@ -67,6 +76,76 @@
                     )
                 %>
             </div> <!-- #license -->
+            <% if @project.images.attached? %>
+                <div id='images' class='details'>
+                    <%= t("project.images") %>
+                    <br/>
+                    <% i = 0 %>
+                    <% @project.images.each do |image| %>
+                        <%=
+                            link_to(
+                                image_tag(
+                                    image,
+                                    class: "project_image",
+                                    alt: ""
+                                ),
+                                "javascript:showImage(" + i.to_s + ");"
+                        ) %>
+                        <script>
+                            images[<%= i %>] = '<%= url_for(image) %>';
+                        </script>
+                        <% i = i + 1 %>
+                    <% end %>
+                </div>
+            <% end %>
         </div> <!-- #info_details -->
+    </article>
+</section>
+<div id='gallery_bg'>
+</div>
+<section id='gallery'>
+    <h3>
+        <%= @project.i18n_title %>
+        <span id='gallery_close'>
+            <%=
+                link_to(
+                    image_tag(
+                        "control/close.svg", 
+                        id: "gallery_close",
+                        alt: t("contact.cancel")
+                    ),
+                    #"mailto:" + @user.mail_adresses[0].address,
+                    "javascript:closeGallery()"
+                )
+            %>
+        </span>
+    </h3>
+    <article>
+        <div id='gallery_image_container'>
+            <img id='gallery_image'/>
+        </div>
+        <div id='gallery_controls'>
+            <input type='button' value='<' onClick='javascript:previousPhoto();'/>
+            <div id='image_list'>
+                <% i = 0 %>
+                <% @project.images.each do |image| %>
+                    <%=
+                        link_to(
+                            image_tag(
+                                image,
+                                id: "gallery_preview_" + i.to_s,
+                                class: "gallery_preview",
+                                alt: ""
+                            ),
+                            "javascript:showImage(" + i.to_s + ");"
+                    ) %>
+                    <script>
+                        images[<%= i %>] = '<%= url_for(image) %>';
+                    </script>
+                    <% i = i + 1 %>
+                <% end %>
+            </div>
+            <input type='button' value='>' onClick='javascript:nextPhoto();'/>
+        </div>
     </article>
 </section>

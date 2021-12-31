@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+    rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
 
     before_action :set_locale
     before_action :set_user
@@ -19,5 +20,13 @@ class ApplicationController < ActionController::Base
         parsed_locale = params[:locale]
         I18n.available_locales.map(&:to_s).include?(parsed_locale) ? parsed_locale : nil
     end
+    
+    def record_not_found(m, *args, &block)
+        Rails.logger.error("MMM" + m)
+        print("\nMETHOD MISSING\n")
+        redirect_to :controller=>"error", :action=>"error_404"
+        # or render/redirect_to somewhere else
+    end
+
     
 end

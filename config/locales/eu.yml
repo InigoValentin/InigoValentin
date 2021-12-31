@@ -150,6 +150,8 @@ eu:
         search_license: "Licentzia"
         license_summary: "Hitz gutxitan:"
         search_advanced: "Bilaketa aurreratua"
+        comment: "%{name}-ren oharrak"
+        images: "Irudiak"
     share:
         google: "Google +"
         twitter: "Twitter"

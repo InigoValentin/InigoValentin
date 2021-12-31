@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_28_133200) do
+ActiveRecord::Schema.define(version: 2021_12_30_103227) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 2021_12_28_133200) do
     t.bigint "project_id", null: false
     t.string "url"
     t.bigint "urlTarget_id", null: false
+    t.boolean "deprecated"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["project_id"], name: "index_project_urls_on_project_id"
@@ -88,6 +89,7 @@ ActiveRecord::Schema.define(version: 2021_12_28_133200) do
     t.string "logo"
     t.string "header"
     t.text "text"
+    t.text "comment"
     t.bigint "license_id", null: false
     t.bigint "user_id", null: false
     t.integer "visibility"
@@ -125,13 +127,13 @@ ActiveRecord::Schema.define(version: 2021_12_28_133200) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "tags", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "project_id", null: false
-    t.string "tag"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["project_id"], name: "index_tags_on_project_id"
-  end
+  #create_table "tags", charset: "utf8mb4", force: :cascade do |t|
+  #  t.bigint "project_id", null: false
+  #  t.string "tag"
+  #  t.datetime "created_at", precision: 6, null: false
+  #  t.datetime "updated_at", precision: 6, null: false
+  #  t.index ["project_id"], name: "index_tags_on_project_id"
+  #end
 
   create_table "technologies", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
@@ -149,7 +151,7 @@ ActiveRecord::Schema.define(version: 2021_12_28_133200) do
   end
 
   create_table "texts", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "user_id", null: true
     t.string "key"
     t.string "language"
     t.text "text"
@@ -200,7 +202,7 @@ ActiveRecord::Schema.define(version: 2021_12_28_133200) do
   add_foreign_key "projects", "licenses"
   add_foreign_key "projects", "users"
   add_foreign_key "resumes", "users"
-  add_foreign_key "tags", "projects"
+  #add_foreign_key "tags", "projects"
   add_foreign_key "texts", "users"
   add_foreign_key "user_social_links", "social_links"
   add_foreign_key "user_social_links", "users"

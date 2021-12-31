@@ -150,6 +150,8 @@ en:
         search_license: "License"
         license_summary: "In a few words:"
         search_advanced: "Advanced search"
+        comment: "%{name}'s notes"
+        images: "Image gallery"
     share:
         google: "Google +"
         twitter: "Twitter"

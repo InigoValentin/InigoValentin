@@ -28,20 +28,19 @@ module InigoValentin
     
     # Hack for allowing SVG files. While this hack is here, we should **not**
     # allow arbitrary SVG uploads. https://github.com/rails/rails/issues/34665
-    
     ActiveStorage::Engine.config
     .active_storage
     .content_types_to_serve_as_binary
     .delete('image/svg+xml')
-    
+
+    # Serve raw html from assests (for resumes)
     ActiveStorage::Engine.config
     .active_storage
     .content_types_to_serve_as_binary
     .delete('text/html')
-    
     ActiveStorage::Engine.config.active_storage.content_types_allowed_inline.append('text/html')
-    print ActiveStorage::Engine.config.active_storage.content_types_to_serve_as_binary
-    print ActiveStorage::Engine.config.active_storage.content_types_allowed_inline
+    
+    config.exceptions_app = self.routes
     
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {

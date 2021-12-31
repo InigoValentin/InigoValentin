@@ -150,6 +150,8 @@ es:
         search_license: "Licencia"
         license_summary: "En pocas palabras:"
         search_advanced: "Búsqueda avanzada"
+        comment: "Notas de %{name}"
+        images: "Galería"
     share:
         google: "Google +"
         twitter: "Twitter"
@@ -216,7 +218,6 @@ es:
                        En la mayoría de proyectos encontrarás un apartado sobre la licencia, normalmente una GPL o Creative Commons. Para todo lo demás, se aplica la licencia <a rel='license' target='_blank' href='http://creativecommons.org/licenses/by-sa/4.0/'>Creative Commons Attribution-ShareAlike 4.0 International License</a>.
                        <br/><br/>
                        Lo que significa que puedes usar, modificar, y difundir estos contenidos y sus modificaciones, siempre que me menciones como fuente (por ejemplo, con un enlace a esta página) y mantengas la misma licencia."
-                       
 
 
 
