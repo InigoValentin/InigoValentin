@@ -105,7 +105,7 @@
 </div>
 <section id='gallery'>
     <h3>
-        <%= @project.i18n_title %>
+        <%= t("project.gallery_title", project: @project.i18n_title) %>
         <span id='gallery_close'>
             <%=
                 link_to(
@@ -125,7 +125,9 @@
             <img id='gallery_image'/>
         </div>
         <div id='gallery_controls'>
-            <input type='button' value='<' onClick='javascript:previousPhoto();'/>
+            <div class='gallery_control' id='gallery_control_left'>
+                <input type='button' value='<' onClick='javascript:previousPhoto();'/>
+            </div>
             <div id='image_list'>
                 <% i = 0 %>
                 <% @project.images.each do |image| %>
@@ -145,7 +147,9 @@
                     <% i = i + 1 %>
                 <% end %>
             </div>
-            <input type='button' value='>' onClick='javascript:nextPhoto();'/>
+            <div class='gallery_control' id='gallery_control_right'>
+                <input type='button' value='>' onClick='javascript:nextPhoto();'/>
+            </div>
         </div>
     </article>
 </section>

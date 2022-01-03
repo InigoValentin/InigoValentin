@@ -152,6 +152,7 @@ es:
         search_advanced: "Búsqueda avanzada"
         comment: "Notas de %{name}"
         images: "Galería"
+        gallery_title: "%{project}: Imágenes"
     share:
         google: "Google +"
         twitter: "Twitter"

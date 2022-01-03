@@ -246,21 +246,31 @@ section#gallery div#gallery_controls{
         width: 95%;
     }
 }
-
+section#gallery div#gallery_controls div.gallery_control{
+    display: inline-block;
+    vertical-align: top;
+}
+section#gallery div#gallery_controls div#gallery_control_left{
+    text-align: right;
+}
+section#gallery div#gallery_controls div#gallery_control_right{
+    text-align: left;
+}
 section#gallery div#gallery_controls input{
     display: inline-block;
     vertical-align: top;
     width: 3em;
     height: 3em;
+    margin: 0.2em 1em;
 }
 
 section#gallery div#gallery_controls div#image_list{
     display: inline-block;
-    width: 70%;
+    max-width: 70%;
 }
 @media screen and (max-width : 800px){
     section#gallery div#gallery_controls div#image_list{
-        width: 60%;
+        max-width: 60%;
     }
 }
 

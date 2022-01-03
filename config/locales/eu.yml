@@ -152,6 +152,7 @@ eu:
         search_advanced: "Bilaketa aurreratua"
         comment: "%{name}-ren oharrak"
         images: "Irudiak"
+        gallery_title: "%{project}: Irudiak"
     share:
         google: "Google +"
         twitter: "Twitter"
