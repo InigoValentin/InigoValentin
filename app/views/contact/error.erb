@@ -1,0 +1,18 @@
+{
+    "response": {
+        "status": "ERROR",
+        "errors": [
+            <%
+                i = 0
+                max = @errors.length
+                @errors.each do |error|
+            %>
+                    "<%= error %>"
+                    <% if (i + 1) < max %>
+                        ,
+                    <% end %>
+                    <% i = i + 1 %>
+            <% end %>
+        ]
+    }
+}

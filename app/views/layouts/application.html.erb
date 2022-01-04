@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang='<%=I18n.locale%>'>
+    <head>
+        <title>InigoValentin</title>
+        <meta name='viewport' content='width=device-width,initial-scale=1'>
+        <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
+
+        <%= stylesheet_link_tag "ui", media: "all", "data-turbolinks-track": "reload" %>
+        <%= javascript_include_tag "main", "data-turbolinks-track" => true  %>
+        <%= yield(:head) %>
+    </head>
+
+    <body>
+        <%= render "layouts/header" %>
+        <main>
+            <%= yield %>
+        </main>
+        <%= render "layouts/footer" %>
+        <%= render "layouts/contact_form"%>
+  </body>
+</html>

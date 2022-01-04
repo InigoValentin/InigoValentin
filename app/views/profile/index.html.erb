@@ -1,0 +1,64 @@
+<% content_for :head do %>
+    <%= stylesheet_link_tag "profile", media: "all", "data-turbolinks-track": "reload" %>
+<% end %>
+<section id='info'>
+    <h3>
+        <%= @user.full_name %>
+    </h3>
+    <article>
+        <h5>
+            <%=image_tag(@user.picture[0], id: "profile_image", alt: "")%>
+            <span>
+                <%= @user.i18n_tagline %>
+            </span>
+        </h5>
+        <div id='social'>
+            <% @user.user_social_links.each do |link| %>
+                <%= link_to(
+                    image_tag(link.social_link.logo, class: "project_image", alt: link.social_link.i18n_link_title, title: link.social_link.i18n_link_title),
+                    link.generate_link,
+                    target: "_blank",
+                    title: link.social_link.i18n_link_title
+                ) %>
+            <% end %>
+        </div>
+    </article>
+</section>
+<section id='about'>
+    <h3>
+        <%= t("profile.description") %>
+    </h3>
+    <article>
+        <p>
+            <%= @user.i18n_bio %>
+        </p>
+        <div id='resume_download'>
+            <%= link_to(
+                t("profile.resume"),
+                @resume_main.file,
+                target: "_blank",
+                title: t("profile.resume"),
+                class: "a_button"
+            ) %>
+            <% if @resume_languages.size > 0 %>
+                <details>
+                    <summary class='pointer'>
+                        <%= t("profile.resume_lang") %>
+                    </summary>
+                    <ul>
+                        <% @resume_languages.each do |resume| %>
+                            <li>
+                                <%= link_to(
+                                    t("profile.resume_" + resume.language),
+                                    resume.file,
+                                    target: "_blank",
+                                    title: t("profile.resume_" + resume.language)
+                                ) %>
+                            </li>
+                        <% end%>
+                    </ul>
+                </details>
+            <% end%>
+        </div>
+    </article>
+</section>

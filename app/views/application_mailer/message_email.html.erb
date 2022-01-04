@@ -1,0 +1,26 @@
+<div>
+    New message recieved on the website:
+    <ul>
+        <li>
+            <span>
+                From:
+            </span>
+            <%= @message.sender_name %>
+        </li>
+        <li>
+            <span>
+                eMail:
+            </span>
+            <%= @message.sender_email %>
+        </li>
+        <li>
+            <span>
+                Time:
+            </span>
+            <%= @message.dtime %>
+        </li>
+    </ul>
+</div>
+<pre>
+    <%= @message.text %>
+</pre>

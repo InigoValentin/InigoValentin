@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  permalink: MyString
+  priority: 1
+  type: 1
+  title: MyString
+  logo: MyString
+  header: MyString
+  text: MyText
+  license: 1
+  user: 1
+  visibility: 1
+
+two:
+  permalink: MyString
+  priority: 1
+  type: 1
+  title: MyString
+  logo: MyString
+  header: MyString
+  text: MyText
+  license: 1
+  user: 1
+  visibility: 1

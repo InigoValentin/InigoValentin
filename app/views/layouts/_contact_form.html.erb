@@ -1,0 +1,90 @@
+<div id='contact_bg'>
+</div>
+<section id='contact' >
+    <h3>
+        <%= t("contact.title") %>
+        <span id='contact_close'>
+            <%=
+                link_to(
+                    image_tag(
+                        "control/close.svg", 
+                        id: "contact_close",
+                        alt: t("contact.cancel")
+                    ),
+                    #"mailto:" + @user.mail_adresses[0].address,
+                    "javascript:closeContactForm()"
+                )
+            %>
+        </span>
+    </h3>
+    <div id='contact_menu'>
+        <form id='contact_form' action='/<%=I18n.locale%>/contact/' method='post'>
+            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+            <table>
+                <tr>
+                    <td class='label'>
+                        <%= t("contact.name") %>
+                    </td>
+                    <td class='input'>
+                        <input type='text' name='sender_name' id='contact_sender_name'/>
+                        <br/>
+                        <span class='contact_error' id='sender_name_error'>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='label'>
+                        <%= t("contact.mail") %>
+                    </td>
+                    <td class='input'>
+                        <input type='text' name='sender_email' id='contact_sender_email'/>
+                        <br/>
+                        <span class='contact_error' id='sender_email_error'>
+                            <%= t('contact.error.invalid_email') %>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='label'>
+                        <%= t("contact.message") %>
+                    </td>
+                    <td class='input'>
+                        <textarea type='text' name='text' id='contact_text'></textarea>
+                        <br/>
+                        <span class='contact_error' id='text_error'>
+                            <%= t('contact.error.empty_text') %>
+                        </span>
+                    </td>
+                </tr>
+            </table>
+            <div class='contact_buttons'>
+                <input type='button' value='<%=t("contact.cancel")%>' onClick='closeContactForm();'>
+                <input type='submit' value='<%=t("contact.send")%>'>
+            </div>
+        </form>
+    </div>
+    <div id='contact_progress'>
+        <%=
+            image_tag(
+                "social/email.svg", 
+                alt: ""
+            )
+        %>
+    </div>
+    <div id='contact_confirmation'>
+        <p>
+            <%= t('contact.confirmation') %>
+        </p>
+        <div class='contact_buttons'>
+            <input type='button' value='<%=t("contact.close")%>' onClick='closeContactForm();'>
+        </div>
+    </div>
+    <script>
+        var form = document.getElementById('contact_form');
+        if (form.attachEvent) {
+            form.attachEvent("submit", sendMessage);
+        } else {
+            form.addEventListener("submit", sendMessage);
+        }
+    </script>
+</section>

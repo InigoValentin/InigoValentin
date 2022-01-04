@@ -1,0 +1,34 @@
+<header>
+    <div id='logo'>
+        inigoValentin
+    </div>
+    <nav>
+        <%=
+            link_to(
+                image_tag(
+                    "icon/home.svg",
+                    alt: ""
+                ) + t('header.home'),
+                main_path()
+            )
+        %>
+        <%=
+            link_to(
+                image_tag(
+                    "icon/profile.svg",
+                    alt: ""
+                ) + t('header.profile'),
+                profile_path()
+            )
+        %>
+        <%=
+            link_to(
+                image_tag(
+                    "icon/project.svg",
+                    alt: ""
+                ) + t('header.projects'),
+                project_index_url()
+            )
+        %>
+    </nav>
+</header>

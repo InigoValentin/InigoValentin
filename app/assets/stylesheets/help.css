@@ -1,0 +1,51 @@
+section{
+    padding: 0;
+    max-height: 2.8em;
+    overflow-y: hidden;
+    border-bottom-right-radius: 0.5em;
+    border-bottom-left-radius: 0.5em;
+    transition: all .5s ease-in-out;
+}
+@media screen and (max-width : 800px){
+    section{
+        max-height: 2em;
+        width: 90%;
+    }
+}
+section.selected{
+    max-height: 30em;
+    border-bottom-right-radius: 1.5em;
+    border-bottom-left-radius: 1.5em;
+}
+@media screen and (max-width : 800px){
+    section.selected{
+        max-height: 50em;
+    }
+}
+section h3{
+    margin: 0;
+}
+@media screen and (max-width : 800px){
+    section h3{
+        margin: -0.8em -1em 0em -1em;
+    }
+}
+section h3 img.slider{
+    width: 1em;
+    height: 1em;
+    transition: all .3s ease-in-out;
+    float: left;
+    margin-left: -2em;
+}
+@media screen and (max-width : 800px){
+    section h3 img.slider{
+        margin-left: 0;
+        margin-top: 0.1em;
+    }
+}
+section.selected h3 img.slider{
+    transform: rotate(90deg);
+}
+section p{
+    margin: 1em 2em;
+}
