@@ -1,7 +1,7 @@
-## Source code of my personal site
+## Código fuente de mi sitio personal
 ### [https://inigovalentin.com](https://inigovalentin.com)
 
-Other languages:
+Ver en otros idiomas:
 -[English](README.md)
 -[Español](README.es.md)
 -[Euskaraz](README.eu.md)
