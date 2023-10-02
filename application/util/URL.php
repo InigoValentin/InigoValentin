@@ -30,22 +30,32 @@ final class URL{
     /**
      * Profile page.
      */
-    const PROFILE = BASE_URL . "/profile/";
+    const PROFILE = BASE_URL . "profile/";
     
     /**
      * Projects page.
      */
-    const PROJECTS = BASE_URL . "/projects/";
+    const PROJECTS = BASE_URL . "projects/";
 
     /**
      * Fonts full url (includes final '/').
      */
-    const FONTS = BASE_URL . "/fonts/";
+    const FONTS = BASE_URL . "fonts/";
 
     /**
      * CSS full url (includes final '/').
      */
     const CSS = BASE_URL . "css/";
+    
+    /**
+     * JS full url (includes final '/').
+     */
+    const JS = BASE_URL . "js/";
+
+    /**
+     * Help full url (includes final '/').
+     */
+    const HELP = BASE_URL . "help/";
 
     /**
      * URLs to image resources.
@@ -53,8 +63,9 @@ final class URL{
     const IMG = array(
         "BASE" => BASE_URL . "img/",
         "UNKNOWN" => BASE_URL . "img/unknown.png",
-        "ICON" => BASE_URL . "img/icon/",
-        "LOGO" => BASE_URL . "img/logo/",
+        "ICON" => BASE_URL . "img/layout/icon/",
+        "CONTROL" => BASE_URL . "img/layout/control/",
+        "LOGO" => BASE_URL . "img/layout/logo/",
         "LAYOUT" => BASE_URL . "img/layout/",
         "CONTENT" => BASE_URL . "img/content/",
     );

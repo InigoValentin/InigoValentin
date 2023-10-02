@@ -37,9 +37,7 @@ final class Log{
      */
     private static function format($tag, $message, $code = null){
         $msg = "[" . $tag . "][" . date("c") . "]";
-        if (is_int($code)){
-            $msg .= "[$code]";
-        }
+        if (is_int($code)) $msg .= "[$code]";
         $msg .= " $message\n";
         return $msg;
     }

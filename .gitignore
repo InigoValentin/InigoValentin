@@ -14,6 +14,7 @@ Thumbs.db
 .project
 .settings
 .externalToolBuilders
+*.kate-swp
 
 #Local server and deploy tools
 deploy
@@ -21,18 +22,12 @@ server_*
 .php_pid
 
 #SQL custom data
-sql/DES/
-sql/PRE/
-sql/DBG/
+sql/XX_*
 
 #Passwords file
 .htpasswd*
-application/config/auth.php_*
+application/config/config.ini_*
 
 #Content images
-public/img/content/*.png
-public/img/content/*.svg
-public/img/content/*/*.png
-public/img/content/*/*.svg
-public/img/content/*/*/*.png
-public/img/content/*/*/*.svg
+public/img/content/
+application/resources/

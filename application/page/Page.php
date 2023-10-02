@@ -24,6 +24,11 @@ abstract class Page{
     private $css = [];
     
     /**
+     * @var string[] List of js files required for the page.
+     */
+    private $js = [];
+    
+    /**
      * @var string Path to the view associated with the page.
      */
     private $view;
@@ -77,9 +82,9 @@ abstract class Page{
      * Constructor.
      */
     public function __construct(){
-        $this->favicon = URL::IMG["LOGO"] . "sw.png";
-        $this->icon = URL::IMG["LOGO"] . "sw.png";
-        $this->name = "SWDB";
+        $this->favicon = URL::IMG["LOGO"] . "logo.svg";
+        $this->icon = URL::IMG["LOGO"] . "logo.svg";
+        $this->name = get_context()->get_user()->get_display_name();
         $this->author = URL::BASE;
         $this->add_css("ui.css");
     }
@@ -90,13 +95,20 @@ abstract class Page{
      * @param string $css Css file. Can be the absolute URL, or just the filename.
      */
     protected function add_css($css){
-        if (strripos($css, URL::CSS) === false){
-            $file = URL::CSS . $css;
-        }
-        else{
-            $file = $css;
-        }
+        if (strripos($css, URL::CSS) === false) $file = URL::CSS . $css;
+        else $file = $css;
         array_push($this->css, $file);
+    }
+    
+    /**
+     * Adds a JS file to the list.
+     *
+     * @param string $js JS file. Can be the absolute URL, or just the filename.
+     */
+    protected function add_js($js){
+        if (strripos($js, URL::JS) === false) $file = URL::JS . $js;
+        else $file = $js;
+        array_push($this->js, $file);
     }
     
     /**
@@ -104,9 +116,14 @@ abstract class Page{
      *
      * @return string[] CSS files (by absolute URL.)
      */
-    public function get_css(){
-        return $this->css;
-    }
+    public function get_css(){return $this->css;}
+    
+    /**
+     * Retrieves the JS file URLs for the page.
+     *
+     * @return string[] JS files (by absolute URL.)
+     */
+    public function get_js(){return $this->js;}
     
     /**
      * Sets the page view.
@@ -114,12 +131,8 @@ abstract class Page{
      * @param string $view View file. Can be the relative path, or just the filename.
      */
     protected function set_view($view){
-        if (strripos($view, PATH::VIEW) === false){
-            $file = PATH::VIEW . $view;
-        }
-        else{
-            $file = $view;
-        }
+        if (strripos($view, PATH::VIEW) === false) $file = PATH::VIEW . $view;
+        else $file = $view;
         $this->view = $file;
     }
     
@@ -128,19 +141,19 @@ abstract class Page{
      *
      * @return string Path to the view file.
      */
-    public function get_view(){
-        return $this->view;
-    }
+    public function get_view(){return $this->view;}
     
     /**
      * Sets the page title.
      *
-     * The string " - SWDB" will always be added at the end.
+     * The user name" will always be added at the end.
      *
      * @param string $title Page title.
      */
     protected function set_title($title){
-        $this->title = htmlentities($title, ENT_QUOTES) . " - SWDB";
+        $this->title = htmlentities($title, ENT_QUOTES);
+        if ($title != "") $this->title = $this->title . " - ";
+        $this->title = $this->title . get_context()->get_user()->get_display_name();
     }
     
     /**
@@ -148,28 +161,26 @@ abstract class Page{
      *
      * @return string Page title.
      */
-    public function get_title(){
-        return $this->title;
-    }
+    public function get_title(){return $this->title;}
     
     /**
      * Retrieves the site name.
      *
      * @return string Site name.
      */
-    public function get_name(){
-        return $this->name;
-    }
+    public function get_name(){return $this->name;}
     
     /**
      * Sets the page description.
      *
-     * The string " - Summoners War DataBase" will always be added at the end.
+     * The user tagline will always be added at the end.
      *
      * @param string $description Page description text.
      */
     protected function set_description($description){
-        $this->description = htmlentities($description, ENT_QUOTES) . " - " . Text::get("USER_TAGLINE");
+        $this->description = htmlentities($description, ENT_QUOTES);
+        if ($description != "") $this->description = $this->description . " - ";
+        $this->description = $this->description . get_context()->get_user()->get_text("TAGLINE");
     }
     
     /**
@@ -177,27 +188,21 @@ abstract class Page{
      *
      * @return string Page description.
      */
-    public function get_description(){
-        return $this->description;
-    }
+    public function get_description(){return $this->description;}
     
     /**
      * Retrieves the URL to the favicon.
      *
      * @return string Favicon URL.
      */
-    public function get_favicon(){
-        return $this->favicon;
-    }
+    public function get_favicon(){return $this->favicon;}
     
     /**
      * Retrieves the URL to the thumbnail image.
      *
      * @return string Thmbnail icon URL.
      */
-    public function get_icon(){
-        return $this->icon;
-    }
+    public function get_icon(){return $this->icon;}
     
     /**
      * Sets the page canonical URL.
@@ -205,12 +210,8 @@ abstract class Page{
      * @param string $canonical Canonical URL, absolute or relative.
      */
     protected function set_canonical($canonical){
-        if (strripos($canonical, URL::BASE) === false){
-            $file = URL::BASE . $canonical;
-        }
-        else{
-            $file = $canonical;
-        }
+        if (strripos($canonical, URL::BASE) === false) $file = URL::BASE . $canonical;
+        else $file = $canonical;
         $this->canonical = $file;
     }
     
@@ -219,18 +220,14 @@ abstract class Page{
      *
      * @return string Canonical URL.
      */
-    public function get_canonical(){
-        return $this->canonical;
-    }
+    public function get_canonical(){return $this->canonical;}
     
     /**
      * Retrieves the author URL (site main URL).
      *
      * @return string AUthor URL.
      */
-    public function get_author(){
-        return $this->author;
-    }
+    public function get_author(){return $this->author;}
     
     /**
      * Sets the HTTP status code for the page to return.
@@ -238,9 +235,7 @@ abstract class Page{
      * @param int HTTP status code.
      */
     protected function set_code($code){
-        if (is_int($code) && $code >= 200 && $code <= 500){
-            $this->code = $code;
-        }
+        if (is_int($code) && $code >= 200 && $code <= 500) $this->code = $code;
     }
     
     /**
@@ -248,27 +243,21 @@ abstract class Page{
      *
      * @return int HTTP status code
      */
-    public function get_code(){
-        return $this->code;
-    }
+    public function get_code(){return $this->code;}
     
     /**
      * Sets the HTTP status message for the page to return.
      *
      * @param string HTTP status message.
      */
-    protected function set_message($mesage){
-        $this->message = strval($mesage);
-    }
+    protected function set_message($mesage){$this->message = strval($mesage);}
     
     /**
      * Retrieves the page HTTP status message.
      *
      * @return string HTTP status code
      */
-    public function get_message(){
-        return $this->message;
-    }
+    public function get_message(){return $this->message;}
     
     /**
      * Generates the content to be inserted in the HTML <head> section.
@@ -290,11 +279,28 @@ abstract class Page{
           <link rel='stylesheet' type='text/css' href='$css'/>";
         }
         $head .= "
+          <!-- JS files -->";
+        foreach ($this->get_js() as $js){
+            $head .= "
+          <script type='text/javascript' src='$js'></script>";
+        }
+        $head .= "
           <!-- Meta tags -->
           <link rel='canonical' href='" . $this->get_canonical() . "'/>
           <link rel='author' href='" . $this->get_author() . "'/>
           <link rel='publisher' href='" . $this->get_author() . "'/>
-          <meta name='description' content='" . $this->get_description() . "'/>
+          <meta name='description' content='" . $this->get_description() . "'/>";
+        foreach (get_context()->get_available_langs() as $lang){
+            if ($lang != get_context()->get_lang()){
+                $url = substr($this->get_canonical(), strlen(URL::BASE));
+                if (substr($url, 0, 3) == get_context()->get_lang() . "/")
+                    $url = URL::BASE . $lang . "/" . substr($url, 2);
+                else $url = URL::BASE . $lang . "/" . $url;
+                $head .= "
+          <link rel='alternate' hreflang='$lang' href='$url' />";
+            }
+        }
+        $head .= "
           <meta property='og:title' content='" . $this->get_title() . "'/>
           <meta property='og:url' content='" . $this->get_canonical() . "'/>
           <meta property='og:description' content='" . $this->get_description() . "'/>

@@ -1,59 +1,62 @@
+<?php
+/**
+ * Project view.
+ *
+ * Contains the view layout and some code to present the data.
+ *
+ * @author Iñigo Valentin <i@inigovalentin.com>
+ * @license https://www.gnu.org/licenses/gpl-3.0.en.html GNU General Public License V3
+ * @package IV
+ * @category View
+ * @property Help_Page $page The page model.
+ * @var Help_Page $page The page model.
+ */
+?>
 <!DOCTYPE html>
-<html lang='<?=$page->lang?>'>
+<html lang='<?=get_context()->get_lang()?>'>
     <head>
-        <meta content='text/html; charset=utf-8' http-equiv='content-type'/>
-        <meta charset='utf-8'/>
-        <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1'/>
-        <title><?=$page->title?></title>
-        <link rel='shortcut icon' href='<?=$page->favicon?>'/>
-        <!-- CSS files -->
-        <link rel='stylesheet' type='text/css' href='<?=$static["css"]?>ui.css'/>
-        <link rel='stylesheet' type='text/css' href='<?=$static["css"]?>help.css'/>
-        <!-- Script files -->
-        <script type="text/javascript" src="<?=$static["js"]?>ui.js"></script>
-        <script type="text/javascript" src="<?=$static["js"]?>help.js"></script>
-        <!-- Meta tags -->
-        <link rel='canonical' href='<?=$page->canonical?>'/>
-        <link rel='author' href='<?=$page->author?>'/>
-        <link rel='publisher' href='<?=$page->author?>'/>
-        <meta name='description' content='<?=$page->description?>'/>
-        <meta property='og:title' content='<?=$page->title?>'/>
-        <meta property='og:url' content='<?=$page->canonical?>'/>
-        <meta property='og:description' content='<?=$page->description?>'/>
-        <meta property='og:image' content='<?=$page->icon?>'/>
-        <meta property='og:site_name' content='<?=$page->name?>'/>
-        <meta property='og:type' content='website'/>
-        <meta property='og:locale' content='<?=$page->lang?>'/>
-        <meta name='twitter:card' content='summary'/>
-        <meta name='twitter:title' content='<?=$page->title?>'/>
-        <meta name='twitter:description' content='<?=$page->description?>'/>
-        <meta name='twitter:image' content='<?=$page->icon?>'/>
-        <meta name='twitter:url' content='<?=$page->canonical?>'/>
-        <meta name='robots' content='index follow'/>
+        <?=$page->generate_head()?>
     </head>
     <body>
 <?php
-        include $path["inc"] . "header.php";
+        include __DIR__ . "/inc/header.php";
 ?>
         <main>
 <?php
-            foreach($page->help as $key=>$help) {
+            $sections = ["info", "license", "privacy", "cookies"];
+            $first = true;
+            foreach($sections as $section) {
 ?>
-                <section id='<?=$key?>' class='help'>
-                    <h3 class='pointer' onClick='toggleHelp("<?=$key?>");'>
-                        <img class='slider' src='<?=$static["layout"]?>control/slid_r.svg' alt='>'/>
-                        <?=$help["title"]?>
+                <section id='<?=$section?>' class='help <?=$first ? "selected" : ""?>'>
+                    <h3 class='pointer' onClick='toggleHelp("<?=$section?>");'>
+                        <img class='slider' src='<?=URL::IMG["CONTROL"]?>slid_r.svg' alt='>'/>
+                        <?=$page->get_section_title($section)?>
                     </h3>
-                    <p>
-                        <?=$help["text"]?>
-                    </p>
+                    <div>
+                        <?=$page->get_section_text($section)?>
+                    </div>
                 </section>
 <?php
+                $first = false;
             }
 ?>
         </main>
+        <div id='policy_cover'></div>
+        <section id='policy'>
+            <h3>
+                <?=TEXT::get("HELP_POLICY")?>
+                <div id='policy_close'>
+                    <a onClick='closePolicy();'>
+                        <img src='<?=URL::IMG["LAYOUT"]?>control/close.svg'/>
+                    </a>
+                </div>
+            </h3>
+            <div>
+                <?=get_context()->get_user()->get_text("POLICY")?>
+            </div>
+        </section>
 <?php
-        include $path["inc"] . "footer.php";
+        include __DIR__ . "/inc/footer.php";
 ?>
     </body>
 </html>

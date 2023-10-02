@@ -58,6 +58,11 @@ class Project extends Entity{
      * @var String Project description in the selected language.
      */
     private $text;
+
+    /**
+     * @var String Project commentary by the developer.
+     */
+    private $comment;
     
     /**
      * @var int License identifier.
@@ -91,7 +96,8 @@ class Project extends Entity{
         "type" => false,
         "images" => false,
         "tags" => false,
-        "urls" => false
+        "urls" => false,
+        "license" => false
     ];
 
     /**
@@ -105,20 +111,9 @@ class Project extends Entity{
     public function __construct($id){
         Log::debug("Loading project with ID: " . $id);
         $statement = get_context()->get_db()->prepare("
-          SELECT
-            id,
-            permalink,
-            idx,
-            type,
-            title,
-            logo,
-            header,
-            text,
-            license
+          SELECT id, permalink, idx, type, title, logo, header, text, comment, license
           FROM project
-          WHERE
-            id = :id OR
-            permalink = :permalink
+          WHERE id = :id OR permalink = :permalink
           LIMIT 1
         ");
         $statement->bindValue(':id', $id, PDO::PARAM_INT);
@@ -131,11 +126,11 @@ class Project extends Entity{
             $this->idx = $r_project["idx"];
             $this->title = Text::get($r_project["title"]);
             $this->logo = $r_project["logo"];
-            $this->header = Text::get($r_project["header"]);
-            $this->text = Text::get($r_project["text"]);
+            $this->header = Text::get($r_project["header"], false);
+            $this->text = Text::get($r_project["text"], false);
+            $this->comment = Text::get($r_project["comment"], false);
             $this->type_id = $r_project["type"];
             $this->license_id = $r_project["license"];
-            $this->mark_as_loaded(true);
         }
         else{
             Log::debug("Project with id '$id' doesn't exist");
@@ -175,9 +170,9 @@ class Project extends Entity{
      * Not exposed, must be called before accessing the project type.
      */
     private function load_type(){
-        if ($this->get_flag("type") === false){
+        if ($this->load_flags["type"] === false){
             $this->type = new Project_Type($this->type_id);
-            $this->set_flag("type", true);
+            $this->load_flags["type"] = true;
         }
     }
     
@@ -187,7 +182,7 @@ class Project extends Entity{
      * @return Project_Type The project type.
      */
     public function get_type(){
-        if ($this->get_flag("type") === false){
+        if ($this->load_flags["type"] === false){
             $this->load_type();
         }
         return $this->type;
@@ -228,16 +223,25 @@ class Project extends Entity{
     public function get_text(){
         return $this->text;
     }
-    
+
+    /**
+     * Retrieves the project comment.
+     *
+     * @return string Project comment text.
+     */
+    public function get_comment(){
+        return $this->comment;
+    }
+
     /**
      * Loads the project license information.
      *
      * Not exposed, must be called before accessing the project license.
      */
     private function load_license(){
-        if ($this->get_flag("license") === false){
-            $this->type = new License($this->licenses_id);
-            $this->set_flag("license", true);
+        if ($this->load_flags["license"] === false){
+            $this->license = new License($this->license_id);
+            $this->load_flags["license"] = true;
         }
     }
 
@@ -247,7 +251,7 @@ class Project extends Entity{
      * @return License Project license.
      */
     public function get_license(){
-        if ($this->get_flag("license") === false){
+        if ($this->load_flags["license"] === false){
             $this->load_license();
         }
         return $this->license;
@@ -259,7 +263,7 @@ class Project extends Entity{
      * Not exposed, must be called before accessing the project images.
      */
     private function load_images(){
-        if ($this->get_flag("images") === false){
+        if ($this->load_flags["images"] === false){
             $statement = get_context()->get_db()->prepare("
               SELECT id 
               FROM project_image
@@ -271,7 +275,7 @@ class Project extends Entity{
             while ($r_image = $statement->fetch(PDO::FETCH_ASSOC)){
                 array_push($this->images, new Project_Image($r_image["id"]));
             }
-            $this->set_flag("images", true);
+            $this->load_flags["images"] = true;
         }
     }
 
@@ -281,7 +285,7 @@ class Project extends Entity{
      * @return Project_Image[] List of the project images.
      */
     public function get_images(){
-        if ($this->get_flag("images") === false){
+        if ($this->load_flags["images"] === false){
             $this->load_images();
         }
         return $this->images;
@@ -293,18 +297,18 @@ class Project extends Entity{
      * Not exposed, must be called before accessing the project tags.
      */
     private function load_tags(){
-        if ($this->get_flag("tags") === false){
+        if ($this->load_flags["tags"] === false){
             $statement = get_context()->get_db()->prepare("
-              SELECT id
+              SELECT tag
               FROM project_tag
               WHERE project = :id
             ");
             $statement->bindValue(':id', $this->id, PDO::PARAM_INT);
             $statement->execute();
             while ($r_tag = $statement->fetch(PDO::FETCH_ASSOC)){
-                array_push($this->tags, Text::get($r_tag["id"]));
+                array_push($this->tags, Text::get($r_tag["tag"]));
             }
-            $this->set_flag("tags", true);
+            $this->load_flags["tags"] = true;
         }
     }
 
@@ -314,7 +318,7 @@ class Project extends Entity{
      * @return Project_Tag[] Project tags. 
      */
     public function get_tags(){
-        if ($this->get_flag("tags") === false){
+        if ($this->load_flags["tags"] === false){
             $this->load_tags();
         }
         return $this->tags;
@@ -326,7 +330,7 @@ class Project extends Entity{
      * Not exposed, must be called before accessing the project URLs.
      */
     private function load_urls(){
-        if ($this->get_flag("urls") === false){
+        if ($this->load_flags["urls"] === false){
             $statement = get_context()->get_db()->prepare("
               SELECT id
               FROM project_url
@@ -337,7 +341,7 @@ class Project extends Entity{
             while ($r_url = $statement->fetch(PDO::FETCH_ASSOC)){
                 array_push($this->urls, new Project_Url($r_url["id"]));
             }
-            $this->set_flag("urls", true);
+            $this->load_flags["urls"] = true;
         }
     }
 
@@ -347,7 +351,7 @@ class Project extends Entity{
      * @return Project_URL[] List of the project URLs. 
      */
     public function get_urls(){
-        if ($this->get_flag("urls") === false){
+        if ($this->load_flags["urls"] === false){
             $this->load_urls();
         }
         return $this->urls;

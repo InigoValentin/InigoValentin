@@ -13,7 +13,7 @@
  */
 ?>
 <!DOCTYPE html>
-<html lang='en'>
+<html lang='<?=get_context()->get_lang()?>'>
     <head>
         <?=$page->generate_head()?>
     </head>
@@ -26,26 +26,58 @@
         <main>
             <section id='profile'>
                 <h3>
-                    <?=$page->get_title()?>
+                    <?=get_context()->get_user()->get_display_name()?>
                 </h3>
                 <!-- TODO: Profile form model -->
                 <article>
+                    <h4 id='tagline'><?=get_context()->get_user()->get_text("TAGLINE")?></h4>
                     <img
                       id='profile_image'
-                      srcset='<?=HTML::srcset("profile/profile.png")?>'
-                      src='<?=URL::IMG["CONTENT"]?>profile/x400/profile.png'
-                      alt='<?=TEXT::get("USER_NAME");?>'
-                      title='<?=TEXT::get("USER_NAME");?>'
+                      srcset='<?=HTML::srcset(get_context()->get_user()->get_image())?>'
+                      src='<?=URL::IMG["CONTENT"] . 'profile/' . get_context()->get_user()->get_image()?>'
+                      alt='<?=get_context()->get_user()->get_display_name()?>'
+                      title='<?=get_context()->get_user()->get_display_name()?>'
                     />
-                    <div id='profile_content'>
-                        <h4 id='tagline'><?=TEXT::get("USER_TAGLINE");?></h4>
-                        <p id='bio'><?=TEXT::get("USER_BIO");?></p>
+                    <table id='profile_table'>
+                        <tr>
+<?php
+                            $i = 0;
+                            $total = sizeof(get_context()->get_user()->get_social());
+                            if (get_context()->get_user()->get_first_email() != null){
+                                $i ++;
+                                $total ++;
+?>
+                                <td class='social'>
+                                    <a target='_blank' title='eMail' href='mailto:<?=get_context()->get_user()->get_first_email()?>'>
+                                        <img src='<?=URL::IMG["LAYOUT"]?>social/email.svg' alt='eMail' title='eMail'/>
+                                    </a>
+                                </td>
+<?php
+                            }
+                            foreach (get_context()->get_user()->get_social() as $social){
+?>
+                                <td class='social'>
+                                    <a target='_blank' title='<?=$social->get_text()?>' href='<?=$social->get_url()?>'>
+                                        <img src='<?=URL::IMG["LAYOUT"]?>social/<?=$social->get_logo()?>' title='<?=$social->get_text()?>' alt='<?=$social->get_site_name()?>'/>
+                                    </a>
+                                </td>
+<?php
+                                $i ++;
+                                if ($total > 3 && $i >= $total / 2){
+                                    $i = 0;
+?>
+                                    </tr>
+                                    <tr>
+<?php
+                                }
+                            }
+?>
+                        </tr>
+                    </table>
+<!--                     <div id='profile_content'> -->
+                        <p id='bio'><?=get_context()->get_user()->get_text("BIO")?></p>
                     </div>
                     <div class='buttons'>
-                        <a class='a_button' title='eMail' href='mailto:i@inigovalentin.com'>
-                            <?=TEXT::get("INDEX_PROFILE_MAIL");?>
-                            <img class='footer_social_icon' src='<?=URL::IMG["LAYOUT"]?>social/email.svg' alt='eMail' title='eMail'/>
-                        </a>
                         <a class='a_button' href='<?=URL::PROFILE?>'>
                             <?=TEXT::get("INDEX_PROFILE_MORE");?>
                         </a>
@@ -65,14 +97,14 @@
 <?php
                             if (strlen($project->get_logo()) > 0){
 ?>
-                                <td>
+                                <td class='logo'>
                                     <a href='<?=URL::PROJECTS . $project->get_permalink()?>'>
                                         <img
                                           class='project_image'
                                           alt='<?=TEXT::get($project->get_title())?>'
                                           title='<?=TEXT::get($project->get_title())?>'
                                           srcset='<?=HTML::srcset("project/" . $project->get_logo())?>'
-                                          src='<?=URL::IMG["CONTENT"]?>project/x200/<?=$project->get_logo()?>'
+                                          src='<?=URL::IMG["CONTENT"]?>project/<?=$project->get_logo()?>'
                                         />
                                     </a>
                                 </td>

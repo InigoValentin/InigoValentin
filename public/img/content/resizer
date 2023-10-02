@@ -1,4 +1,4 @@
-for file in */*.png; do
+for file in pro*/*/*/*.*; do
 	for i in $(seq 1 9); do
 		if [ ! -d $(dirname "${file}")/x"$i"00 ]; then
 			mkdir $(dirname "${file}")/x"$i"00
@@ -6,4 +6,3 @@ for file in */*.png; do
 		convert "$file" -resize "$i"00  $(dirname "${file}")/x"$i"00/$(basename "$file")
 	done
 done
-#    convert "$file" -resize 800x800  "view/$file"

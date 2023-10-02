@@ -6,7 +6,7 @@
  *
  * @author Iñigo Valentin <i@inigovalentin.com>
  * @license https://www.gnu.org/licenses/gpl-3.0.en.html GNU General Public License V3
- * @package SWDB
+ * @package IV
  */
 
 /**

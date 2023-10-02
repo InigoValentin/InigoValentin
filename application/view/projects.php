@@ -1,79 +1,77 @@
+<?php
+/**
+ * Project list view.
+ *
+ * Contains the view layout and some code to present the data.
+ *
+ * @author Iñigo Valentin <i@inigovalentin.com>
+ * @license https://www.gnu.org/licenses/gpl-3.0.en.html GNU General Public License V3
+ * @package IV
+ * @category View
+ * @property Projects_Page $page The page model.
+ * @var Projects_Page $page The page model.
+ */
+?>
 <!DOCTYPE html>
-<html lang='<?=$page->lang?>'>
+<html lang='<?=get_context()->get_lang()?>'>
     <head>
-        <meta content='text/html; charset=utf-8' http-equiv='content-type'/>
-        <meta charset='utf-8'/>
-        <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1'/>
-        <title><?=$page->title?></title>
-        <link rel='shortcut icon' href='<?=$page->favicon?>'/>
-        <!-- CSS files -->
-        <link rel='stylesheet' type='text/css' href='<?=$static["css"]?>ui.css'/>
-        <link rel='stylesheet' type='text/css' href='<?=$static["css"]?>projects.css'/>
-        <!-- Script files -->
-        <script type="text/javascript" src="<?=$static["js"]?>ui.js"></script>
-        <!-- Meta tags -->
-        <link rel='canonical' href='<?=$page->canonical?>'/>
-        <link rel='author' href='<?=$page->author?>'/>
-        <link rel='publisher' href='<?=$page->author?>'/>
-        <meta name='description' content='<?=$page->description?>'/>
-        <meta property='og:title' content='<?=$page->title?>'/>
-        <meta property='og:url' content='<?=$page->canonical?>'/>
-        <meta property='og:description' content='<?=$page->description?>'/>
-        <meta property='og:image' content='<?=$page->icon?>'/>
-        <meta property='og:site_name' content='<?=$page->name?>'/>
-        <meta property='og:type' content='website'/>
-        <meta property='og:locale' content='<?=$page->lang?>'/>
-        <meta name='twitter:card' content='summary'/>
-        <meta name='twitter:title' content='<?=$page->title?>'/>
-        <meta name='twitter:description' content='<?=$page->description?>'/>
-        <meta name='twitter:image' content='<?=$page->icon?>'/>
-        <meta name='twitter:url' content='<?=$page->canonical?>'/>
-        <meta name='robots' content='index follow'/>
+        <?=$page->generate_head()?>
     </head>
     <body>
 <?php
-        include $path["inc"] . "header.php";
+        include __DIR__ . "/inc/header.php";
 ?>
         <main>
             <section>
-                <h3><?=text($page, "PROJECT_TITLE");?></h3>
+                <h3><?=Text::get("PROJECT_TITLE")?></h3>
+                    <p>
+                        <?=get_context()->get_user()->get_text("PROJECTS")?>
+                    </p>
+                    <div id='projects'>
 <?php
-                    foreach ($page->project as $project){
+                        foreach ($page->get_projects() as $project){
 ?>
-                    <article class='project'>
-                        <table>
-                            <tr>
+                            <article class='project'>
+                                <table>
+                                    <tr>
 <?php
-                                    if (strlen($project->logo) > 0){
+                                        if (strlen($project->get_logo() > 0)){
 ?>
-                                    <td>
-                                        <a href='<?=$base_url?>/project/<?=$project->permalink?>'>
-                                            <img class='project_image' alt='<?=$project->title?>' title='<?=$project->title?>' src='<?=$static["content"]?>project/<?=$project->logo?>' srcset='<?=srcset("project/" . $project->logo)?>'/>
-                                        </a>
+                                            <td class='logo'>
+                                                <a href='<?=URL::PROJECTS . $project->get_permalink()?>'>
+                                                    <img
+                                                      class='project_image'
+                                                      alt='<?=$project->get_title()?>'
+                                                      title='<?=$project->get_title()?>'
+                                                      srcset='<?=HTML::srcset("project/" . $project->get_logo())?>'
+                                                      src='<?=URL::IMG["CONTENT"]?>project/<?=$project->get_logo()?>'
+                                                    />
+                                                </a>
+                                            </td>
+<?php
+                                        }
+?>
+                                    <td class='project_details'>
+                                        <h4 class='project_name'>
+                                            <a href='<?=URL::PROJECTS . $project->get_permalink()?>'>
+                                                <?=$project->get_title()?>
+                                            </a>
+                                        </h4>
+                                        <span>
+                                            <?=$project->get_header()?>
+                                        </span>
                                     </td>
-<?php
-                                    }
-?>
-                                <td class='project_details'>
-                                    <h4 class='project_name'>
-                                        <a href='<?=$base_url?>/project/<?=$project->permalink?>'>
-                                            <?=$project->title?>
-                                        </a>
-                                    </h4>
-                                    <span>
-                                        <?=$project->header?>
-                                    </span>
-                                </td>
-                            </tr>
-                        </table>
-                    </article> <!-- .project -->
+                                </tr>
+                            </table>
+                        </article> <!-- .project -->
 <?php
                     }
 ?>
+                </div>
             </section>
         </main>
 <?php
-        include $path["inc"] . "footer.php";
+        include __DIR__ . "/inc/footer.php";
 ?>
     </body>
 </html>

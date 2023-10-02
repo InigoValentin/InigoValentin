@@ -1,46 +1,45 @@
 <?php
 
-    require_once($path["page"] . "Page.php");
-    require_once($path["entity"] . "Project.php");
-    require_once($path["helper"] . "text.php");
+require_once(PATH::PAGE . "Page.php");
+require_once(PATH::ENTITY . "Project.php");
 
+/**
+ * Projects list page model.
+ */
+class Projects_Page extends Page{
 
     /**
-     * Projects list page model.
+     * Array with the {@see Project}.
      */
-    class Projects_Page extends Page{
+    private $projects = [];
 
-        /**
-         * Array with the {@see Project}.
-         */
-        public $project = [];
-
-        /**
-         * Constructor.
-         *
-         * Retrieves the data and initializes the variables.
-         *
-         * @param MySQL_connection $db Connection to the database.
-         * @param string $lang Lowercase, two-letter language code.
-         * @param string $id Project id or permalink.
-         */
-        public function __construct($db, $lang){
-            global $path;
-            global $base_url;
-            parent:: __construct($db, $lang);
-            $this->view = $path["view"] . "projects.php";
-            $s =
-              "SELECT id " .
-              "FROM project " .
-              "WHERE visible = 1 " .
-              "ORDER BY idx;";
-            $q = mysqli_query($this->db, $s);
-            while($r = mysqli_fetch_array($q)){
-                array_push($this->project, new Project($this->db, $this->lang, $r["id"]));
-            }
-            $this->title = text($this, "PROJECT_TITLE") . " - " . text($this, "USER_NAME");
-            $this->description = text($this, "PROJECT_DESCRIPTION");
-            $this->canonical = $base_url . "/project/";
-        }
+    /**
+     * Constructor.
+     *
+     * Retrieves the data and initializes the variables.
+     */
+    public function __construct(){
+        $this->view = PATH::VIEW . "projects.php";
+        parent:: __construct();
+        $this->set_view("projects.php");
+        $statement = get_context()->get_db()->prepare(
+          "SELECT id FROM project WHERE user = :user AND visible = 1 ORDER BY idx"
+        );
+        $statement->bindValue(':user', get_context()->get_user()->get_id(), PDO::PARAM_INT);
+        $statement->execute();
+        while ($r_projects = $statement->fetch(PDO::FETCH_ASSOC))
+            array_push($this->projects, new Project($r_projects["id"]));
+        $this->set_title(Text::get("PROJECT_TITLE"));
+        $this->set_description(Text::get("PROJECT_DESCRIPTION"));
+        $this->set_canonical(URL::PROJECTS);
+        $this->add_css("projects.css");
     }
+
+    /**
+     * Retrieves the projects to show on the page.
+     *
+     * @return Project[] Project list.
+     */
+    public function get_projects(){return $this->projects;}
+}
 ?>

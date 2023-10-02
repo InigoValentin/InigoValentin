@@ -46,16 +46,11 @@ class License extends Entity{
      */
     public function __construct($id){
         $statement = get_context()->get_db()->prepare("
-          SELECT
-            id
-            summary
-            legal
-            logo
-            icon
+          SELECT id, summary, legal, logo, icon
           FROM license
           WHERE id = :id
         ");
-        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+        $statement->bindValue(':id', $id, PDO::PARAM_STR);
         $statement->execute();
         $r_license = $statement->fetch(PDO::FETCH_ASSOC);
         if ($r_license !== false){
@@ -64,8 +59,6 @@ class License extends Entity{
             $this->legal = TEXT::get($r_license["legal"]);
             $this->logo = $r_license["logo"];
             $this->icon = $r_license["icon"];
-            $this->mark_as_loaded(true);
-            $this->mark_as_complete(true);
         }
         else{
             Log::warn("License with id '$id' doesn't exist");

@@ -83,7 +83,6 @@ final class HTML extends Helper{
      * @return string srcset atttribute content.
      */
     public static function srcset($file){
-        global $static;
         $srcset = "";
         $dir = dirname($file);
         $name = basename($file);

@@ -2,12 +2,15 @@ main{
     text-align: center;
 }
 
+section{
+    margin: auto 2em;
+}
+
 section#info{
     text-align: left;
     display: inline-block;
     vertical-align: top;
     width: 30%;
-    margin: auto 2em auto auto;
 }
 @media screen and (max-width : 800px){
     section#info{
@@ -22,20 +25,18 @@ section#info{
 
 section#info img#profile_image{
     display: block;
-    margin: 0.5em auto;
-    max-width: 10em;
-    max-height: 10em;
-    border-radius: 1.2em;
+    max-width: 12em;
+    max-height: 12em;
+    border-radius: 50%;
     box-shadow: 0 0 0 0.1em #000000, 0 0 0 0.3em #66bf38, 0 0 0 0.4em #000000;
+    margin: auto;
 }
-@media screen and (max-width : 800px){
-    section#info img#profile_image{
-        display: inline-block;
-        vertical-align: middle;
-        width: 30%;
-        max-width: 12em;
-        max-height: 12em;
-    }
+
+section#info h4{
+    margin-top: 0;
+    text-align: center;
+    font-size: 110%;
+    padding: 0.5em;
 }
 section#info div#social{
     text-align: center;
@@ -45,7 +46,7 @@ section#info div#social{
     section#info div#social{
         display: inline-block;
         vertical-align: middle;
-        width: 40%;
+        width: 100%;
         margin: auto;
     }
 }
@@ -73,7 +74,6 @@ section#about{
     display: inline-block;
     vertical-align: top;
     width: 50%;
-    margin: auto;
 }
 @media screen and (max-width : 800px){
     section#about{
@@ -87,25 +87,35 @@ section#about p{
     margin: 2em 4em;
     color: #335333;
 }
+@media screen and (max-width : 800px){
+    section#about p{
+        font-style: initial;
+        text-indent: 0.7em;
+        color: initial;
+        margin: 0 0 1em 0;
+    }
+}
 section#about div#cv_download{
     text-align: center;
 }
 section#about div#cv_download a.a_button{
     display: inline-block;
     vertical-align: top;
-    margin: auto 3em 1.5em auto;
+    margin: auto 1.5em 1.5em auto;
 }
 section#about div#cv_download details{
     display: inline-block;
     vertical-align: top;
     font-style: italic;
     margin-top: 0.5em;
+    width: 15em;
 }
 section#about div#cv_download details summary{
     color: #777777;
     font-size: 90%;
+    text-align: left;
 }
 section#about div#cv_download details ul{
     text-align: left;
-    margin: 0.1em;
+    margin: 0.1em 0.1em 0.1em 0.1em;
 }

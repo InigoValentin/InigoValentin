@@ -1,6 +1,7 @@
 <?php
 
 require_once(PATH::ENTITY . "Entity.php");
+require_once(PATH::ENTITY . "Project_Url_Type.php");
 
 
 /**
@@ -40,11 +41,7 @@ class Project_Url extends Entity{
      */
     public function __construct($id){
         $statement = get_context()->get_db()->prepare("
-          SELECT
-            id
-            project
-            type
-            url
+          SELECT id, project, type, url
           FROM project_url
           WHERE id = :id
         ");
@@ -56,8 +53,6 @@ class Project_Url extends Entity{
             $this->project = $r_url["project"];
             $this->type = new Project_Url_Type($r_url["type"]);
             $this->url = $r_url["url"];
-            $this->mark_as_loaded(true);
-            $this->mark_as_complete(true);
         }
         else{
             Log::warn("Project URL with id '$id' doesn't exist");

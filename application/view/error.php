@@ -1,33 +1,22 @@
 <!DOCTYPE html>
-<html lang='<?=$lang?>'>
+<html lang='<?=get_context()->get_lang()?>'>
     <head>
-        <meta content='text/html; charset=utf-8' http-equiv='content-type'/>
-        <meta charset='utf-8'/>
-        <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1'>
-        <title><?=$page->title?></title>
-        <link rel='shortcut icon' href='<?=$static["layout"]?>/layout/logo/logo.svg'/>
-        <!-- CSS files -->
-        <link rel='stylesheet' type='text/css' href='<?=$static["css"]?>ui.css'/>
-        <link rel='stylesheet' type='text/css' href='<?=$static["css"]?>error.css'/>
-        <!-- Script files -->
-        <script type="text/javascript" src="<?=$static["js"]?>ui.js"></script>
-        <!-- No meta -->
-        <meta name="robots" content="noindex follow"/>
+        <?=$page->generate_head()?>
     </head>
     <body>
 <?php
-        include $path["inc"] . "header.php";
+        include __DIR__ . "/inc/header.php";
 ?>
         <main>
             <section>
-                <h3><?=text($page, "ERROR_ERROR");?></h3>
+                <h3><?=Text::get("ERROR_ERROR")?></h3>
                 <div id='left'>
                     <p id='code'>
                         <?=$page->code?>
                     </p>
                     <p>
-                        <span><?=text($page, "ERROR_ERROR");?></span>
-                        <span><?=text($page, "ERROR_CODE");?></span>
+                        <span><?=Text::get("ERROR_ERROR")?></span>
+                        <span><?=Text::get("ERROR_CODE")?></span>
                     </p>
                 </div>
                 <div id='right'>
@@ -50,7 +39,7 @@
             </section>
         </main>
 <?php
-        include $path["inc"] . "footer.php";
+        include __DIR__ . "/inc/footer.php";
 ?>
     </body>
 </html>

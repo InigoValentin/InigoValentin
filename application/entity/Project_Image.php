@@ -26,9 +26,14 @@ class Project_Image extends Entity{
     private $idx;
 
     /**
-     * @var int Filename of the image.
+     * @var string Filename of the image.
      */
     private $image;
+
+    /**
+     * @var string Alternative text for the image.
+     */
+    private $alt;
 
     /**
      * Constructor.
@@ -40,24 +45,17 @@ class Project_Image extends Entity{
      */
     public function __construct($id){
         $statement = get_context()->get_db()->prepare("
-          SELECT
-            id,
-            project,
-            idx,
-            image
-          FROM project_image
-          WHERE id = :id
+          SELECT id, project, idx, image, alt FROM project_image WHERE id = :id
         ");
         $statement->bindValue(':id', $id, PDO::PARAM_INT);
         $statement->execute();
         $r_image = $statement->fetch(PDO::FETCH_ASSOC);
         if ($r_image !== false){
             $this->id = $r_image["id"];
-            $this->project = $r_image["title"];
+            $this->project = $r_image["project"];
             $this->idx = $r_image["idx"];
             $this->image = $r_image["image"];
-            $this->mark_as_loaded(true);
-            $this->mark_as_complete(true);
+            $this->alt = Text::get($r_image["alt"]);
         }
         else{
             Log::warn("Project image with id '$id' doesn't exist");
@@ -98,5 +96,14 @@ class Project_Image extends Entity{
      */
     public function get_image(){
         return $this->image;
+    }
+
+    /**
+     * Retrieves the image alternative text or title.
+     *
+     * @return string Image text.
+     */
+    public function get_text(){
+        return $this->alt;
     }
 }

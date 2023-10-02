@@ -1,80 +1,80 @@
+<?php
+/**
+ * Profile view.
+ *
+ * Contains the view layout and some code to present the data.
+ *
+ * @author Iñigo Valentin <i@inigovalentin.com>
+ * @license https://www.gnu.org/licenses/gpl-3.0.en.html GNU General Public License V3
+ * @package IV
+ * @category View
+ * @property Profile_Page $page The page model.
+ * @var Profile_Page $page The page model.
+ */
+?>
 <!DOCTYPE html>
-<html lang='<?=$page->lang?>'>
+<html lang='<?=get_context()->get_lang()?>'>
     <head>
-        <meta content='text/html; charset=utf-8' http-equiv='content-type'/>
-        <meta charset='utf-8'/>
-        <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1'/>
-        <title><?=$page->title?></title>
-        <link rel='shortcut icon' href='<?=$page->favicon?>'/>
-        <!-- CSS files -->
-        <link rel='stylesheet' type='text/css' href='<?=$static["css"]?>ui.css'/>
-        <link rel='stylesheet' type='text/css' href='<?=$static["css"]?>profile.css'/>
-        <!-- Script files -->
-        <script type="text/javascript" src="<?=$static["js"]?>ui.js"></script>
-        <!-- Meta tags -->
-        <link rel='canonical' href='<?=$page->canonical?>'/>
-        <link rel='author' href='<?=$page->author?>'/>
-        <link rel='publisher' href='<?=$page->author?>'/>
-        <meta name='description' content='<?=$page->description?>'/>
-        <meta property='og:title' content='<?=$page->title?>'/>
-        <meta property='og:url' content='<?=$page->canonical?>'/>
-        <meta property='og:description' content='<?=$page->description?>'/>
-        <meta property='og:image' content='<?=$page->icon?>'/>
-        <meta property='og:site_name' content='<?=$page->name?>'/>
-        <meta property='og:type' content='website'/>
-        <meta property='og:locale' content='<?=$page->lang?>'/>
-        <meta name='twitter:card' content='summary'/>
-        <meta name='twitter:title' content='<?=$page->title?>'/>
-        <meta name='twitter:description' content='<?=$page->description?>'/>
-        <meta name='twitter:image' content='<?=$page->icon?>'/>
-        <meta name='twitter:url' content='<?=$page->canonical?>'/>
-        <meta name='robots' content='index follow'/>
+        <?=$page->generate_head()?>
     </head>
     <body>
 <?php
-        include $path["inc"] . "header.php";
+        include __DIR__ . "/inc/header.php";
 ?>
         <main>
             <section id='info'>
                 <h3>
-                    <?=text($page, "USER_NAME");?>
+                    <?=get_context()->get_user()->get_display_name()?>
                 </h3>
-                <img id='profile_image' srcset='<?=srcset("profile/profile.png")?>' src='<?=$static["content"]?>profile/x400/profile.png' alt='<?=text($page, "USER_NAME");?>' title='<?=text($page, "USER_NAME");?>' />
+                <img
+                  id='profile_image'
+                  srcset='<?=HTML::srcset("profile/" . get_context()->get_user()->get_image())?>'
+                  src='<?=URL::IMG["CONTENT"]?>profile/<?=get_context()->get_user()->get_image()?>'
+                  alt='<?=get_context()->get_user()->get_display_name()?>'
+                  title='<?=get_context()->get_user()->get_display_name()?>'
+                />
+                <h4>
+                    <?=get_context()->get_user()->get_text("TAGLINE")?>
+                </h4>
                 <div id='social'>
-                    <a target='_blank' title='eMail' href='mailto:i@inigovalentin.com'>
-                        <img class='footer_social_icon' src='<?=$static["layout"]?>social/email.svg' alt='eMail' title='eMail'/>
-                    </a>
-                    <a target='_blank' title='Telegram' href='https://telegram.me/InigoValentin'>
-                        <img class='footer_social_icon' src='<?=$static["layout"]?>social/telegram.svg' alt='Telegram' title='Telegram'/>
-                    </a>
-                    <a target='_blank' title='Github' href='https://github.com/InigoValentin'>
-                        <img class='footer_social_icon' src='<?=$static["layout"]?>social/github.svg' alt='Github' title='Github'/>
-                    </a>
-                    <a target='_blank' title='LinkedIn' href='https://www.linkedin.com/in/ivalentin'>
-                        <img class='footer_social_icon' src='<?=$static["layout"]?>social/linkedin.svg' alt='LinkedIn' title='LinkedIn'/>
-                    </a>
+<?php
+                    if (get_context()->get_user()->get_first_email() != null){
+?>
+                        <a target='_blank' title='eMail' href='mailto:<?=get_context()->get_user()->get_first_email()?>'>
+                            <img src='<?=URL::IMG["LAYOUT"]?>social/email.svg' alt='eMail' title='eMail'/>
+                        </a>
+<?php
+                    }
+                    foreach (get_context()->get_user()->get_social() as $social){
+?>
+                        <a target='_blank' title='<?=$social->get_text()?>' href='<?=$social->get_url()?>'>
+                            <img src='<?=URL::IMG["LAYOUT"]?>social/<?=$social->get_logo()?>' title='<?=$social->get_text()?>' alt='<?=$social->get_site_name()?>'/>
+                        </a>
+<?php
+                    }
+?>
                 </div>
             </section>
             <section id='about'>
                 <h3>
-                    <?=text($page, "PROFILE_DESCRIPTION");?>
+                    <?=Text::get("PROFILE_DESCRIPTION");?>
                 </h3>
                 <p>
-                    <?=text($page, "USER_TEXT");?>
+                    <?=get_context()->get_user()->get_text("TEXT")?>
                 </p>
                 <div id='cv_download'>
-                    <a class='a_button' target='_blank' href='<?=$static["cv"] . $page->main_cv->file?>'>
-                        <?=text($page, "PROFILE_CV");?>
+                    <a class='a_button' target='_blank' href='<?=$static["cv"] . $page->get_main_cv()->get_file()?>'>
+                        <?=Text::get("PROFILE_CV");?>
                     </a>
                     <details>
-                        <summary class='pointer'><?=text($page, "PROFILE_CV_LANG");?></summary>
+                        <summary class='pointer'><?=Text::get("PROFILE_CV_LANG");?></summary>
                         <ul>
 <?php
-                            for ($i = 1; $i < count($page->other_cv); $i ++) {
+                            for ($i = 1; $i < count($page->get_other_cvs()); $i ++) {
 ?>
                                 <li>
-                                    <a target='_blank' href='<?=$static["cv"] . $page->other_cv[$i]->file?>'>
-                                        <?=$page->other_cv[$i]->lang->name?>
+                                    <a target='_blank' href='<?=$static["cv"] . $page->get_other_cvs()[$i]->get_file()?>'>
+                                        <?=$page->get_other_cvs()[$i]->get_lang()->get_name()?>
                                     </a>
                                 </li>
 <?php
@@ -86,7 +86,7 @@
             </section>
         </main>
 <?php
-        include $path["inc"] . "footer.php";
+        include __DIR__ . "/inc/footer.php";
 ?>
     </body>
 </html>

@@ -1,62 +1,75 @@
 <?php
 
-    require_once($path["page"] . "Page.php");
-    require_once($path["entity"] . "Cv.php");
-    require_once($path["helper"] . "text.php");
+require_once(PATH::PAGE . "Page.php");
+require_once(PATH::ENTITY . "Cv.php");
 
+/**
+ * Profile page model.
+ */
+class Profile_Page extends Page{
 
     /**
-     * Profile page model.
-     */
-    class Profile_Page extends Page{
+    * List of available {@see CV}.
+    */
+    private $cv = [];
 
-        /**
-         * List of available {@see CV}.
-         */
-        public $cv = [];
+    /**
+    * {@see CV} in the current languages.
+    */
+    private $main_cv;
 
-        /**
-         * {@see CV} in the current languages.
-         */
-        public $main_cv;
+    /**
+    * List {@see CV}s in other languages.
+    */
+    private $other_cv = [];
 
-        /**
-         * List {@see CV}s in other languages.
-         */
-        public $other_cv = [];
-
-        /**
-         * Constructor.
-         *
-         * Retrieves the data and initializes the variables.
-         *
-         * @param MySQL_connection $db Connection to the database.
-         * @param string $lang Lowercase, two-letter language code.
-         */
-        public function __construct($db, $lang){
-            global $path;
-            global $base_url;
-            parent::__construct($db, $lang);
-            $this->view = $path["view"] . "profile.php";
-            $s =
-              "SELECT id " .
-              "FROM cv " .
-              "WHERE visible = 1 " .
-              "ORDER BY lang = '" . $this->lang . "' DESC;";
-            $q = mysqli_query($this->db, $s);
-            while($r = mysqli_fetch_array($q)){
-                $c = new Cv($this->db, $r["id"]);
-                array_push($this->cv, $c);
-                if ($c->lang == $this->lang){
-                    $this->main_cv = $c;
-                }
-                else{
-                     array_push($this->other_cv, $c);
-                }
-            }
-            $this->title = text($this, "USER_NAME");
-            $this->description = text($this, "SECTION_ME") . " - " . text($this, "USER_NAME");
-            $this->canonical = $base_url . "/profile/";
+    /**
+    * Constructor.
+    *
+    * Retrieves the data and initializes the variables.
+    */
+    public function __construct(){
+        $this->view = PATH::VIEW . "profile.php";
+        parent::__construct();
+        $this->set_view("profile.php");
+        $statement = get_context()->get_db()->prepare(
+          "SELECT id FROM cv WHERE user = :user AND visible = 1 ORDER BY lang = :lang DESC"
+        );
+        $statement->bindValue(':user', get_context()->get_user()->get_id(), PDO::PARAM_INT);
+        $statement->bindValue(':lang', get_context()->get_lang(), PDO::PARAM_STR);
+        $statement->execute();
+        while ($r_cv = $statement->fetch(PDO::FETCH_ASSOC)){
+            $c = new Cv($r_cv["id"]);
+            array_push($this->cv, $c);
+            if ($c->get_lang()->get_code() == get_context()->get_lang()) $this->main_cv = $c;
+            array_push($this->other_cv, $c);
         }
+
+        $this->set_title(Text::get("USER_NAME"));
+        $this->set_description(Text::get("SECTION_ME") . " - " . Text::get("USER_NAME"));
+        $this->set_canonical(URL::PROFILE);
+        $this->add_css("profile.css");
     }
+
+    /**
+     * Retrieves the list of CVs.
+     *
+     * @return CV[] CV list.
+     */
+    public function get_cvs(){return $this->cv;}
+
+    /**
+     * Retrieves the main CV.
+     *
+     * @return Main CV.
+     */
+    public function get_main_cv(){return $this->main_cv;}
+
+    /**
+     * Retrieves the list of CVs excluding the main one.
+     *
+     * @return CV[] CV list, excluding the main one.
+     */
+    public function get_other_cvs(){return $this->other_cv;}
+}
 ?>

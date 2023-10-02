@@ -1,4 +1,13 @@
 <?php
+/**
+ * Entity superclass file.
+ *
+ * Provides a class to extend all entities from.
+ *
+ * @author Iñigo Valentin <i@inigovalentin.com>
+ * @license https://www.gnu.org/licenses/gpl-3.0.en.html GNU General Public License V3
+ * @package IVV
+ */
 
 /**
  * Entity superclass.
@@ -6,19 +15,4 @@
  * Every other entity must inherit from this one. It represents a database
  * entity.
  */
-abstract class Entity{
-    protected $loaded = false;
-    protected $complete = false;
-    protected function mark_as_loaded($loaded){
-        $this->loaded = (bool) $loaded;
-    }
-    protected function mark_as_complete($complete){
-        $this->complete = (bool) $complete;
-    }
-    public function is_loaded(){
-        return $this->loaded;
-    }
-    public function is_complete(){
-        return $this->complete;
-    }
-}
+abstract class Entity{}
