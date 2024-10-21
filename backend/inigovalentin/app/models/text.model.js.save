@@ -1,0 +1,10 @@
+module.exports = (sequelize, Sequelize) => {
+    const Text = sequelize.define("text", {
+      id: {type: Sequelize.VARCHAR(64), allowNull: false}
+      code: {type: Sequelize.STRING(8), allowNull: false},
+      section: {type: Sequelize.STRING(64)},
+      text: {type: Sequelize.STRING(512)},
+      file: {type: Sequelize.STRING(256)},
+    });
+    return Text;
+}
