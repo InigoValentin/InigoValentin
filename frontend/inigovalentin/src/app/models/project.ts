@@ -1,3 +1,5 @@
+import { License } from './license';
+
 export interface Project {
   id: number;
   permalink: string;
@@ -9,5 +11,8 @@ export interface Project {
   header: number;
   text: string;
   comment: string;
-  license?: any[];
+  license?: License;
+  tags?: any[];
+  "project-urls": any[];
+  "project-images": any[];
 }

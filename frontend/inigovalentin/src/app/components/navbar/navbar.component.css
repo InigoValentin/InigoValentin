@@ -1,0 +1,74 @@
+header{
+  background-color: #000000;
+  width: 100%;
+  text-align: center;
+}
+
+header div#logo{
+  color: #ffffff;
+  font-size: 4em;
+  font-family: 'Mono';
+}
+header nav{
+  width: 100%;
+}
+header nav a{
+  font-size: 1.5em;
+  margin: 0.5em;
+  color: #ffffff;
+  text-decoration: none;
+  position: relative;
+}
+header nav a:hover{
+  color: #ffffff;
+}
+header nav a:before {
+  content: " ";
+  position: absolute;
+  width: 100%;
+  height: 0.1em;
+  bottom: -0.1em;
+  left: 0;
+  background-color: #ffffff;
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out 0s;
+}
+header nav a:hover:before {
+  visibility: visible;
+  transform: scaleX(1);
+}
+header nav a img{
+  height: 1.5em;
+  vertical-align: bottom;
+}
+@media screen and (max-width : 800px){
+  header div#logo{
+    /* Adjusted for the text 'inigoValentin' */
+    font-size: 12vw;
+  }
+  header nav{
+    overflow: hidden;
+    white-space: nowrap;
+    width: 95%;
+    margin: auto;
+  }
+  header nav a{
+    display: inline-block;
+    width: 30%;
+    margin: 0;
+    padding: 0.5em 0;
+    text-align: center;
+    color: #ffffff;
+    text-decoration: none;
+    border: 0.1em solid #aaaaaa;
+    background-color: #222222;
+    font-size: 4vw;
+  }
+  header nav a img{
+    height: 1em;
+    width: 1em;
+    vertical-align: middle;
+    margin-right: 0.2em;
+  }
+}

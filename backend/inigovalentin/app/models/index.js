@@ -14,16 +14,36 @@ const sequelize = new Sequelize(
 const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
-// 
+
 db.langs = require("./lang.model.js")(sequelize, Sequelize);
 db.texts = require("./text.model.js")(sequelize, Sequelize);
 db.licenses = require("./license.model.js")(sequelize, Sequelize);
 db.projects = require("./project.model.js")(sequelize, Sequelize);
-//db.projects.hasMany(db.texts, {foreignkey: "title", as: "titles" });
-//db.projects.hasOne(db.licenses, {foreignkey: "license", as: "licens" });
-//db.licenses.belongsTo(db.projects, {foreignkey: "license"});
+db.projectTypes = require("./project-type.model.js")(sequelize, Sequelize);
+db.projectUrlTypes = require("./project-url-type.model.js")(sequelize, Sequelize);
+db.projectUrls = require("./project-url.model.js")(sequelize, Sequelize);
+db.projectImages = require("./project-image.model.js")(sequelize, Sequelize);
+db.tags = require("./tag.model.js")(sequelize, Sequelize);
+
 
 db.projects.belongsTo(db.licenses, {foreignKey: 'licenseId', as: "license"});
 db.licenses.hasMany(db.projects);
+
+db.projects.belongsTo(db.projectTypes, {foreignKey: 'projectTypeId', as: "type"});
+db.projectTypes.hasMany(db.projects);
+
+const ProjectTag = sequelize.define("project-tag",{},{ timestamps: false });
+db.projects.belongsToMany(db.tags, { through: ProjectTag });
+db.tags.belongsToMany(db.projects, { through: ProjectTag });
+
+db.projectUrls.belongsTo(db.projectUrlTypes, {foreignKey: 'projectUrlTypeId', as: "type"});
+db.projectUrlTypes.hasMany(db.projectUrls);
+
+db.projectUrls.belongsTo(db.projects, {foreignKey: 'projectId', as: "project"});
+db.projects.hasMany(db.projectUrls);
+
+
+db.projectImages.belongsTo(db.projects, {foreignKey: 'projectId', as: "project"});
+db.projects.hasMany(db.projectImages);
 
 module.exports = db;

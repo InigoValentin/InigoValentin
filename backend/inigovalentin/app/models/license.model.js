@@ -6,7 +6,7 @@ module.exports = (sequelize, Sequelize) => {
       logo: {type: Sequelize.STRING(64)},
       icon: {type: Sequelize.STRING(64)},
     },
-    { timestamps: false }
+    {timestamps: false}
     );
     return License;
 }

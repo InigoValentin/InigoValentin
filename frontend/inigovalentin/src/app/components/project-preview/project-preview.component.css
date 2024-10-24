@@ -1,0 +1,73 @@
+article.project{
+  position: relative;
+  margin: 1em;
+  text-align: left;
+  border-radius: 0.6em;
+  padding: 1.5em 1em;
+  border: 0.1em solid #000000;
+  border-radius: 1em;
+  background-color: #dddddd;
+}
+@media screen and (max-width : 800px){
+  article.project{
+    margin: 0.3em auto;
+    padding: 0.3em;
+  }
+}
+
+@media screen and (max-width : 800px){
+  article.project table td.logo{
+    vertical-align: top;
+  }
+}
+
+article.project h3{
+  font-size: 200%;
+  margin-top: 0;
+}
+
+article.project td.project_details{
+  vertical-align: top;
+  padding-left: 1em;
+}
+@media screen and (max-width : 800px){
+  article.project td.project_details{
+    padding-left: 0.3em;
+  }
+  article.project td.project_details h4{
+    margin-bottom: 0.2em;
+  }
+}
+
+article.project table td{
+  vertical-align: top;
+}
+
+article.project img.logo{
+  padding: 0.5em;
+  max-width: 9em;
+  max-height: 9em;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 0.1em #000000, 0 0 0 0.3em #66bf38, 0 0 0 0.4em #000000, inset 0 0 0.5em #00220077;
+  border-radius: 1em;
+}
+@media screen and (max-width : 1000px){
+  article.project img.logo{
+    padding: 0.2em;
+    max-width: 13vw;
+    max-height: 13vw;
+    border-radius: 0.5em;
+    box-shadow: 0 0 0 0.05em #000000, 0 0 0 0.15em #66bf38, 0 0 0 0.2em #000000, inset 0 0 0.25em #00220077;
+  }
+}
+
+article.project td.project_details div.tags{
+  text-align: right;
+}
+
+article.project td.project_details div.tags img{
+  max-width: 3em;
+  max-height: 3em;
+  border: 0.15em solid #000000;
+  border-radius: 50%;
+}
