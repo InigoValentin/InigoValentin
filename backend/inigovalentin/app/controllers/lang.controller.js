@@ -1,153 +1,157 @@
+/**
+ * @file Provides the model and operation for languages.
+ * @author Inigo Valentin
+ * @since 4.0.0
+ */
+
+const logger = require('pino')()
 const db = require("../models");
 const Lang = db.langs;
 const Op = db.Sequelize.Op;
+const AuthService = require("../services/auth.service.js");
+const authService = new AuthService(db);
 
-// Create and Save a new Lang
+/**
+ * Create and save a new language.
+ * 
+ * @param req The received request by the server.
+ * @param res The request to be sent by the server.
+ */
 exports.create = (req, res) => {
-    // Validate request
-    if (!req.body.title) {
-        res.status(400).send({
-            message: "Content can not be empty!"
-        });
+    // Check authentication
+    if (authService.validateToken(req, res).success === false){
+        res.status(validation.code).send(validation.message);
         return;
     }
-    
+    // Validate request
+    let missing = [];
+    if (!req.body.code) missing.push("code");
+    if (!req.body.name) missing.push("name");
+    if (missing.length > 0){
+        let message = "Missing required fields: [";
+        for (let i = 0; i < missing.length; i ++){
+            message += missing[i];
+            if (i < missing.length - 1) message += ", ";
+        }
+        message += "].";
+        res.status(400).send(message);
+        return;
+    }
+    const code = req.body.code;
+    const name = req.body.name;
+    const priority = !isNaN(req.body.priority) ? Number(req.body.priority) : 99;
+    const active = ((req.body.active + "").toLowerCase() === 'true') ? true : false;
+    // TODO: Check name unique.
+    // TODO resolve conflicting priorities.
     // Create a Lang
-    const Lang = {
-        title: req.body.title,
-        description: req.body.description,
-        published: req.body.published ? req.body.published : false
-    };
-    
+    const Lang = {code: code, name: name, priority: priority, active: active};
     // Save Lang in the database
     Lang.create(Lang)
-    .then(data => {
-        res.send(data);
-    })
+    .then(data => {res.send(data);})
     .catch(err => {
-        res.status(500).send({
-            message:
-            err.message || "Some error occurred while creating the Lang."
-        });
+        logger.error("Error creating language: " + err);
+        res.status(500).send("Error creating language.");
     });
 };
 
-// Retrieve all Langs from the database.
+/**
+ * Retrieve all languages from the database.
+ * 
+ * @param req The received request by the server.
+ * @param res The request to be sent by the server.
+ */
 exports.findAll = (req, res) => {
-    //const title = req.query.title;
-    //var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
-    
-    //Lang.findAll({ where: condition })
     Lang.findAll()
-    .then(data => {
-        res.send(data);
-    })
+    .then(data => {res.send(data);})
     .catch(err => {
-        res.status(500).send({
-            message:
-            err.message || "Some error occurred while retrieving Langs."
-        });
+        logger.error("Error retrieving language: " + err);
+        res.status(500).send("Error retrieving languages.");
     });
 };
 
-// Find a single Lang with an id
+/**
+ * Find a single language by it's code.
+ * 
+ * @param req The received request by the server.
+ * @param res The request to be sent by the server.
+ */
 exports.findOne = (req, res) => {
-    const id = req.params.id;
-    
-    Lang.findByPk(id)
+    const code = req.params.code;
+    Lang.findByPk(code)
     .then(data => {
-        if (data) {
-            res.send(data);
-        } else {
-            res.status(404).send({
-                message: `Cannot find Lang with id=${id}.`
-            });
-        }
+        if (data) res.send(data);
+        else res.status(404).send(`No language with code ${code}.`});
     })
     .catch(err => {
-        res.status(500).send({
-            message: "Error retrieving Lang with id=" + id
-        });
+        logger.error("Error retrieving language with code " + code + ": " + err);
+        res.status(500).send("Error retrieving language with code " + code + ".");
     });
 };
 
-// Update a Lang by the id in the request
+/**
+ * Update a single language by it's code.
+ * 
+ * @param req The received request by the server.
+ * @param res The request to be sent by the server.
+ */
 exports.update = (req, res) => {
-    const id = req.params.id;
-    
-    Lang.update(req.body, {
-        where: { id: id }
-    })
+    // Check authentication
+    if (authService.validateToken(req, res).success === false){
+        res.status(validation.code).send(validation.message);
+        return;
+    }
+    const code = req.params.code;
+    Lang.update(req.body, {where: {code: code}})
     .then(num => {
-        if (num == 1) {
-            res.send({
-                message: "Lang was updated successfully."
-            });
-        } else {
-            res.send({
-                message: `Cannot update Lang with id=${id}. Maybe Lang was not found or req.body is empty!`
-            });
-        }
+        if (num == 1) res.send("Language updated successfully.");
+        else res.send(`Cannot update language with code ${id}.`);
     })
     .catch(err => {
-        res.status(500).send({
-            message: "Error updating Lang with id=" + id
-        });
+        logger.error("Error updating language with code " + code + ": " + err);
+        res.status(500).send("Error updating language with code " + code + ".");
     });
 };
 
-// Delete a Lang with the specified id in the request
+/**
+ * Delete a single language by it's code.
+ * 
+ * @param req The received request by the server.
+ * @param res The request to be sent by the server.
+ */
 exports.delete = (req, res) => {
-    const id = req.params.id;
-    
-    Lang.destroy({
-        where: { id: id }
-    })
+    // Check authentication
+    if (authService.validateToken(req, res).success === false){
+        res.status(validation.code).send(validation.message);
+        return;
+    }
+    const code = req.params.code;
+    Lang.destroy({where: {id: id}})
     .then(num => {
-        if (num == 1) {
-            res.send({
-                message: "Lang was deleted successfully!"
-            });
-        } else {
-            res.send({
-                message: `Cannot delete Lang with id=${id}. Maybe Lang was not found!`
-            });
-        }
+        if (num == 1) res.send("Language deleted successfully.");
+        else res.send(`Cannot delete language with code ${id}.`);
     })
     .catch(err => {
-        res.status(500).send({
-            message: "Could not delete Lang with id=" + id
-        });
+        logger.error("Error deleting language with code " + code + ": " + err);
+        res.status(500).send("Error deleting language with code " + code + ".");
     });
 };
 
-// Delete all Langs from the database.
+/**
+ * Delete all languages.
+ * 
+ * @param req The received request by the server.
+ * @param res The request to be sent by the server.
+ */
 exports.deleteAll = (req, res) => {
-    Lang.destroy({
-        where: {},
-        truncate: false
-    })
-    .then(nums => {
-        res.send({ message: `${nums} Langs were deleted successfully!` });
-    })
+    // Check authentication
+    if (authService.validateToken(req, res).success === false){
+        res.status(validation.code).send(validation.message);
+        return;
+    }
+    Lang.destroy({where: {}, truncate: false})
+    .then(nums => {res.send({ message: `${nums} languages deleted successfully.`});})
     .catch(err => {
-        res.status(500).send({
-            message:
-            err.message || "Some error occurred while removing all Langs."
-        });
-    });
-};
-
-// Find all published Langs
-exports.findAllPublished = (req, res) => {
-    Lang.findAll({ where: { published: true } })
-    .then(data => {
-        res.send(data);
-    })
-    .catch(err => {
-        res.status(500).send({
-            message:
-            err.message || "Some error occurred while retrieving Langs."
-        });
+        logger.error("Error deleting languages: " + err);
+        res.status(500).send("Error deleting languages.");
     });
 };

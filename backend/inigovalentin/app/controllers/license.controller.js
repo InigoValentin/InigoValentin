@@ -4,37 +4,62 @@
  * @since 4.0.0
  */
 
+const logger = require('pino')()
 const db = require("../models");
 const License = db.licenses;
 const Op = db.Sequelize.Op;
-
 const LocaleService = require('../services/locale.service.js');
 const localeService = new LocaleService(db);
 
 /**
- * Create and Save a new license.
+ * Create and save a new license.
  * 
  * @param req The received request by the server.
  * @param res The request to be sent by the server.
  */
 exports.create = (req, res) => {
-    // Validate request
-    if (!req.body.title) {
-        res.status(400).send({message: "Content can not be empty!"});
+    // Check authentication
+    if (authService.validateToken(req, res).success === false){
+        res.status(validation.code).send(validation.message);
         return;
     }
-    
+    // Validate request
+    let missing = [];
+    if (!req.body.name) missing.push("name");
+    if (!req.body.summary) missing.push("summary");
+    if (!req.body.legal) missing.push("legal");
+    if (missing.length > 0){
+        let message = "Missing required fields: [";
+        for (let i = 0; i < missing.length; i ++){
+            message += missing[i];
+            if (i < missing.length - 1) message += ", ";
+        }
+        message += "].";
+        res.status(400).send(message);
+        return;
+    }
+    const name = req.body.name;
+    const nameDb = name.toUpperCase().replace(/[^A-Z0-9]+/g, "");
+    const summary = localeService.generateLocalizedObject(req.body.summary, "LICENSE_" + nameDb + "_SUMMARY", "DB_PROJECT");
+    if (summary.valid === false){
+        res.status(400).send("Invalid summary values");
+        return;
+    }
+    const legal = localeService.generateLocalizedObject(req.body.legal, "LICENSE_" + nameDb + "_LEGAL", "DB_PROJECT");
+    if (legal.valid === false){
+        res.status(400).send("Invalid legal values");
+        return;
+    }
+    localeService.saveLocalizedObject(summary);
+    localeService.saveLocalizedObject(legal);
     // Create a License
-    const License = {
-        title: req.body.title,
-        description: req.body.description,
-        published: req.body.published ? req.body.published : false
-    };
-    
-    // Save License in the database
+    const License = {name: name, summary: summary, legal: legal, icon: icon};
     License.create(License)
     .then(data => {res.send(data);})
-    .catch(err => {res.status(500).send({message: err.message || "Some error occurred while creating the License."});});
+    .catch(err => {
+        logger.error("Error creating license: " + err);
+        res.status(500).send({"Error creating license."});
+    });
 };
 
 /**
@@ -49,7 +74,10 @@ exports.findAll = (req, res) => {
         data = await localeService.localizeLicenses(data, req);
         res.send(data);
     })
-    .catch(err => {res.status(500).send({message: err.message || "Some error occurred while retrieving Licenses."});});
+    .catch(err => {
+        logger.error("Error retrieving projects: " + err);
+        res.status(500).send("Error retrieving projects.");
+    });
 };
 
 /**
@@ -66,9 +94,12 @@ exports.findOne = (req, res) => {
             data = await localeService.localizeLicense(data, req);
             res.send(data);
         }
-        else res.status(404).send({message: `Cannot find License with id=${id}.`});}
+        else res.status(404).send(`No licenses with id ${id}.`});
     })
-    .catch(err => {res.status(500).send({message: "Error retrieving License with id=" + id});});
+    .catch(err => {
+        logger.error("Error retrieving license with id " + id + ": " + err);
+        res.status(500).send("Error retrieving license with id " + id + ".");
+    });
 };
 
 /**

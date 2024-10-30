@@ -1,3 +1,6 @@
+const db = require("../models");
+const AuthService = require('../services/auth.service.js');
+
 module.exports = app => {
     const projects = require("../controllers/project.controller.js");
     

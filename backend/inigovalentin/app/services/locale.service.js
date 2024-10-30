@@ -72,6 +72,55 @@ class LocaleService {
         }
         return "";
     }
+    
+    /**
+     * Generates a localized object for text storing in database.
+     * 
+     * @param obj The object with the text in multiple languages. Language codes must be keys.
+     * @param key The key to assign to the text.
+     * @param section The section identifier for the text.
+     * @return An object with those values:
+     *   - valid: True if the object is valid and can be stored in database.
+     *   - key: Identifier for the text.
+     *   - section: Identifier fot the text section.
+     *   - texts{}: An array for the text in different languages. Language codes are keys.
+     */
+    generateLocalizedObject(obj, key, section){
+        let l = {
+            valid: true,
+            key: key,
+            section: section,
+            texts: {}
+        };
+        if (!key) l.valid = false;
+        if (!section) l.valid = false;
+        l.key = key;
+        l.section = section;
+        let body;
+        try{
+            body = JSON.parse(obj);
+            for (let i = 0; i < this.#availableLanguages.length; i ++)
+                if (body[this.#availableLanguages[i]] != undefined) l.texts[this.#availableLanguages[i]] = body[this.#availableLanguages[i]];
+            if (l.texts.length == 0) l.valid = false;
+        }
+        catch(err){
+            l.valid = false;
+        }
+        return l;
+    }
+
+    /**
+     * Saves a localized object in the database.
+     * 
+     * @param obj The object, as provided by {@see generateLocalizedObject}.
+     * @return True on success, false on error.
+     */
+    async saveLocalizedObject(obj, key, section){
+        if (!obj.valid || obj.valid != true || !obj.texts || obj.texts.length < 1) return false;
+        for (const [lang, text] of Object.entries(obj.texts))
+            let res = await this.#db.sequelize.query('INSERT INTO texts (id, lang, section, text, file) VALUES (?, ?, ?, ?, ?)', {replacements: [obj.key, lang, obj.section, text, null], type: this.#db.sequelize.QueryTypes.INSERT});
+        return true;
+    }
 
     /**
      * Localizes a project.
@@ -185,6 +234,39 @@ class LocaleService {
      */
     async localizeProjectTypes(data, req){
         for (var d of data) d = await this.localizeProjectType(d, req);
+        return data;
+    }
+    
+    /**
+     * Localizes a user.
+     *
+     * Localizes all localizable items in a user, using the language provided in the request or
+     * the default one.
+     *
+     * @param data The user object to localize.
+     * @param req The request received by the server.
+     * @return The user object, with all of the fields localized.
+     */
+    async localizeUser(data, req){
+        var lang = this.selectLanguage(req);
+        // TODO
+        //data.dataValues.title = await this.#decodeText(data.dataValues.title, lang);
+        //data.dataValues.summary = await this.#decodeText(data.dataValues.summary, lang);
+        return data;
+    }
+    
+    /**
+     * Localize a list of users project types.
+     *
+     * Localize all localizable items in all users, using the language provided in the request or
+     * the default one.
+     *
+     * @param data The user object list to localize.
+     * @param req The request received by the server.
+     * @return The user list, with all of their fields localized.
+     */
+    async localizeUserss(data, req){
+        for (var d of data) d = await this.localizeUser(d, req);
         return data;
     }
 

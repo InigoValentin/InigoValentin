@@ -15,6 +15,7 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
+db.users = require("./user.model.js")(sequelize, Sequelize);
 db.langs = require("./lang.model.js")(sequelize, Sequelize);
 db.texts = require("./text.model.js")(sequelize, Sequelize);
 db.licenses = require("./license.model.js")(sequelize, Sequelize);

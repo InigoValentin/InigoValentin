@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require("express");
 const cors = require("cors");
 const app = express();
@@ -16,15 +17,16 @@ db.sequelize.sync()
 ;
 
 // Routes
-app.get("/", (req, res) => {
-    res.json({message: "Welcome to Inigo Valentin"});
-});
+//app.get("/", (req, res) => {
+//    res.json({message: "Welcome to Inigo Valentin"});
+//});
 
+require("./app/routes/access.routes")(app);
 require("./app/routes/lang.routes")(app);
 require("./app/routes/text.routes")(app);
 require("./app/routes/project.routes")(app);
 
-const PORT = process.env.port || 8080;
-app.listen(PORT, () => {console.log('Server running in port ${PORT}.')});
+const {SRV_PORT, SRV_MODE} = process.env;
+app.listen(SRV_PORT, () => {console.log("Server running in " + SRV_MODE + " mode in port " + SRV_PORT + ".")});
 
 
