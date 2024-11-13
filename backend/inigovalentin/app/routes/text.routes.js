@@ -1,28 +1,23 @@
+/**
+ * @file Provides the routes for localized text access and management.
+ * @author Inigo Valentin
+ * @since 4.0.0
+ */
+
 module.exports = app => {
-    const projects = require("../controllers/text.controller.js");
-    
+    const texts = require("../controllers/text.controller.js");
     var router = require("express").Router();
-    
-    // Create a new Lang
-    router.post("/", projects.create);
-    
-    // Retrieve all Langs
-    router.get("/", projects.findAll);
-    
-    // Retrieve all published Langs
-    router.get("/published", projects.findAllPublished);
-    
-    // Retrieve a single Lang with id
-    router.get("/:id", projects.findOne);
-    
-    // Update a Lang with id
-    router.put("/:id", projects.update);
-    
-    // Delete a Lang with id
-    router.delete("/:id", projects.delete);
-    
-    // Delete all Langs
-    router.delete("/", projects.deleteAll);
-    
+    // Create a new text
+    router.post("/", texts.create);
+    // Retrieve all texts
+    router.get("/", texts.findAll);
+    // Retrieve a single text with id
+    router.get("/:id", texts.findOne);
+    // Update a text with id
+    router.put("/:id", texts.update);
+    // Delete a text with id
+    router.delete("/:id", texts.delete);
+    // Delete all texts
+    router.delete("/", texts.deleteAll);
     app.use('/api/texts', router);
 };

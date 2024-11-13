@@ -9,8 +9,7 @@ import { RouterModule } from '@angular/router';
   selector: 'app-project',
   standalone: true,
   imports: [DatePipe, RouterModule],
-  templateUrl: './project.component.html',
-  styleUrl: './project.component.css'
+  templateUrl: './project.component.html'
 })
 export class ProjectComponent {
   @Input() project!: Project;

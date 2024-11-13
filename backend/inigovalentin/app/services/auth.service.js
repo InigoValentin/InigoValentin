@@ -1,39 +1,35 @@
 /**
- * @file Provides a service to handle languages and localizations.
+ * @file Provides a service to handle user access and authentication.
  * @author Inigo Valentin
  * @since 4.0.0
  */
 
+const logger = require('pino')();
+const Sequelize = require("sequelize");
 const sha1 = require('sha1');
 const jwt = require('jsonwebtoken');
-const users = require("../controllers/user.controller.js");
-
 const config = process.env;
+const User = require("../models").users;
 
 /**
- * Handles localization of elements.
+ * Handles user access and authentication.
  */
 class AuthService {
-    
-    /**
-     * Database connection.
-     */
-    #db;
-    
+
     /**
      * Constructor.
      *
      * @param db Database connection.
      * @constructor
      */
-    constructor(db){
-        this.#db = db;
-    }
+    constructor(){}
     
     /**
      * Logs a user in.
      * 
      * @param req The request received by the server.
+     * @param res The response to be sent by the server.
+     * @return The response.
      */
     async login(req, res){
         try {
@@ -42,20 +38,22 @@ class AuthService {
             const username = req.body.username ? req.body.username : "";
             const password = req.body.password;
             // Validate user input
-            if (!(password && (email || username))) res.status(401).send("Credentials required");
+            if (!(password && (email || username))) return res.status(401).send("Credentials required");
             
             // Validate if user exist in our database
-            const user = await User.findOne({where: {[this.#db.Sequelize.Op.or]: {username: username, email: email}}});
-            if (user && user.password == sha1(user.hash + password)){
+            let user;
+            if (username != "" && email != "") user = await User.findOne({where: {username: username, email: email}});
+            else user = await User.findOne({where: {[Sequelize.Op.or]: {username: username, email: email}}});
+            if (user && user.password == sha1(user.salt + password)){
                 require('dotenv').config()
                 const {TOKEN_SECRET, TOKEN_ISSUER} = process.env;
                 const token = jwt.sign({user: user.id}, TOKEN_SECRET, {algorithm: 'HS256', expiresIn: '5h', issuer: TOKEN_ISSUER, subject: user.username})
-                res.send({token});
+                return res.send({token});
             }
             return res.status(403).send("Invalid Credentials");
         }
         catch (err) {
-            console.log("Error logging in: " + err);
+            logger.error("Error logging in: " + err);
             return res.status(500).send("Error logging in");
         }
     }
@@ -72,7 +70,6 @@ class AuthService {
      */
     validateToken(req, res) {
         const token = req.body.token || req.query.token || req.headers["x-access-token"];
-        console.log("TOKEN: " + token);
         if (!token) return {success: false, user: null, code: 401, message: "A token is required for authentication."};
         try {
             require('dotenv').config()
@@ -82,8 +79,8 @@ class AuthService {
             return {success: false, user: null, code: 403, message: "Invalid token."};;
         }
         catch (err) {
-            console.log("Error validating token: " + err);
-            return {success: false, user: null, code: 500, message: "Authentication error."};;
+            logger.error("Error validating token: " + err);
+            return {success: false, user: null, code: 403, message: "Authentication error."};;
         }
     }
 }

@@ -4,15 +4,14 @@
  * @since 4.0.0
  */
 
+const logger = require('pino')();
+const Lang = require("../models").langs;
+const Text = require("../models").texts;
+
 /**
  * Handles localization of elements.
  */
 class LocaleService {
-
-    /**
-     * Database connection.
-     */
-    #db;
 
     /**
      * List of available languages.
@@ -24,22 +23,24 @@ class LocaleService {
     /**
      * Constructor.
      *
-     * @param db Database connection.
      * @constructor
      */
-    constructor(db){
-        this.#db = db;
+    constructor(){
         this.#init();
     }
 
     /**
      * Initializes the service.
      *
-     * Called automatically from the constructor.
+     * Called automatically from the constructor, retrieves available languages.
      */
     async #init(){
-        var result = await this.#db.sequelize.query('SELECT code FROM langs WHERE active = 1 ORDER by PRIORITY ASC ', { type: this.#db.sequelize.QueryTypes.SELECT })
-        for (const r of result) this.#availableLanguages.push(r.code.toLowerCase().substring(0, 2));
+        const data = await Lang.findAll({where: {active: true}, order: [['priority', 'ASC']]})
+        if (data) for (const r of data) this.#availableLanguages.push(r.code.toLowerCase().substring(0, 2));
+        if (this.#availableLanguages.length == 0){
+            logger.error("No languages retrieved from database, defaulting to 'en'.");
+            this.#availableLanguages.push("en");
+        }
     }
 
     /**
@@ -52,9 +53,23 @@ class LocaleService {
      * @return Two letter language code to use.
      */
     selectLanguage(req){
-        if (!req.query.lang) return this.#availableLanguages[0];
-        var requestedLang = req.query.lang.toLowerCase().substring(0, 2)
-        if (this.#availableLanguages.indexOf(requestedLang) != -1) return requestedLang;
+        if (!req.query.lang && !req.body.lang) return this.#availableLanguages[0];
+        let requestedLang = this.#availableLanguages[0];
+        if (req.query.lang && req.body.lang && (req.query.lang != req.body.lang)){
+            // Different languages in query and body, body has priority.
+            requestedLang = req.body.lang.toLowerCase().substring(0, 2)
+            if (this.#availableLanguages.indexOf(requestedLang) != -1) return requestedLang;
+            else{
+                requestedLang = req.query.lang.toLowerCase().substring(0, 2);
+                if (this.#availableLanguages.indexOf(requestedLang) != -1) return requestedLang;
+            }
+        }
+        else{
+            if (req.body.lang) requestedLang = req.body.lang.toLowerCase().substring(0, 2)
+            else if (req.query.lang) requestedLang = req.query.lang.toLowerCase().substring(0, 2)
+            if (this.#availableLanguages.indexOf(requestedLang) != -1) return requestedLang;
+            else return this.#availableLanguages[0];
+        }
         return this.#availableLanguages[0];
     }
 
@@ -65,11 +80,11 @@ class LocaleService {
      * @return The text.
      */
     async #decodeText(key, lang){
-        var result = await this.#db.sequelize.query('SELECT text, file FROM texts WHERE lang = ? AND id = ?', { replacements: [lang, key], type: this.#db.sequelize.QueryTypes.SELECT })
-        for (const r of result) {
-            if (r.text) return "" + r.text;
-            if (r.file) return "" + r.file; // TODO: Return file CONTENTS
-        }
+        
+        const t = await Text.findOne({where: {id: key, lang: lang}});
+        if (!t) return "";
+        if (t.text) return "" + t.text;
+        if (t.file) return "" + t.file; // TODO: Return file CONTENTS
         return "";
     }
     
@@ -86,12 +101,7 @@ class LocaleService {
      *   - texts{}: An array for the text in different languages. Language codes are keys.
      */
     generateLocalizedObject(obj, key, section){
-        let l = {
-            valid: true,
-            key: key,
-            section: section,
-            texts: {}
-        };
+        let l = {valid: true, key: key, section: section, texts: {}};
         if (!key) l.valid = false;
         if (!section) l.valid = false;
         l.key = key;
@@ -101,7 +111,7 @@ class LocaleService {
             body = JSON.parse(obj);
             for (let i = 0; i < this.#availableLanguages.length; i ++)
                 if (body[this.#availableLanguages[i]] != undefined) l.texts[this.#availableLanguages[i]] = body[this.#availableLanguages[i]];
-            if (l.texts.length == 0) l.valid = false;
+            if (Reflect.ownKeys(l.texts).length == 0) l.valid = false;
         }
         catch(err){
             l.valid = false;
@@ -115,10 +125,13 @@ class LocaleService {
      * @param obj The object, as provided by {@see generateLocalizedObject}.
      * @return True on success, false on error.
      */
-    async saveLocalizedObject(obj, key, section){
+    async saveLocalizedObject(obj){
         if (!obj.valid || obj.valid != true || !obj.texts || obj.texts.length < 1) return false;
-        for (const [lang, text] of Object.entries(obj.texts))
-            let res = await this.#db.sequelize.query('INSERT INTO texts (id, lang, section, text, file) VALUES (?, ?, ?, ?, ?)', {replacements: [obj.key, lang, obj.section, text, null], type: this.#db.sequelize.QueryTypes.INSERT});
+        for (const [lang, text] of Object.entries(obj.texts)){
+            const t = {id: obj.key, lang: lang, section: obj.section, text: text, file: null};
+            await Text.create(t)
+            .catch(err => {logger.error("Error creating text with key " + id + " in lang " + lang + ": " + err);});
+        }
         return true;
     }
 
@@ -146,15 +159,17 @@ class LocaleService {
             data.dataValues.license.summary = await this.#decodeText(data.dataValues.license.summary, lang);
             data.dataValues.license.legal = await this.#decodeText(data.dataValues.license.legal, lang);
         }
-        for (var i = 0; i < data.dataValues.tags.length; i ++)
-            data.dataValues.tags[i].tag = await this.#decodeText(data.dataValues.tags[i].tag, lang);
-        for (var i = 0; i < data.dataValues["project-urls"].length; i ++){
-            data.dataValues["project-urls"][i].dataValues.type.dataValues.title = await this.#decodeText(data.dataValues["project-urls"][i].dataValues.type.dataValues.title, lang);
-            data.dataValues["project-urls"][i].dataValues.type.dataValues.summary = await this.#decodeText(data.dataValues["project-urls"][i].dataValues.type.dataValues.summary, lang);
-        }
-        for (var i = 0; i < data.dataValues["project-images"].length; i ++)
-            data.dataValues["project-images"][i].dataValues.alt = await this.#decodeText(data.dataValues["project-images"][i].dataValues.alt, lang);
-        //console.log(data.dataValues.projectUrls)
+        if (data.dataValues.tags)
+            for (var i = 0; i < data.dataValues.tags.length; i ++)
+                data.dataValues.tags[i].tag = await this.#decodeText(data.dataValues.tags[i].tag, lang);
+        if (data.dataValues["project-urls"])
+            for (var i = 0; i < data.dataValues["project-urls"].length; i ++){
+                data.dataValues["project-urls"][i].dataValues.type.dataValues.title = await this.#decodeText(data.dataValues["project-urls"][i].dataValues.type.dataValues.title, lang);
+                data.dataValues["project-urls"][i].dataValues.type.dataValues.summary = await this.#decodeText(data.dataValues["project-urls"][i].dataValues.type.dataValues.summary, lang);
+            }
+        if (data.dataValues["project-images"])
+            for (var i = 0; i < data.dataValues["project-images"].length; i ++)
+                data.dataValues["project-images"][i].dataValues.alt = await this.#decodeText(data.dataValues["project-images"][i].dataValues.alt, lang);
         return data;
     }
 
@@ -249,9 +264,14 @@ class LocaleService {
      */
     async localizeUser(data, req){
         var lang = this.selectLanguage(req);
-        // TODO
-        //data.dataValues.title = await this.#decodeText(data.dataValues.title, lang);
-        //data.dataValues.summary = await this.#decodeText(data.dataValues.summary, lang);
+        if (data.dataValues.texts)
+            for (var i = 0; i < data.dataValues.texts.length; i ++)
+                data.dataValues.texts[i].text = await this.#decodeText(data.dataValues.texts[i].text, lang);
+        if (data.dataValues.urls)
+            for (var i = 0; i < data.dataValues.urls.length; i ++){
+                data.dataValues.urls[i].name = await this.#decodeText(data.dataValues.urls[i].name, lang);
+                data.dataValues.urls[i].description = await this.#decodeText(data.dataValues.urls[i].description, lang);
+            }
         return data;
     }
     

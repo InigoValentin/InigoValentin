@@ -21,5 +21,9 @@ export class ProjectsService {
     return this.http.get<Project>(this.apiUrl + permalink);
   }
 
+  getTopProjects(total: Number): Observable<Project[]> {
+    return this.http.get<Project[]>(this.apiUrl + "/top/" + total);
+  }
+
 
 }

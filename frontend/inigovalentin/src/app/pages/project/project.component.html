@@ -1,46 +1,49 @@
 <script type="text/javascript" src="./js/project.js"></script>
 @if(projectObs$ | async; as project){
-  <section>
+  <section id='project'>
     <h3>{{ project.title }}</h3>
     <article>
-      <div class='info_summary'>
+      <div id='summary'>
         @if(project.logo){
-          <img class='logo' src="./img/project/{{project.logo}}" alt={{project.title}}/>
+          <img id='project_logo' src="./img/project/{{project.logo}}" alt={{project.title}}/>
         }
-        <h4>{{ project.header }}</h4>
-        <div class='text' [innerHTML]=project.text></div>
+        <div id='texts'>
+          <h4>{{ project.header }}</h4>
+          <div id='text' [innerHTML]=project.text></div>
+        </div>
       </div>
-      <div class='info_details'>
+      <div id='details'>
         @if(project['project-urls']){
-          <ul class='urls'>
+          <ul id='urls'>
             <li *ngFor="let url of project['project-urls']">
-              <a href="{{ url.url }}" title="{{ url.type.summary }}" target="_blank" class="url">
-                <img src="./img/social/{{url.type.logo}}" alt="{{url.type.title}}" class="url"/>
-                {{ url.type.title }}
+              <a href="{{ url.url }}" title="{{ url.type.summary }}" target="_blank">
+                <img src="./img/social/{{url.type.logo}}" alt="{{url.type.title}}"/>
+                {{url.type.title}}
               </a>
             </li>
           </ul>
         }
+        @if(project.license){
+          <div id='license'>
+            License:
+            <img src="./img/license/{{project.license.icon}}" alt="{{project.license.legal}}" title="{{project.license.legal}}"/>
+          </div>
+        }
         @if(project.tags){
-          <div class='tags'>
+          <div id='tags'>
+            Tags:
             <span *ngFor="let tag of project.tags">
               <img src="./img/tag/{{tag.icon}}" alt="{{tag.tag}}" title="{{tag.tag}}"/>
             </span>
           </div>
         }
-        @if(project.license){
-          <div class='license'>
-            License:
-            <img src="./img/license/{{project.license.logo}}" alt="{{project.license.legal}}" title="{{project.license.legal}}"/>
-          </div>
-        }
       </div>
       @if(project.comment){
-        <div class='comment'>
-          <div class='comment_title'>
+        <div id='comment'>
+          <div id='comment_title'>
               TODO NOTES
           </div>
-          <div class="comment_text" [innerHTML]=project.comment></div>
+          <div id="comment_text" [innerHTML]=project.comment></div>
         </div>
       }
       @if(project['project-images']){
@@ -53,37 +56,29 @@
       }
     </article>
   </section>
-  <div id='image_viewer_cover' onclick='closeImage();'></div>
+  <div id='cover' onclick='closeImage();'></div>
   <section id='image_viewer'>
     <h3>
       <span id='image_viewer_title'></span>
       <div id='image_viewer_close'>
-          <a onClick='closeImage();'>
-              <img src='https://v-gears.inigovalentin.com/img/close.svg'/>
-          </a>
+        <a onClick='closeImage();'>
+          <img src='./img/control/close.svg'/>
+        </a>
       </div>
     </h3>
-    <table id='image_viewer_container'>
-        <td class='control'>
-            <a onClick='prevImage();'>
-                <img src='https://v-gears.inigovalentin.com/img/prev.svg'/>
-            </a>
-        </td>
-        <td class='image'>
-            <img id='image_viewer_image'/>
-        </td>
-        <td class='control'>
-            <a onClick='nextImage();'>
-                <img src='https://v-gears.inigovalentin.com/img/next.svg'/>
-            </a>
-        </td>
-    </table>
-    <div id='secondary_controls'>
+    <div class='control desktop a_button' onClick='prevImage();'>
+      <img src='./img/control/prev.svg'/>
+    </div>
+    <img id='image_viewer_image'/>
+    <div class='control desktop a_button' onClick='nextImage();'>
+      <img src='./img/control/next.svg'/>
+    </div>
+    <div id='secondary_controls' class='mobile'>
         <a onClick='prevImage();'>
-            <img src='https://v-gears.inigovalentin.com/img/prev.svg'/>
+            <img src='./img/control/prev.svg'/>
         </a>
         <a onClick='nextImage();'>
-            <img src='https://v-gears.inigovalentin.com/img/next.svg'/>
+            <img src='./img/control/next.svg'/>
         </a>
     </div>
   </section>

@@ -1,28 +1,23 @@
+/**
+ * @file Provides the routes for language management.
+ * @author Inigo Valentin
+ * @since 4.0.0
+ */
+
 module.exports = app => {
-    const projects = require("../controllers/lang.controller.js");
-    
+    const langs = require("../controllers/lang.controller.js");
     var router = require("express").Router();
-    
-    // Create a new Lang
-    router.post("/", projects.create);
-    
-    // Retrieve all Langs
-    router.get("/", projects.findAll);
-    
-    // Retrieve all published Langs
-    router.get("/published", projects.findAllPublished);
-    
-    // Retrieve a single Lang with id
-    router.get("/:id", projects.findOne);
-    
-    // Update a Lang with id
-    router.put("/:id", projects.update);
-    
-    // Delete a Lang with id
-    router.delete("/:id", projects.delete);
-    
-    // Delete all Langs
-    router.delete("/", projects.deleteAll);
-    
+    // Create a new language
+    router.post("/", langs.create);
+    // Retrieve all languages
+    router.get("/", langs.findAll);
+    // Retrieve a single language by its code
+    router.get("/:code", langs.findOne);
+    // Update a language by its code.
+    router.put("/:code", langs.update);
+    // Delete a language by its code.
+    router.delete("/:code", langs.delete);
+    // Delete all languages.
+    router.delete("/", langs.deleteAll);
     app.use('/api/langs', router);
 };

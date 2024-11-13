@@ -1,3 +1,9 @@
+/**
+ * @file The index for the models. Model relations are also defined here.
+ * @author Inigo Valentin
+ * @since 4.0.0
+ */
+
 const dbConfig = require("../../config/db.config.js");
 
 const Sequelize = require("sequelize");
@@ -15,9 +21,9 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.users = require("./user.model.js")(sequelize, Sequelize);
 db.langs = require("./lang.model.js")(sequelize, Sequelize);
 db.texts = require("./text.model.js")(sequelize, Sequelize);
+db.users = require("./user.model.js")(sequelize, Sequelize);
 db.licenses = require("./license.model.js")(sequelize, Sequelize);
 db.projects = require("./project.model.js")(sequelize, Sequelize);
 db.projectTypes = require("./project-type.model.js")(sequelize, Sequelize);
@@ -25,6 +31,9 @@ db.projectUrlTypes = require("./project-url-type.model.js")(sequelize, Sequelize
 db.projectUrls = require("./project-url.model.js")(sequelize, Sequelize);
 db.projectImages = require("./project-image.model.js")(sequelize, Sequelize);
 db.tags = require("./tag.model.js")(sequelize, Sequelize);
+db.userTexts = require("./user-text.model.js")(sequelize, Sequelize);
+db.userUrls = require("./user-url.model.js")(sequelize, Sequelize);
+db.messages = require("./message.model.js")(sequelize, Sequelize);
 
 
 db.projects.belongsTo(db.licenses, {foreignKey: 'licenseId', as: "license"});
@@ -33,9 +42,9 @@ db.licenses.hasMany(db.projects);
 db.projects.belongsTo(db.projectTypes, {foreignKey: 'projectTypeId', as: "type"});
 db.projectTypes.hasMany(db.projects);
 
-const ProjectTag = sequelize.define("project-tag",{},{ timestamps: false });
-db.projects.belongsToMany(db.tags, { through: ProjectTag });
-db.tags.belongsToMany(db.projects, { through: ProjectTag });
+const ProjectTag = sequelize.define("project-tag", {}, {timestamps: false});
+db.projects.belongsToMany(db.tags, {through: ProjectTag});
+db.tags.belongsToMany(db.projects, {through: ProjectTag});
 
 db.projectUrls.belongsTo(db.projectUrlTypes, {foreignKey: 'projectUrlTypeId', as: "type"});
 db.projectUrlTypes.hasMany(db.projectUrls);
@@ -43,8 +52,16 @@ db.projectUrlTypes.hasMany(db.projectUrls);
 db.projectUrls.belongsTo(db.projects, {foreignKey: 'projectId', as: "project"});
 db.projects.hasMany(db.projectUrls);
 
-
 db.projectImages.belongsTo(db.projects, {foreignKey: 'projectId', as: "project"});
 db.projects.hasMany(db.projectImages);
+
+db.userTexts.belongsTo(db.users, {foreignKey: 'userId'});
+db.users.hasMany(db.userTexts, {as: "texts"});
+
+db.userUrls.belongsTo(db.users, {foreignKey: 'userId'});
+db.users.hasMany(db.userUrls, {as: "urls"});
+
+db.messages.belongsTo(db.users, {foreignKey: 'userId'});
+db.users.hasMany(db.messages, {as: "messages"});
 
 module.exports = db;

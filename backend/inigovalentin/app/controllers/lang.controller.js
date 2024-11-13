@@ -80,7 +80,9 @@ exports.findOne = (req, res) => {
     Lang.findByPk(code)
     .then(data => {
         if (data) res.send(data);
-        else res.status(404).send(`No language with code ${code}.`});
+        else res.status(404).send(`No language with code ${code}.`
+            
+        );
     })
     .catch(err => {
         logger.error("Error retrieving language with code " + code + ": " + err);

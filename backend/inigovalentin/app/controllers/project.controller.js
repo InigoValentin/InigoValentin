@@ -4,7 +4,7 @@
  * @since 4.0.0
  */
 
-const logger = require('pino')()
+const logger = require('pino')();
 const db = require("../models");
 const Project = db.projects;
 const Op = db.Sequelize.Op;
@@ -88,7 +88,7 @@ exports.create = (req, res) => {
     .then(data => {res.send(data);})
     .catch(err => {
         logger.error("Error creating project: " + err);
-        res.status(500).send({"Error creating project."});
+        res.status(500).send("Error creating project.");
     });
 };
 
@@ -100,10 +100,29 @@ exports.create = (req, res) => {
  */
 exports.findAll = (req, res) => {
     Project.findAll({
-        where: {visible: true,}, 
+        where: {visible: true},
         include: ["license", "type", "tags", {model: ProjectUrl, include: "type"}],
-        attributes: { exclude: ['licenseId', 'projectTypeId'] },
+        attributes: {exclude: ['licenseId', 'projectTypeId']},
         order: [['idx', 'ASC'], ['id', 'DESC']]
+    })
+    .then(async data => {
+        data = await localeService.localizeProjects(data, req);
+        res.send(data);
+    })
+    .catch(err => {
+        logger.error("Error retrieving projects: " + err);
+        res.status(500).send("Error retrieving projects.");
+    });
+};
+
+exports.findTop = (req, res) => {
+    const limit = !isNaN(req.params.total) ? Number(req.params.total) : 3;
+    Project.findAll({
+        where: {visible: true},
+        include: ["license", "type", "tags", {model: ProjectUrl, include: "type"}],
+        attributes: {exclude: ['licenseId', 'projectTypeId']},
+        order: [['idx', 'ASC'], ['id', 'DESC']],
+        limit: limit
     })
     .then(async data => {
         data = await localeService.localizeProjects(data, req);
@@ -133,7 +152,7 @@ exports.findOne = (req, res) => {
             data = await localeService.localizeProject(data, req);
             res.send(data);
         }
-        else res.status(404).send(`No project with id or permalink ${id}.`});
+        else res.status(404).send(`No project with id or permalink ${id}.`);
     })
     .catch(err => {
         logger.error("Error retrieving project with id or permalink " + id + ": " + err);
@@ -155,7 +174,7 @@ exports.update = (req, res) => {
         return;
     }
     const id = req.params.id;
-    Project.update(req.body, {where: {[Op.or]: {permalink: id, id: id }}, user: user}})
+    Project.update(req.body, {where: {[Op.or]: {permalink: id, id: id }}, user: user})
     .then(num => {
         if (num == 1) res.send("Project updated successfully.");
         else res.send(`Cannot update project with id or permalink ${id}.`);
@@ -181,10 +200,10 @@ exports.delete = (req, res) => {
     }
     const user = validation.user;
     const id = req.params.id;
-    Project.destroy({where: {[Op.or]: {permalink: id, id: id }}, user: user}})
+    Project.destroy({where: {[Op.or]: {permalink: id, id: id }}, user: user})
     .then(num => {
         if (num == 1) res.send({message: "Project deleted successfully."});
-        else  res.send({message: `Cannot delete project with id or permalink ${id}.`});
+        else res.send(`Cannot delete project with id or permalink ${id}.`);
     })
     .catch(err => {
         logger.error("Error deleting project with id or permalink " + id + ": " + err);

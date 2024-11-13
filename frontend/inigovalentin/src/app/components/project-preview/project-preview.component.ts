@@ -7,8 +7,7 @@ import { Project } from '../../models/project';
   selector: 'app-project-preview',
   standalone: true,
   imports: [SlicePipe, NgFor, RouterLink, RouterOutlet],
-  templateUrl: './project-preview.component.html',
-  styleUrl: './project-preview.component.css'
+  templateUrl: './project-preview.component.html'
 })
 
 export class ProjectPreviewComponent {

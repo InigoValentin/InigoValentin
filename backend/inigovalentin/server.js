@@ -25,6 +25,8 @@ require("./app/routes/access.routes")(app);
 require("./app/routes/lang.routes")(app);
 require("./app/routes/text.routes")(app);
 require("./app/routes/project.routes")(app);
+require("./app/routes/user.routes")(app);
+require("./app/routes/message.routes")(app);
 
 const {SRV_PORT, SRV_MODE} = process.env;
 app.listen(SRV_PORT, () => {console.log("Server running in " + SRV_MODE + " mode in port " + SRV_PORT + ".")});

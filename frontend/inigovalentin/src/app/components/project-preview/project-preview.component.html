@@ -1,21 +1,21 @@
-<article class='project'>
-  <table>
-    <tr>
-      <td ngIf="project.logo" class='logo'>
-        <a routerLink="/projects/{{project.permalink}}">
-          <img class="logo" src="./img/project/{{project.logo}}" alt={{project.title}} />
-        </a>
-      </td>
-      <td class='project_details'>
-        <h4 class='project_name'>{{project.title}}</h4>
-        <h5 class='project_header'>{{project.header}}</h5>
-        <div class='project_text' [innerHTML]=project.text></div>
-        <div class='tags'>
-          <span *ngFor="let tag of project.tags">
-            <img src="./img/tag/{{tag.icon}}" alt="{{tag.tag}}" title="{{tag.tag}}"/>
-          </span>
-        </div>
-      </td>
-    </tr>
-  </table>
+<article class='project_preview'>
+  <a ngIf="project.logo" class='logo' routerLink="/projects/{{project.permalink}}">
+    <img class="logo" src="./img/project/{{project.logo}}" alt={{project.title}} />
+  </a>
+  <div class='details'>
+    <h4 class='title'>{{project.title}}</h4>
+    <h5 class='header'>{{project.header}}</h5>
+    <div class='text' [innerHTML]=project.text></div>
+    <div class='details_cover'></div>
+  </div>
+  <div class='tags'>
+    <span *ngFor="let tag of project.tags">
+      <img src="./img/tag/{{tag.icon}}" alt="{{tag.tag}}" title="{{tag.tag}}"/>
+    </span>
+  </div>
+  <div class='button'>
+    <a class='a_button' routerLink="/projects/{{project.permalink}}" i18n>
+      See more
+    </a>
+  </div>
 </article>

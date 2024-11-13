@@ -16,8 +16,7 @@ declare var totalImages: number;
   selector: 'app-project',
   standalone: true,
   imports: [AsyncPipe, DatePipe, CurrencyPipe, NgIf, NgFor],
-  templateUrl: './project.component.html',
-  styleUrl: './project.component.css'
+  templateUrl: './project.component.html'
 })
 export class ProjectComponent {
 

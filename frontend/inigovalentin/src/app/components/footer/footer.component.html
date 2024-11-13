@@ -1,5 +1,31 @@
 <footer>
-  <p class="bg-slate-700 text-white text-center mt-20">
-    2016 Inigo Valentin
-  </p>
+  <hr/>
+  <div id='footer_left'>
+    <span id='footer_follow' class='desktop' i18n>Follow me:</span>
+    <span class='fake_a' onclick='openMessageForm();'>
+      <img src='./img/social/email.svg' i18n-alt alt='Send me a message' i18n-title title='Send me a message'/>
+    </span>
+    @if(user?.urls){
+      <a *ngFor="let url of user?.urls" target='_blank' title='{{url.description}}' href='{{url.url}}'>
+        <img src='./img/social/{{url.logo}}' alt='{{url.name}}' title='{{url.description}}'/>
+      </a>
+    }
+  </div>
+  <div id='footer_center'>
+
+  </div>
+  <div id='footer_right'>
+    <a id='footer_help' href='https://inigovalentin.com/help/' i18n>Help</a>
+    <div id='footer_langs'>
+      <a class='lang' href='https://inigovalentin.com/en/'>
+          <img src='https://inigovalentin.com/img/layout/lang/en.svg' alt='English' title='English'/>
+      </a>
+      <a class='lang' href='https://inigovalentin.com/es/'>
+          <img src='https://inigovalentin.com/img/layout/lang/es.svg' alt='Castellano' title='Castellano'/>
+      </a>
+      <a class='lang' href='https://inigovalentin.com/eu/'>
+          <img src='https://inigovalentin.com/img/layout/lang/eu.svg' alt='Euskara' title='Euskara'/>
+      </a>
+    </div>
+  </div>
 </footer>

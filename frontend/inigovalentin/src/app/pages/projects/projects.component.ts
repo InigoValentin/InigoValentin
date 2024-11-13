@@ -12,8 +12,7 @@ declare function showImage(element: any): any
   selector: 'app-projects',
   standalone: true,
   imports: [ProjectComponent, NgFor, ProjectPreviewComponent],
-  templateUrl: './projects.component.html',
-  styleUrl: './projects.component.css'
+  templateUrl: './projects.component.html'
 })
 
 export class ProjectsComponent {
@@ -25,10 +24,7 @@ export class ProjectsComponent {
 
   ngOnInit() {
     this.projects_service.getAllProjects().subscribe({
-      next: (projects) => {
-        this.projects = projects;
-        console.log(this.projects);
-      },
+      next: (projects) => {this.projects = projects;},
       error: (error) => {this.errorMessage = error;},
     });
     let node = document.createElement('script');
@@ -37,6 +33,5 @@ export class ProjectsComponent {
     node.async = true;
     node.charset = 'utf-8';
     document.getElementsByTagName('head')[0].appendChild(node);
-    console.log("LOAD!");
   }
 }

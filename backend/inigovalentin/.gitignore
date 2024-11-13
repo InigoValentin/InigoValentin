@@ -28,3 +28,6 @@ logs
 
 # SQL files
 sql/
+
+# Testing
+coverage/

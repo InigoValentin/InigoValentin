@@ -8,9 +8,10 @@ import { ProjectPreviewComponent } from './components/project-preview/project-pr
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, NavbarComponent, FooterComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
-  title = 'inigovalentin';
+  title = 'Inigo V';
+  errorMessage!: string;
+  constructor() {}
 }

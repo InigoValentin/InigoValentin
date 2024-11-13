@@ -1,153 +1,169 @@
-const db = require("../models");
-const Text = db.texts;
-const Op = db.Sequelize.Op;
+/**
+ * @file Provides the model and operation for texts.
+ * @author Inigo Valentin
+ * @since 4.0.0
+ */
 
-// Create and Save a new Text
+const logger = require('pino')();
+const db = require("../models");
+const Text = db.text;
+const Op = db.Sequelize.Op;
+const AuthService = require("../services/auth.service.js");
+const authService = new AuthService(db);
+
+/**
+ * Create and save a new text.
+ * 
+ * @param req The received request by the server.
+ * @param res The request to be sent by the server.
+ */
 exports.create = (req, res) => {
-    // Validate request
-    if (!req.body.title) {
-        res.status(400).send({
-            message: "Content can not be empty!"
-        });
+    // Check authentication
+    if (authService.validateToken(req, res).success === false){
+        res.status(validation.code).send(validation.message);
         return;
     }
     
+    // Validate request
+    let missing = [];
+    if (!req.body.id) missing.push("id");
+    if (!req.body.lang) missing.push("lang");
+    if (!req.body.section) missing.push("section");
+    if (!req.body.text && !req.body.file) missing.push("text or file");
+    if (missing.length > 0){
+        let message = "Missing required fields: [";
+        for (let i = 0; i < missing.length; i ++){
+            message += missing[i];
+            if (i < missing.length - 1) message += ", ";
+        }
+        message += "].";
+        res.status(400).send(message);
+        return;
+    }
+    // TODO: Validate
+    // TODO: Accept only text or file
+
     // Create a Text
-    const Text = {
-        title: req.body.title,
-        description: req.body.description,
-        published: req.body.published ? req.body.published : false
-    };
+    const text = {id: id, lang: lang, section: section, text: text, file: file};
     
-    // Save Text in the database
-    Text.create(Text)
-    .then(data => {
-        res.send(data);
-    })
+    // Save text in the database
+    Text.create(text)
+    .then(data => {res.send(data);})
     .catch(err => {
-        res.status(500).send({
-            message:
-            err.message || "Some error occurred while creating the Text."
-        });
+        logger.error("Error creating text: " + err);
+        res.status(500).send("Error creating text.");
     });
 };
 
-// Retrieve all Texts from the database.
+/**
+ * Retrieve all texts from the database.
+ * 
+ * @param req The received request by the server.
+ * @param res The request to be sent by the server.
+ */
 exports.findAll = (req, res) => {
-    //const title = req.query.title;
-    //var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
-    
-    //Text.findAll({ where: condition })
+    // TODO: There is very little reason for this to exist
+    // Check authentication
+    if (authService.validateToken(req, res).success === false){
+        res.status(validation.code).send(validation.message);
+        return;
+    }
     Text.findAll()
-    .then(data => {
-        res.send(data);
-    })
+    .then(async data => {res.send(data);})
     .catch(err => {
-        res.status(500).send({
-            message:
-            err.message || "Some error occurred while retrieving Texts."
-        });
+        logger.error("Error retrieving texts: " + err);
+        res.status(500).send("Error retrieving texts.");
     });
 };
 
-// Find a single Text with an id
+/**
+ * Find a single project.
+ * 
+ * @param req The received request by the server.
+ * @param res The request to be sent by the server.
+ */
 exports.findOne = (req, res) => {
     const id = req.params.id;
-    
-    Text.findByPk(id)
-    .then(data => {
-        if (data) {
-            res.send(data);
-        } else {
-            res.status(404).send({
-                message: `Cannot find Text with id=${id}.`
-            });
-        }
+    const lang = req.params.lang;
+    // TODO: Validate id and lang
+    Text.findOne({where: {id: id, lang: lang}})
+    .then(async data => {
+        if (data) res.send(data);
+        else res.status(404).send(`No text with id ${id} nd lang ${lang}.`);
     })
     .catch(err => {
-        res.status(500).send({
-            message: "Error retrieving Text with id=" + id
-        });
+        logger.error("Error retrieving text with id " + id + " in lang " + lang + ": " + err);
+        res.status(500).send("Error retrieving text with id " + id + " in lang " + lang + ".");
     });
 };
 
-// Update a Text by the id in the request
+/**
+ * Update a single text.
+ * 
+ * @param req The received request by the server.
+ * @param res The request to be sent by the server.
+ */
 exports.update = (req, res) => {
-    const id = req.params.id;
-    
-    Text.update(req.body, {
-        where: { id: id }
-    })
+    // Check authentication
+    if (authService.validateToken(req, res).success === false){
+        res.status(validation.code).send(validation.message);
+        return;
+    }
+    const id = req.body.id;
+    const lang = req.body.lang;
+    Text.update(req.body, {where: {id: id, lang: lang}})
     .then(num => {
-        if (num == 1) {
-            res.send({
-                message: "Text was updated successfully."
-            });
-        } else {
-            res.send({
-                message: `Cannot update Text with id=${id}. Maybe Text was not found or req.body is empty!`
-            });
-        }
+        if (num == 1) res.send("Text updated successfully.");
+        else res.send(`Cannot update text with id ${id} nd lang ${lang}.`);
     })
     .catch(err => {
-        res.status(500).send({
-            message: "Error updating Text with id=" + id
-        });
+        logger.error("Error updating text with id " + id + " in lang " + lang + ": " + err);
+        res.status(500).send("Error updating text with id " + id + " in lang " + lang + ".");
     });
 };
 
-// Delete a Text with the specified id in the request
+/**
+ * Delete a single text.
+ * 
+ * @param req The received request by the server.
+ * @param res The request to be sent by the server.
+ */
 exports.delete = (req, res) => {
-    const id = req.params.id;
-    
-    Text.destroy({
-        where: { id: id }
-    })
+    // Check authentication
+    if (authService.validateToken(req, res).success === false){
+        res.status(validation.code).send(validation.message);
+        return;
+    }
+    const id = req.body.id;
+    const lang = req.body.lang;
+    Project.destroy({where: {id: id, lang: lang}})
     .then(num => {
-        if (num == 1) {
-            res.send({
-                message: "Text was deleted successfully!"
-            });
-        } else {
-            res.send({
-                message: `Cannot delete Text with id=${id}. Maybe Text was not found!`
-            });
-        }
+        if (num == 1) res.send("Text deleted successfully.");
+        else res.send(`Cannot delete text with id ${id} nd lang ${lang}.`);
     })
     .catch(err => {
-        res.status(500).send({
-            message: "Could not delete Text with id=" + id
-        });
+        logger.error("Error deleting text with id " + id + " in lang " + lang + ": " + err);
+        res.status(500).send("Error deleting text with id " + id + " in lang " + lang + ".");
     });
 };
 
-// Delete all Texts from the database.
+/**
+ * Delete all texts.
+ * 
+ * @param req The received request by the server.
+ * @param res The request to be sent by the server.
+ */
 exports.deleteAll = (req, res) => {
-    Text.destroy({
-        where: {},
-        truncate: false
-    })
-    .then(nums => {
-        res.send({ message: `${nums} Texts were deleted successfully!` });
-    })
+    // TODO: There is very little reason for this to exist
+    // Check authentication
+    if (authService.validateToken(req, res).success === false){
+        res.status(validation.code).send(validation.message);
+        return;
+    }
+    Text.destroy({truncate: false})
+    .then(nums => {res.send(`${nums} texts deleted successfully.`);})
     .catch(err => {
-        res.status(500).send({
-            message:
-            err.message || "Some error occurred while removing all Texts."
-        });
-    });
-};
-
-// Find all published Texts
-exports.findAllPublished = (req, res) => {
-    Text.findAll({ where: { published: true } })
-    .then(data => {
-        res.send(data);
-    })
-    .catch(err => {
-        res.status(500).send({
-            message:
-            err.message || "Some error occurred while retrieving Texts."
-        });
+        logger.error("Error deleting texts: " + err);
+        res.status(500).send("Error deleting texts.");
     });
 };
