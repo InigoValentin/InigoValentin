@@ -1,0 +1,86 @@
+<script type="text/javascript" src="./js/project.js"></script>
+@if(project){
+  <section id='project'>
+    <h3>{{ project.title }}</h3>
+    <article>
+      <div id='summary'>
+        @if(project.logo){
+          <img id='project_logo' src="./img/project/{{project.logo}}" alt={{project.title}}/>
+        }
+        <div id='texts'>
+          <h4>{{ project.header }}</h4>
+          <div id='text' [innerHTML]=project.text></div>
+        </div>
+      </div>
+      <div id='details'>
+        @if(project['project-urls']){
+          <ul id='urls'>
+            <li *ngFor="let url of project['project-urls']">
+              <a href="{{ url.url }}" title="{{ url.type.summary }}" target="_blank">
+                <img src="./img/social/{{url.type.logo}}" alt="{{url.type.title}}"/>
+                {{url.type.title}}
+              </a>
+            </li>
+          </ul>
+        }
+        @if(project.license){
+          <div id='license'>
+            License:
+            <img src="./img/license/{{project.license.icon}}" alt="{{project.license.legal}}" title="{{project.license.legal}}"/>
+          </div>
+        }
+        @if(project.tags){
+          <div id='tags'>
+            Tags:
+            <span *ngFor="let tag of project.tags">
+              <img src="./img/tag/{{tag.icon}}" alt="{{tag.tag}}" title="{{tag.tag}}"/>
+            </span>
+          </div>
+        }
+      </div>
+      @if(project.comment){
+        <div id='comment'>
+          <div id='comment_title'>
+              TODO NOTES
+          </div>
+          <div id="comment_text" [innerHTML]=project.comment></div>
+        </div>
+      }
+      @if(project['project-images']){
+        <div id='image_reel'>
+          <div *ngFor="let img of project['project-images']; let i = index" class="img">
+            <img id="img_{{ i }}" src="./img/project/{{img.image}}" alt="{{img.alt}}" title="{{img.alt}}" onClick="showImage(this);"/>
+            <h5>{{img.alt}}</h5>
+          </div>
+        </div>
+      }
+    </article>
+  </section>
+  <div id='cover' onclick='closeImage();'></div>
+  <section id='image_viewer'>
+    <h3>
+      <span id='image_viewer_title'></span>
+      <div id='image_viewer_close'>
+        <a onClick='closeImage();'>
+          <img src='./img/control/close.svg'/>
+        </a>
+      </div>
+    </h3>
+    <div class='control desktop a_button' onClick='prevImage();'>
+      <img src='./img/control/prev.svg'/>
+    </div>
+    <img id='image_viewer_image'/>
+    <div class='control desktop a_button' onClick='nextImage();'>
+      <img src='./img/control/next.svg'/>
+    </div>
+    <div id='secondary_controls' class='mobile'>
+        <a onClick='prevImage();'>
+            <img src='./img/control/prev.svg'/>
+        </a>
+        <a onClick='nextImage();'>
+            <img src='./img/control/next.svg'/>
+        </a>
+    </div>
+  </section>
+}
+

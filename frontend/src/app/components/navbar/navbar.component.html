@@ -1,0 +1,8 @@
+<header>
+    <div id='logo' *ngIf="user != undefined">{{user.displayname}}</div>
+    <nav>
+        <a routerLink="/" i18n>Home</a>
+        <a routerLink="/profile" i18n>Me</a>
+        <a routerLink="/projects" i18n>Projects</a>
+    </nav>
+</header>

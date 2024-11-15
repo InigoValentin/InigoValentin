@@ -1,0 +1,58 @@
+<div id='message_cover' onClick='closeMessage();'></div>
+<section id='message'>
+  <h3>
+    <span i18n>Contact me</span>
+    <div id='message_close'>
+      <a onClick='closeMessage();'>
+        <img src='./img/control/close.svg'/>
+      </a>
+    </div>
+  </h3>
+  <div id='message_form'>
+    <p i18n>
+      Something on your mind? Use this form to send me a message and I'll get back to you as soon as possible.
+    </p>
+    <form #messageForm='ngForm' (ngSubmit)='onSubmit(messageForm)'>
+      <div>
+        <label for='name' i18n>Your name: </label>
+        <input type='text' name='name' i18n-placeholder placeholder='Your name' ngModel required/>
+      </div>
+      <div>
+        <span id='error_name' class='error' i18n>A name is required.</span>
+      </div>
+      <div>
+        <label for='email' i18n>Your email: </label>
+        <input type='text' name='email' i18n-placeholder placeholder='Your email' ngModel required/>
+      </div>
+      <div>
+        <span id='error_email' class='error' i18n>A valid email address is required.</span>
+      </div>
+      <div>
+        <label for='email' i18n>Subject: </label>
+        <input type='text' name='subject' i18n-placeholder placeholder='Subject' ngModel required/>
+      </div>
+      <div>
+        <span id='error_subject' class='error' i18n>Invalid subject.</span>
+      </div>
+      <div>
+        <label for='message' i18n>Your message: </label>
+        <span id='error_message' class='error' i18n>The message can not be empty.</span>
+        <textarea placeholder='Your message' name='text' i18n-placeholder placeholder='Your message' ngModel required></textarea>
+      </div>
+      <div>
+        <input type='checkbox' name='consent' ngModel required/>
+        <label for='consent' class='long' i18n>I accept the data processing policy</label>
+      </div>
+      <div>
+        <span id='error_consent' class='error' i18n>The message can't be sent unless the policy is accepted.</span>
+      </div>
+      <div><input type='submit' i18n-value value='Send'/></div>
+    </form>
+  </div>
+  <div id='message_confirmation'>
+    <h4 i18n>Sent!</h4>
+    <p>I'll get back to you shortly</p>
+    <input type='button' onclick='closeMessage();' i18n-value value='Close'/>
+  </div>
+</section>
+

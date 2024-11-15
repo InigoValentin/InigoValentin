@@ -1,0 +1,28 @@
+<section id='home_profile'>
+  <h3>{{user?.firstName}} {{user?.lastName}}</h3>
+  <article>
+    <h4 id='tagline'>{{texts["TAGLINE"]}}</h4>
+    <img id='profile_image' src="./img/user/{{user?.image}}" alt="{{user?.firstName}} {{user?.lastName}}"/>
+    <div id='profile_social'>
+      <span class='fake_a' onclick='openMessage();'>
+        <img src='./img/social/email.svg' i18n-alt alt='Send me a message' i18n-title title='Send me a message'/>
+      </span>
+      @if(user?.urls){
+        <a *ngFor="let url of user?.urls" target='_blank' title='{{url.description}}' href='{{url.url}}'>
+          <img src='./img/social/{{url.logo}}' alt='{{url.name}}' title='{{url.description}}'/>
+        </a>
+      }
+    </div>
+    <div [innerHTML]="texts['BIO_SHORT']" id='bio'></div>
+    <a id='more' class='a_button' href="/profile/" i18n>
+      More about me
+    </a>
+  </article>
+</section>
+<section id='home_projects'>
+  <h3 i18n>Projects</h3>
+  <app-project-preview *ngFor="let project of projects" [project]="project"></app-project-preview>
+  <a id='all_projects' class='a_button' href="/projects/" i18n>
+    See all projects
+  </a>
+</section>

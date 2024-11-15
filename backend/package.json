@@ -1,0 +1,28 @@
+{
+  "name": "inigovalentin",
+  "version": "0.0.1",
+  "description": "Iñigo Valentin's Website",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodejs --env-file=env/pro.env app.js",
+    "start-dev": "nodejs --env-file=env/dev.env app.js",
+    "test": "jest"
+  },
+  "author": "Iñigo Valentin",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "jest": "^29.7.0",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.11.3",
+    "node-mocks-http": "^1.16.1",
+    "pine": "^1.1.1",
+    "pino": "^9.5.0",
+    "sequelize": "^6.37.4",
+    "sequelize-mock": "^0.10.2",
+    "sha1": "^1.1.1"
+  }
+}

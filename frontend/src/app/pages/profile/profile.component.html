@@ -1,0 +1,23 @@
+<section id='profile_details'>
+  <h3>{{user?.firstName}} {{user?.lastName}}</h3>
+  <article>
+    <img id='image' src="./img/user/{{user?.image}}" alt="{{user?.firstName}} {{user?.lastName}}"/>
+    <h4 id='tagline'>{{texts["TAGLINE"]}}</h4>
+    <div id='social'>
+      <span class='fake_a' onclick='openMessage();'>
+        <img src='./img/social/email.svg' i18n-alt alt='Send me a message' i18n-title title='Send me a message'/>
+        <span>Send me a message</span>
+      </span>
+      <a *ngFor="let url of user?.urls" target='_blank' title='{{url.description}}' href='{{url.url}}'>
+        <img src='./img/social/{{url.logo}}' alt='{{url.name}}' title='{{url.description}}'/>
+        <span>{{url.description}}</span>
+      </a>
+    </div>
+  </article>
+</section>
+<section id='profile_bio'>
+  <h3 i18n>About me</h3>
+  <article>
+    <div id='bio' [innerHTML]="texts['BIO']"></div>
+  </article>
+</section>
