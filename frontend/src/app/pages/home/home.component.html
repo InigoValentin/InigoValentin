@@ -5,7 +5,7 @@
     <img id='profile_image' src="./img/user/{{user?.image}}" alt="{{user?.firstName}} {{user?.lastName}}"/>
     <div id='profile_social'>
       <span class='fake_a' onclick='openMessage();'>
-        <img src='./img/social/email.svg' i18n-alt alt='Send me a message' i18n-title title='Send me a message'/>
+        <img src='./img/social/email.svg' alt="{{'FOOTER.MESSAGE' | translate}}" title="{{'FOOTER.MESSAGE' | translate}}"/>
       </span>
       @if(user?.urls){
         <a *ngFor="let url of user?.urls" target='_blank' title='{{url.description}}' href='{{url.url}}'>
@@ -14,15 +14,15 @@
       }
     </div>
     <div [innerHTML]="texts['BIO_SHORT']" id='bio'></div>
-    <a id='more' class='a_button' href="/profile/" i18n>
-      More about me
+    <a id='more' class='a_button' href="/profile/">
+      {{'PROFILE.MORE' | translate}}
     </a>
   </article>
 </section>
 <section id='home_projects'>
-  <h3 i18n>Projects</h3>
+  <h3>{{'SECTION.PROJECTS' | translate}}</h3>
   <app-project-preview *ngFor="let project of projects" [project]="project"></app-project-preview>
-  <a id='all_projects' class='a_button' href="/projects/" i18n>
-    See all projects
+  <a id='all_projects' class='a_button' href="/projects/">
+    {{'PROJECT.ALL' | translate}}
   </a>
 </section>

@@ -4,15 +4,16 @@
  * @since 4.0.0
  */
 
-import { Component, Injectable, inject, Input } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
-import { CommonModule, SlicePipe, NgFor } from '@angular/common';
-import { Project } from '../../models/project';
+import {Component, Injectable, inject, Input} from '@angular/core';
+import {RouterLink, RouterOutlet} from '@angular/router';
+import {CommonModule, SlicePipe, NgFor} from '@angular/common';
+import {TranslateModule} from "@ngx-translate/core";
+import {Project} from '../../models/project';
 
 @Component({
   selector: 'app-project-preview',
   standalone: true,
-  imports: [SlicePipe, NgFor, RouterLink, RouterOutlet],
+  imports: [SlicePipe, NgFor, RouterLink, RouterOutlet, TranslateModule],
   templateUrl: './project-preview.component.html'
 })
 

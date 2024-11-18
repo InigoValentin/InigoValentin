@@ -6,6 +6,7 @@
 
 import {Component} from '@angular/core';
 import {NgFor} from '@angular/common';
+import {TranslateModule} from "@ngx-translate/core";
 import {UserService} from '../../services/user.service';
 import {MetaService} from '../../services/meta.service';
 import {Project} from '../../models/project';
@@ -15,7 +16,7 @@ import {ProjectPreviewComponent} from '../../components/project-preview/project-
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [NgFor, ProjectPreviewComponent],
+  imports: [NgFor, ProjectPreviewComponent, TranslateModule],
   templateUrl: './projects.component.html'
 })
 

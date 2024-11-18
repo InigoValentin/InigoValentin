@@ -1,0 +1,45 @@
+{
+  "CLOSE": "Itxi",
+  "SEE_MORE": "Gehiago",
+  "SECTION": {
+    "HOME": "Hasiera",
+    "PROFILE": "Ni",
+    "PROJECTS": "Proiektuak"
+  },
+  "FOOTER": {
+    "FOLLOW": "Niri buruz",
+    "MESSAGE": "Bidali mezu bat",
+    "HELP": "Laguntza"
+  },
+  "MESSAGE": {
+    "TITLE:": "Kontaktua",
+    "INFO": "Nirekin hitz egin nahi al duzu? Erabili inprimaki hau mezu bat bidaltzeko, eta berehala erantzungo dizut.",
+    "SEND": "Bidali",
+    "SENT": "Bidali!",
+    "SUCCESS": "Berehala erantzungo dizut mezu elektroniko batekin.",
+    "LABEL": {
+      "NAME": "Zure izena:",
+      "EMAIL": "Zure email:",
+      "SUBJECT": "Gaiz:",
+      "MESSAGE": "Mezua:",
+      "CONSENT": "Datu tratatzeko politika onartzen dut."
+    },
+    "ERROR": {
+      "NAME": "Izena nahitaezkoa da.",
+      "EMAIL": "Es necesaria una dirección email válida.",
+      "SUBJECT": "Baliozko helbide elektronikoa behar da.",
+      "MESSAGE": "Mezua ezin da hutsik egon.",
+      "CONSENT": "Ezin da mezua bidali politika onartzen ez bada."
+    }
+  },
+  "PROFILE": {
+    "MORE": "Gehiago niri buruz",
+    "ABOUT": "Niri buruz"
+  },
+  "PROJECT": {
+    "ALL": "Proiectu denak",
+    "LICENSE": "Lizentzia",
+    "TAGS": "Etiketak",
+    "COMMENT": "{{name}}ren oharrak:"
+  }
+}

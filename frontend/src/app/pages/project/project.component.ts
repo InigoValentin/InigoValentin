@@ -9,6 +9,7 @@ import {AsyncPipe, NgFor, NgIf} from '@angular/common';
 import {ActivatedRoute} from '@angular/router';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
+import {TranslateModule} from "@ngx-translate/core";
 import {UserService} from '../../services/user.service';
 import {MetaService} from '../../services/meta.service';
 import {Project} from '../../models/project';
@@ -24,7 +25,7 @@ declare function closeImage(): any;
 @Component({
   selector: 'app-project',
   standalone: true,
-  imports: [AsyncPipe, NgIf, NgFor],
+  imports: [AsyncPipe, NgIf, NgFor, TranslateModule],
   templateUrl: './project.component.html'
 })
 
@@ -48,6 +49,11 @@ export class ProjectComponent {
   protected errorMessage!: string;
 
   /**
+   * Active user first name, for the comment title.
+   */
+  protected firstName: string = "";
+
+  /**
    * The constructor.
    *
    * @param metaService Service that handles HTML meta tags.
@@ -65,6 +71,7 @@ export class ProjectComponent {
     this.userService.getUser().subscribe({
       error: (error) => {this.errorMessage = error;},
       next: (user) => {
+        this.firstName += user.firstName;
         title = title.replace("<NAME>", user.firstName + " " + user.lastName);
         description = description.replace("<NAME>", user.firstName + " " + user.lastName);
         this.metaService.setTitle(title);

@@ -6,6 +6,7 @@
 
 import {Component} from '@angular/core';
 import {AsyncPipe, NgFor} from '@angular/common';
+import {TranslateModule} from "@ngx-translate/core";
 import {User} from '../../models/user';
 import {UserService} from '../../services/user.service';
 import {MetaService} from '../../services/meta.service';
@@ -16,7 +17,7 @@ import {ProjectPreviewComponent} from '../../components/project-preview/project-
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [AsyncPipe, NgFor, ProjectPreviewComponent],
+  imports: [AsyncPipe, NgFor, ProjectPreviewComponent, TranslateModule],
   templateUrl: './home.component.html'
 })
 

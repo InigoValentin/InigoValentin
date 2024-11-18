@@ -6,6 +6,7 @@
 
 import {Component} from '@angular/core';
 import {FormsModule, NgForm} from '@angular/forms';
+import {TranslateModule} from "@ngx-translate/core";
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Message} from '../../models/message';
 import {environment} from '../../../environments/environment';
@@ -13,7 +14,7 @@ import {environment} from '../../../environments/environment';
 @Component({
   selector: 'app-message',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, TranslateModule],
   templateUrl: './message.component.html'
 })
 

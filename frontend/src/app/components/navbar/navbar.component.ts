@@ -6,6 +6,7 @@
 
 import {Component} from '@angular/core';
 import {NgIf} from '@angular/common';
+import {TranslateModule} from "@ngx-translate/core";
 import {RouterModule} from '@angular/router';
 import {User} from '../../models/user';
 import {UserService} from '../../services/user.service';
@@ -13,7 +14,7 @@ import {UserService} from '../../services/user.service';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterModule, NgIf],
+  imports: [RouterModule, NgIf, TranslateModule],
   templateUrl: './navbar.component.html'
 })
 

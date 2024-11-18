@@ -1,0 +1,45 @@
+{
+  "CLOSE": "Close",
+  "SEE_MORE": "See more",
+  "SECTION": {
+    "HOME": "Home",
+    "PROFILE": "Me",
+    "PROJECTS": "Projects"
+  },
+  "FOOTER": {
+    "FOLLOW": "Follow me",
+    "MESSAGE": "Send me a message",
+    "HELP": "Help"
+  },
+  "MESSAGE": {
+    "TITLE:": "Contact me",
+    "INFO": "Something on your mind? Use this form to send me a message and I'll get back to you as soon as possible.",
+    "SEND": "Send",
+    "SENT": "Message sent!",
+    "SUCCESS": "I'll get back to you shortly.",
+    "LABEL": {
+      "NAME": "Your name:",
+      "EMAIL": "Your email:",
+      "SUBJECT": "Subject:",
+      "MESSAGE": "Message:",
+      "CONSENT": "I accept the data processing policy."
+    },
+    "ERROR": {
+      "NAME": "A name is required.",
+      "EMAIL": "A valid email address is required.",
+      "SUBJECT": "The subject can ot be empty.",
+      "MESSAGE": "The message can not be empty.",
+      "CONSENT": "The message can't be sent unless the policy is accepted."
+    }
+  },
+  "PROFILE": {
+    "MORE": "More about me",
+    "ABOUT": "About me"
+  },
+  "PROJECT": {
+    "ALL": "See all projects",
+    "LICENSE": "License",
+    "TAGS": "Tags",
+    "COMMENT": "{{name}}'s notes:"
+  }
+}

@@ -30,9 +30,13 @@
  * || COMMON
  * Styles for common elements.
  */
+
+* {box-sizing: border-box;}
+
 html {height: 100%;}
 
 body{
+  box-sizing: border-box;
   height: 100%;
   padding: 0;
   margin: 0;
@@ -40,7 +44,11 @@ body{
   font-size: 110%;
   min-height: 100vh;
   flex-direction: column;
+}
+app-root{
   display: flex;
+  flex-direction: column;
+  min-height: 95vh;
 }
 
 main{
@@ -49,6 +57,15 @@ main{
   max-width: 130em;
   margin: 0 auto;
   text-align: center;
+  flex-grow: 1;
+}
+app-navbar{
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+app-footer{
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 
 /* Style for all links. */
@@ -632,6 +649,7 @@ section#home_projects{
 
 #projects{
   text-align: center;
+  h3{text-align: left;}
   article{
     text-align: left;
     display: inline-block;
@@ -775,10 +793,9 @@ section#project{
     margin: auto;
     text-align: center;
     div.img{
-      display:inline-block;
+      display: inline-block;
       vertical-align: top;
       max-width: 12em;
-      max-height: 15em;
       text-align: center;
       background: #00000020;
       border: 0.1em solid #aacaaa;
@@ -791,7 +808,7 @@ section#project{
         cursor: pointer;
         margin: 0.5em auto 0.2em auto;
         max-width: calc(100% - 0.5em);
-        max-height: 22em;
+        max-height: 15em;
         border: 0.1em solid #000000;
         background: #000000;
       }

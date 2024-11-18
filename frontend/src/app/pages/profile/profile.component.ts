@@ -6,6 +6,7 @@
 
 import {Component} from '@angular/core';
 import {NgFor} from '@angular/common';
+import {TranslateModule} from "@ngx-translate/core";
 import {User} from '../../models/user';
 import {UserService} from '../../services/user.service';
 import {MetaService} from '../../services/meta.service';
@@ -13,7 +14,7 @@ import {MetaService} from '../../services/meta.service';
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, TranslateModule],
   templateUrl: './profile.component.html'
 })
 

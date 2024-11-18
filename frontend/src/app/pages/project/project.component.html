@@ -1,14 +1,12 @@
 <script type="text/javascript" src="./js/project.js"></script>
 @if(project){
   <section id='project'>
-    <h3>{{ project.title }}</h3>
+    <h3>{{project.title}}</h3>
     <article>
       <div id='summary'>
-        @if(project.logo){
-          <img id='project_logo' src="./img/project/{{project.logo}}" alt={{project.title}}/>
-        }
+        @if(project.logo){<img id='project_logo' src="./img/project/{{project.logo}}" alt={{project.title}}/>}
         <div id='texts'>
-          <h4>{{ project.header }}</h4>
+          <h4>{{project.header}}</h4>
           <div id='text' [innerHTML]=project.text></div>
         </div>
       </div>
@@ -25,13 +23,13 @@
         }
         @if(project.license){
           <div id='license'>
-            License:
+            {{'PROJECT.LICENSE' | translate}}
             <img src="./img/license/{{project.license.icon}}" alt="{{project.license.legal}}" title="{{project.license.legal}}"/>
           </div>
         }
         @if(project.tags){
           <div id='tags'>
-            Tags:
+            {{'PROJECT.TAGS' | translate}}
             <span *ngFor="let tag of project.tags">
               <img src="./img/tag/{{tag.icon}}" alt="{{tag.tag}}" title="{{tag.tag}}"/>
             </span>
@@ -40,8 +38,8 @@
       </div>
       @if(project.comment){
         <div id='comment'>
-          <div id='comment_title'>
-              TODO NOTES
+          <div id='comment_title' translate [translateParams]="{name: firstName}">
+            PROJECT.COMMENT
           </div>
           <div id="comment_text" [innerHTML]=project.comment></div>
         </div>

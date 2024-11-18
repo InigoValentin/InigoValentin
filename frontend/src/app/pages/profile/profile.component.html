@@ -5,8 +5,8 @@
     <h4 id='tagline'>{{texts["TAGLINE"]}}</h4>
     <div id='social'>
       <span class='fake_a' onclick='openMessage();'>
-        <img src='./img/social/email.svg' i18n-alt alt='Send me a message' i18n-title title='Send me a message'/>
-        <span>Send me a message</span>
+        <img src='./img/social/email.svg' alt="{{'FOOTER.MESSAGE' | translate}}" title="{{'FOOTER.MESSAGE' | translate}}"/>
+        <span>{{'FOOTER.MESSAGE' | translate}}</span>
       </span>
       <a *ngFor="let url of user?.urls" target='_blank' title='{{url.description}}' href='{{url.url}}'>
         <img src='./img/social/{{url.logo}}' alt='{{url.name}}' title='{{url.description}}'/>
@@ -16,7 +16,7 @@
   </article>
 </section>
 <section id='profile_bio'>
-  <h3 i18n>About me</h3>
+  <h3>{{'PROFILE.ABOUT' | translate}}</h3>
   <article>
     <div id='bio' [innerHTML]="texts['BIO']"></div>
   </article>

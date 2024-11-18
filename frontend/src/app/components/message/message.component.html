@@ -1,7 +1,7 @@
 <div id='message_cover' onClick='closeMessage();'></div>
 <section id='message'>
   <h3>
-    <span i18n>Contact me</span>
+    <span>{{'MESSAGE.TITLE' | translate}}</span>
     <div id='message_close'>
       <a onClick='closeMessage();'>
         <img src='./img/control/close.svg'/>
@@ -9,50 +9,48 @@
     </div>
   </h3>
   <div id='message_form'>
-    <p i18n>
-      Something on your mind? Use this form to send me a message and I'll get back to you as soon as possible.
-    </p>
+    <p>{{'MESSAGE.INFO' | translate}}</p>
     <form #messageForm='ngForm' (ngSubmit)='onSubmit(messageForm)'>
       <div>
-        <label for='name' i18n>Your name: </label>
-        <input type='text' name='name' i18n-placeholder placeholder='Your name' ngModel required/>
+        <label for='name'>{{'MESSAGE.LABEL.NAME' | translate}}</label>
+        <input type='text' name='name' ngModel required/>
       </div>
       <div>
-        <span id='error_name' class='error' i18n>A name is required.</span>
+        <span id='error_name' class='error'>{{'MESSAGE.ERROR.NAME' | translate}}</span>
       </div>
       <div>
-        <label for='email' i18n>Your email: </label>
-        <input type='text' name='email' i18n-placeholder placeholder='Your email' ngModel required/>
+        <label for='email'>{{'MESSAGE.LABEL.EMAIL' | translate}}</label>
+        <input type='text' name='email' ngModel required/>
       </div>
       <div>
-        <span id='error_email' class='error' i18n>A valid email address is required.</span>
+        <span id='error_email' class='error'>{{'MESSAGE.ERROR.EMAIL' | translate}}</span>
       </div>
       <div>
-        <label for='email' i18n>Subject: </label>
-        <input type='text' name='subject' i18n-placeholder placeholder='Subject' ngModel required/>
+        <label for='email'>{{'MESSAGE.LABEL.SUBJECT' | translate}}</label>
+        <input type='text' name='subject' ngModel required/>
       </div>
       <div>
-        <span id='error_subject' class='error' i18n>Invalid subject.</span>
+        <span id='error_subject' class='error'>{{'MESSAGE.ERROR.SUBJECT' | translate}}</span>
       </div>
       <div>
-        <label for='message' i18n>Your message: </label>
-        <span id='error_message' class='error' i18n>The message can not be empty.</span>
-        <textarea placeholder='Your message' name='text' i18n-placeholder placeholder='Your message' ngModel required></textarea>
+        <label for='message'>{{'MESSAGE.LABEL.MESSAGE' | translate}}</label>
+        <span id='error_message' class='error'>{{'MESSAGE.ERROR.MESSAGE' | translate}}</span>
+        <textarea placeholder='Your message' name='text' ngModel required></textarea>
       </div>
       <div>
         <input type='checkbox' name='consent' ngModel required/>
-        <label for='consent' class='long' i18n>I accept the data processing policy</label>
+        <label for='consent' class='long'>{{'MESSAGE.LABEL.CONSENT' | translate}}</label>
       </div>
       <div>
-        <span id='error_consent' class='error' i18n>The message can't be sent unless the policy is accepted.</span>
+        <span id='error_consent' class='error'>{{'MESSAGE.ERROR.CONSENT' | translate}}.</span>
       </div>
-      <div><input type='submit' i18n-value value='Send'/></div>
+      <div><input type='submit' value="{{'MESSAGE.SEND' | translate}}"/></div>
     </form>
   </div>
   <div id='message_confirmation'>
-    <h4 i18n>Sent!</h4>
-    <p>I'll get back to you shortly</p>
-    <input type='button' onclick='closeMessage();' i18n-value value='Close'/>
+    <h4>{{'MESSAGE.SENT' | translate}}</h4>
+    <p>{{'MESSAGE.SUCCESS' | translate}}</p>
+    <input type='button' onclick='closeMessage();' value="{{'CLOSE' | translate}}"/>
   </div>
 </section>
 

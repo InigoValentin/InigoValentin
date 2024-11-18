@@ -1,8 +1,8 @@
 <header>
     <div id='logo' *ngIf="user != undefined">{{user.displayname}}</div>
     <nav>
-        <a routerLink="/" i18n>Home</a>
-        <a routerLink="/profile" i18n>Me</a>
-        <a routerLink="/projects" i18n>Projects</a>
+        <a routerLink="/">{{'SECTION.HOME' | translate}}</a>
+        <a routerLink="/profile">{{'SECTION.PROFILE' | translate}}</a>
+        <a routerLink="/projects">{{'SECTION.PROJECTS' | translate}}</a>
     </nav>
 </header>

@@ -1,0 +1,45 @@
+{
+  "CLOSE": "Cerrar",
+  "SEE_MORE": "Ver más",
+  "SECTION": {
+    "HOME": "Inicio",
+    "PROFILE": "Yo",
+    "PROJECTS": "Proyectos"
+  },
+  "FOOTER": {
+    "FOLLOW": "Sobre mi",
+    "MESSAGE": "Envíame un mensaje",
+    "HELP": "Ayuda"
+  },
+  "MESSAGE": {
+    "TITLE:": "Contacto",
+    "INFO": "¿Quieres contactar conmigo? Utiliza este formulario para enviarme un mensaje, y te responderé enseguida.",
+    "SEND": "Enviar",
+    "SENT": "¡Enviado!",
+    "SUCCESS": "Enseguida te responderé con un email.",
+    "LABEL": {
+      "NAME": "Tu nombre:",
+      "EMAIL": "Tu email:",
+      "SUBJECT": "Asunto:",
+      "MESSAGE": "Mensaje:",
+      "CONSENT": "Acepto la política de tratamiento de datos."
+    },
+    "ERROR": {
+      "NAME": "El nombre es obligatorio.",
+      "EMAIL": "Es necesaria una dirección email válida.",
+      "SUBJECT": "El asunto no puede estar vacío.",
+      "MESSAGE": "El mensaje no puede estar vacío.",
+      "CONSENT": "No se puede enviar el mensaje si no se acepta la política."
+    }
+  },
+  "PROFILE": {
+    "MORE": "Más sobre mí",
+    "ABOUT": "Sobre mí"
+  },
+  "PROJECT": {
+    "ALL": "Todos los proyectos",
+    "LICENSE": "Licencia",
+    "TAGS": "Etiquetas",
+    "COMMENT": "Notas de {{name}}:"
+  }
+}

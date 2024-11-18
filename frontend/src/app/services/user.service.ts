@@ -8,6 +8,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from '../models/user';
+import {LocaleService} from './locale.service';
 import {environment} from '../../environments/environment';
 
 @Injectable({providedIn: 'root'})
@@ -34,7 +35,9 @@ export class UserService {
    *
    * @param http The HTTP client.
    */
-  public constructor(private http: HttpClient){this.user = this.http.get<User>(this.apiUrl);}
+  public constructor(private http: HttpClient, private localeService: LocaleService){
+    this.user = this.http.get<User>(this.apiUrl + "?lang=" + this.localeService.getLanguage());
+  }
 
   /**
    * Retrieves a user to the active user.
