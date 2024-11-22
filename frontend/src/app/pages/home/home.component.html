@@ -14,15 +14,15 @@
       }
     </div>
     <div [innerHTML]="texts['BIO_SHORT']" id='bio'></div>
-    <a id='more' class='a_button' href="/profile/">
-      {{'PROFILE.MORE' | translate}}
-    </a>
   </article>
+  <div class="button">
+    <a id='more' class='a_button' href="/profile/">{{'PROFILE.MORE' | translate}}</a>
+  </div>
 </section>
 <section id='home_projects'>
   <h3>{{'SECTION.PROJECTS' | translate}}</h3>
   <app-project-preview *ngFor="let project of projects" [project]="project"></app-project-preview>
-  <a id='all_projects' class='a_button' href="/projects/">
-    {{'PROJECT.ALL' | translate}}
-  </a>
+  <div class="button">
+    <a id='all_projects' class='a_button' href="/projects/">{{'PROJECT.ALL' | translate}}</a>
+  </div>
 </section>

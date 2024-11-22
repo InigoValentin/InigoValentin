@@ -1,11 +1,13 @@
 <article class='project_preview'>
-  <a ngIf="project.logo" class='logo' routerLink="/projects/{{project.permalink}}">
-    <img class="logo" src="./img/project/{{project.logo}}" alt={{project.title}} />
-  </a>
-  <div class='details'>
+  <a class='a_no_decor' routerLink="/projects/{{project.permalink}}">
     <h4 class='title'>{{project.title}}</h4>
     <h5 class='header'>{{project.header}}</h5>
-    <div class='text' [innerHTML]=project.text></div>
+  </a>
+  <div class='details'>
+    <a ngIf="project.logo" class='logo' routerLink="/projects/{{project.permalink}}">
+      <img class="logo" src="./img/project/{{project.logo}}" alt={{project.title}} />
+    </a>
+    <div class='text' [class.no_logo] = "!project.logo" [innerHTML]=project.text></div>
     <div class='details_cover'></div>
   </div>
   <div class='tags'>
@@ -14,7 +16,7 @@
     </span>
   </div>
   <div class='button'>
-    <a class='a_button' routerLink="/projects/{{project.permalink}}" i18n>
+    <a class='a_button' routerLink="/projects/{{project.permalink}}">
       {{'SEE_MORE' | translate}}
     </a>
   </div>

@@ -11,6 +11,7 @@
   <div id='message_form'>
     <p>{{'MESSAGE.INFO' | translate}}</p>
     <form #messageForm='ngForm' (ngSubmit)='onSubmit(messageForm)'>
+
       <div>
         <label for='name'>{{'MESSAGE.LABEL.NAME' | translate}}</label>
         <input type='text' name='name' ngModel required/>
@@ -44,7 +45,7 @@
       <div>
         <span id='error_consent' class='error'>{{'MESSAGE.ERROR.CONSENT' | translate}}.</span>
       </div>
-      <div><input type='submit' value="{{'MESSAGE.SEND' | translate}}"/></div>
+      <div id='message_button'><input type='submit' value="{{'MESSAGE.SEND' | translate}}"/></div>
     </form>
   </div>
   <div id='message_confirmation'>

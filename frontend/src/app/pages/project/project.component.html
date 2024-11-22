@@ -16,23 +16,21 @@
             <li *ngFor="let url of project['project-urls']">
               <a href="{{ url.url }}" title="{{ url.type.summary }}" target="_blank">
                 <img src="./img/social/{{url.type.logo}}" alt="{{url.type.title}}"/>
-                {{url.type.title}}
+                <span>{{url.type.title}}</span>
               </a>
             </li>
           </ul>
         }
         @if(project.license){
           <div id='license'>
-            {{'PROJECT.LICENSE' | translate}}
+            <span>{{'PROJECT.LICENSE' | translate}}</span>
             <img src="./img/license/{{project.license.icon}}" alt="{{project.license.legal}}" title="{{project.license.legal}}"/>
           </div>
         }
         @if(project.tags){
           <div id='tags'>
-            {{'PROJECT.TAGS' | translate}}
-            <span *ngFor="let tag of project.tags">
-              <img src="./img/tag/{{tag.icon}}" alt="{{tag.tag}}" title="{{tag.tag}}"/>
-            </span>
+            <span>{{'PROJECT.TAGS' | translate}}</span>
+            <img *ngFor="let tag of project.tags" src="./img/tag/{{tag.icon}}" alt="{{tag.tag}}" title="{{tag.tag}}"/>
           </div>
         }
       </div>
@@ -71,7 +69,7 @@
     <div class='control desktop a_button' onClick='nextImage();'>
       <img src='./img/control/next.svg'/>
     </div>
-    <div id='secondary_controls' class='mobile'>
+    <div id='secondary_controls'>
         <a onClick='prevImage();'>
             <img src='./img/control/prev.svg'/>
         </a>
